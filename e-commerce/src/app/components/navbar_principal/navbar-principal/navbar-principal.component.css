@@ -1,0 +1,28 @@
+nav {
+    background-color: #87ceeb; /* Light blue (celeste) */
+    padding: 1em 0; /* Top and bottom padding */
+}
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: flex-start; /* Aligns items to the left */
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    margin-right: 2em; /* Adds spacing between the menu items */
+}
+
+nav ul li a {
+    color: #2e4e9e; /* Dark blue for better visibility */
+    text-decoration: none;
+    padding: 0.5em 1em;
+}
+
+nav ul li a:hover {
+    background-color: #87ceeb; /* Sky blue on hover */
+    color: #fff; /* Change text color on hover for contrast */
+}
+
