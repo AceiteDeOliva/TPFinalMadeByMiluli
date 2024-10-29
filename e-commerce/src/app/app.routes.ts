@@ -3,11 +3,14 @@ import { HomeComponent } from './pages/home/home.component';
 import { CarritoComponent } from './component/carrito/carrito.component';
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './component/nav-bar/nav-bar.component';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
 
 
 export const routes: Routes = [
 
   {path:'carrito', component:CarritoComponent},
-  {path:'home', component:HomeComponent}
-  ,{path:"**",redirectTo:"home"}
+  {path:'home', component:HomeComponent},
+  {path: 'login', component:LoginPageComponent},
+  {path:"**",redirectTo:"home"},
+
 ];
