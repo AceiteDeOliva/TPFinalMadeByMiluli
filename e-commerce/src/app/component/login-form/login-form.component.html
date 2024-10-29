@@ -1,6 +1,6 @@
 <form [formGroup]="loginForm" (ngSubmit)="login()" autocomplete="new-password">
     <h1>Login</h1>
-  
+
     <div class="form-control">
       <label for="email">Email</label>
       <input
@@ -10,9 +10,9 @@
         type="email"
       />
     </div>
-  
+
     <div class="form-control">
-      <label for="password">Password</label>
+      <label for="password">Contraseña </label>
       <input
         formControlName="password"
         id="password"
@@ -20,6 +20,6 @@
         type="password"
       />
     </div>
-  
-    <button type="submit">Login &#8594;</button>
+
+    <button type="submit">Ingresar</button>
   </form>
