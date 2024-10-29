@@ -1,0 +1,59 @@
+/*seteado de logo*/
+.logo {
+  margin-right: auto;
+  height: 55px;
+}
+/*seteado de contenido de la barra*/
+nav {
+  background-color: #D1E3EB;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+nav ul {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  justify-content: flex-end;
+}
+
+nav ul li a {
+  margin-right: 20px;
+  text-decoration: none; /* Removes the underline from links */
+  font-weight: normal; /* Sets the font weight to normal (removes bold) */
+  color: #000; /* Text color */
+}
+
+.carrito {
+  height: 40px;
+  margin-right: 20px;
+  margin-left: 30px;
+}
+
+nav button {
+  border: 1px solid rgb(100, 169, 243);
+  padding: 10px 15px;
+  cursor: pointer;
+  margin-left: 10px;
+  color: #000000;
+  border-radius: 8px;
+}
+.boton-inicio-sesion {
+  background-color: #C4DCBB;
+}
+.boton-registrarme {
+  background-color: #FEE9B2;
+}
+
+nav button:hover {
+  background-color: #95CBEE;
+  color: white;
+}
+nav ul li a:hover {
+  color: #95CBEE;
+}
