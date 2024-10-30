@@ -1,8 +1,8 @@
+import { UserService } from './../../services/user.service';
 import { Component, inject } from '@angular/core';
 import { Router, RouterEvent, RouterModule, RouterOutlet } from '@angular/router';
 import { HomeComponent } from '../../pages/home/home.component';
 import { CarritoComponent } from '../carrito/carrito.component';
-import { UserControlService } from '../../service/user-control.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 
@@ -16,17 +16,17 @@ import { CommonModule } from '@angular/common';
 export class NavBarComponent {
 
 
-  credential: string | null = "admin"; 
+  credential: string | null = null; 
   accountMenuVisible: boolean = false;
 
-  constructor(private userControlService: UserControlService) {}
+  constructor(private UserService: UserService) {}
 
   ngOnInit(): void {
     this.checkUserCredentials();
   }
 
   checkUserCredentials(): void {
-    this.userControlService.getCredential().subscribe((cred: string) => {
+    this.UserService.getCredential().subscribe((cred: string) => {
       this.credential = cred || null; 
     });
   }
