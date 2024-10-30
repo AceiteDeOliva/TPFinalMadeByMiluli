@@ -1,14 +1,22 @@
 {
-    "users": [
-      {
-        "id": 1,
-        "email": "user1@example.com",
-        "password": "password1"
-      },
-      {
-        "id": 2,
-        "email": "user2@example.com",
-        "password": "password2"
+  "users": [
+    {
+      "id": "1",
+      "email": "admin@admin.com",
+      "password": "password1",
+      "cart": [],
+      "purchaseHistory": [],
+      "credential": "admin"
+    },
+    {
+      "id": "020f",
+      "newUser": {
+        "email": "josevl@live.com",
+        "password": "Letamdnia1",
+        "cart": [],
+        "purchaseHistory": [],
+        "credential": "user"
       }
-    ]
-  }
+    }
+  ]
+}

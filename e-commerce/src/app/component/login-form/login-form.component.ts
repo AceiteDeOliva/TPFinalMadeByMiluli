@@ -31,19 +31,19 @@ export class LoginFormComponent {
   }
 
   login() {
-    if (this.loginForm.invalid) {
+    if (this.loginForm.invalid) { //checks that all fields are filled
       alert('Please fill in all required fields.');
       return;
     }
 
     const { email, password } = this.loginForm.value;
 
-    this.authenticateUser(email!, password!)
+    this.authenticateUser(email!, password!) // checks credentials
       .pipe(
         tap((isValid) => {
           if (isValid) {
             alert('Login successful!');
-            this.router.navigate(['/home']);
+            this.router.navigate(['/home']); //if credentials are valid it redirects to home
           } else {
             alert('Invalid email or password');
           }
@@ -57,7 +57,7 @@ export class LoginFormComponent {
       .subscribe();
   }
 
-  private authenticateUser(email: string, password: string): Observable<boolean> {
+  private authenticateUser(email: string, password: string): Observable<boolean> { // checks if the user && password combination exists
     return this.http
       .get<any[]>(`http://localhost:3000/users?email=${email}&password=${password}`)
       .pipe(
