@@ -1,16 +1,23 @@
-/*seteado de logo*/
-.logo {
-  margin-right: auto;
+/* Set the logo */
+.icon {
   height: 55px;
 }
-/*seteado de contenido de la barra*/
+
+/* Nav container */
 nav {
   background-color: #D1E3EB;
   padding: 15px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  text-align: center;
+}
 
+/* Right-aligned group */
+.toTheRight {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  margin-left: auto; 
 }
 
 nav ul {
@@ -19,34 +26,32 @@ nav ul {
   align-items: center;
   margin: 0;
   padding: 0;
-  justify-content: flex-end;
+  gap: 25px;
 }
 
 nav ul li a {
-  margin-right: 20px;
-  text-decoration: none; /* Removes the underline from links */
-  font-weight: normal; /* Sets the font weight to normal (removes bold) */
-  color: #000; /* Text color */
+  text-decoration: none;
+  font-weight: normal;
+  color: #000;
 }
 
-.carrito {
+.cart {
   height: 40px;
-  margin-right: 20px;
-  margin-left: 30px;
 }
 
 nav button {
   border: 1px solid rgb(100, 169, 243);
   padding: 10px 15px;
   cursor: pointer;
-  margin-left: 10px;
   color: #000000;
   border-radius: 8px;
 }
-.boton-inicio-sesion {
+
+.log-button {
   background-color: #C4DCBB;
 }
-.boton-registrarme {
+
+.register-button {
   background-color: #FEE9B2;
 }
 
@@ -54,6 +59,36 @@ nav button:hover {
   background-color: #95CBEE;
   color: white;
 }
-nav ul li a:hover {
-  color: #95CBEE;
+
+.dropdown {
+  position: relative;
+}
+
+.nested {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: white;
+  border: 1px solid #95CBEE;
+  z-index: 10000;
+  list-style-type: none;
+  border-radius: 8px;
+}
+
+.dropdown:hover .nested {
+  display: flex;
+}
+
+.nested li {
+  padding: 5px;
+}
+
+.nested li a {
+  text-decoration: none;
+  color: black;
+}
+
+.nested li:hover {
+  background-color: #95CBEE;
 }
