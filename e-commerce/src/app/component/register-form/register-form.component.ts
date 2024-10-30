@@ -3,7 +3,7 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angula
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, map, tap, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-register-form',
@@ -12,8 +12,6 @@ import { catchError, map, tap } from 'rxjs/operators';
   templateUrl: './register-form.component.html',
   styleUrls: ['./register-form.component.css']
 })
-
-
 export class RegisterFormComponent {
   registerForm: FormGroup;
 
@@ -22,10 +20,10 @@ export class RegisterFormComponent {
     private router: Router,
     private http: HttpClient
   ) {
-
     this.registerForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
+      password2: ['', [Validators.required]]
     });
   }
 
@@ -35,37 +33,35 @@ export class RegisterFormComponent {
       return;
     }
 
-    const { email, password } = this.registerForm.value;
+    const { email, password, password2 } = this.registerForm.value;
+
+    if (password !== password2) {
+      alert('Passwords do not match.');
+      return;
+    }
 
     this.checkUserExists(email!)
       .pipe(
-        tap((exists) => {
+        switchMap((exists) => {
           if (exists) {
             alert('User with this email already exists.');
             this.router.navigate(['/login']);
+            return of(false); // Stop further processing if user exists
           } else {
-            this.createUser(email!, password!)
-              .pipe(
-                tap((isCreated) => {
-                  if (isCreated) {
-                    alert('Registration successful!');
-                    this.router.navigate(['/login']);
-                  } else {
-                    alert('Registration failed.');
-                  }
-                }),
-                catchError((error) => {
-                  console.error('Registration error', error);
-                  alert('An error occurred while registering.');
-                  return of(false);
-                })
-              )
-              .subscribe();
+            return this.createUser(email!, password!);
+          }
+        }),
+        tap((isCreated) => {
+          if (isCreated) {
+            alert('Registration successful!');
+            this.router.navigate(['/login']);
+          } else if (isCreated === false) {
+            alert('Registration failed.');
           }
         }),
         catchError((error) => {
-          console.error('Error checking if user exists', error);
-          alert('An error occurred while checking user existence.');
+          console.error('Registration error', error);
+          alert('An error occurred while registering.');
           return of(false);
         })
       )
@@ -76,7 +72,7 @@ export class RegisterFormComponent {
     return this.http
       .get<any[]>(`http://localhost:3000/users?email=${email}`)
       .pipe(
-        map((users) => users.length > 0) // If the array is not empty, the user exists
+        map((users) => users.length > 0)
       );
   }
 
@@ -84,7 +80,7 @@ export class RegisterFormComponent {
     return this.http
       .post<any>(`http://localhost:3000/users`, { email, password })
       .pipe(
-        map((user) => user ? true : false) // Return true if the user was created successfully
+        map((user) => !!user)
       );
   }
 }
