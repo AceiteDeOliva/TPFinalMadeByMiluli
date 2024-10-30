@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap, switchMap } from 'rxjs/operators';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-register-form',
@@ -19,7 +20,7 @@ export class RegisterFormComponent {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private http: HttpClient
+    private userService: UserService
   ) {
     this.registerForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -42,56 +43,24 @@ export class RegisterFormComponent {
       return;
     }
 
-    this.checkUserExists(email!)
-      .pipe(
-        switchMap((exists) => {
-          if (exists) {
-            alert('User with this email already exists.');
-            this.router.navigate(['/login']); //sends to log in if user already exists
-            return of(false); // Stops further processing if user exists
-          } else {
-            return this.createUser(email!, password!); //creates user
-          }
-        }),
-        tap((isCreated) => {
-          if (isCreated) {
-            alert('Registration successful!');
-            this.router.navigate(['/login']);
-          } else if (isCreated === false) {
-            alert('Registration failed.');
-          }
-        }),
-        catchError((error) => {
-          console.error('Registration error', error);
-          alert('An error occurred while registering.');
-          return of(false);
-        })
-      )
-      .subscribe();
+
+    this.userService.register(email, password).pipe(
+      tap((isRegistered) => {
+        if (isRegistered) {
+          alert('Registration successful!');
+          this.router.navigate(['/login']); // Redirect to login page after successful registration
+        } else {
+          alert('User already exists.'); // Handle case where user already exists
+        }
+      }),
+      catchError((error) => {
+        console.error('Registration error', error);
+        alert('An error occurred during registration.'); // Handle errors
+        return of(false); // Return false to keep the observable chain intact
+      })
+    ).subscribe();
+
+
   }
 
-  private checkUserExists(email: string): Observable<boolean> { //Checks if user with a certain email already exists
-    return this.http
-      .get<any[]>(`http://localhost:3000/users?email=${email}`)
-      .pipe(
-        map((users) => users.length > 0)
-      );
-  }
-
-  private createUser(email: string, password: string): Observable<boolean> { //creates json object in the json DB
-    
-    const newUser = {
-      email,
-      password,
-      cart: [], 
-      purchaseHistory: [],
-      credential: "user"
-    };
-
-    return this.http
-      .post<any>(`http://localhost:3000/users`, { newUser})
-      .pipe(
-        map((user) => !!user)
-      );
-  }
 }

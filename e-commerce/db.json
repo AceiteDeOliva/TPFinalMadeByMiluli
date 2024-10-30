@@ -10,13 +10,19 @@
     },
     {
       "id": "020f",
-      "newUser": {
-        "email": "josevl@live.com",
-        "password": "Letamendia1",
-        "cart": [],
-        "purchaseHistory": [],
-        "credential": "user"
-      }
+      "email": "josevl@live.com",
+      "password": "12345",
+      "cart": [],
+      "purchaseHistory": [],
+      "credential": "user"
+    },
+    {
+      "id": "82ff",
+      "email": "carmenleta12@gmail.com",
+      "password": "12345",
+      "cart": [],
+      "purchaseHistory": [],
+      "credential": "user"
     }
   ]
 }
