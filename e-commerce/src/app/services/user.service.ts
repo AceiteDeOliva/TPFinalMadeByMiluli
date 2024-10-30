@@ -53,4 +53,22 @@ export class UserService {
       map(users => users.length > 0) // Return true if user with that email exists
     );
   }
+  getUser(): Observable<User[]> {
+    return this.http.get<User[]>(this.apiUrl).pipe(
+      catchError((error) => {
+        console.error('Error fetching users:', error); // Log error
+        return of([]); // Return empty array on error
+      })
+    );
+  }
+
+  getCredential(): Observable<string> {
+    return this.http.get<any>(this.apiUrl).pipe(
+      map((data: { credential: string }) => data.credential),
+      catchError((error) => {
+        console.error('Error fetching credential:', error); // Log error
+        return of(''); // Return empty string on error
+      })
+    );
+  }
 }
