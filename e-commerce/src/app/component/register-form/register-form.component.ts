@@ -85,7 +85,7 @@ export class RegisterFormComponent {
       password,
       cart: [], 
       purchaseHistory: [],
-      credential: 'user'
+      credential: "user"
     };
 
     return this.http
