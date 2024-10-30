@@ -1,14 +1,28 @@
 {
-    "users": [
-      {
-        "id": 1,
-        "email": "user1@example.com",
-        "password": "password1"
-      },
-      {
-        "id": 2,
-        "email": "user2@example.com",
-        "password": "password2"
-      }
-    ]
-  }
+  "users": [
+    {
+      "id": "1",
+      "email": "admin@admin.com",
+      "password": "admin",
+      "cart": [],
+      "purchaseHistory": [],
+      "credential": "admin"
+    },
+    {
+      "id": "020f",
+      "email": "josevl@live.com",
+      "password": "12345",
+      "cart": [],
+      "purchaseHistory": [],
+      "credential": "user"
+    },
+    {
+      "id": "82ff",
+      "email": "carmenleta12@gmail.com",
+      "password": "12345",
+      "cart": [],
+      "purchaseHistory": [],
+      "credential": "user"
+    }
+  ]
+}

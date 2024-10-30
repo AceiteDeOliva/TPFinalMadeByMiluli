@@ -29,6 +29,7 @@
     <li><a routerLink="categoria">Categorías</a></li>
     <li><a routerLink="ofertas">Ofertas</a></li>
     <li><a routerLink="productos">Productos</a></li>
+
     <li class="dropdown">
       <span  (click)="toggleAccountMenu()">Mi Cuenta</span>
       <ul class="nested" [ngStyle]="{'display': accountMenuVisible ? 'block' : 'none'}">
@@ -44,6 +45,8 @@
     </a>
     </div>
 </nav>
+
+
 
 
 
@@ -67,6 +70,5 @@
   </ul>
   <button routerLink="logout" class="log-button">Cerrar sesión</button>
     </div>
-    
 </nav>
 
