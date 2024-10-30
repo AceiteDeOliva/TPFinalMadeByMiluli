@@ -22,7 +22,7 @@ export class RegisterFormComponent {
     private router: Router,
     private http: HttpClient
   ) {
-    
+
     this.registerForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
@@ -37,23 +37,47 @@ export class RegisterFormComponent {
 
     const { email, password } = this.registerForm.value;
 
-    this.createUser(email!, password!)
+    this.checkUserExists(email!)
       .pipe(
-        tap((isCreated) => {
-          if (isCreated) {
-            alert('Registration successful!');
+        tap((exists) => {
+          if (exists) {
+            alert('User with this email already exists.');
             this.router.navigate(['/login']);
           } else {
-            alert('Registration failed. Email might already be in use.');
+            this.createUser(email!, password!)
+              .pipe(
+                tap((isCreated) => {
+                  if (isCreated) {
+                    alert('Registration successful!');
+                    this.router.navigate(['/login']);
+                  } else {
+                    alert('Registration failed.');
+                  }
+                }),
+                catchError((error) => {
+                  console.error('Registration error', error);
+                  alert('An error occurred while registering.');
+                  return of(false);
+                })
+              )
+              .subscribe();
           }
         }),
         catchError((error) => {
-          console.error('Registration error', error);
-          alert('An error occurred while registering.');
+          console.error('Error checking if user exists', error);
+          alert('An error occurred while checking user existence.');
           return of(false);
         })
       )
       .subscribe();
+  }
+
+  private checkUserExists(email: string): Observable<boolean> {
+    return this.http
+      .get<any[]>(`http://localhost:3000/users?email=${email}`)
+      .pipe(
+        map((users) => users.length > 0) // If the array is not empty, the user exists
+      );
   }
 
   private createUser(email: string, password: string): Observable<boolean> {
