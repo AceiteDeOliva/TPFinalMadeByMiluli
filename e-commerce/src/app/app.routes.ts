@@ -13,6 +13,6 @@ export const routes: Routes = [
   {path:'home', component:HomeComponent},
   {path: 'login', component:LoginPageComponent},
   {path:'register', component:RegisterComponent},
-  {path:"**",redirectTo:"home"},
+  {path:"**",redirectTo:"home"}, // This one has to go last
   
 ];

@@ -2,23 +2,21 @@
   "users": [
     {
       "id": "1",
-      "email": "user1@example.com",
-      "password": "password1"
+      "email": "admin@admin.com",
+      "password": "password1",
+      "cart": [],
+      "purchaseHistory": [],
+      "credential": "admin"
     },
     {
-      "id": "2",
-      "email": "user2@example.com",
-      "password": "password2"
-    },
-    {
-      "id": "7963",
-      "email": "josevl@live.com",
-      "password": "Letamendia1"
-    },
-    {
-      "id": "6a0c",
-      "email": "carmenleta12@gmail.com",
-      "password": "Letamendia1"
+      "id": "020f",
+      "newUser": {
+        "email": "josevl@live.com",
+        "password": "Letamdnia1",
+        "cart": [],
+        "purchaseHistory": [],
+        "credential": "user"
+      }
     }
   ]
 }

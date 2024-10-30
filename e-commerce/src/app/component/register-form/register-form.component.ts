@@ -12,6 +12,7 @@ import { catchError, map, tap, switchMap } from 'rxjs/operators';
   templateUrl: './register-form.component.html',
   styleUrls: ['./register-form.component.css']
 })
+
 export class RegisterFormComponent {
   registerForm: FormGroup;
 
@@ -28,14 +29,15 @@ export class RegisterFormComponent {
   }
 
   register() {
-    if (this.registerForm.invalid) {
+
+    if (this.registerForm.invalid) { // checks if all fields are filled
       alert('Please fill in all required fields.');
       return;
     }
 
     const { email, password, password2 } = this.registerForm.value;
 
-    if (password !== password2) {
+    if (password !== password2) { //checks if passwords match
       alert('Passwords do not match.');
       return;
     }
@@ -45,10 +47,10 @@ export class RegisterFormComponent {
         switchMap((exists) => {
           if (exists) {
             alert('User with this email already exists.');
-            this.router.navigate(['/login']);
-            return of(false); // Stop further processing if user exists
+            this.router.navigate(['/login']); //sends to log in if user already exists
+            return of(false); // Stops further processing if user exists
           } else {
-            return this.createUser(email!, password!);
+            return this.createUser(email!, password!); //creates user
           }
         }),
         tap((isCreated) => {
@@ -68,7 +70,7 @@ export class RegisterFormComponent {
       .subscribe();
   }
 
-  private checkUserExists(email: string): Observable<boolean> {
+  private checkUserExists(email: string): Observable<boolean> { //Checks if user with a certain email already exists
     return this.http
       .get<any[]>(`http://localhost:3000/users?email=${email}`)
       .pipe(
@@ -76,9 +78,18 @@ export class RegisterFormComponent {
       );
   }
 
-  private createUser(email: string, password: string): Observable<boolean> {
+  private createUser(email: string, password: string): Observable<boolean> { //creates json object in the json DB
+    
+    const newUser = {
+      email,
+      password,
+      cart: [], 
+      purchaseHistory: [],
+      credential: 'user'
+    };
+
     return this.http
-      .post<any>(`http://localhost:3000/users`, { email, password })
+      .post<any>(`http://localhost:3000/users`, { newUser})
       .pipe(
         map((user) => !!user)
       );
