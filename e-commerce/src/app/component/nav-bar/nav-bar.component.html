@@ -1,17 +1,72 @@
-<nav>
-
-   <a routerLink="home"><img src="\Assets\Logo made by miluli\Flor_MadeByMiluli.png"  alt="logo" class="logo"style="cursor: pointer;"></a>
-
+<!-- Navigation for guests (not logged in) -->
+<nav *ngIf="credential === null">
+  <a routerLink="home">
+    <img src="/Assets/Logo made by miluli/Flor_MadeByMiluli.png" alt="logo" class="icon" style="cursor: pointer;">
+  </a>
+  <div class="toTheRight">
   <ul style="cursor: pointer;">
-    <li><a routerLink="categoria" >Categorías</a></li>
+    <li><a routerLink="categoria">Categorías</a></li>
     <li><a routerLink="ofertas">Ofertas</a></li>
     <li><a routerLink="productos">Productos</a></li>
-    <button routerLink="login" class="boton-inicio-sesion">Inicio de sesión</button>
-  <button routerLink="registro" class="boton-registrarme">Registrarme</button>
-
-   <a routerLink="carrito"> <img src="\Assets\Logo made by miluli\basket.png" alt="\carrito" class="carrito" ></a>
-
   </ul>
+  <button routerLink="login" class="log-button">Inicio de sesión</button>
+    <button routerLink="registro" class="register-button">Registrarme</button>
+    <a routerLink="carrito">
+      <img src="/Assets/Logo made by miluli/basket.png" alt="carrito" class="cart">
+    </a>
+    </div>
+</nav>
 
+
+<!-- navegacion para cliente -->
+
+<nav *ngIf = "credential === 'user'|| credential === 'adminUser'">
+    <a routerLink="home">
+    <img src="/Assets/Logo made by miluli/Flor_MadeByMiluli.png" alt="logo" class="icon" style="cursor: pointer;">
+  </a>
+  <div class="toTheRight">
+  <ul style="cursor: pointer;">
+    <li><a routerLink="categoria">Categorías</a></li>
+    <li><a routerLink="ofertas">Ofertas</a></li>
+    <li><a routerLink="productos">Productos</a></li>
+    <li class="dropdown">
+      <span  (click)="toggleAccountMenu()">Mi Cuenta</span>
+      <ul class="nested" [ngStyle]="{'display': accountMenuVisible ? 'block' : 'none'}">
+        <li><a routerLink="profile">Perfil</a></li>
+        <li><a routerLink="orders">Pedidos</a></li>
+        <li *ngIf="credential=='adminUser'"><a routerLink="homeAdmin"(click)="switchToAdmiMode()">Modo Admin</a></li>
+      </ul>
+    </li>
+  </ul>
+  <button routerLink="logout" class="log-button">Cerrar sesión</button>
+    <a routerLink="carrito">
+      <img src="/Assets/Logo made by miluli/basket.png" alt="carrito" class="cart">
+    </a>
+    </div>
+</nav>
+
+
+
+<!-- Navegacion admin,employee y manager -->
+<nav *ngIf="(credential === 'admin') || (credential === 'employee')|| (credential === 'manager')">
+  <a routerLink="home">
+    <img src="/Assets/Logo made by miluli/Flor_MadeByMiluli.png" alt="logo" class="icon" style="cursor: pointer;">
+  </a>
+  <div class="toTheRight">
+  <ul style="cursor: pointer;">
+    <li><a routerLink="product-admin">Productos</a></li>
+    <li><a routerLink="orders">Ordenes</a></li>
+    <li  *ngIf="credential!='employee'"><a routerLink="credentials">Gestion Credenciales</a></li>
+    <li class="dropdown">
+      <span  (click)="toggleAccountMenu()">Mi Cuenta</span>
+      <ul class="nested" [ngStyle]="{'display': accountMenuVisible ? 'block' : 'none'}">
+        <li><a routerLink="profile">Perfil</a></li>
+        <li *ngIf="credential=='admin'"><a routerLink="home"(click)="switchToUserMode()">Modo cliente</a></li>
+      </ul>
+    </li>
+  </ul>
+  <button routerLink="logout" class="log-button">Cerrar sesión</button>
+    </div>
+    
 </nav>
 
