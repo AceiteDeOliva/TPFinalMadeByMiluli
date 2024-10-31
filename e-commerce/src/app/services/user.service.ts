@@ -13,13 +13,13 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
 
-  register(email: string, password: string): Observable<boolean> {
+  register(name: string, surname:string, email: string, password: string): Observable<boolean> {
     return this.checkUserExists(email).pipe(
       switchMap((exists) => {
         if (exists) {
           return of(false);
         } else {
-          const newUser = { email, password, cart: [], purchaseHistory: [], credential: "user" };
+          const newUser: Omit<User, 'id'> = { name , surname, email, password, cart: [], purchaseHistory: [], credential: "user" };
           return this.http.post<User>(this.apiUrl, newUser).pipe(
             map(() => true),
             catchError(() => of(false))
