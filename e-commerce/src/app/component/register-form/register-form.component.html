@@ -1,25 +1,26 @@
 <form [formGroup]="registerForm" (submit)="register()" autocomplete="new-password">
-    <h1>Registrarse</h1>
-    <div class="form-control-nombre-container">
-      <div class="form-control-nombre">
-        <label for="nombre">Nombre</label>
-        <input
-          formControlName="Nombre"
-          id="nombre"
-          autocomplete=on
-          type="text"
-        />
-      </div>
-      <div class="form-control-nombre">
-        <label for="apellido">Apellido</label>
-        <input
-          formControlName="apellido"
-          id="apellido"
-          autocomplete= on
-          type="text"
-        />
-      </div>
+  <h1>Registrarse</h1>
+  <div class="form-control-nombre-container">
+    <div class="form-control-nombre">
+      <label for="name">Nombre</label>
+      <input
+        formControlName="name"  
+        id="nombre"
+        autocomplete="on"
+        type="text"
+      />
     </div>
+    <div class="form-control-nombre">
+      <label for="surname">Apellido</label>
+      <input
+        formControlName="surname"  
+        id="apellido"
+        autocomplete="on"
+        type="text"
+      />
+    </div>
+  </div>
+  
 
   
     <div class="form-control">

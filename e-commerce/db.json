@@ -2,6 +2,8 @@
   "users": [
     {
       "id": "1",
+      "name": "",
+      "surname": "",
       "email": "admin@admin.com",
       "password": "admin",
       "cart": [],
@@ -10,6 +12,8 @@
     },
     {
       "id": "020f",
+      "name": "",
+      "surname": "",
       "email": "josevl@live.com",
       "password": "12345",
       "cart": [],
@@ -18,6 +22,8 @@
     },
     {
       "id": "82ff",
+      "name": "",
+      "surname": "",
       "email": "carmenleta12@gmail.com",
       "password": "12345",
       "cart": [],
