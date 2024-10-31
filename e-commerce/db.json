@@ -29,6 +29,14 @@
       "cart": [],
       "purchaseHistory": [],
       "credential": "user"
+    },
+    {
+      "id": "df54",
+      "email": "milagrosabril.r@gmail.com",
+      "password": "mililomas",
+      "cart": [],
+      "purchaseHistory": [],
+      "credential": "user"
     }
   ]
 }

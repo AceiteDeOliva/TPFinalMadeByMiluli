@@ -1,0 +1,88 @@
+<form>
+    <h1>Ingresar nuevo producto</h1>
+
+    <div class="form-control-container">
+        <div class="form-control">
+            <label for="productName">Nombre Producto</label>
+            <input
+                formControl="productName"
+                id="productName"
+                type="text"
+                placeholder="Nombre Producto"
+            />
+        </div>
+
+        <div class="form-control">
+            <label for="price">Precio</label>
+            <input
+                formControl="price"
+                id="price"
+                type="number"
+            />
+        </div>
+
+        <div class="form-control">
+            <label for="category">Categoría</label>
+            <input
+                formControl="category"
+                id="category"
+                type="text"
+                placeholder="Amigurumi/Accesorio"
+            />
+        </div>
+
+        <div class="form-control">
+            <label for="stock">Stock</label>
+            <input
+                formControl="stock"
+                id="stock"
+                type="number"
+            />
+        </div>
+    </div>
+
+    <div class="form-control-container">
+        <div class="form-control">
+            <label for="description">Descripción</label>
+            <textarea
+                formControl="description"
+                id="description"
+                rows="4"  
+                placeholder="Escribe una descripción aquí..."
+            ></textarea>
+        </div>
+
+        <div class="form-control">
+            <label for="imagen">Subir Imagen</label>
+            <input
+                id="imagen"
+                type="file" 
+                accept="image/*"
+                class="file-input"
+            />
+            <button type="button" class="custom-file-upload">Elegir Imagen</button>
+        </div>
+    </div>
+
+    <button type="submit"> Crear Producto</button>
+</form>
+
+<!--id: string;
+name: string;
+description: string;
+price: number;
+category: string;
+stock: number;
+image: string;
+
+<div>
+        <label for="image">Upload Image:</label>
+        <input formControl="image" type="file" id="imagen" (change)="onFileSelected($event)" />
+      </div>
+       Display the image preview 
+     <div *ngIf="imagePreviewUrl">
+       <h3>Image Preview:</h3>
+       <img [src]="imagePreviewUrl" alt="Image Preview" style="max-width: 300px; max-height: 300px;" />
+</div>
+-->
+  
