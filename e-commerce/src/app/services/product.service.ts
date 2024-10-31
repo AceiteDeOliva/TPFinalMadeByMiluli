@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map, catchError, switchMap } from 'rxjs/operators';
+import { Product } from '../models/product';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +11,61 @@ export class ProductService {
   private apiUrl = 'http://localhost:3000/users';
 
   constructor(private http: HttpClient) {}
-  
+//Agregar productos al json
+  addProduct(id: string, name: string,description: string,price: number,category: string,stock: number,image: string)
+  :Observable <Boolean> {
+    return this.checkProductExists(name).pipe(
+      switchMap((exist)=>{
+        if(exist){
+          return of(false);
+        }else{
+          const newProduct ={id, name,description,price,category,stock,image}
+          return this.http.post<Product>(this.apiUrl,newProduct).pipe(
+            map(()=>true),
+            catchError(()=>of(false)));
+         }
+      }
+
+      )
+    );
+
+    };
+    //chequear si ya existe un prouto con elmismo nombre
+ private checkProductExists(name:string):Observable <Boolean> {
+      return this.http.get<any[]>(`${this.apiUrl}?name=${name}`).pipe(map(product => product.length > 0));
+    }
+private SearchProduct(name: string) {
+      return this.http.get<Product[]>(`${this.apiUrl}?name=${name}`).pipe(
+        map(products => (products.length > 0 ? products : null))
+      );
+    }
+    //obtener los productos ded cierta categoria
+private SearchCategory(category: string) {
+      const categoryArray: Product[] = [];
+      return this.http.get<Product[]>(`${this.apiUrl}?category=${category}`).pipe(
+        map(products => {
+          if (products.length > 0) {
+            categoryArray.push(...products);
+            return categoryArray;
+          } else {
+            return null;
+          }
+        })
+      );
+    }
+    //Obtener todos los prooductos
+  private getProduct(): Observable<Product[]> {
+    return this.http.get<Product[]>(this.apiUrl).pipe(
+      catchError((error) => {
+        console.error('Error fetching users:', error);
+        return of([]);
+      })
+    );
+  }
 
 
- 
+
+
+
+
 }
