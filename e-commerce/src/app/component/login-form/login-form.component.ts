@@ -1,10 +1,12 @@
+import { UserService } from '../../services/user-service/user.service';
 import { Component } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
-import { UserService } from '../../services/user.service';
+import { AuthService } from '../../services/auth-service/auth.service';
+
 
 @Component({
   selector: 'app-login-form',
@@ -21,7 +23,8 @@ export class LoginFormComponent {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private userService: UserService
+    private userService: UserService,
+    private authService: AuthService
   ) {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -34,23 +37,19 @@ export class LoginFormComponent {
         alert('Please fill in all required fields.');
         return;
       }
-  
+
       const { email, password } = this.loginForm.value;
-  
-      this.userService.authenticateUser(email!, password!).pipe(
-        tap((isValid) => {
-          if (isValid) {
-            alert('Login successful!');
-            this.router.navigate(['/home']);
-          } else {
-            alert('Invalid email or password');
-          }
-        }),
-        catchError((error) => {
-          console.error('Login error', error);
-          alert('An error occurred while logging in.');
-          return of(false);
-        })
-      ).subscribe();
+
+      this.userService.authenticateUser(email, password).subscribe(user => {
+        if (user) {
+          alert('Login successful!');
+          localStorage.setItem('currentUser', JSON.stringify(user));
+          this.authService.changeCredential(user.credential);
+          this.router.navigate(['/home']);
+        } else {
+          alert('Invalid credentials. Please try again.');
+        }
+      });
+
     }
 }

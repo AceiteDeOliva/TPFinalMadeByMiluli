@@ -1,0 +1,44 @@
+<form [formGroup]="profileForm" (ngSubmit)="onSave()" class="user-profile-form">
+  <h2>Update Profile</h2>
+
+  <div class="form-control-nombre-container">
+    <div class="form-control-nombre">
+      <label for="name">Nombre</label>
+      <input *ngIf="isEditing" formControlName="name" id="name" />
+      <span *ngIf="!isEditing">{{ profileForm.get('name')?.value }}</span>
+    </div>
+
+    <div class="form-control-nombre">
+      <label for="surname">Apellido</label>
+      <input *ngIf="isEditing" formControlName="surname" id="surname" />
+      <span *ngIf="!isEditing">{{ profileForm.get('surname')?.value }}</span>
+    </div>
+  </div>
+
+  <div class="form-control">
+    <label for="email">Email</label>
+    <input *ngIf="isEditing" formControlName="email" id="email" />
+    <span *ngIf="!isEditing">{{ profileForm.get('email')?.value }}</span>
+  </div>
+
+  <div class="form-control">
+    <label for="password">Contraseña</label>
+    <input *ngIf="isEditing" type="password" formControlName="password" id="password" class="small-input" />
+    <span *ngIf="!isEditing">********</span> 
+  </div>
+
+  <div class="form-control" *ngIf="isAdmin">
+    <label for="credential">Credencial</label>
+    <select *ngIf="isEditing" formControlName="credential" id="credential" class="small-input">
+      <option value="user">User</option>
+      <option value="employee">Employee</option>
+      <option value="manager">Manager</option>
+      <option value="admin">Admin</option>
+    </select>
+    <span *ngIf="!isEditing">{{ profileForm.get('credential')?.value }}</span>
+  </div>
+
+  <button *ngIf="!isEditing" type="button" (click)="onEdit()">Edit</button>
+  <button *ngIf="isEditing" type="submit">Save Changes</button>
+  <button *ngIf="isEditing" type="button" (click)="onCancel()">Cancel</button>
+</form>
