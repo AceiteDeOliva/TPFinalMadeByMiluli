@@ -1,4 +1,4 @@
-import { UserService } from './../../services/user.service';
+import { UserService } from '../../services/user-service/user.service';
 import { Component, inject } from '@angular/core';
 import { Router, RouterEvent, RouterModule, RouterOutlet } from '@angular/router';
 import { HomeComponent } from '../../pages/home/home.component';
