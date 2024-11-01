@@ -23,6 +23,8 @@ export class RegisterFormComponent {
     private userService: UserService
   ) {
     this.registerForm = this.formBuilder.group({
+      name:[''],
+      surname: [''],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
       password2: ['', [Validators.required]]
@@ -36,7 +38,7 @@ export class RegisterFormComponent {
       return;
     }
 
-    const { email, password, password2 } = this.registerForm.value;
+    const { name, surname, email, password, password2 } = this.registerForm.value;
 
     if (password !== password2) { //checks if passwords match
       alert('Passwords do not match.');
@@ -44,7 +46,7 @@ export class RegisterFormComponent {
     }
 
 
-    this.userService.register(email, password).pipe(
+    this.userService.register(name, surname, email, password).pipe(
       tap((isRegistered) => {
         if (isRegistered) {
           alert('Registration successful!');
