@@ -35,16 +35,16 @@ export class UserService {
     return this.http.get<User[]>(`${this.apiUrl}?email=${email}`).pipe(
       map((users) => {
         const user = users[0];
-        const isValidUser = user && user.password === password; 
-        return isValidUser ? user : null; 
+        const isValidUser = user && user.password === password;
+        return isValidUser ? user : null;
       }),
       catchError(() => {
         console.error('Error fetching user data');
-        return of(null); 
+        return of(null);
       })
     );
   }
-  
+
 
   private checkUserExists(email: string): Observable<boolean> { //Checks if email is already registered
     return this.http.get<any[]>(`${this.apiUrl}?email=${email}`).pipe(
@@ -61,15 +61,16 @@ export class UserService {
     );
   }
 
-  getCredential(): Observable<string> {
-    return this.http.get<any>(this.apiUrl).pipe(
-      map((data: { credential: string }) => data.credential),
+  getCredential(userId: string): Observable<string> {
+    return this.http.get<User>(`${this.apiUrl}/${userId}`).pipe(
+      map((user: User) => user.credential),
       catchError((error) => {
-        console.error('Error fetching credential:', error); // Log error
-        return of(''); // Return empty string on error
+        console.error('Error fetching credential:', error);
+        return of('');
       })
     );
   }
+
 
   updateUser(userId: string, updatedFields: Partial<User>): Observable<User> { //updates user info
     return this.http.patch<User>(`${this.apiUrl}/${userId}`, updatedFields).pipe(
