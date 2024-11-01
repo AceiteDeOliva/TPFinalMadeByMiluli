@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap, switchMap } from 'rxjs/operators';
-import { UserService } from '../../services/user.service';
+import { UserService } from '../../services/user-service/user.service';
 
 @Component({
   selector: 'app-register-form',
