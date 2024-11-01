@@ -1,9 +1,9 @@
 {
   "users": [
     {
-      "id": "1",
-      "name": "",
-      "surname": "",
+      "id": "2872",
+      "name": "admin",
+      "surname": "admin",
       "email": "admin@admin.com",
       "password": "admin",
       "cart": [],
@@ -11,29 +11,11 @@
       "credential": "admin"
     },
     {
-      "id": "020f",
-      "name": "",
-      "surname": "",
+      "id": "b138",
+      "name": "José Valentín",
+      "surname": "Letamendía Muzio",
       "email": "josevl@live.com",
       "password": "12345",
-      "cart": [],
-      "purchaseHistory": [],
-      "credential": "user"
-    },
-    {
-      "id": "82ff",
-      "name": "",
-      "surname": "",
-      "email": "carmenleta12@gmail.com",
-      "password": "12345",
-      "cart": [],
-      "purchaseHistory": [],
-      "credential": "user"
-    },
-    {
-      "id": "df54",
-      "email": "milagrosabril.r@gmail.com",
-      "password": "mililomas",
       "cart": [],
       "purchaseHistory": [],
       "credential": "user"
