@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { map, catchError, switchMap } from 'rxjs/operators';
 import { User } from '../models/user';
 
@@ -13,7 +13,8 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
 
-  register(name: string, surname:string, email: string, password: string): Observable<boolean> {
+
+  register(name: string, surname:string, email: string, password: string): Observable<boolean> {//Creates new user json
     return this.checkUserExists(email).pipe(
       switchMap((exists) => {
         if (exists) {
@@ -30,29 +31,27 @@ export class UserService {
   }
 
 
-  authenticateUser(email: string, password: string): Observable<boolean> { 
-    return this.http
-      .get<User[]>(`${this.apiUrl}?email=${email}`) 
-      .pipe(
-        map((users) => {
-          console.log('API Response:', users); // Logs the response to check if users are retrieved correctly
-          const user = users[0];
-          const isValidUser = user.email === email && user.password === password; // Validate password
-          console.log('Is Valid User:', isValidUser); // Log if valid user is found
-          return isValidUser; 
-        }),
-        catchError(() => {
-          console.error('Error fetching user data');
-          return of(false); // Return false if any error occurs
-        })
-      );
+  authenticateUser(email: string, password: string): Observable<User | null> {
+    return this.http.get<User[]>(`${this.apiUrl}?email=${email}`).pipe(
+      map((users) => {
+        const user = users[0];
+        const isValidUser = user && user.password === password; 
+        return isValidUser ? user : null; 
+      }),
+      catchError(() => {
+        console.error('Error fetching user data');
+        return of(null); 
+      })
+    );
   }
+  
 
-  private checkUserExists(email: string): Observable<boolean> {
+  private checkUserExists(email: string): Observable<boolean> { //Checks if email is already registered
     return this.http.get<any[]>(`${this.apiUrl}?email=${email}`).pipe(
       map(users => users.length > 0) // Return true if user with that email exists
     );
   }
+
   getUser(): Observable<User[]> {
     return this.http.get<User[]>(this.apiUrl).pipe(
       catchError((error) => {
@@ -71,4 +70,18 @@ export class UserService {
       })
     );
   }
+
+  updateUser(userId: string, updatedFields: Partial<User>): Observable<User> { //updates user info
+    return this.http.patch<User>(`${this.apiUrl}/${userId}`, updatedFields).pipe(
+      catchError(error => {
+        console.error('Error updating user:', error);
+        return throwError(() => new Error('Error updating user'));
+      })
+    );
+  }
+
+  getUserById(userId: string): Observable<User> { //gets user by id
+    return this.http.get<User>(`${this.apiUrl}/${userId}`);
+  }
+
 }

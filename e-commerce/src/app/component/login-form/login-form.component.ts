@@ -37,20 +37,15 @@ export class LoginFormComponent {
   
       const { email, password } = this.loginForm.value;
   
-      this.userService.authenticateUser(email!, password!).pipe(
-        tap((isValid) => {
-          if (isValid) {
-            alert('Login successful!');
-            this.router.navigate(['/home']);
-          } else {
-            alert('Invalid email or password');
-          }
-        }),
-        catchError((error) => {
-          console.error('Login error', error);
-          alert('An error occurred while logging in.');
-          return of(false);
-        })
-      ).subscribe();
+      this.userService.authenticateUser(email, password).subscribe(user => {
+        if (user) {
+          alert('Login successful!');
+          localStorage.setItem('currentUser', JSON.stringify(user));
+          this.router.navigate(['/home']);
+        } else {
+          alert('Invalid credentials. Please try again.');
+        }
+      });
+      
     }
 }
