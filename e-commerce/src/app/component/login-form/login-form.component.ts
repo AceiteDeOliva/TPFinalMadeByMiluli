@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
+import { AuthService } from '../../services/auth-service/auth.service';
 
 
 @Component({
@@ -22,7 +23,8 @@ export class LoginFormComponent {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private userService: UserService
+    private userService: UserService,
+    private authService: AuthService
   ) {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -35,18 +37,19 @@ export class LoginFormComponent {
         alert('Please fill in all required fields.');
         return;
       }
-  
+
       const { email, password } = this.loginForm.value;
-  
+
       this.userService.authenticateUser(email, password).subscribe(user => {
         if (user) {
           alert('Login successful!');
           localStorage.setItem('currentUser', JSON.stringify(user));
+          this.authService.changeCredential(user.credential);
           this.router.navigate(['/home']);
         } else {
           alert('Invalid credentials. Please try again.');
         }
       });
-      
+
     }
 }
