@@ -1,11 +1,11 @@
-<form>
+<form [formGroup]="productForm">
     <h1>Ingresar nuevo producto</h1>
 
     <div class="form-control-container">
         <div class="form-control">
             <label for="productName">Nombre Producto</label>
             <input
-                formControl="productName"
+                formControlName="productName"
                 id="productName"
                 type="text"
                 placeholder="Nombre Producto"
@@ -15,7 +15,7 @@
         <div class="form-control">
             <label for="price">Precio</label>
             <input
-                formControl="price"
+                formControlNumber="price"
                 id="price"
                 type="number"
             />
@@ -24,7 +24,7 @@
         <div class="form-control">
             <label for="category">Categoría</label>
             <input
-                formControl="category"
+                formControlName="category"
                 id="category"
                 type="text"
                 placeholder="Amigurumi/Accesorio"
@@ -34,7 +34,7 @@
         <div class="form-control">
             <label for="stock">Stock</label>
             <input
-                formControl="stock"
+                formControlNumber="stock"
                 id="stock"
                 type="number"
             />
@@ -45,9 +45,9 @@
         <div class="form-control">
             <label for="description">Descripción</label>
             <textarea
-                formControl="description"
+                formControlName="description"
                 id="description"
-                rows="4"  
+                rows="4"
                 placeholder="Escribe una descripción aquí..."
             ></textarea>
         </div>
@@ -56,7 +56,7 @@
             <label for="imagen">Subir Imagen</label>
             <input
                 id="imagen"
-                type="file" 
+                type="file"
                 accept="image/*"
                 class="file-input"
             />
@@ -79,10 +79,9 @@ image: string;
         <label for="image">Upload Image:</label>
         <input formControl="image" type="file" id="imagen" (change)="onFileSelected($event)" />
       </div>
-       Display the image preview 
+       Display the image preview
      <div *ngIf="imagePreviewUrl">
        <h3>Image Preview:</h3>
        <img [src]="imagePreviewUrl" alt="Image Preview" style="max-width: 300px; max-height: 300px;" />
 </div>
 -->
-  

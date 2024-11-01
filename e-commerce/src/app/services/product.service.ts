@@ -12,28 +12,43 @@ export class ProductService {
 
   constructor(private http: HttpClient) {}
 //Agregar productos al json
-  addProduct(id: string, name: string,description: string,price: number,category: string,stock: number,image: string)
-  :Observable <Boolean> {
-    return this.checkProductExists(name).pipe(
-      switchMap((exist)=>{
-        if(exist){
-          return of(false);
-        }else{
-          const newProduct ={id, name,description,price,category,stock,image}
-          return this.http.post<Product>(this.apiUrl,newProduct).pipe(
-            map(()=>true),
-            catchError(()=>of(false)));
-         }
+addProduct(name: string, description: string, price: number, category: string, stock: number, image: string): Observable<boolean> {
+  return this.checkProductExists(name).pipe(
+    switchMap(exists => {
+      if (exists) {
+        return of(false); // Product with the same name exists
+      } else {
+        return this.generateNextId().pipe(
+          switchMap(id => {
+            const newProduct = { id, name, description, price, category, stock, image };
+            return this.http.post<Product>(this.apiUrl, newProduct).pipe(
+              map(() => true),
+              catchError(() => of(false))
+            );
+          })
+        );
       }
+    })
+  );
+}
 
-      )
-    );
+// genera id secuencial
+private generateNextId(): Observable<number> {
+  return this.http.get<Product[]>(this.apiUrl).pipe(
+    map(products => {
+      const highestId = products.reduce((maxId, product) => Math.max(product.id, maxId), 0);
+      return highestId + 1;
+    })
+  );
+}
 
-    };
-    //chequear si ya existe un prouto con elmismo nombre
- private checkProductExists(name:string):Observable <Boolean> {
-      return this.http.get<any[]>(`${this.apiUrl}?name=${name}`).pipe(map(product => product.length > 0));
-    }
+// chequea si existe un productocon elmismonombre
+private checkProductExists(name: string): Observable<boolean> {
+  return this.http.get<Product[]>(`${this.apiUrl}?name=${name}`).pipe(
+    map(product => product.length > 0)
+  );
+}
+
 private SearchProduct(name: string) {
       return this.http.get<Product[]>(`${this.apiUrl}?name=${name}`).pipe(
         map(products => (products.length > 0 ? products : null))
@@ -62,10 +77,6 @@ private SearchCategory(category: string) {
       })
     );
   }
-
-
-
-
 
 
 }
