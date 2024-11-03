@@ -1,12 +1,14 @@
+import { ProductService } from './../../services/product-service/product.service';
 import { Component } from '@angular/core';
-import { FormGroup, ReactiveFormsModule, FormBuilder,Validators } from '@angular/forms';
+import { FormGroup, ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ProductService } from '../../services/product.service';
+import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-product-form',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './product-form.component.html',
   styleUrls: ['./product-form.component.css'] // Corrected to 'styleUrls'
 })
@@ -19,15 +21,36 @@ export class ProductFormComponent {
     private productService: ProductService
   ) {
     this.productForm = this.formBuilder.group({
-      id: [''],
       name: ['', Validators.required],
       description: [''],
       price: ['', [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)]],
       category: [''],
-      stock: ['', [Validators.required, Validators.pattern(/^\d+$/)]], 
+      stock: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
       image: [''],
-      state: ['']
     });
+  }
+
+  onImageSelected(event: Event) {
+    const fileInput = event.target as HTMLInputElement;
+    if (fileInput.files && fileInput.files[0]) {
+      const file = fileInput.files[0];
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        this.productForm.patchValue({
+          image: reader.result as string
+        });
+      };
+
+      reader.readAsDataURL(file);
+    }
+  }
+
+  triggerFileInput() {
+    const fileInput = document.getElementById('imagen') as HTMLInputElement; 
+    if (fileInput) {
+      fileInput.click(); 
+    }
   }
 
   submitProduct() {
