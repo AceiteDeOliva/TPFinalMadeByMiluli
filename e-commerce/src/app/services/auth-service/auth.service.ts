@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { UserService } from '../user-service/user.service';
+import { User } from '../../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -7,9 +9,21 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class AuthService {
   private credentialSubject = new BehaviorSubject<string | null>(null); // Initialize with null
 
-  constructor() {
-    const currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
-    this.credentialSubject.next(currentUser.credential || null); // Set initial value from localStorage
+
+  constructor(private userService: UserService) {
+    const userId = localStorage.getItem('currentUserId');
+    if (userId) {
+      this.userService.getUserById(userId).subscribe({
+        next: (user: User) => {
+          this.credentialSubject.next(user.credential || null);
+        },
+        error: () => {
+          this.credentialSubject.next(null); // Si ocurre un error, establece credencial como null
+        }
+      });
+    } else {
+      this.credentialSubject.next(null);
+    }
   }
 
   changeCredential(credential: string | null): void {

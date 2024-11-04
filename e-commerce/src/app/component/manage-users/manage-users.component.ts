@@ -1,4 +1,7 @@
+
 import { Component, OnInit, OnDestroy } from '@angular/core';
+
+
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../services/user-service/user.service';
@@ -7,14 +10,17 @@ import { ProfileUpdateFormComponent } from "../profile-update-form/profile-updat
 import { RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 import { Subscription } from 'rxjs';
 
+
 @Component({
   selector: 'app-manage-users',
   standalone: true,
+
   imports: [CommonModule, FormsModule, ReactiveFormsModule, ProfileUpdateFormComponent, RouterModule,RouterOutlet],
   templateUrl: './manage-users.component.html',
   styleUrls: ['./manage-users.component.css']
 })
 export class ManageUsersComponent implements OnInit, OnDestroy {
+ManageUsersComponent implements OnInit {
   isAllowed = false;
   employees: User[] = [];
   selectedEmployee!: User | null;
@@ -24,7 +30,9 @@ export class ManageUsersComponent implements OnInit, OnDestroy {
   errorMessage: string | null = null;
   filterText: string = '';
   filteredEmployees: User[] = [];
+
   private userSubscription!: Subscription;
+
 
   constructor(
     private formBuilder: FormBuilder,
@@ -41,6 +49,7 @@ export class ManageUsersComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.loadEmployees();
+
     this.userSubscription = this.userService.currentUser$.subscribe(user => {
       this.checkPermissions(user);
     });
@@ -79,6 +88,7 @@ export class ManageUsersComponent implements OnInit, OnDestroy {
 
   checkPermissions(user: User | null) {
     this.isAllowed = user ? (user.credential === 'admin' || user.credential === 'manager') : false;
+
   }
 
   filterEmployees() {
@@ -104,12 +114,15 @@ export class ManageUsersComponent implements OnInit, OnDestroy {
       };
 
       this.userService.updateUser(this.selectedEmployee.id, updatedFields).subscribe(
+
         (updatedEmployee) => {
+
           console.log('Employee updated:', updatedEmployee);
           this.selectedEmployee = updatedEmployee;
           this.isEditing = false;
           this.successMessage = 'Profile updated successfully!';
         },
+
         (error) => {
           console.error('Update error:', error);
           this.errorMessage = 'Error updating profile.';
@@ -152,7 +165,9 @@ export class ManageUsersComponent implements OnInit, OnDestroy {
           this.selectedEmployee = null;
           this.successMessage = 'Employee deleted successfully!';
         },
+
         (error) => {
+
           console.error('Delete error:', error);
           this.errorMessage = 'Error deleting employee.';
         }

@@ -1,0 +1,10 @@
+<div *ngFor="let product of products" class="product-card">
+  <div class="product-info">
+    <h2>{{ product.name }}</h2>
+    <p>{{ product.description }}</p>
+    <p>Precio: ${{ product.price }}</p>
+    <p>Categoria: {{ product.category }}</p>
+    <p>Stock: {{ product.stock }}</p>
+  </div>
+  <img [src]="product.imageUrl || 'path/to/fallback-image.png'" alt="{{ product.name }}" *ngIf="product.imageUrl" />
+</div>

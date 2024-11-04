@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserService } from '../../services/user-service/user.service';
 import { User } from '../../models/user';
@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './profile-update-form.component.html',
   styleUrls: ['./profile-update-form.component.css'] 
 })
-export class ProfileUpdateFormComponent {
+export class ProfileUpdateFormComponent implements OnInit, OnChanges {
   @Input() userData!: User;
   @Input() isAdmin = false;
   @Output() saveChanges = new EventEmitter<Partial<User>>();
@@ -19,25 +19,36 @@ export class ProfileUpdateFormComponent {
   profileForm: FormGroup;
   isEditing = false;
 
-  
   constructor(private formBuilder: FormBuilder) {
     this.profileForm = this.formBuilder.group({
       name: ['', Validators.required],
       surname: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      password:['',[Validators.required]],
+      password: ['', [Validators.required]],
       credential: [{ value: '', disabled: true }],
     });
   }
 
   ngOnInit() {
+    this.initializeForm(); 
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['userData']) {
+      this.initializeForm(); 
+    }
+  }
+
+  private initializeForm() {
     if (this.userData) {
       this.profileForm.patchValue(this.userData);
+      console.log('Form values after patch:', this.profileForm.value);
 
       if (this.isAdmin) {
-        this.profileForm.get('credential')?.enable(); // Enable the credential field
+        this.profileForm.get('credential')?.enable(); 
+      } else {
+        this.profileForm.get('credential')?.disable(); 
       }
-
     }
   }
 
@@ -47,17 +58,17 @@ export class ProfileUpdateFormComponent {
 
   onSave() {
     if (this.profileForm.valid) {
-        const updatedUser: Partial<User> = {
-            ...this.userData,
-            ...this.profileForm.value 
-        };
-        this.saveChanges.emit(updatedUser); 
-        this.isEditing = false; 
+      const updatedUser: Partial<User> = {
+        ...this.userData,
+        ...this.profileForm.value 
+      };
+      this.saveChanges.emit(updatedUser); 
+      this.isEditing = false; 
     }
-}
+  }
 
   onCancel() {
     this.isEditing = false;
-    this.profileForm.patchValue(this.userData); 
+    this.initializeForm(); 
   }
 }
