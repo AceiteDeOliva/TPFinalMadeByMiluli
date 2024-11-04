@@ -1,0 +1,24 @@
+<div class="manage-users">
+  <h2>Manage Users</h2>
+
+  <input type="text" placeholder="Filter employees..." [(ngModel)]="filterText" (input)="filterEmployees()" />
+
+  <ul>
+    <li *ngFor="let employee of filteredEmployees" (click)="selectEmployee(employee)">
+      {{ employee.name }} {{ employee.surname }} - {{ employee.email }}
+    </li>
+  </ul>
+
+  <div *ngIf="selectedEmployee">
+    <app-profile-update-form
+      [userData]="selectedEmployee"
+      [isAdmin]="isAllowed"
+      (saveChanges)="onSaveChanges()">
+    </app-profile-update-form>
+    <button (click)="onDelete()">Delete Employee</button>
+    <button (click)="onCancel()">Cancel</button>
+  </div>
+
+  <div *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</div>
+  <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+</div>
