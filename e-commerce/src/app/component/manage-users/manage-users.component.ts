@@ -126,13 +126,12 @@ export class ManageUsersComponent implements OnInit {
 
   onCancel() {
     this.isEditing = false;
-    if (this.selectedEmployee) {
-      this.profileForm.patchValue(this.selectedEmployee);
-    }
-    if (this.isAllowed) {
-      this.profileForm.get('credential')?.disable();
-    }
+    this.selectedEmployee = null; // Clear selectedEmployee to close the form
+    this.profileForm.reset(); // Reset the form fields
+    this.successMessage = null;
+    this.errorMessage = null;
   }
+  
 
   onCloseUpdateForm() {
     this.isEditing = false;

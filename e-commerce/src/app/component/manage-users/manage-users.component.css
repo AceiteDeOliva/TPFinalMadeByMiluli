@@ -1,79 +1,93 @@
-.full-container {
-  background-color: #95CBEE; /* Background color for the entire container */
-  display: flex;
-  flex-direction: row; /* List and form side by side */
-  text-align: center;
-  padding: 30px; /* Padding around the container */
-  align-items: flex-start; /* Align items to the top */
-  margin: 15px; /* Margin around the container */
-  border-radius: 12px; /* Rounded corners */
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+.manage-users {
+  flex: 1;
+  padding: 10px;
+  border-right: 2px solid #ccc;
+  background-color: #95CBEE; 
+  text-align: center; /* Center text for the main container */
+  border-radius: 8px;
 }
+
+.header-container {
+  display: flex;
+  align-items: center; /* Center items vertically */
+  justify-content: space-between; /* Space between heading and button */
+  margin-bottom: 20px; /* Space below the header */
+  width: 92%; /* Adjust as needed */
+}
+
+
+
+.nuevo {
+  background-color: #FEE9B2; /* Button background color */
+  border: 1px solid rgb(100, 169, 243); /* Button border color */
+  padding: 10px 15px;
+  color: #000;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+h2 {
+  margin: 0; /* Remove default margin to keep alignment */
+  flex-grow: 1; /* Allow the heading to take up remaining space */
+  text-align: center; /* Center the heading text */
+}
+
+.full-container {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
 .icon{
   height: 20px;
   margin-left: 5px;
   margin-right: 5px;
 
 }
-
 .employee-list {
-  flex: 1; /* Take available space */
-  margin-right: 20px; /* Space between list and form */
-  padding: 10px; /* Padding inside the employee list */
-  border-right: 2px solid #ccc; /* Visual separation */
+  flex: 1;
+  padding: 10px;
+  border-right: 2px;
+  background-color: #95CBEE; 
 }
 
-.employee-list div {
-  padding: 10px; /* Padding inside each employee item */
-  background-color: #C4DCBB; /* Background for employee items */
-  border-radius: 8px; /* Rounded corners for employee items */
-  margin-bottom: 10px; /* Space between employee items */
-  transition: background-color 0.3s; /* Smooth transition for hover effect */
+.employee-list ul {
+  list-style-type: none;
+  padding: 0;
 }
 
-.employee-list div:hover {
-  background-color: #A8D2A1; /* Change color on hover */
+.employee-list li {
+  padding: 10px;
+  background-color: #C4DCBB; 
+  border-radius: 8px;
+  margin-bottom: 10px;
+  transition: background-color 0.3s;
+  cursor: pointer;
 }
 
-form {
-  background-color: #C4DCBB; /* Background color for the form */
-  display: flex;
-  flex-direction: column; /* Stack form items vertically */
-  text-align: center;
-  padding: 30px; /* Padding for the form */
-  align-items: center; /* Center align form items */
-  margin: 15px; /* Margin around the form */
-  border-radius: 12px; /* Rounded corners for the form */
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
-  flex: 1; /* Take available space */
+.employee-list li:hover {
+  background-color: #87a77c; 
 }
 
-.form-control-nombre-container {
-  display: flex; /* Flexbox for name container */
-  justify-content: center; 
-  gap: 20px; /* Space between input fields */
-}
 
-.form-control-nombre {
-  display: flex;
-  flex-direction: column; /* Stack fields vertically */
-}
-
-.form-control-nombre input {
-  padding: 10px; /* Padding for input fields */
-  border: 1px solid #ccc; /* Border for input fields */
-  border-radius: 4px; /* Rounded corners for input fields */
-  margin-top: 5px; /* Margin on top of input fields */
+.form-container {
+  flex: 1;
+  background-color: #C4DCBB; 
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .form-control {
-  margin-top: 15px; /* Margin for form controls */
+  width: 100%;
+  margin-top: 15px;
 }
 
 .form-control label {
-  display: block; /* Block display for labels */
-  margin-bottom: 5px; /* Margin below labels */
-  font-weight: bold; /* Bold labels */
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
 }
 
 .form-control input,
@@ -85,18 +99,36 @@ form {
   margin-bottom: 5px;
 }
 
+/* Button styling */
 button {
-  background-color: #FEE9B2; /* Background color for buttons */
-  border: 1px solid rgb(100, 169, 243); /* Border color for buttons */
-  padding: 10px 15px; /* Padding for buttons */
-  cursor: pointer; /* Pointer cursor on hover */
-  margin-top: 20px; /* Margin on top of buttons */
-  color: #000000; /* Text color for buttons */
-  border-radius: 8px; /* Rounded corners for buttons */
-  transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover */
+  background-color: #FEE9B2; /* Original button background color */
+  border: 1px solid rgb(100, 169, 243); /* Original button border color */
+  padding: 10px 15px;
+  color: #000;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  margin-top: 10px;
 }
 
 button:hover {
-  background-color: #95CBEE; /* Change background color on hover */
-  color: white; /* Change text color on hover */
+  background-color: #95CBEE; /* Original button hover background color */
+  color: white;
+}
+
+/* Alert styles */
+.alert {
+  padding: 10px;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+.alert-success {
+  background-color: #D4EDDA;
+  color: #155724;
+}
+
+.alert-danger {
+  background-color: #F8D7DA;
+  color: #721C24;
 }
