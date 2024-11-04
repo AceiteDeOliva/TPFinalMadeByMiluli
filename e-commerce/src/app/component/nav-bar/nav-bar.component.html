@@ -55,7 +55,7 @@
       <li><a routerLink="product-admin">Productos</a></li>
       <li><a routerLink="orders">Órdenes</a></li>
       <li *ngIf="(credential$ | async) !== 'employee'">
-        <a routerLink="credentials">Gestión Credenciales</a>
+        <a routerLink="manageUsers">Gestión Credenciales</a>
       </li>
       <li class="dropdown">
         <span (click)="toggleAccountMenu()">Mi Cuenta</span>
