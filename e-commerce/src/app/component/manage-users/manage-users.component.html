@@ -1,4 +1,4 @@
-<div *ngFor="let employee of filteredEmployees" class="full-container">
+<div *ngIf="isAllowed" class="full-container">
   <button routerLink="register" >Agregar Empleado</button>
   <div class="employee-list">
     <input 
