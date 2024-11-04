@@ -1,20 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+
+import { Component, OnInit, OnDestroy } from '@angular/core';
+
+
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../services/user-service/user.service';
 import { User } from '../../models/user';
 import { ProfileUpdateFormComponent } from "../profile-update-form/profile-update-form.component";
-import { RouterModule } from '@angular/router';
-import { of } from 'rxjs';
+import { RouterLink, RouterModule, RouterOutlet } from '@angular/router';
+import { Subscription } from 'rxjs';
+
 
 @Component({
   selector: 'app-manage-users',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, ProfileUpdateFormComponent, RouterModule],
+
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, ProfileUpdateFormComponent, RouterModule,RouterOutlet],
   templateUrl: './manage-users.component.html',
   styleUrls: ['./manage-users.component.css']
 })
-export class ManageUsersComponent implements OnInit {
+export class ManageUsersComponent implements OnInit, OnDestroy {
+ManageUsersComponent implements OnInit {
   isAllowed = false;
   employees: User[] = [];
   selectedEmployee!: User | null;
@@ -24,6 +30,9 @@ export class ManageUsersComponent implements OnInit {
   errorMessage: string | null = null;
   filterText: string = '';
   filteredEmployees: User[] = [];
+
+  private userSubscription!: Subscription;
+
 
   constructor(
     private formBuilder: FormBuilder,
@@ -40,44 +49,46 @@ export class ManageUsersComponent implements OnInit {
 
   ngOnInit() {
     this.loadEmployees();
-    this.checkPermissions();
+
+    this.userSubscription = this.userService.currentUser$.subscribe(user => {
+      this.checkPermissions(user);
+    });
+  }
+
+  ngOnDestroy() {
+    if (this.userSubscription) {
+      this.userSubscription.unsubscribe();
+    }
   }
 
   loadEmployees() {
-    const currentUserId = localStorage.getItem('currentUserId');
+    this.userService.getUser().subscribe(
+      (data) => {
+        const currentUserJson = localStorage.getItem('currentUser');
 
-    if (currentUserId) {
-      this.userService.getCredential(currentUserId).subscribe(credential => {
-        this.isAllowed = credential === 'admin' || credential === 'manager';
+        if (currentUserJson) {
+          const currentUser: User = JSON.parse(currentUserJson);
 
-        if (this.isAllowed) {
-          // Load all employees if admin
-          this.userService.getUser().subscribe(data => {
+          if (currentUser.credential === 'admin') {
             this.employees = data;
-            this.filteredEmployees = this.employees;
-          });
+          } else if (currentUser.credential === 'manager') {
+            this.employees = data.filter(employee => employee.credential !== 'admin');
+          } else {
+            this.employees = [];
+          }
         } else {
-          // If user is not admin or manager, clear the employee list
+          console.error('No se encontró el usuario actual.');
           this.employees = [];
-          this.filteredEmployees = [];
         }
-      });
-    } else {
-      console.error('No current user ID found in local storage.');
-      this.employees = [];
-    }
+        this.filteredEmployees = this.employees;
+      },
+      (error) => console.error('Error cargando empleados:', error)
+    );
   }
 
-  checkPermissions() {
-    const currentUserId = localStorage.getItem('currentUserId');
+  checkPermissions(user: User | null) {
+    this.isAllowed = user ? (user.credential === 'admin' || user.credential === 'manager') : false;
 
-    if (currentUserId) {
-      this.userService.getCredential(currentUserId).subscribe(credential => {
-        this.isAllowed = credential === 'admin' || credential === 'manager';
-      });
-    } else {
-      this.isAllowed = false;
-    }
   }
 
   filterEmployees() {
@@ -103,13 +114,16 @@ export class ManageUsersComponent implements OnInit {
       };
 
       this.userService.updateUser(this.selectedEmployee.id, updatedFields).subscribe(
-        updatedEmployee => {
+
+        (updatedEmployee) => {
+
           console.log('Employee updated:', updatedEmployee);
           this.selectedEmployee = updatedEmployee;
           this.isEditing = false;
           this.successMessage = 'Profile updated successfully!';
         },
-        error => {
+
+        (error) => {
           console.error('Update error:', error);
           this.errorMessage = 'Error updating profile.';
         }
@@ -151,7 +165,9 @@ export class ManageUsersComponent implements OnInit {
           this.selectedEmployee = null;
           this.successMessage = 'Employee deleted successfully!';
         },
-        error => {
+
+        (error) => {
+
           console.error('Delete error:', error);
           this.errorMessage = 'Error deleting employee.';
         }
