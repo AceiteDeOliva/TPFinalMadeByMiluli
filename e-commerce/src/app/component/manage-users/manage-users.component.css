@@ -1,0 +1,102 @@
+.full-container {
+  background-color: #95CBEE; /* Background color for the entire container */
+  display: flex;
+  flex-direction: row; /* List and form side by side */
+  text-align: center;
+  padding: 30px; /* Padding around the container */
+  align-items: flex-start; /* Align items to the top */
+  margin: 15px; /* Margin around the container */
+  border-radius: 12px; /* Rounded corners */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+}
+.icon{
+  height: 20px;
+  margin-left: 5px;
+  margin-right: 5px;
+
+}
+
+.employee-list {
+  flex: 1; /* Take available space */
+  margin-right: 20px; /* Space between list and form */
+  padding: 10px; /* Padding inside the employee list */
+  border-right: 2px solid #ccc; /* Visual separation */
+}
+
+.employee-list div {
+  padding: 10px; /* Padding inside each employee item */
+  background-color: #C4DCBB; /* Background for employee items */
+  border-radius: 8px; /* Rounded corners for employee items */
+  margin-bottom: 10px; /* Space between employee items */
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+.employee-list div:hover {
+  background-color: #A8D2A1; /* Change color on hover */
+}
+
+form {
+  background-color: #C4DCBB; /* Background color for the form */
+  display: flex;
+  flex-direction: column; /* Stack form items vertically */
+  text-align: center;
+  padding: 30px; /* Padding for the form */
+  align-items: center; /* Center align form items */
+  margin: 15px; /* Margin around the form */
+  border-radius: 12px; /* Rounded corners for the form */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+  flex: 1; /* Take available space */
+}
+
+.form-control-nombre-container {
+  display: flex; /* Flexbox for name container */
+  justify-content: center; 
+  gap: 20px; /* Space between input fields */
+}
+
+.form-control-nombre {
+  display: flex;
+  flex-direction: column; /* Stack fields vertically */
+}
+
+.form-control-nombre input {
+  padding: 10px; /* Padding for input fields */
+  border: 1px solid #ccc; /* Border for input fields */
+  border-radius: 4px; /* Rounded corners for input fields */
+  margin-top: 5px; /* Margin on top of input fields */
+}
+
+.form-control {
+  margin-top: 15px; /* Margin for form controls */
+}
+
+.form-control label {
+  display: block; /* Block display for labels */
+  margin-bottom: 5px; /* Margin below labels */
+  font-weight: bold; /* Bold labels */
+}
+
+.form-control input,
+.form-control select ,.filter-input{ 
+  padding: 10px; /* Padding for inputs and selects */
+  border: 1px solid #ccc; /* Border for inputs and selects */
+  border-radius: 4px; /* Rounded corners for inputs and selects */
+  margin-top: 5px; /* Margin on top of inputs and selects */
+  margin-bottom: 5px;
+}
+
+button {
+  background-color: #FEE9B2; /* Background color for buttons */
+  border: 1px solid rgb(100, 169, 243); /* Border color for buttons */
+  padding: 10px 15px; /* Padding for buttons */
+  cursor: pointer; /* Pointer cursor on hover */
+  margin-top: 20px; /* Margin on top of buttons */
+  color: #000000; /* Text color for buttons */
+  border-radius: 8px; /* Rounded corners for buttons */
+  transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover */
+}
+
+button:hover {
+  background-color: #95CBEE; /* Change background color on hover */
+  color: white; /* Change text color on hover */
+}

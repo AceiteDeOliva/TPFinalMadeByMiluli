@@ -8,6 +8,8 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { ProductFormComponent } from './component/product-form/product-form.component';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
+import { ManageUsersComponent } from './component/manage-users/manage-users.component';
+import { ManageUsersPageComponent } from './pages/manage-users-page/manage-users-page.component';
 
 
 export const routes: Routes = [
@@ -18,6 +20,7 @@ export const routes: Routes = [
   {path:'register', component:RegisterComponent},
   {path:'product-admin',component:ProductFormComponent},//HAY QUE CAMBIAR EL COMPONENT PUSE ESTE PARA PRUEBAS
   {path: 'profile',  component:ProfilePageComponent},
+  {path: 'manageEmployees', component: ManageUsersPageComponent},
   {path:"**",redirectTo:"home"}, // This one has to go last
   
 ];

@@ -19,6 +19,16 @@
       "cart": [],
       "purchaseHistory": [],
       "credential": "user"
+    },
+    {
+      "id": "58c9",
+      "name": "Milagros",
+      "surname": "Rodriguez",
+      "email": "milagrosabril.r@gmail.com",
+      "password": "mili",
+      "cart": [],
+      "purchaseHistory": [],
+      "credential": "manager"
     }
   ]
 }
