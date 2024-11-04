@@ -1,37 +1,19 @@
-.full-container {
-  display: flex; /* Use flexbox to arrange items horizontally */
-  padding: 20px; /* Add some padding around the container */
-}
-
-.employee-list {
-  flex: 1; /* Take up remaining space */
-  margin-right: 20px; /* Space between the list and form */
-  max-width: 400px; /* Set a max width for the employee list */
-  background-color: #f9f9f9; /* Background color */
-  padding: 10px; /* Padding inside the employee list */
-  border: 1px solid #ccc; /* Optional border */
-  border-radius: 5px; /* Rounded corners */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow */
-}
-
 form {
-  background-color: #C4DCBB; /* Use your specified background color */
+  background-color: #C4DCBB;
   display: flex;
-  flex-direction: column; /* Stack items vertically */
+  flex-direction: column;
   text-align: center;
-  padding: 30px; /* Padding for the form */
-  align-items: center; /* Center align form items */
-  margin: 15px; /* Margin around the form */
-  border-radius: 12px; /* Rounded corners for the form */
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
-  flex: 1; /* Take up remaining space */
-  max-width: 400px; /* Set a max width for the form */
+  padding: 30px;
+  align-items: center;
+  margin: 15px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .form-control-nombre-container {
   display: flex;
   justify-content: center; 
-  gap: 20px; /* Space between the input fields */
+  gap: 20px; 
 }
 
 .form-control-nombre {
@@ -65,16 +47,16 @@ form {
 }
 
 button {
-  background-color: #FEE9B2; /* Button background color */
-  border: 1px solid rgb(100, 169, 243); /* Button border color */
-  padding: 10px 15px; /* Button padding */
-  cursor: pointer; /* Cursor style */
-  margin-top: 20px; /* Margin on top */
-  color: #000000; /* Button text color */
-  border-radius: 8px; /* Rounded corners for the button */
+  background-color: #FEE9B2;
+  border: 1px solid rgb(100, 169, 243);
+  padding: 10px 15px;
+  cursor: pointer;
+  margin-top: 20px; 
+  color: #000000;
+  border-radius: 8px;
 }
 
 button:hover {
-  background-color: #95CBEE; /* Button hover background color */
-  color: white; /* Button hover text color */
+  background-color: #95CBEE;
+  color: white;
 }
