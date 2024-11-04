@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { forkJoin, Observable, of } from 'rxjs';
 import { map, catchError, switchMap } from 'rxjs/operators';
 import { Product } from '../../models/product';
 
@@ -8,32 +8,53 @@ import { Product } from '../../models/product';
   providedIn: 'root'
 })
 export class ProductService {
-  private apiUrl = 'http://localhost:3000/products';
+  private apiUrlProducts = 'http://localhost:3000/products';
+  private apiUrlImages = 'http://localhost:3001/images';
 
   constructor(private http: HttpClient) { }
-  //Agregar productos al json
-  addProduct(name: string, description: string, price: number, category: string, stock: number, image: string): Observable<boolean> {
+
+
+  // Agregar productos al JSON
+  addProduct(
+    name: string,
+    description: string,
+    price: number,
+    category: string,
+    stock: number,
+    image: File
+  ): Observable<boolean> {
     return this.checkProductExists(name).pipe(
       switchMap(exists => {
         if (exists) {
-          return of(false); // Product with the same name exists
+          return of(false); // Producto con el mismo nombre ya existe
         } else {
-          return this.generateNextId().pipe(
-            switchMap(id => {
-              const newProduct: Omit<Product, 'id'> = {
-                name,
-                description,
-                price,
-                category,
-                stock,
-                image,
-                state: "active" 
-              };
-              return this.http.post<Product>(this.apiUrl, { id, ...newProduct }).pipe(
-                map(() => true),
-                catchError(error => {
-                  console.error('Error adding product:', error); 
-                  return of(false);
+          // Sube la imagen y obtiene la URL
+          return this.uploadImage(image).pipe(
+            switchMap(imageUrl => {
+              if (!imageUrl) {
+                console.error('Error uploading image');
+                return of(false);
+              }
+              // Genera el siguiente ID para el nuevo producto
+              return this.generateNextId().pipe(
+                switchMap(id => {
+                  const newProduct: Omit<Product, 'id'> = {
+                    name,
+                    description,
+                    price,
+                    category,
+                    stock,
+                    imageUrl, // Usa la URL de la imagen
+                    state: "active"
+                  };
+                  // Guarda el nuevo producto en el JSON de productos
+                  return this.http.post<Product>(this.apiUrlProducts, { id, ...newProduct }).pipe(
+                    map(() => true),
+                    catchError(error => {
+                      console.error('Error añadiendo producto:', error);
+                      return of(false);
+                    })
+                  );
                 })
               );
             })
@@ -42,10 +63,14 @@ export class ProductService {
       })
     );
   }
+  
+
+
+
 
   // genera id secuencial
   private generateNextId(): Observable<number> {
-    return this.http.get<Product[]>(this.apiUrl).pipe(
+    return this.http.get<Product[]>(this.apiUrlProducts).pipe(
       map(products => {
         const highestId = products.reduce((maxId, product) => Math.max(product.id, maxId), 0);
         return highestId + 1;
@@ -55,13 +80,13 @@ export class ProductService {
 
   // chequea si existe un productocon elmismonombre
   private checkProductExists(name: string): Observable<boolean> {
-    return this.http.get<Product[]>(`${this.apiUrl}?name=${name}`).pipe(
+    return this.http.get<Product[]>(`${this.apiUrlProducts}?name=${name}`).pipe(
       map(product => product.length > 0)
     );
   }
 
   private SearchProduct(name: string) {
-    return this.http.get<Product[]>(`${this.apiUrl}?name=${name}`).pipe(
+    return this.http.get<Product[]>(`${this.apiUrlProducts}?name=${name}`).pipe(
       map(products => (products.length > 0 ? products : null))
     );
   }
@@ -69,7 +94,7 @@ export class ProductService {
   //obtener los productos ded cierta categoria
   private SearchCategory(category: string) {
     const categoryArray: Product[] = [];
-    return this.http.get<Product[]>(`${this.apiUrl}?category=${category}`).pipe(
+    return this.http.get<Product[]>(`${this.apiUrlProducts}?category=${category}`).pipe(
       map(products => {
         if (products.length > 0) {
           categoryArray.push(...products);
@@ -82,18 +107,53 @@ export class ProductService {
   }
 
   //Obtener todos los productos
-  private getProduct(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.apiUrl).pipe(
+  getProducts(): Observable<Product[]> {
+    return this.http.get<Product[]>(this.apiUrlProducts).pipe(
       catchError((error) => {
-        console.error('Error fetching users:', error);
-        return of([]);
+        console.error('Error fetching products:', error);
+        return of([]); // Return an empty array in case of error
       })
     );
   }
 
-  getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.apiUrl);
-  }
+// Método para subir una imagen y guardar su URL en images.json
+uploadImage(file: File): Observable<string> {
+  return new Observable(observer => {
+    const reader = new FileReader();
+    
+    reader.onload = () => {
+      const base64String = reader.result as string; 
+      const imageData = { data: base64String }; 
+      
+      // Envía la imagen al servidor JSON
+      this.http.post<{ id: number }>(this.apiUrlImages, imageData).subscribe({
+        next: (response) => {
+          observer.next(this.apiUrlImages + '/' + response.id); 
+          observer.complete();
+        },
+        error: (error) => {
+          console.error('Error uploading image:', error);
+          observer.error(error);
+        }
+      });
+    };
 
+    reader.onerror = (error) => {
+      observer.error(error);
+    };
 
+    reader.readAsDataURL(file); 
+  });
 }
+
+  // Include the getImage method to fetch images by ID
+  getImage(imageId: string): Observable<{ data: string }> {
+    return this.http.get<{ data: string }>(`${this.apiUrlImages}/${imageId}`).pipe(
+      catchError(error => {
+        console.error('Error fetching image:', error);
+        return of({ data: '' }); 
+      })
+    );
+  }
+}
+

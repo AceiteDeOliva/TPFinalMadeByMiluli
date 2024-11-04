@@ -21,5 +21,16 @@
       "credential": "user"
     }
   ],
-  "products": []
+  "products": [
+    {
+      "id": 1,
+      "name": "La Cabra",
+      "description": "GOAT",
+      "price": 99999,
+      "category": "Accesorio",
+      "stock": 1,
+      "imageUrl": "http://localhost:3001/images/0d50",
+      "state": "active"
+    }
+  ]
 }

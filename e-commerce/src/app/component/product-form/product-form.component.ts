@@ -14,6 +14,7 @@ import { CommonModule } from '@angular/common';
 })
 export class ProductFormComponent {
   productForm: FormGroup;
+  imagePreviewUrl: string | ArrayBuffer | null = null;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -26,23 +27,22 @@ export class ProductFormComponent {
       price: ['', [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)]],
       category: [''],
       stock: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
-      image: [''],
+      image: [null, Validators.required]
     });
   }
 
-  onImageSelected(event: Event) {
-    const fileInput = event.target as HTMLInputElement;
-    if (fileInput.files && fileInput.files[0]) {
-      const file = fileInput.files[0];
+  onImageSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      const file = input.files[0];
       const reader = new FileReader();
-
+      
       reader.onload = () => {
-        this.productForm.patchValue({
-          image: reader.result as string
-        });
+        this.imagePreviewUrl = reader.result; 
       };
 
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(file); 
+      this.productForm.patchValue({ image: file }); 
     }
   }
 
@@ -58,16 +58,19 @@ export class ProductFormComponent {
       alert('Please fill in all required fields.');
       return;
     }
-
+  
     const { name, description, price, category, stock, image } = this.productForm.value;
-
-    this.productService.addProduct(name, description, price, category, stock, image).subscribe(
-      response => {
+  
+    this.productService.addProduct(name, description, price, category, stock, image).subscribe({
+      next: (response) => {
         alert('Product added successfully!');
-        this.router.navigate(['/products']); // me lleva al listado de productos
       },
-      error => console.error('Error adding product:', error)
-    );
+      error: (error) => {
+        console.error('Error adding product:', error);
+      }
+    });
   }
+  
+  
 
 }

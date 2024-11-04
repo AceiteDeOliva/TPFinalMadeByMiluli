@@ -68,7 +68,13 @@
                 (click)="triggerFileInput()"> 
                 Elegir Imagen
             </button>
-            <span *ngIf="productForm.get('image')?.value">Imagen seleccionada: {{ productForm.get('image')?.value.split(',')[0] }}</span>
+            <span *ngIf="productForm.get('image')?.value">Imagen seleccionada: {{ productForm.get('image')?.value.name }}</span>
+            
+           
+            <div *ngIf="imagePreviewUrl">
+                <h3>Vista previa:</h3>
+                <img [src]="imagePreviewUrl" alt="Image Preview" style="max-width: 100px; height: auto;" />
+            </div>
         </div>
     </div>
 

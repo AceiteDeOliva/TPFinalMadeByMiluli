@@ -1,12 +1,33 @@
 .product-card {
-    border: 1px solid #ccc;
-    padding: 16px;
-    margin: 16px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .product-card img {
-    max-width: 100%;
-    height: auto;
-  }
+  background-color: #C4DCBB; /* Background color for product card */
+  border-radius: 8px; 
+  padding: 15px; /* Maintain padding for balance */
+  margin: 10px; /* Maintain margin around the card */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  display: flex; 
+  flex-direction: row; /* Keep text on the left */
+  align-items: center; 
+}
+
+.product-card h2 {
+  flex: 1; /* Take up available space */
+  margin: 0; 
+  font-size: 1.5rem; /* Increase font size for product name */
+}
+
+.product-card img {
+  max-width: 150px; /* Adjust size of the image */
+  max-height: 150px; /* Adjust maximum height */
+  margin-left: 15px; /* Add space between text and image */
+  border-radius: 4px; /* Optional: round the corners of the image */
+}
+
+.product-card p {
+  font-weight: normal; /* Ensure all paragraphs are not bold */
+  margin: 5px 0; /* Adds spacing between paragraphs */
+  font-size: 1rem; /* Adjust font size for better readability */
+}
+
+.product-card p:nth-child(5) {
+  font-weight: normal; /* Ensure category is not bold */
+}
