@@ -23,13 +23,13 @@
 
   <div class="form-control">
     <label for="password">Contraseña</label>
-    <input *ngIf="isEditing" type="password" formControlName="password" id="password" class="small-input" />
-    <span *ngIf="!isEditing">********</span> 
+    <input *ngIf="isEditing" type="password" formControlName="password" id="password" />
+    <span *ngIf="!isEditing">********</span>
   </div>
 
   <div class="form-control" *ngIf="isAdmin">
     <label for="credential">Credencial</label>
-    <select *ngIf="isEditing" formControlName="credential" id="credential" class="small-input">
+    <select *ngIf="isEditing" formControlName="credential" id="credential">
       <option value="user">User</option>
       <option value="employee">Employee</option>
       <option value="manager">Manager</option>
