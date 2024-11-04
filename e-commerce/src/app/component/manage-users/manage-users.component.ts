@@ -92,20 +92,14 @@ export class ManageUsersComponent implements OnInit {
     this.isEditing = true;
   }
 
-  onSaveChanges() {
+  onSaveChanges(updatedFields: Partial<User>) {
     if (this.selectedEmployee) {
-      const updatedFields = {
-        name: this.profileForm.value.name,
-        surname: this.profileForm.value.surname,
-        email: this.profileForm.value.email,
-        password: this.profileForm.value.password,
-        credential: this.isAllowed ? this.profileForm.value.credential : this.selectedEmployee.credential
-      };
-
-      this.userService.updateUser(this.selectedEmployee.id, updatedFields).subscribe(
-        updatedEmployee => {
-          console.log('Employee updated:', updatedEmployee);
-          this.selectedEmployee = updatedEmployee;
+      // Mezcla los datos actualizados con los actuales de `selectedEmployee`
+      const updatedEmployee = { ...this.selectedEmployee, ...updatedFields };
+      this.userService.updateUser(this.selectedEmployee.id, updatedEmployee).subscribe(
+        updatedData => {
+          console.log('Employee updated:', updatedData);
+          this.selectedEmployee = updatedData; // Actualiza con los datos realmente guardados
           this.isEditing = false;
           this.successMessage = 'Profile updated successfully!';
         },
@@ -116,6 +110,7 @@ export class ManageUsersComponent implements OnInit {
       );
     }
   }
+  
 
   onEdit() {
     this.isEditing = true;
