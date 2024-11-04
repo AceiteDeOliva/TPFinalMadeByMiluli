@@ -53,7 +53,19 @@
         </div>
 
         <div class="form-control">
-            <label for="imagen">Subir Imagen</label>
+            <div class="preview">
+            <div *ngIf="imagePreviewUrl">
+                <h3>Imagen Seleccionada:</h3>
+                <img [src]="imagePreviewUrl" alt="Image Preview" style="max-width: 100px; height: auto;" />
+            </div> 
+            <span *ngIf="productForm.get('image')?.value">{{ productForm.get('image')?.value.name }}</span>
+        </div>
+            <button 
+                type="button" 
+                class="custom-file-upload" 
+                (click)="triggerFileInput()"> 
+                Subir Imagen
+            </button>
             <input
                 id="imagen"
                 type="file"
@@ -62,19 +74,11 @@
                 (change)="onImageSelected($event)"  
                 style="display: none;"  
             />
-            <button 
-                type="button" 
-                class="custom-file-upload" 
-                (click)="triggerFileInput()"> 
-                Elegir Imagen
-            </button>
-            <span *ngIf="productForm.get('image')?.value">Imagen seleccionada: {{ productForm.get('image')?.value.name }}</span>
             
            
-            <div *ngIf="imagePreviewUrl">
-                <h3>Vista previa:</h3>
-                <img [src]="imagePreviewUrl" alt="Image Preview" style="max-width: 100px; height: auto;" />
-            </div>
+            
+           
+            
         </div>
     </div>
 

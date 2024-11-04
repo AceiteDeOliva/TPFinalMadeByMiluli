@@ -26,7 +26,6 @@ h1{
     margin: 5px;
 }
 
-
 .form-control label {
     margin-bottom: 5px; 
 
@@ -84,4 +83,22 @@ button:hover {
 .custom-file-upload:hover {
     background-color: #95CBEE; 
     color: white; 
+}
+.preview {
+    display: flex; /* Use flexbox for preview container */
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items horizontally */
+    text-align: center; /* Center text inside the preview */
+    margin-bottom: 10px; /* Space below the preview */
+}
+
+.preview img {
+    max-width: 1000px; /* Set a max width for the image */
+    height: auto; /* Maintain aspect ratio */
+    
+    align-items: center;
+}
+
+.custom-file-upload {
+    margin-top: 10px; 
 }
