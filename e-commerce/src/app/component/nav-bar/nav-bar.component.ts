@@ -26,11 +26,10 @@ export class NavBarComponent {
   }
 
   logout() {
-    localStorage.removeItem('currentUser'); // Remove user from local storage
-    this.authService.changeCredential(null); // Update the BehaviorSubject to null on logout
-    this.router.navigate(['home']); // Navigate to the home page
+    localStorage.removeItem('currentUserId'); // Elimina el ID del usuario de localStorage
+    this.authService.changeCredential(null);   // Cambia el estado de la credencial a null
+    this.router.navigate(['home']);            // Navega a la página de inicio
   }
-
   toggleAccountMenu() {
     this.accountMenuVisible = !this.accountMenuVisible; // Toggle the visibility of the account menu
   }

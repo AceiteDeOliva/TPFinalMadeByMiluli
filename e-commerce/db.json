@@ -12,8 +12,8 @@
     },
     {
       "id": "b138",
-      "name": "José Valentín",
-      "surname": "Letamendía Muzio",
+      "name": "Valen",
+      "surname": "Leta",
       "email": "josevl@live.com",
       "password": "12345",
       "cart": [],
@@ -23,7 +23,7 @@
   ],
   "products": [
     {
-      "id": 1,
+      "id": "1",
       "name": "La Cabra",
       "description": "GOAT",
       "price": 99999,
