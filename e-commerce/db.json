@@ -19,26 +19,6 @@
       "cart": [],
       "purchaseHistory": [],
       "credential": "user"
-    },
-    {
-      "id": "58c9",
-      "name": "Milagros",
-      "surname": "Rodriguez",
-      "email": "milagrosabril.r@gmail.com",
-      "password": "mili",
-      "cart": [],
-      "purchaseHistory": [],
-      "credential": "manager"
-    },
-    {
-      "id": "7859",
-      "name": "Milagros",
-      "surname": "Rodriguez",
-      "email": "milagrosabril.r@gmail.com1",
-      "password": "admin",
-      "cart": [],
-      "purchaseHistory": [],
-      "credential": "admin"
     }
   ],
   "products": [
