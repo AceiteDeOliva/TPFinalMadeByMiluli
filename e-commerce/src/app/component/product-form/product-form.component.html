@@ -1,6 +1,11 @@
-<form [formGroup]="productForm" (ngSubmit)="submitProduct()">
+<div class="container ">
+    <div class="header">
+    <button routerLink='/product-admin' >volver</button>
     <h1>Ingresar nuevo producto</h1>
 
+     </div>
+ <form [formGroup]="productForm" (ngSubmit)="submitProduct()">
+ 
     <div class="form-control-container">
         <div class="form-control">
             <label for="name">Nombre Producto</label>
@@ -76,11 +81,9 @@
             />
             
            
-            
-           
-            
         </div>
     </div>
 
     <button type="submit"> Crear Producto</button>
 </form>
+</div>

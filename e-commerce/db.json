@@ -18,7 +18,7 @@
       "password": "12345",
       "cart": [],
       "purchaseHistory": [],
-      "credential": "employee"
+      "credential": "admin"
     }
   ],
   "products": [
@@ -30,6 +30,46 @@
       "category": "Accesorio",
       "stock": 1,
       "imageUrl": "http://localhost:3001/images/0d50",
+      "state": "active"
+    },
+    {
+      "id": 2,
+      "name": "Mili Rodriguez",
+      "description": "mili",
+      "price": 5,
+      "category": "amigurimi",
+      "stock": 1,
+      "imageUrl": "http://localhost:3001/images/ad40",
+      "state": "active"
+    },
+    {
+      "id": 3,
+      "name": "kuromi",
+      "description": "kuromi",
+      "price": 5,
+      "category": "amigurimi",
+      "stock": 5,
+      "imageUrl": "http://localhost:3001/images/1330",
+      "state": "active"
+    },
+    {
+      "id": 4,
+      "name": "my melo",
+      "description": "my melo",
+      "price": 5,
+      "category": "amigurimi",
+      "stock": 5,
+      "imageUrl": "http://localhost:3001/images/004e",
+      "state": "active"
+    },
+    {
+      "id": 5,
+      "name": "AMONGUS",
+      "description": "AMONGUS",
+      "price": 5,
+      "category": "amigurimi",
+      "stock": 5,
+      "imageUrl": "http://localhost:3001/images/89a7",
       "state": "active"
     }
   ]

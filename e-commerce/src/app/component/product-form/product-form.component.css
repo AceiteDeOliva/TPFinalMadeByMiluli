@@ -1,10 +1,23 @@
-form {
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.header button {
+    position: absolute;
+    left: 0;
+}
+
+.container {
     background-color: #FEE9B2;
     border-radius: 8px;
     padding: 20px; 
-    padding-bottom: 20px;
 }
-h1{
+
+h1 {
     text-align: center;
 }
 
@@ -28,25 +41,15 @@ h1{
 
 .form-control label {
     margin-bottom: 5px; 
-
 }
 
-.form-control input {
-    width: auto; 
-    padding: 10px; 
-    border: 1px solid #ccc; 
-    border-radius: 4px; 
-}
-
-
+.form-control input,
 .form-control textarea {
     width: auto; 
     padding: 10px; 
     border: 1px solid #ccc; 
     border-radius: 4px; 
-    resize: vertical; 
 }
-
 
 button {
     background-color: #C4DCBB;
@@ -59,7 +62,6 @@ button {
     border-radius: 8px; 
 }
 
-
 button:hover {
     background-color: #95CBEE; 
     color: white; 
@@ -70,7 +72,7 @@ button:hover {
 }
 
 .custom-file-upload {
-    display: flex ;
+    display: flex;
     padding: 10px 15px; 
     cursor: pointer; 
     border: 1px solid #95CBEE; 
@@ -84,21 +86,55 @@ button:hover {
     background-color: #95CBEE; 
     color: white; 
 }
+
 .preview {
-    display: flex; /* Use flexbox for preview container */
-    flex-direction: column; /* Stack items vertically */
-    align-items: center; /* Center items horizontally */
-    text-align: center; /* Center text inside the preview */
-    margin-bottom: 10px; /* Space below the preview */
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    text-align: center; 
+    margin-bottom: 10px; 
 }
 
 .preview img {
-    max-width: 1000px; /* Set a max width for the image */
-    height: auto; /* Maintain aspect ratio */
-    
+    max-width: 1000px; 
+    height: auto; 
     align-items: center;
 }
 
 .custom-file-upload {
     margin-top: 10px; 
+}
+
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column; 
+        align-items: flex-start; 
+    }
+
+    .header button {
+        position: relative; 
+        margin-bottom: 10px; 
+    }
+
+    .container {
+        padding: 15px; 
+    }
+
+    .form-control-container {
+        flex-direction: column; 
+        align-items: stretch; 
+    }
+
+    .form-control {
+        flex: 1 0 100%; /* Full width on mobile */
+        margin: 10px 0; /* Spacing between controls */
+    }
+
+    button {
+        width: 100%; /* Full-width buttons on mobile */
+    }
+
+    .preview img {
+        max-width: 100%; /* Ensure images are responsive */
+    }
 }

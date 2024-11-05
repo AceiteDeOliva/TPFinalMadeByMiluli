@@ -1,5 +1,5 @@
-<!-- Navigation for guests (not logged in) -->
-<nav *ngIf="(credential$ | async) === null">
+
+<nav *ngIf="(credential$ | async) === null" class="full-container">
   <a routerLink="home">
     <img src="/Assets/Logo made by miluli/Flor_MadeByMiluli.png" alt="logo" class="icon" style="cursor: pointer;">
   </a>
@@ -17,8 +17,8 @@
   </div>
 </nav>
 
-<!-- Navigation for clients -->
-<nav *ngIf="(isUserOrAdmin() | async)">
+
+<nav *ngIf="(isUserOrAdmin() | async)"class="full-container">
   <a routerLink="home">
     <img src="/Assets/Logo made by miluli/Flor_MadeByMiluli.png" alt="logo" class="icon" style="cursor: pointer;">
   </a>
@@ -45,8 +45,8 @@
   </div>
 </nav>
 
-<!-- Navigation for admin, employee, and manager -->
-<nav *ngIf="(isAdminOrEmployee() | async)">
+
+<nav *ngIf="(isAdminOrEmployee() | async)"class="full-container">
   <a routerLink="home">
     <img src="/Assets/Logo made by miluli/Flor_MadeByMiluli.png" alt="logo" class="icon" style="cursor: pointer;">
   </a>

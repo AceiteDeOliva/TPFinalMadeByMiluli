@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="header">
+    <h1>Productos</h1>
+    <button routerLink="/nuevoProducto">Nuevo Producto</button>
+  </div>
+
+  <input 
+    type="text" 
+    placeholder="Search products..." 
+    [(ngModel)]="searchTerm" 
+    class="filter-input"
+  />
+
+  <app-product-list 
+    [filterTerm]="searchTerm" >
+  </app-product-list>
+
+  
+</div>
