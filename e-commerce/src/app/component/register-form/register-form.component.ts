@@ -5,17 +5,20 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap, switchMap } from 'rxjs/operators';
 import { UserService } from '../../services/user-service/user.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-register-form',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './register-form.component.html',
   styleUrls: ['./register-form.component.css']
 })
 
 export class RegisterFormComponent {
   registerForm: FormGroup;
+  availableCredentials: string[] = [];
+
 
   constructor(
     private formBuilder: FormBuilder,
@@ -27,9 +30,30 @@ export class RegisterFormComponent {
       surname: [''],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
-      password2: ['', [Validators.required]]
+      password2: ['', [Validators.required]],
+      credential: ['user']
     });
   }
+
+  ngOnInit() {
+    this.setAvailableCredentials();  // Llamar al método para establecer credenciales disponibles
+  }
+
+  private setAvailableCredentials() {
+    const currentUserId = localStorage.getItem('currentUserId');
+    if (currentUserId) {
+      this.userService.getCredential(currentUserId).subscribe(credential => {
+        if (credential === 'admin') {
+          this.availableCredentials = ['user', 'employee', 'manager', 'admin'];
+        } else if (credential === 'manager') {   
+          this.availableCredentials = ['user', 'employee', 'manager'];
+        } else {    
+          this.availableCredentials = [];
+        }
+      });
+    }
+  }
+
 
   register() {
 
@@ -38,7 +62,7 @@ export class RegisterFormComponent {
       return;
     }
 
-    const { name, surname, email, password, password2 } = this.registerForm.value;
+    const { name, surname, email, password, password2 , credential} = this.registerForm.value;
 
     if (password !== password2) { //checks if passwords match
       alert('Passwords do not match.');
@@ -46,22 +70,25 @@ export class RegisterFormComponent {
     }
 
 
-    this.userService.register(name, surname, email, password).pipe(
+    this.userService.register(name, surname, email, password, credential).pipe(
       tap((isRegistered) => {
         if (isRegistered) {
           alert('Registration successful!');
-          this.router.navigate(['/login']); // Redirect to login page after successful registration
+          if(credential === "user"){
+            this.router.navigate(['/login']);
+          }else{
+            this.router.navigate(['/manageUsers']);
+          } 
         } else {
-          alert('User already exists.'); // Handle case where user already exists
+          alert('User already exists.');
         }
       }),
       catchError((error) => {
         console.error('Registration error', error);
-        alert('An error occurred during registration.'); // Handle errors
-        return of(false); // Return false to keep the observable chain intact
+        alert('An error occurred during registration.'); 
+        return of(false); 
       })
     ).subscribe();
-
 
   }
 

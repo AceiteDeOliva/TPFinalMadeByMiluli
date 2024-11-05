@@ -5,7 +5,7 @@ import { UserService } from '../../services/user-service/user.service';
 import { User } from '../../models/user';
 import { ProfileUpdateFormComponent } from "../profile-update-form/profile-update-form.component";
 import { RouterModule } from '@angular/router';
-import { of } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-manage-users',
@@ -27,7 +27,8 @@ export class ManageUsersComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) {
     this.profileForm = this.formBuilder.group({
       name: ['', Validators.required],
@@ -151,5 +152,9 @@ export class ManageUsersComponent implements OnInit {
         }
       );
     }
+  }
+
+  goToRegister() { //Link to register function
+    this.router.navigate(['register']);
   }
 }
