@@ -1,11 +1,11 @@
-<form [formGroup]="registerForm" (submit)="register()" autocomplete="new-password">
+<form [formGroup]="registerForm" (ngSubmit)="register()" autocomplete="off">
   <h1>Registrarse</h1>
   <div class="form-control-nombre-container">
     <div class="form-control-nombre">
       <label for="name">Nombre</label>
       <input
         formControlName="name"  
-        id="nombre"
+        id="name"
         autocomplete="on"
         type="text"
       />
@@ -14,7 +14,7 @@
       <label for="surname">Apellido</label>
       <input
         formControlName="surname"  
-        id="apellido"
+        id="surname" 
         autocomplete="on"
         type="text"
       />
@@ -53,5 +53,12 @@
       />
     </div>
 
-    <button type="submit">Registrarse</button>
+    <div class="form-control" *ngIf="availableCredentials.length > 0">
+      <label for="credential">Credencial</label>
+      <select formControlName="credential">
+        <option *ngFor="let credential of availableCredentials" [value]="credential">{{ credential }}</option>
+      </select>
+    </div>
+
+    <button type="submit">Registrar</button>
   </form>

@@ -37,7 +37,8 @@ form {
   margin-bottom: 5px;
 }
 
-.form-control input {
+.form-control input,
+.form-control select  {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;

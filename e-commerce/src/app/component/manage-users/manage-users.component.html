@@ -1,6 +1,6 @@
 <div class="manage-users">
   <div class="header-container">
-    <button routerLink="register" class="nuevo">Nuevo Usuario</button>
+    <button (click)="goToRegister()" class="nuevo">Nuevo Usuario</button>
     <h2>Gestión de Credenciales</h2>
   </div>
   <div class="employee-list">
@@ -25,7 +25,6 @@
         </ul>
       </div>
 
-      <!-- Form container on the right -->
       <div *ngIf="selectedEmployee" class="form-container">
         <button (click)="onCancel()">X</button>
         <app-profile-update-form
@@ -36,7 +35,7 @@
         <button (click)="onDelete()">Eliminar Empleado</button>
       </div>
     </div>
-    <!-- Success and error messages -->
+
     <div *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</div>
     <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
 

@@ -14,13 +14,13 @@ export class UserService {
   constructor(private http: HttpClient) {}
 
 
-  register(name: string, surname:string, email: string, password: string): Observable<boolean> {//Creates new user json
+  register(name: string, surname:string, email: string, password: string, credential: 'user' | 'employee' | 'manager' | 'admin'): Observable<boolean> {//Creates new user json
     return this.checkUserExists(email).pipe(
       switchMap((exists) => {
         if (exists) {
           return of(false);
         } else {
-          const newUser: Omit<User, 'id'> = { name , surname, email, password, cart: [], purchaseHistory: [], credential: "user" };
+          const newUser: Omit<User, 'id'> = { name , surname, email, password, cart: [], purchaseHistory: [], credential};
           return this.http.post<User>(this.apiUrl, newUser).pipe(
             map(() => true),
             catchError(() => of(false))
@@ -63,13 +63,16 @@ export class UserService {
 
   getCredential(userId: string): Observable<string> {
     return this.http.get<User>(`${this.apiUrl}/${userId}`).pipe(
-      map((user: User) => user.credential),
+      map((user: User) => {
+        console.log('Fetched user:', user); 
+        return user.credential;
+      }),
       catchError((error) => {
         console.error('Error fetching credential:', error);
-        return of('');
+        return of(''); 
       })
     );
-  }
+}
 
 
   updateUser(userId: string, updatedFields: Partial<User>): Observable<User> { //updates user info
