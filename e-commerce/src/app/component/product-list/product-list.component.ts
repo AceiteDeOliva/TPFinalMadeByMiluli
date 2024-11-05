@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../../services/product-service/product.service'; // Adjust the path
-import { Product } from '../../models/product'; // Adjust the path
+import { Component, Input, OnInit } from '@angular/core';
+import { ProductService } from '../../services/product-service/product.service';
+import { Product } from '../../models/product';
 import { CommonModule } from '@angular/common';
 import { catchError, forkJoin, map, of, switchMap } from 'rxjs';
 
@@ -12,7 +12,9 @@ import { catchError, forkJoin, map, of, switchMap } from 'rxjs';
   imports: [CommonModule]
 })
 export class ProductListComponent implements OnInit {
+  @Input() filterTerm: string = ''; // Input to receive the filter term
   products: Product[] = [];
+  filteredProducts: Product[] = []; // Stores filtered products
 
   constructor(private productService: ProductService) {}
 
@@ -30,24 +32,25 @@ export class ProductListComponent implements OnInit {
             return this.productService.getImage(imageId).pipe(
               map(imageData => {
                 if (imageData && imageData.data) {
-                  product.imageUrl = imageData.data; // Actualiza la URL de la imagen
+                  product.imageUrl = imageData.data; // Update image URL
                 }
-                return product; // Devuelve el producto modificado
+                return product; // Return modified product
               }),
               catchError(error => {
                 console.error('Error loading image data:', error);
-                return of(product); // Devuelve el producto original en caso de error
+                return of(product); // Return original product on error
               })
             );
           }
-          return of(product); // Si no hay ID, devuelve el producto original
+          return of(product); // Return original product if no ID
         });
   
-        return forkJoin(imageRequests); // Ejecuta todas las solicitudes de imágenes en paralelo
+        return forkJoin(imageRequests);
       })
     ).subscribe({
       next: (productsWithImages) => {
-        this.products = productsWithImages; // Actualiza la lista de productos con las imágenes
+        this.products = productsWithImages;
+        this.applyFilter(); // Apply filter after loading products
       },
       error: (error) => {
         console.error('Error loading products:', error);
@@ -55,6 +58,16 @@ export class ProductListComponent implements OnInit {
     });
   }
   
-  
-  
+  // Method to apply filter
+  ngOnChanges(): void {
+    this.applyFilter();
+  }
+
+  applyFilter(): void {
+    const lowerFilter = this.filterTerm.toLowerCase();
+    this.filteredProducts = this.products.filter(product =>
+      product.name.toLowerCase().includes(lowerFilter) ||
+      product.category.toLowerCase().includes(lowerFilter)
+    );
+  }
 }

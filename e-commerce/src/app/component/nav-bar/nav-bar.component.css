@@ -1,10 +1,9 @@
-/* Set the logo */
+
 .icon {
   height: 55px;
 }
 
-/* Nav container */
-nav {
+.full-container {
   background-color: #D1E3EB;
   padding: 15px;
   display: flex;
@@ -12,7 +11,6 @@ nav {
   text-align: center;
 }
 
-/* Right-aligned group */
 .toTheRight {
   display: flex;
   align-items: center;

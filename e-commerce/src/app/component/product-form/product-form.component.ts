@@ -2,12 +2,13 @@ import { ProductService } from './../../services/product-service/product.service
 import { Component } from '@angular/core';
 import { FormGroup, ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Router, RouterModule, RouterOutlet } from '@angular/router';
 
 
 @Component({
   selector: 'app-product-form',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule,RouterModule,RouterOutlet] ,
   templateUrl: './product-form.component.html',
   styleUrls: ['./product-form.component.css'] 
 })
@@ -18,7 +19,8 @@ export class ProductFormComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private productService: ProductService
+    private productService: ProductService,
+    private router: Router
   ) {
     this.productForm = this.formBuilder.group({
       name: ['', Validators.required],
@@ -68,6 +70,7 @@ export class ProductFormComponent {
         console.error('Error agregando producto:', error);
       }
     });
+    this.router.navigate(['/product-admin']);
   }
   
   

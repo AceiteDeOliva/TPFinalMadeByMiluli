@@ -1,0 +1,52 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.header button {
+    position: absolute;
+    left: 0;
+}
+
+.container {
+    background-color: #FEE9B2;
+    border-radius: 8px;
+    padding: 20px; 
+}
+
+h1 {
+    text-align: center;
+}
+
+button {
+    background-color: #C4DCBB;
+    border: 1px solid rgb(100, 169, 243);
+    padding: 10px 15px;
+    cursor: pointer;
+    margin: 20px auto; 
+    display: block; 
+    color: #000000; 
+    border-radius: 8px; 
+}
+
+.filter-input { 
+    padding: 10px; 
+    border: 1px solid #ccc; 
+    border-radius: 4px; 
+    margin-top: 5px; 
+    margin-bottom: 5px;
+}
+
+button:hover {
+    background-color: #95CBEE; 
+    color: white; 
+}
+
+.icon {
+    height: 20px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
