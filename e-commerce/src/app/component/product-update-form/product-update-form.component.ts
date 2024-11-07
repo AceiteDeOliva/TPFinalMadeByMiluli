@@ -20,9 +20,9 @@ export class ProductUpdateFormComponent implements OnInit {
   productForm: FormGroup;
   isEditing = false;
   productId: string | null = null;
-  imagePreviewUrl: string | ArrayBuffer | null = ''; // Holds the preview URL for current or new image
-  selectedFile: File | null = null; // Holds selected file for upload
-  oldImageId: string | null = null; // Track the old image ID
+  imagePreviewUrl: string | ArrayBuffer | null = '';
+  selectedFile: File | null = null;
+  oldImageId: string | null = null;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -37,7 +37,7 @@ export class ProductUpdateFormComponent implements OnInit {
       category: ['', Validators.required],
       stock: ['', [Validators.required, Validators.min(0)]],
       state: ['', Validators.required],
-      imageUrl: [''] // Add imageUrl to form for handling updates
+      imageUrl: ['']
     });
   }
 
@@ -51,16 +51,16 @@ export class ProductUpdateFormComponent implements OnInit {
         switchMap((product) => {
           if (product) {
             this.productForm.patchValue(product);
-            // If the imageUrl is a full base64 string, set it directly; otherwise, fetch the base64 image data
+
             if (product.imageUrl.startsWith('data:image')) {
               this.imagePreviewUrl = product.imageUrl;
             } else {
               const imageId = product.imageUrl.split('/').pop();
-              this.oldImageId = imageId || null; // Store old image ID for deletion
+              this.oldImageId = imageId || null;
               if (imageId) {
                 return this.productService.getImage(imageId).pipe(
                   map((imageData) => {
-                    this.imagePreviewUrl = imageData.data; // Set preview to base64 data from server
+                    this.imagePreviewUrl = imageData.data;
                   })
                 );
               }
@@ -80,46 +80,52 @@ export class ProductUpdateFormComponent implements OnInit {
       .subscribe();
   }
 
-  // Enables edit mode
+
   onEdit() {
     this.isEditing = true;
   }
 
-  // Handles file selection and sets image preview without uploading
+  triggerFileInput() {
+    const fileInput = document.getElementById('imagen') as HTMLInputElement;
+    if (fileInput) {
+      fileInput.click();
+    }
+  }
+
+
   onFileSelected(event: Event): void {
     const file = (event.target as HTMLInputElement).files?.[0];
     if (file) {
       const reader = new FileReader();
       reader.onload = () => {
-        this.imagePreviewUrl = reader.result; // Display the image preview
-        this.selectedFile = file; // Store selected file for upload on save
+        this.imagePreviewUrl = reader.result;
+        this.selectedFile = file;
       };
-      reader.readAsDataURL(file); // Read the file as a data URL
+      reader.readAsDataURL(file);
     }
   }
 
-  // Saves the updated product data
   onSave() {
     if (this.productForm.valid && this.productId) {
       if (this.selectedFile) {
-        // If a new image is selected, upload it
+
         this.productService.uploadImage(this.selectedFile).subscribe({
           next: (newImageUrl) => {
             this.productForm.patchValue({ imageUrl: newImageUrl });
-            this.deleteOldImage(); // Call to delete old image
-            this.updateProduct(); // Save product with new image URL
+            this.deleteOldImage();
+            this.updateProduct();
           },
           error: (error) => {
             console.error('Error uploading new image:', error);
           }
         });
       } else {
-        this.updateProduct(); // Proceed with saving without uploading a new image
+        this.updateProduct();
       }
     }
   }
 
-  // Delete old image if a new one was uploaded
+
   private deleteOldImage() {
     if (this.oldImageId) {
       this.productService.deleteImage(this.oldImageId).subscribe({
@@ -133,7 +139,7 @@ export class ProductUpdateFormComponent implements OnInit {
     }
   }
 
-  // Separate function to handle product updates
+ 
   private updateProduct() {
     const updatedProduct: Product = {
       id: this.productId!,
@@ -156,10 +162,15 @@ export class ProductUpdateFormComponent implements OnInit {
     });
   }
 
-  // Cancels editing and reverts form to initial state
+
   onCancel() {
     this.isEditing = false;
-    this.selectedFile = null; // Reset selected file
-    this.ngOnInit(); // Reinitialize to reset changes
+    this.selectedFile = null;
+    this.ngOnInit(); //
+  }
+
+  onDelete() {
+
+
   }
 }

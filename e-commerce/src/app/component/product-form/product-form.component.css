@@ -1,54 +1,33 @@
-.header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
-    position: relative;
-}
 
-.header button {
-    position: absolute;
-    left: 0;
-}
-
-.container {
-    background-color: #FEE9B2;
-    border-radius: 8px;
-    padding: 20px; 
-}
-
-h1 {
-    text-align: center;
-}
 
 .form-control-container {
-    display: flex; 
-    flex-wrap: wrap; 
-    gap: 10px; 
-    margin-bottom: 20px; 
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
 }
 
 .form-control {
     background-color: #C4DCBB;
-    display: flex; 
-    flex-direction: column; 
-    padding: 10px; 
-    border-radius: 8px; 
-    box-sizing: border-box; 
-    flex: 1 0 150px; 
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border-radius: 8px;
+    box-sizing: border-box;
+    flex: 1 0 150px;
     margin: 5px;
 }
 
 .form-control label {
-    margin-bottom: 5px; 
+    margin-bottom: 5px;
 }
 
 .form-control input,
 .form-control textarea {
-    width: auto; 
-    padding: 10px; 
-    border: 1px solid #ccc; 
-    border-radius: 4px; 
+    width: auto;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
 button {
@@ -56,73 +35,73 @@ button {
     border: 1px solid rgb(100, 169, 243);
     padding: 10px 15px;
     cursor: pointer;
-    margin: 20px auto; 
-    display: block; 
-    color: #000000; 
-    border-radius: 8px; 
+    margin: 20px auto;
+    display: block;
+    color: #000000;
+    border-radius: 8px;
 }
 
 button:hover {
-    background-color: #95CBEE; 
-    color: white; 
+    background-color: #95CBEE;
+    color: white;
 }
 
 .file-input {
-    display: none; 
+    display: none;
 }
 
 .custom-file-upload {
     display: flex;
-    padding: 10px 15px; 
-    cursor: pointer; 
-    border: 1px solid #95CBEE; 
-    border-radius: 4px; 
-    background-color: #FEE9B2; 
-    color: #000000; 
-    margin-top: 10px; 
+    padding: 10px 15px;
+    cursor: pointer;
+    border: 1px solid #95CBEE;
+    border-radius: 4px;
+    background-color: #FEE9B2;
+    color: #000000;
+    margin-top: 10px;
 }
 
 .custom-file-upload:hover {
-    background-color: #95CBEE; 
-    color: white; 
+    background-color: #95CBEE;
+    color: white;
 }
 
 .preview {
-    display: flex; 
-    flex-direction: column; 
-    align-items: center; 
-    text-align: center; 
-    margin-bottom: 10px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 10px;
 }
 
 .preview img {
-    max-width: 1000px; 
-    height: auto; 
+    max-width: 1000px;
+    height: auto;
     align-items: center;
 }
 
 .custom-file-upload {
-    margin-top: 10px; 
+    margin-top: 10px;
 }
 
 @media (max-width: 768px) {
     .header {
-        flex-direction: column; 
-        align-items: flex-start; 
+        flex-direction: column;
+        align-items: flex-start;
     }
 
     .header button {
-        position: relative; 
-        margin-bottom: 10px; 
+        position: relative;
+        margin-bottom: 10px;
     }
 
     .container {
-        padding: 15px; 
+        padding: 15px;
     }
 
     .form-control-container {
-        flex-direction: column; 
-        align-items: stretch; 
+        flex-direction: column;
+        align-items: stretch;
     }
 
     .form-control {
