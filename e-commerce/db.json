@@ -2,7 +2,7 @@
   "users": [
     {
       "id": "2872",
-      "name": "adminf",
+      "name": "admin",
       "surname": "admin",
       "email": "admin@admin.com",
       "password": "admin",
@@ -18,17 +18,7 @@
       "password": "12345",
       "cart": [],
       "purchaseHistory": [],
-      "credential": "employee"
-    },
-    {
-      "id": "92e9",
-      "name": "Milagros",
-      "surname": "Rodriguez",
-      "email": "milagrosabril.r@gmail.com",
-      "password": "mili",
-      "cart": [],
-      "purchaseHistory": [],
-      "credential": "manager"
+      "credential": "user"
     }
   ],
   "products": [
@@ -39,18 +29,18 @@
       "price": 99999,
       "category": "Accesorio",
       "stock": 1,
-      "state": "active",
-      "imageUrl": "http://localhost:3001/images/0d50"
+      "imageUrl": "http://localhost:3001/images/0d50",
+      "state": "active"
     },
     {
       "id": "2",
       "name": "Mili Rodriguez",
       "description": "mili",
-      "price": 4,
+      "price": 5,
       "category": "amigurimi",
       "stock": 1,
-      "state": "active",
-      "imageUrl": "http://localhost:3001/images/ad40"
+      "imageUrl": "http://localhost:3001/images/ad40",
+      "state": "active"
     },
     {
       "id": "3",
@@ -80,46 +70,6 @@
       "category": "amigurimi",
       "stock": 5,
       "imageUrl": "http://localhost:3001/images/89a7",
-      "state": "active"
-    },
-    {
-      "id": "6",
-      "name": "Godsilly",
-      "description": "wdadad",
-      "price": 3,
-      "category": "amigurimi",
-      "stock": 3,
-      "imageUrl": "http://localhost:3001/images/fbba",
-      "state": "active"
-    },
-    {
-      "id": "7",
-      "name": "Mili Rodriguez3",
-      "description": "33333333333",
-      "price": 3,
-      "category": "amigurimi",
-      "stock": 33,
-      "imageUrl": "http://localhost:3001/images/3b6b",
-      "state": "active"
-    },
-    {
-      "id": "8",
-      "name": "Jose Valentin",
-      "description": "ddddddddddddddddd",
-      "price": 3,
-      "category": "amigurimi",
-      "stock": 4,
-      "imageUrl": "http://localhost:3001/images/483e",
-      "state": "active"
-    },
-    {
-      "id": "9",
-      "name": "fdfs",
-      "description": "rrrrrrrrrrrr",
-      "price": 4,
-      "category": "amigurimi",
-      "stock": 5,
-      "imageUrl": "http://localhost:3001/images/649d",
       "state": "active"
     }
   ]
