@@ -94,9 +94,10 @@ export class ProductListComponent implements OnInit {
       product.category.toLowerCase().includes(lowerFilter)
     );
   }
+
   editProduct(selectedProduct: Product): void {
     console.log('Navigating to product ID:', selectedProduct.id);
-    this.router.navigate(['updateProduct', String(selectedProduct.id)]);
+    this.router.navigate(['updateProduct', selectedProduct.id]);
   }
   
 }

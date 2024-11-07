@@ -1,5 +1,8 @@
 <div class="product-container">
-  <div *ngFor="let product of filteredProducts" class="product-card">
+  <div *ngFor="let product of filteredProducts" 
+       class="product-card" 
+       (click)="editProduct(product)">
+       
     <div class="product-info">
       <h2>{{ product.name }}</h2>
       <p>{{ product.description }}</p>
@@ -8,14 +11,7 @@
       <p>Stock: {{ product.stock }}</p>
       <p>Estado: {{ product.state }}</p>
     </div>
-    <img [src]="product.imageUrl || 'path/to/fallback-image.png'" alt="{{ product.name }}" *ngIf="product.imageUrl" />
-
-    <div class="button-container">
-      <button *ngIf="userCredential=== 'admin' || userCredential === 'manager' || userCredential === 'employee'" 
-              (click)="editProduct(product)" 
-              class="edit-button">
-        Edit
-      </button>
-    </div>
+    
+    <img [src]="product.imageUrl || 'path/to/fallback-image.png'" alt="{{ product.name }}" />
   </div>
 </div>
