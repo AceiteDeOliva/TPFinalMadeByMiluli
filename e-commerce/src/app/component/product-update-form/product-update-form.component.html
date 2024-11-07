@@ -1,64 +1,71 @@
+<div></div>
 <form [formGroup]="productForm" (ngSubmit)="onSave()" class="product-update-form">
-    <h2>Update Product</h2>
+<div class="topAtributes">
 
-    <div class="form-control">
-        <label>Image</label>
-        <div class="image-preview">
-          <img [src]="imagePreviewUrl" alt="Product Image" class="product-image" *ngIf="imagePreviewUrl" />
-        </div>
-        <div *ngIf="isEditing">
-          <input type="file" (change)="onFileSelected($event)" />
-        </div>
-      </div>
+  <div class="form-control">
+    <label for="name">Nombre</label>
+    <input *ngIf="isEditing" formControlName="name" id="name" />
+    <span *ngIf="!isEditing">{{ productForm.get('name')?.value }}</span>
+  </div>
+  <div class="form-control">
+    <label for="category">Categoria</label>
+    <input *ngIf="isEditing" formControlName="category" id="category" />
+    <span *ngIf="!isEditing">{{ productForm.get('category')?.value }}</span>
+  </div>
 
-    <div class="form-control">
-        <label for="name">Name</label>
-        <input *ngIf="isEditing" formControlName="name" id="name" />
-        <span *ngIf="!isEditing">{{ productForm.get('name')?.value }}</span>
+
+
+  <div class="form-control">
+    <label for="price">Precio</label>
+    <input *ngIf="isEditing" type="number" formControlName="price" id="price" />
+    <span *ngIf="!isEditing">${{ productForm.get('price')?.value }}</span>
+  </div>
+
+
+  <div class="form-control">
+    <label for="stock">Stock</label>
+    <input *ngIf="isEditing" type="number" formControlName="stock" id="stock" />
+    <span *ngIf="!isEditing">{{ productForm.get('stock')?.value }}</span>
+  </div>
+
+
+  <div class="form-control">
+    <label for="state">Estado</label>
+    <select *ngIf="isEditing" formControlName="state" id="state">
+      <option value="active">Active</option>
+      <option value="inactive">Inactive</option>
+    </select>
+    <span *ngIf="!isEditing">{{ productForm.get('state')?.value }}</span>
+  </div>
+
+</div>
+<div class="bottomAtributes
+">
+  <div class="form-control">
+    <label for="description">Descripcion</label>
+    <textarea *ngIf="isEditing" formControlName="description" id="description"></textarea>
+    <span *ngIf="!isEditing">{{ productForm.get('description')?.value }}</span>
+  </div>
+
+  <div class="form-control">
+    <div class="image-preview">
+      <img [src]="imagePreviewUrl" alt="Product Image" class="product-image" *ngIf="imagePreviewUrl" />
     </div>
-
-
-    <div class="form-control">
-        <label for="description">Description</label>
-        <textarea *ngIf="isEditing" formControlName="description" id="description"></textarea>
-        <span *ngIf="!isEditing">{{ productForm.get('description')?.value }}</span>
+    <div *ngIf="isEditing">
+      <button type="button" class="custom-file-upload" (click)="triggerFileInput()">
+        Subir Imagen
+      </button>
+      <input id="imagen" type="file" accept="image/*" class="file-input" (change)="onFileSelected($event)"
+        style="display: none;" />
     </div>
+  </div>
+</div>
 
 
-    <div class="form-control">
-        <label for="price">Price</label>
-        <input *ngIf="isEditing" type="number" formControlName="price" id="price" />
-        <span *ngIf="!isEditing">${{ productForm.get('price')?.value }}</span>
-    </div>
 
-
-    <div class="form-control">
-        <label for="category">Category</label>
-        <input *ngIf="isEditing" formControlName="category" id="category" />
-        <span *ngIf="!isEditing">{{ productForm.get('category')?.value }}</span>
-    </div>
-
-
-    <div class="form-control">
-        <label for="stock">Stock</label>
-        <input *ngIf="isEditing" type="number" formControlName="stock" id="stock" />
-        <span *ngIf="!isEditing">{{ productForm.get('stock')?.value }}</span>
-    </div>
-
-
-    <div class="form-control">
-        <label for="state">State</label>
-        <select *ngIf="isEditing" formControlName="state" id="state">
-            <option value="active">Active</option>
-            <option value="inactive">Inactive</option>
-        </select>
-        <span *ngIf="!isEditing">{{ productForm.get('state')?.value }}</span>
-    </div>
-
-
-    <div class="form-actions">
-        <button *ngIf="!isEditing" type="button" (click)="onEdit()">Edit</button>
-        <button *ngIf="isEditing" type="submit">Save Changes</button>
-        <button *ngIf="isEditing" type="button" (click)="onCancel()">Cancel</button>
-    </div>
+  <div class="form-actions">
+    <button *ngIf="!isEditing" type="button" (click)="onEdit()">Edit</button>
+    <button *ngIf="isEditing" type="submit">Save Changes</button>
+    <button *ngIf="isEditing" type="button" (click)="onCancel()">Cancel</button>
+  </div>
 </form>

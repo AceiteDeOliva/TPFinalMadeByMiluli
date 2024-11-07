@@ -1,17 +1,13 @@
 <div class="container ">
-    <div class="header">
-    <button routerLink='/product-admin' >volver</button>
-    <h1>Ingresar nuevo producto</h1>
-
-     </div>
+    
  <form [formGroup]="productForm" (ngSubmit)="submitProduct()">
- 
+
     <div class="form-control-container">
         <div class="form-control">
             <label for="name">Nombre Producto</label>
             <input
-                formControlName="name" 
-                id="name" 
+                formControlName="name"
+                id="name"
                 type="text"
                 placeholder="Nombre Producto"
             />
@@ -20,7 +16,7 @@
         <div class="form-control">
             <label for="price">Precio</label>
             <input
-                formControlName="price" 
+                formControlName="price"
                 id="price"
                 type="number"
             />
@@ -39,7 +35,7 @@
         <div class="form-control">
             <label for="stock">Stock</label>
             <input
-                formControlName="stock" 
+                formControlName="stock"
                 id="stock"
                 type="number"
             />
@@ -62,13 +58,13 @@
             <div *ngIf="imagePreviewUrl">
                 <h3>Imagen Seleccionada:</h3>
                 <img [src]="imagePreviewUrl" alt="Image Preview" style="max-width: 100px; height: auto;" />
-            </div> 
+            </div>
             <span *ngIf="productForm.get('image')?.value">{{ productForm.get('image')?.value.name }}</span>
         </div>
-            <button 
-                type="button" 
-                class="custom-file-upload" 
-                (click)="triggerFileInput()"> 
+            <button
+                type="button"
+                class="custom-file-upload"
+                (click)="triggerFileInput()">
                 Subir Imagen
             </button>
             <input
@@ -76,11 +72,11 @@
                 type="file"
                 accept="image/*"
                 class="file-input"
-                (change)="onImageSelected($event)"  
-                style="display: none;"  
+                (change)="onImageSelected($event)"
+                style="display: none;"
             />
-            
-           
+
+
         </div>
     </div>
 

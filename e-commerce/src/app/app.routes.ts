@@ -11,6 +11,8 @@ import { ProductFormComponent } from './component/product-form/product-form.comp
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 import { ManageUsersPageComponent } from './pages/manage-users-page/manage-users-page.component';
 import { ManageProductPageComponent } from './pages/manage-product-page/manage-product-page.component';
+import { NewProductPageComponent } from './pages/new-product-page/new-product-page.component';
+import { UpdateProductPageComponent } from './pages/update-product-page/update-product-page.component';
 
 
 export const routes: Routes = [
@@ -22,8 +24,8 @@ export const routes: Routes = [
   {path:'product-admin',component:ManageProductPageComponent},
   {path: 'profile',  component:ProfilePageComponent},
   {path: 'manageUsers', component:ManageUsersPageComponent },
-  {path:'nuevoProducto', component: ProductFormComponent},
-  { path: 'updateProduct/:id', component: ProductUpdateFormComponent },
+  {path:'nuevoProducto', component: NewProductPageComponent},
+  { path: 'updateProduct/:id', component: UpdateProductPageComponent},
   {path:"**",redirectTo:"home"}, // This one has to go last
-  
+
 ];
