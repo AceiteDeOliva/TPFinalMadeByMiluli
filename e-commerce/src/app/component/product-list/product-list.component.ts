@@ -3,6 +3,9 @@ import { ProductService } from '../../services/product-service/product.service';
 import { Product } from '../../models/product';
 import { CommonModule } from '@angular/common';
 import { catchError, forkJoin, map, of, switchMap } from 'rxjs';
+import { Router } from '@angular/router';
+import { UserService } from '../../services/user-service/user.service';
+
 
 @Component({
   selector: 'app-product-list',
@@ -11,15 +14,36 @@ import { catchError, forkJoin, map, of, switchMap } from 'rxjs';
   standalone: true,
   imports: [CommonModule]
 })
+
 export class ProductListComponent implements OnInit {
   @Input() filterTerm: string = ''; // Input to receive the filter term
   products: Product[] = [];
   filteredProducts: Product[] = []; // Stores filtered products
+  userCredential: string =  '';
 
-  constructor(private productService: ProductService) {}
+  constructor(
+    private productService: ProductService,
+    private router: Router,
+    private userService: UserService
+  ) {}
 
   ngOnInit(): void {
     this.loadProducts();
+    this.getUserCredential();
+  }
+
+  getUserCredential(): void {
+    const currentUserId = localStorage.getItem('currentUserId');
+    if (currentUserId) {
+      this.userService.getCredential(currentUserId).subscribe({
+        next: (credential) => {
+          this.userCredential = credential;
+        },
+        error: (error) => {
+          console.error('Erros buscando credencial:', error);
+        }
+      });
+    }
   }
 
   loadProducts() {
@@ -70,4 +94,9 @@ export class ProductListComponent implements OnInit {
       product.category.toLowerCase().includes(lowerFilter)
     );
   }
+  editProduct(selectedProduct: Product): void {
+    console.log('Navigating to product ID:', selectedProduct.id);
+    this.router.navigate(['updateProduct', String(selectedProduct.id)]);
+  }
+  
 }

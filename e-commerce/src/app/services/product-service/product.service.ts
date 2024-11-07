@@ -35,23 +35,24 @@ export class ProductService {
                 console.error('Error uploading image');
                 return of(false);
               }
-              // Genera el siguiente ID para el nuevo producto
+              // Generate the next ID for the new product
               return this.generateNextId().pipe(
                 switchMap(id => {
-                  const newProduct: Omit<Product, 'id'> = {
+                  const newProduct: Product = {
+                    id, // Use the generated string ID here
                     name,
                     description,
                     price,
                     category,
                     stock,
-                    imageUrl, // Usa la URL de la imagen
+                    imageUrl, // Use the URL of the uploaded image
                     state: "active"
                   };
-                  // Guarda el nuevo producto en el JSON de productos
-                  return this.http.post<Product>(this.apiUrlProducts, { id, ...newProduct }).pipe(
+                  // Save the new product to the JSON of products
+                  return this.http.post<Product>(this.apiUrlProducts, newProduct).pipe(
                     map(() => true),
                     catchError(error => {
-                      console.error('Error añadiendo producto:', error);
+                      console.error('Error adding product:', error);
                       return of(false);
                     })
                   );
@@ -64,19 +65,23 @@ export class ProductService {
     );
   }
   
-
-
-
-
   // genera id secuencial
-  private generateNextId(): Observable<number> {
+  private generateNextId(): Observable<string> {
     return this.http.get<Product[]>(this.apiUrlProducts).pipe(
       map(products => {
-        const highestId = products.reduce((maxId, product) => Math.max(product.id, maxId), 0);
-        return highestId + 1;
+        // Find the highest numeric ID by converting each to a number
+        const highestId = products.reduce((maxId, product) => {
+          const numericId = parseInt(product.id, 10); // Convert ID to a number
+          return isNaN(numericId) ? maxId : Math.max(maxId, numericId);
+        }, 0);
+        
+        // Generate the next ID and convert it to a string
+        const nextId = (highestId + 1).toString();
+        return nextId;
       })
     );
   }
+  
 
   // chequea si existe un productocon elmismonombre
   private checkProductExists(name: string): Observable<boolean> {
@@ -155,5 +160,37 @@ uploadImage(file: File): Observable<string> {
       })
     );
   }
+
+  getProductById(id: string): Observable<Product | null> {
+    return this.http.get<Product>(`${this.apiUrlProducts}/${id}`).pipe(
+      map((product) => product), 
+      catchError((error) => {
+        console.error(`Error fetching product with ID ${id}:`, error);
+        return of(null); 
+      })
+    );
+  }
+  
+
+  updateProduct(updatedProduct: Product): Observable<Product> { //updates product
+    return this.http.put<Product>(`${this.apiUrlProducts}/${updatedProduct.id}`, updatedProduct).pipe(
+      catchError(error => {
+        console.error('Error updating product:', error);
+        throw error; 
+      })
+    );
+  }
+
+
+  deleteImage(imageId: string): Observable<void> { //deletes image from images.json by id
+    return this.http.delete<void>(`${this.apiUrlImages}/${imageId}`).pipe(
+      catchError(error => {
+        console.error('Error deleting image:', error);
+        return of(undefined); 
+      })
+    );
+  }
+  
+  
 }
 

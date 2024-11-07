@@ -14,6 +14,9 @@ import { RouterModule, RouterOutlet } from '@angular/router';
   styleUrl: './manage-product-page.component.css'
 })
 export class ManageProductPageComponent {
+
+
+  
  
 
 }
