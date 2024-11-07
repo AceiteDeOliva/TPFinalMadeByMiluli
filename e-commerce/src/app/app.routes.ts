@@ -1,3 +1,4 @@
+import { ProductUpdateFormComponent } from './component/product-update-form/product-update-form.component';
 import { Component } from '@angular/core';
 import { Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
@@ -22,6 +23,7 @@ export const routes: Routes = [
   {path: 'profile',  component:ProfilePageComponent},
   {path: 'manageUsers', component:ManageUsersPageComponent },
   {path:'nuevoProducto', component: ProductFormComponent},
+  { path: 'updateProduct/:id', component: ProductUpdateFormComponent },
   {path:"**",redirectTo:"home"}, // This one has to go last
   
 ];

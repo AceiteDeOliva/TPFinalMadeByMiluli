@@ -18,7 +18,7 @@
       "password": "12345",
       "cart": [],
       "purchaseHistory": [],
-      "credential": "admin"
+      "credential": "user"
     }
   ],
   "products": [
@@ -33,7 +33,7 @@
       "state": "active"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Mili Rodriguez",
       "description": "mili",
       "price": 5,
@@ -43,7 +43,7 @@
       "state": "active"
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "kuromi",
       "description": "kuromi",
       "price": 5,
@@ -53,7 +53,7 @@
       "state": "active"
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "my melo",
       "description": "my melo",
       "price": 5,
@@ -63,7 +63,7 @@
       "state": "active"
     },
     {
-      "id": 5,
+      "id": "5",
       "name": "AMONGUS",
       "description": "AMONGUS",
       "price": 5,
