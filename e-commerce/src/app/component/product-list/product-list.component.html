@@ -1,7 +1,9 @@
 <div class="product-container">
-  <div *ngFor="let product of filteredProducts" 
+  <div 
+  *ngFor="let product of filteredProducts" 
        class="product-card" 
        (click)="editProduct(product)">
+       
        
     <div class="product-info">
       <h2>{{ product.name }}</h2>

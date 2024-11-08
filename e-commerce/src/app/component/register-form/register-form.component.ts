@@ -18,6 +18,7 @@ import { CommonModule } from '@angular/common';
 export class RegisterFormComponent {
   registerForm: FormGroup;
   availableCredentials: string[] = [];
+  credential:string = '';
 
 
   constructor(
@@ -43,11 +44,13 @@ export class RegisterFormComponent {
     const currentUserId = localStorage.getItem('currentUserId');
     if (currentUserId) {
       this.userService.getCredential(currentUserId).subscribe(credential => {
+        this.credential = credential; 
+  
         if (credential === 'admin') {
           this.availableCredentials = ['user', 'employee', 'manager', 'admin'];
-        } else if (credential === 'manager') {   
+        } else if (credential === 'manager') {
           this.availableCredentials = ['user', 'employee', 'manager'];
-        } else {    
+        } else {
           this.availableCredentials = [];
         }
       });
@@ -74,7 +77,7 @@ export class RegisterFormComponent {
       tap((isRegistered) => {
         if (isRegistered) {
           alert('Registration successful!');
-          if(credential === "user"){
+          if(this.credential === "user" || this.credential === ''){
             this.router.navigate(['/login']);
           }else{
             this.router.navigate(['/manageUsers']);

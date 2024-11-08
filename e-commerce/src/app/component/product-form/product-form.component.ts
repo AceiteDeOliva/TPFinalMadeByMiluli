@@ -8,7 +8,7 @@ import { Router, RouterModule, RouterOutlet } from '@angular/router';
 @Component({
   selector: 'app-product-form',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule,RouterModule,RouterOutlet] ,
+  imports: [ReactiveFormsModule, CommonModule,RouterModule] ,
   templateUrl: './product-form.component.html',
   styleUrls: ['./product-form.component.css'] 
 })
@@ -65,12 +65,13 @@ export class ProductFormComponent {
     this.productService.addProduct(name, description, price, category, stock, image).subscribe({//calls the addProduct method from the product service
       next: (response) => {
         alert('Producto agregado correctamente');
+        this.router.navigate(['/product-admin']);
       },
       error: (error) => {
         console.error('Error agregando producto:', error);
       }
     });
-    this.router.navigate(['/product-admin']);
+    
   }
   
   

@@ -116,7 +116,7 @@ export class ProductService {
     return this.http.get<Product[]>(this.apiUrlProducts).pipe(
       catchError((error) => {
         console.error('Error fetching products:', error);
-        return of([]); // Return an empty array in case of error
+        return of([]); 
       })
     );
   }
@@ -187,6 +187,21 @@ uploadImage(file: File): Observable<string> {
       catchError(error => {
         console.error('Error deleting image:', error);
         return of(undefined); 
+      })
+    );
+  }
+
+  deleteProduct(product: Product): Observable<void> { //deletes the product
+    
+    const imageId = product.imageUrl.split('/').pop() || '';//gets the image ID
+    return this.deleteImage(imageId).pipe( 
+      switchMap(() => {
+        return this.http.delete<void>(`${this.apiUrlProducts}/${product.id}`);
+      }),
+      catchError(error => {
+        alert('Error deleting product or associated image');
+        console.error('Error:', error);
+        return of(undefined);
       })
     );
   }
