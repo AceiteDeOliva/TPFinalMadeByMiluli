@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Product } from '../../models/product';
@@ -15,6 +15,7 @@ import { catchError, switchMap, map } from 'rxjs/operators';
   styleUrls: ['./product-update-form.component.css']
 })
 export class ProductUpdateFormComponent implements OnInit {
+  @Input() product!: Product;
   @Output() saveChanges = new EventEmitter<Partial<Product>>();
 
   productForm: FormGroup;
@@ -50,13 +51,16 @@ export class ProductUpdateFormComponent implements OnInit {
         }),
         switchMap((product) => {
           if (product) {
+            this.product = product; 
             this.productForm.patchValue(product);
-
+  
             if (product.imageUrl.startsWith('data:image')) {
-              this.imagePreviewUrl = product.imageUrl;
+              this.imagePreviewUrl = product.imageUrl; // Directly use base64 image
             } else {
               const imageId = product.imageUrl.split('/').pop();
               this.oldImageId = imageId || null;
+  
+
               if (imageId) {
                 return this.productService.getImage(imageId).pipe(
                   map((imageData) => {
@@ -65,7 +69,7 @@ export class ProductUpdateFormComponent implements OnInit {
                 );
               }
             }
-            return of(null);
+            return of(null); 
           } else {
             console.error('Product not found');
             this.router.navigate(['/']);
@@ -74,11 +78,13 @@ export class ProductUpdateFormComponent implements OnInit {
         }),
         catchError((error) => {
           console.error('Error loading product:', error);
+          this.router.navigate(['/']); 
           return of(null);
         })
       )
       .subscribe();
   }
+  
 
 
   onEdit() {
@@ -139,7 +145,7 @@ export class ProductUpdateFormComponent implements OnInit {
     }
   }
 
- 
+
   private updateProduct() {
     const updatedProduct: Product = {
       id: this.productId!,
@@ -169,8 +175,21 @@ export class ProductUpdateFormComponent implements OnInit {
     this.ngOnInit(); //
   }
 
-  onDelete() {
 
-
+  deleteProduct() {
+    const confirmed = window.confirm("¿Estas seguro de eliminar este producto?");
+    if (confirmed && this.product) { 
+      this.productService.deleteProduct(this.product).subscribe({
+        next: () => {
+          console.log('Producto eliminado');
+          this.router.navigate(['/product-admin']);
+        },
+        error: error => console.error('Error eliminando producto:', error)
+      });
+    }
   }
+  
+  
 }
+
+

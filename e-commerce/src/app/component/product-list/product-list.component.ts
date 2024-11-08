@@ -99,5 +99,7 @@ export class ProductListComponent implements OnInit {
     console.log('Navigating to product ID:', selectedProduct.id);
     this.router.navigate(['updateProduct', selectedProduct.id]);
   }
+
+
   
 }

@@ -27,10 +27,10 @@
       "name": "La Cabra",
       "description": "GOAT",
       "price": 99999,
-      "category": "Accesorio",
+      "category": "BEEEEE",
       "stock": 1,
-      "imageUrl": "http://localhost:3001/images/0d50",
-      "state": "active"
+      "state": "active",
+      "imageUrl": "http://localhost:3001/images/0d50"
     },
     {
       "id": "2",
