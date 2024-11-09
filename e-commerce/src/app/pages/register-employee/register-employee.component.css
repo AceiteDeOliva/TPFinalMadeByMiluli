@@ -1,0 +1,67 @@
+.register-page {
+  background-color: #95CBEE;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding: 30px;
+  align-items: center;
+  margin: 15px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form {
+  background-color: #C4DCBB;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+button {
+  background-color: #FEE9B2;
+  border: 1px solid rgb(100, 169, 243);
+  padding: 10px 15px;
+  cursor: pointer;
+  margin: 20px auto;
+  display: block;
+  color: #000000;
+  border-radius: 8px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+}
+
+.header h1 {
+  flex: 1;
+  text-align: center;
+  font-size: 2em; /* Adjust as needed */
+}
+
+.header button {
+  position: absolute;
+  left: 0;
+}
+
+button:hover {
+  background-color: #95CBEE;
+  color: white;
+}
+
+@media (max-width: 600px) {
+  .register-page {
+    padding: 15px;
+    margin: 10px;
+  }
+
+  .header h1 {
+    font-size: 1.5em; /* Smaller h1 for mobile */
+  }
+
+  button {
+    padding: 8px 10px; /* Smaller padding for mobile */
+  }
+}
