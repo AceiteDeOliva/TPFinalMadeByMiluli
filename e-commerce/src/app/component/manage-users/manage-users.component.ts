@@ -111,7 +111,7 @@ export class ManageUsersComponent implements OnInit {
       );
     }
   }
-  
+
 
   onEdit() {
     this.isEditing = true;
@@ -127,7 +127,7 @@ export class ManageUsersComponent implements OnInit {
     this.successMessage = null;
     this.errorMessage = null;
   }
-  
+
 
   onCloseUpdateForm() {
     this.isEditing = false;
@@ -155,6 +155,6 @@ export class ManageUsersComponent implements OnInit {
   }
 
   goToRegister() { //Link to register function
-    this.router.navigate(['register']);
+    this.router.navigate(['register-Employee']);
   }
 }

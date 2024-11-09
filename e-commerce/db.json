@@ -34,23 +34,23 @@
     },
     {
       "id": "2",
-      "name": "Mili Rodriguez",
+      "name": "Miluli Rodriguez",
       "description": "mili",
       "price": 5,
       "category": "amigurimi",
       "stock": 1,
-      "imageUrl": "http://localhost:3001/images/ad40",
-      "state": "active"
+      "state": "active",
+      "imageUrl": "http://localhost:3001/images/ad40"
     },
     {
       "id": "3",
-      "name": "kuromi",
+      "name": "Kuromi",
       "description": "kuromi",
       "price": 5,
       "category": "amigurimi",
       "stock": 5,
-      "imageUrl": "http://localhost:3001/images/1330",
-      "state": "active"
+      "state": "active",
+      "imageUrl": "http://localhost:3001/images/1330"
     },
     {
       "id": "4",
@@ -70,6 +70,16 @@
       "category": "amigurimi",
       "stock": 5,
       "imageUrl": "http://localhost:3001/images/89a7",
+      "state": "active"
+    },
+    {
+      "id": "6",
+      "name": "MONSTER HUNTER",
+      "description": "WEWE",
+      "price": 3,
+      "category": "amigurimi",
+      "stock": 3,
+      "imageUrl": "http://localhost:3001/images/dd4c",
       "state": "active"
     }
   ]

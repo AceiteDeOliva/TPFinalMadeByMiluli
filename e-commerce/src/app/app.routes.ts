@@ -13,6 +13,7 @@ import { ManageUsersPageComponent } from './pages/manage-users-page/manage-users
 import { ManageProductPageComponent } from './pages/manage-product-page/manage-product-page.component';
 import { NewProductPageComponent } from './pages/new-product-page/new-product-page.component';
 import { UpdateProductPageComponent } from './pages/update-product-page/update-product-page.component';
+import { RegisterEmployeeComponent } from './pages/register-employee/register-employee.component';
 
 
 export const routes: Routes = [
@@ -21,11 +22,12 @@ export const routes: Routes = [
   {path:'home', component:HomeComponent},
   {path: 'login', component:LoginPageComponent},
   {path:'register', component:RegisterComponent},
+  {path:'register-Employee', component: RegisterEmployeeComponent},
   {path:'product-admin',component:ManageProductPageComponent},
   {path: 'profile',  component:ProfilePageComponent},
   {path: 'manageUsers', component:ManageUsersPageComponent },
   {path:'nuevoProducto', component: NewProductPageComponent},
   { path: 'updateProduct/:id', component: UpdateProductPageComponent},
-  {path:"**",redirectTo:"home"}, // This one has to go last
+  {path:"**",redirectTo:"home"}, 
 
 ];
