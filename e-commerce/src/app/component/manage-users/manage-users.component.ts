@@ -102,11 +102,11 @@ export class ManageUsersComponent implements OnInit {
           console.log('Employee updated:', updatedData);
           this.selectedEmployee = updatedData; // Actualiza con los datos realmente guardados
           this.isEditing = false;
-          this.successMessage = 'Profile updated successfully!';
+          this.successMessage = 'Perfil Modificado Exitosamente!';
         },
         error => {
           console.error('Update error:', error);
-          this.errorMessage = 'Error updating profile.';
+          this.errorMessage = 'Error modificando perfil.';
         }
       );
     }
@@ -141,14 +141,15 @@ export class ManageUsersComponent implements OnInit {
     if (this.selectedEmployee) {
       this.userService.deleteUser(this.selectedEmployee.id).subscribe(
         () => {
-          console.log('Employee deleted:', this.selectedEmployee);
+          console.log('Employee eliminado:', this.selectedEmployee);
           this.loadEmployees();
           this.selectedEmployee = null;
-          this.successMessage = 'Employee deleted successfully!';
+
+          this.successMessage = 'Empleado Eliminado Exitosamente';
         },
         error => {
           console.error('Delete error:', error);
-          this.errorMessage = 'Error deleting employee.';
+          this.errorMessage = 'Error al eleiminar empleado';
         }
       );
     }
