@@ -15,7 +15,7 @@
   display: flex;
   align-items: center;
   gap: 25px;
-  margin-left: auto; 
+  margin-left: auto;
 }
 
 nav ul {
@@ -90,3 +90,45 @@ nav button:hover {
 .nested li:hover {
   background-color: #95CBEE;
 }
+@media (max-width: 768px) {
+  /* Adjusting the layout of the navbar */
+  .toTheRight {
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-start; /* Align items to the start for better mobile view */
+  }
+
+  /* Display all items in the navbar */
+  nav ul {
+    flex-direction: column;
+    gap: 15px;
+    display: flex;  /* Ensure the menu items are always visible */
+    width: 100%;
+    text-align: center;
+  }
+
+  nav ul li a {
+    padding: 12px 0;
+    font-size: 16px;  /* Adjust font size for mobile */
+  }
+
+  /* Adjust cart placement */
+  .toTheRight .cart {
+    margin-top: 10px;
+  }
+
+  /* Remove the dropdown behavior */
+  .dropdown .nested {
+    display: none;  /* Ensure the nested menu is hidden */
+  }
+
+  .nested li {
+    padding: 10px;
+    text-align: left;
+  }
+
+  .nested li:hover {
+    background-color: #95CBEE;
+  }
+}
+

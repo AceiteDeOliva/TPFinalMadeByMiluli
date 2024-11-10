@@ -12,38 +12,38 @@ form {
 
 .form-control-nombre-container {
   display: flex;
-  justify-content: center; 
-  gap: 20px; 
+  justify-content: center;
+  gap: 20px;
 }
 
 .form-control-nombre {
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
 }
 
 .form-control-nombre input {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  margin-top: 5px; 
+  margin-top: 5px;
 }
 
 .form-control {
-  margin-top: 15px; 
+  margin-top: 15px;
 }
 
 .form-control label {
   display: block;
   margin-bottom: 5px;
-  font-weight: bold; 
+  font-weight: bold;
 }
 
 .form-control input,
-.form-control select { 
-  padding: 10px; 
-  border: 1px solid #ccc; 
+.form-control select {
+  padding: 10px;
+  border: 1px solid #ccc;
   border-radius: 4px;
-  margin-top: 5px; 
+  margin-top: 5px;
 }
 
 button {
@@ -51,7 +51,7 @@ button {
   border: 1px solid rgb(100, 169, 243);
   padding: 10px 15px;
   cursor: pointer;
-  margin-top: 20px; 
+  margin-top: 20px;
   color: #000000;
   border-radius: 8px;
 }
@@ -59,4 +59,27 @@ button {
 button:hover {
   background-color: #95CBEE;
   color: white;
+}
+@media (max-width: 480px) {
+  form {
+    padding: 15px;
+    margin: 5px;
+  }
+
+  .form-control-nombre-container {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .form-control-nombre input,
+  .form-control input,
+  .form-control select {
+    width: 100%;
+  }
+
+  button {
+    width: 100%;
+    padding: 14px;
+    font-size: 14px;
+  }
 }

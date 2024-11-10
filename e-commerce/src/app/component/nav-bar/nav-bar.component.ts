@@ -14,43 +14,45 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent {
-  credential$: Observable<string | null>; 
-  accountMenuVisible: boolean = false; 
+  credential$: Observable<string | null>;
+  accountMenuVisible: boolean = false;
 
   constructor(private userService: UserService, private authService: AuthService, private router: Router) {
-    this.credential$ = this.authService.getCredential(); 
+    this.credential$ = this.authService.getCredential();
   }
 
   ngOnInit(): void {
-    
+
   }
 
   logout() {
-    localStorage.removeItem('currentUserId'); 
-    this.authService.changeCredential(null);   
-    this.router.navigate(['home']);           
+    localStorage.removeItem('currentUserId');
+    this.authService.changeCredential(null);
+    this.router.navigate(['home']);
   }
   toggleAccountMenu() {
-    this.accountMenuVisible = !this.accountMenuVisible; 
+    this.accountMenuVisible = !this.accountMenuVisible;
   }
 
   switchToUserMode() {
-    this.authService.changeCredential('adminUser'); 
+    this.authService.changeCredential('adminUser');
   }
 
   switchToAdminMode() {
-    this.authService.changeCredential('admin'); 
+    this.authService.changeCredential('admin');
   }
 
   isUserOrAdmin(): Observable<boolean> {
     return this.credential$.pipe(
-      map(credential => credential === 'user' || credential === 'adminUser') 
+      map(credential => credential === 'user' || credential === 'adminUser')
     );
   }
 
   isAdminOrEmployee(): Observable<boolean> {
     return this.credential$.pipe(
-      map(credential => credential === 'admin' || credential === 'employee' || credential === 'manager') 
+      map(credential => credential === 'admin' || credential === 'employee' || credential === 'manager')
     );
   }
+
+  
 }

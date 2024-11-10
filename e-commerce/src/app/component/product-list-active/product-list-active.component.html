@@ -1,0 +1,14 @@
+<div class="product-container">
+
+  <ng-container *ngFor="let product of filteredProducts" >
+    <div *ngIf="product.state === 'active'" class="product-card" [ngStyle]="{'background-color': getRandomColor()}">
+      <div class="product-info">
+
+        <h2>{{ product.name }}</h2>
+        <img [src]="product.imageUrl || 'path/to/fallback-image.png'" alt="{{ product.name }}"/>
+
+    </div>
+    <p>Precio: ${{ product.price }}</p>
+    </div>
+  </ng-container>
+</div>
