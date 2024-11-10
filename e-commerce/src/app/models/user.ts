@@ -4,7 +4,7 @@ export interface User {
     surname: string;
     email: string;
     password: string;
-    cart: Array<{ productId: string; quantity: number }>;
+    cart: Array<{ productUrl: string; quantity: number }>;
     purchaseHistory: Array<{ productId: string; quantity: number; date: Date }>;
     credential: 'user' | 'employee'|'manager'|'admin';
 }
