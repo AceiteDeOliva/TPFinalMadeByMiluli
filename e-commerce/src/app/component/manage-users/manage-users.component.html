@@ -4,13 +4,13 @@
     <h2>Gestión de Credenciales</h2>
   </div>
   <div class="employee-list">
-    <input 
-      type="text" 
-      placeholder="Buscar empleado..." 
-      [(ngModel)]="filterText" 
-      (input)="filterEmployees()" 
+    <input
+      type="text"
+      placeholder="Buscar empleado..."
+      [(ngModel)]="filterText"
+      (input)="filterEmployees()"
       class="filter-input"
-    /> 
+    />
     <img src="/Assets/Logo made by miluli/pngegg.png" alt="logo" class="icon" style="cursor: pointer;">
 
     <div class="full-container">
@@ -32,7 +32,7 @@
           [isAdmin]="isAllowed"
           (saveChanges)="onSaveChanges($event)">
         </app-profile-update-form>
-        <button (click)="onDelete()">Eliminar Empleado</button>
+        <button class="delete-button" (click)="onDelete()">Eliminar Empleado</button>
       </div>
     </div>
 

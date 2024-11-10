@@ -10,7 +10,7 @@ import { Router, RouterModule, RouterOutlet } from '@angular/router';
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule,RouterModule] ,
   templateUrl: './product-form.component.html',
-  styleUrls: ['./product-form.component.css'] 
+  styleUrls: ['./product-form.component.css']
 })
 
 export class ProductFormComponent {
@@ -37,13 +37,13 @@ export class ProductFormComponent {
     if (input.files && input.files[0]) { //Checks the file was actually selected and not null
       const file = input.files[0]; //declares the file
       const reader = new FileReader(); //declares the FileReader
-      
+
       reader.onload = () => {
         this.imagePreviewUrl = reader.result; //the image for the preview
       };
 
       reader.readAsDataURL(file);  //reads the file
-      this.productForm.patchValue({ image: file }); //saves the image in the product form 
+      this.productForm.patchValue({ image: file }); //saves the image in the product form
     }
   }
 
@@ -59,21 +59,21 @@ export class ProductFormComponent {
       alert('Completar todos los campos .');
       return;
     }
-  
+
     const { name, description, price, category, stock, image } = this.productForm.value; //destructures the form to access each field
-  
+
     this.productService.addProduct(name, description, price, category, stock, image).subscribe({//calls the addProduct method from the product service
       next: (response) => {
         alert('Producto agregado correctamente');
-        this.router.navigate(['/product-admin']);
+        this.router.navigate(['/productAdmin']);
       },
       error: (error) => {
         console.error('Error agregando producto:', error);
       }
     });
-    
+
   }
-  
-  
+
+
 
 }

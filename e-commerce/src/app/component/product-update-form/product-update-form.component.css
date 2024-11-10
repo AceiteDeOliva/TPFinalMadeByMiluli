@@ -130,15 +130,15 @@ button:hover {
   }
 }
 .delete-button {
-  background-color: rgb(226, 80, 80); 
-  border: 2px solid rgb(233, 50, 50); 
-  color: rgb(8, 3, 3); 
+  background-color: #F8E1E4;
+  border: 2px solid #FCD5CE;
+  color: rgb(8, 3, 3);
   padding: 10px 15px;
   border-radius: 4px;
   cursor: pointer;
 }
 
 .delete-button:hover {
-  background-color: rgb(233, 50, 50); 
-  color: white; 
+  background-color: #FCD5CE;
+  color: white;
 }

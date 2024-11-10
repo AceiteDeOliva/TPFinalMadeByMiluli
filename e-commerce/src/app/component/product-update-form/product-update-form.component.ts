@@ -51,15 +51,15 @@ export class ProductUpdateFormComponent implements OnInit {
         }),
         switchMap((product) => {
           if (product) {
-            this.product = product; 
+            this.product = product;
             this.productForm.patchValue(product);
-  
+
             if (product.imageUrl.startsWith('data:image')) {
               this.imagePreviewUrl = product.imageUrl; // Directly use base64 image
             } else {
               const imageId = product.imageUrl.split('/').pop();
               this.oldImageId = imageId || null;
-  
+
 
               if (imageId) {
                 return this.productService.getImage(imageId).pipe(
@@ -69,7 +69,7 @@ export class ProductUpdateFormComponent implements OnInit {
                 );
               }
             }
-            return of(null); 
+            return of(null);
           } else {
             console.error('Product not found');
             this.router.navigate(['/']);
@@ -78,13 +78,13 @@ export class ProductUpdateFormComponent implements OnInit {
         }),
         catchError((error) => {
           console.error('Error loading product:', error);
-          this.router.navigate(['/']); 
+          this.router.navigate(['/']);
           return of(null);
         })
       )
       .subscribe();
   }
-  
+
 
 
   onEdit() {
@@ -178,18 +178,18 @@ export class ProductUpdateFormComponent implements OnInit {
 
   deleteProduct() {
     const confirmed = window.confirm("¿Estas seguro de eliminar este producto?");
-    if (confirmed && this.product) { 
+    if (confirmed && this.product) {
       this.productService.deleteProduct(this.product).subscribe({
         next: () => {
           console.log('Producto eliminado');
-          this.router.navigate(['/product-admin']);
+          this.router.navigate(['/productAdmin']);
         },
         error: error => console.error('Error eliminando producto:', error)
       });
     }
   }
-  
-  
+
+
 }
 
 

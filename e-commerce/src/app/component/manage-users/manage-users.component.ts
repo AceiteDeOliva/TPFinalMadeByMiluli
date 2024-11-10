@@ -156,6 +156,6 @@ export class ManageUsersComponent implements OnInit {
   }
 
   goToRegister() { //Link to register function
-    this.router.navigate(['register-Employee']);
+    this.router.navigate(['registerEmployee']);
   }
 }

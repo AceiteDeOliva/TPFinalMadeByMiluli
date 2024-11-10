@@ -7,7 +7,7 @@
     <ul style="cursor: pointer;">
       <li><a routerLink="categoria">Categorías</a></li>
       <li><a routerLink="ofertas">Ofertas</a></li>
-      <li><a routerLink="productos">Productos</a></li>
+      <li><a routerLink="activeProducts">Productos</a></li>
     </ul>
     <button routerLink="login" class="log-button">Inicio de sesión</button>
     <button routerLink="register" class="register-button">Registrarme</button>
@@ -26,7 +26,7 @@
     <ul style="cursor: pointer;">
       <li><a routerLink="categoria">Categorías</a></li>
       <li><a routerLink="ofertas">Ofertas</a></li>
-      <li><a routerLink="productos">Productos</a></li>
+      <li><a routerLink="activeProducts">Productos</a></li>
       <li class="dropdown">
         <span (click)="toggleAccountMenu()">Mi Cuenta</span>
         <ul class="nested" *ngIf="accountMenuVisible">
@@ -52,7 +52,7 @@
   </a>
   <div class="toTheRight">
     <ul style="cursor: pointer;">
-      <li><a routerLink="product-admin">Productos</a></li>
+      <li><a routerLink="productAdmin">Productos</a></li>
       <li><a routerLink="orders">Órdenes</a></li>
       <li *ngIf="(credential$ | async) !== 'employee'">
         <a routerLink="manageUsers">Gestión Credenciales</a>
