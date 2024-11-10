@@ -7,11 +7,11 @@ import { User } from '../../models/user';
   providedIn: 'root'
 })
 export class CartService {
-  private currentUserId = localStorage.getItem('currentUserId'); 
-  private userCartUrl = `http://localhost:3000/users/${this.currentUserId}/cart`;  
+  private currentUserId = localStorage.getItem('currentUserId');
+  private userCartUrl = `http://localhost:3000/users/${this.currentUserId}/cart`;
   private productsUrl = 'http://localhost:3000/products';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getCarrito(): Observable<any> {
     return this.http.get(this.userCartUrl).pipe(
@@ -31,12 +31,10 @@ export class CartService {
         const existingProduct = this.findProductInCart(user.cart, productUrl);
 
         if (existingProduct) {
-          // If the product exists, delegate the quantity update
-          this.updateProductQuantityInCart(user.cart, productUrl, quantity);
-          return this.updateCart(user.cart); // Update cart with the new quantity
+          this.updateProductQuantityInCart(user.cart, productUrl, quantity); //updates quantity of object already in cart
+          return this.updateCart(user.cart);
         } else {
-          // If the product doesn't exist, add it to the cart
-          return this.addNewProductToCart(user.cart, productUrl, quantity);
+          return this.addNewProductToCart(user.cart, productUrl, quantity); //posts product to cart
         }
       }),
       catchError((error) => {
@@ -81,6 +79,16 @@ export class CartService {
         return throwError(() => error);
       })
     );
+  }
+
+  private clearCart() {
+    return this.http.put(`${this.userCartUrl}`, []).pipe(
+      catchError((error) =>{
+        alert('Error: no se pudo limpiar el carrito');
+        return throwError(()=> error)
+      })
+    ); 
+
   }
 
 
