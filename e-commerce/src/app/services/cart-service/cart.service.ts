@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, map, Observable, throwError } from 'rxjs';
+import { catchError, map, Observable, switchMap, throwError, of } from 'rxjs';
 import { User } from '../../models/user';
 
 @Injectable({
@@ -8,13 +8,15 @@ import { User } from '../../models/user';
 })
 export class CartService {
   private currentUserId = localStorage.getItem('currentUserId');
-  private userCartUrl = `http://localhost:3000/users/${this.currentUserId}/cart`;
+  private userUrl = `http://localhost:3000/users/${this.currentUserId}`;
   private productsUrl = 'http://localhost:3000/products';
 
   constructor(private http: HttpClient) { }
 
-  getCarrito(): Observable<any> {
-    return this.http.get(this.userCartUrl).pipe(
+  // Fetch the cart items for the current user by getting the entire user object
+  getCarrito(): Observable<{ productUrl: string; quantity: number }[]> {
+    return this.http.get<User>(this.userUrl).pipe(
+      map((user) => user.cart), // Extract the cart array from the user object
       catchError((error) => {
         alert('Error: No se encontró el carrito');
         return throwError(() => new Error(error));
@@ -22,20 +24,22 @@ export class CartService {
     );
   }
 
-  // Method to add a product to the cart using the product URL
+  // Add a product to the cart, either by updating quantity or adding new
   addProductToCart(productId: string, quantity: number = 1): Observable<any> {
     const productUrl = `${this.productsUrl}/${productId}`;
 
     return this.getCarrito().pipe(
-      map((user: User) => {
-        const existingProduct = this.findProductInCart(user.cart, productUrl);
+      switchMap((cartItems) => {
+        const existingProduct = this.findProductInCart(cartItems, productUrl);
 
         if (existingProduct) {
-          this.updateProductQuantityInCart(user.cart, productUrl, quantity); //updates quantity of object already in cart
-          return this.updateCart(user.cart);
+          this.updateProductQuantityInCart(cartItems, productUrl, quantity);
         } else {
-          return this.addNewProductToCart(user.cart, productUrl, quantity); //posts product to cart
+          this.addNewProductToCart(cartItems, productUrl, quantity);
         }
+
+        // Update the entire user object with the modified cart
+        return this.updateCart(cartItems);
       }),
       catchError((error) => {
         alert('Error: No se pudo agregar el producto al carrito');
@@ -49,7 +53,7 @@ export class CartService {
     return cart.find(item => item.productUrl === productUrl);
   }
 
-  // Method to update the quantity of an existing product in the cart
+  // Update the quantity of an existing product in the cart
   private updateProductQuantityInCart(cart: Array<{ productUrl: string; quantity: number }>, productUrl: string, quantity: number): void {
     const existingProduct = this.findProductInCart(cart, productUrl);
     if (existingProduct) {
@@ -57,23 +61,18 @@ export class CartService {
     }
   }
 
-  // Method to add a new product to the cart
-  private addNewProductToCart(cart: Array<{ productUrl: string; quantity: number }>, productUrl: string, quantity: number): Observable<any> {
-    const newProduct = { productUrl, quantity };
-    cart.push(newProduct);
-
-    // Send a POST request to add the new product to the server 
-    return this.http.post(this.userCartUrl, newProduct).pipe(
-      catchError((error) => {
-        alert('Error: No se pudo agregar el producto al carrito');
-        return throwError(() => error);
-      })
-    );
+  // Add a new product to the cart
+  private addNewProductToCart(cart: Array<{ productUrl: string; quantity: number }>, productUrl: string, quantity: number): void {
+    cart.push({ productUrl, quantity });
   }
 
-  // Method to update the cart 
+  // Update the user's cart by sending a PUT request to update the entire user object
   private updateCart(updatedCart: Array<{ productUrl: string; quantity: number }>): Observable<any> {
-    return this.http.patch(this.userCartUrl, { cart: updatedCart }).pipe(
+    return this.http.get<User>(this.userUrl).pipe(
+      switchMap((user) => {
+        const updatedUser = { ...user, cart: updatedCart };
+        return this.http.put(this.userUrl, updatedUser);
+      }),
       catchError((error) => {
         alert('Error: No se pudo actualizar el carrito');
         return throwError(() => error);
@@ -81,15 +80,17 @@ export class CartService {
     );
   }
 
-  private clearCart() {
-    return this.http.put(`${this.userCartUrl}`, []).pipe(
-      catchError((error) =>{
+  // Clear the cart by setting it to an empty array
+  clearCart(): Observable<any> {
+    return this.http.get<User>(this.userUrl).pipe(
+      switchMap((user) => {
+        const updatedUser = { ...user, cart: [] };
+        return this.http.put(this.userUrl, updatedUser);
+      }),
+      catchError((error) => {
         alert('Error: no se pudo limpiar el carrito');
-        return throwError(()=> error)
+        return throwError(() => error);
       })
-    ); 
-
+    );
   }
-
-
 }

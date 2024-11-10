@@ -205,7 +205,44 @@ uploadImage(file: File): Observable<string> {
       })
     );
   }
+
+
+
+  fetchProductWithImageByUrl(productUrl: string): Observable<{ details: Product | null; productUrl: string }> {
+    const productId = productUrl.split('/').pop();
+    if (!productId) return of({ details: null, productUrl }); // Return null if productId is invalid
   
+    return this.getProductById(productId).pipe( // Use `getProductById` directly
+      switchMap(product => {
+        if (!product) return of({ details: null, productUrl });
+  
+        const imageId = product.imageUrl.split('/').pop();
+        if (imageId) {
+          return this.getImage(imageId).pipe( // Use `getImage` directly
+            map(imageData => {
+              if (imageData?.data) {
+                product.imageUrl = imageData.data; // Update image URL
+              }
+              return { details: product, productUrl };
+            }),
+            catchError(error => {
+              console.error(`Error loading image for product ${product.id}:`, error);
+              return of({ details: product, productUrl });
+            })
+          );
+        }
+  
+        return of({ details: product, productUrl }); // Return product if no image ID
+      }),
+      catchError(error => {
+        console.error(`Error fetching product with ID ${productId}:`, error);
+        return of({ details: null, productUrl });
+      })
+    );
+  }
   
 }
+  
+  
+
 
