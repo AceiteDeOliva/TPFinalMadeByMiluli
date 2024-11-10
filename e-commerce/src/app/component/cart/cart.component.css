@@ -1,0 +1,16 @@
+ul {
+    list-style-type: none; /* Remove bullets */
+    padding: 0; /* Remove default padding */
+  }
+  
+  .cart-item {
+    display: flex;
+    align-items: center; /* Align items vertically */
+  }
+  
+  .cart-item img {
+    width: 100px; /* Set image width */
+    height: auto; /* Maintain aspect ratio */
+    margin-right: 10px; /* Add space between image and text */
+  }
+  
