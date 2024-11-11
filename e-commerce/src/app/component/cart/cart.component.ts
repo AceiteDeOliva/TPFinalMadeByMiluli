@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { forkJoin, of } from 'rxjs';
-import { catchError, map, switchMap, tap } from 'rxjs/operators';
+import { catchError, map,tap } from 'rxjs/operators';
 import { CartService } from '../../services/cart-service/cart.service';
 import { ProductService } from '../../services/product-service/product.service';
 import { Product } from '../../models/product';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,FormsModule],
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css']
 })
@@ -49,4 +50,36 @@ export class CartComponent implements OnInit {
       this.cartItems = updatedItems;
     });
   }
+
+  removeFromCart(productId: string) {
+    this.cartService.removeProductFromCart(productId).pipe(
+      tap(() => {
+        this.loadCart();
+      }),
+      catchError(error => {
+        console.error('Error removing product from cart:', error);
+        return of(null);
+      })
+    ).subscribe();
+  }
+  
+  onQuantityChange(productId: string | undefined, quantity: number) {
+    if (!productId) {
+      console.warn('Product ID is undefined, cannot update quantity.');
+      return;
+    }
+  
+    if (quantity < 1) {
+      alert('La cantidad debe ser al menos 1');
+      return;
+    }
+  
+    this.cartService.updateProductQuantity(productId, quantity).subscribe(
+      () => this.loadCart(), // Reload the cart after updating the quantity
+      (error) => console.error('Error updating product quantity:', error)
+    );
+  }
+  
+  
+  
 }

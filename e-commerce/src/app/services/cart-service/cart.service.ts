@@ -93,4 +93,40 @@ export class CartService {
       })
     );
   }
+
+
+  // Remove a product from the cart
+  removeProductFromCart(productId: string): Observable<any> {
+    const productUrl = `${this.productsUrl}/${productId}`;
+
+    return this.getCarrito().pipe(
+      switchMap((cartItems) => {
+        const updatedCart = cartItems.filter(item => item.productUrl !== productUrl);
+        return this.updateCart(updatedCart);
+      }),
+      catchError((error) => {
+        alert('Error: No se pudo eliminar el producto del carrito');
+        return throwError(() => error);
+      })
+    );
+  }
+
+
+  updateProductQuantity(productId: string, quantity: number): Observable<any> {
+    return this.getCarrito().pipe(
+      switchMap((cartItems) => {
+        const updatedCart = cartItems.map(item =>
+          item.productUrl.endsWith(productId) ? { ...item, quantity } : item
+        );
+  
+        return this.updateCart(updatedCart); 
+      }),
+      catchError((error) => {
+        alert('Error: No se pudo actualizar la cantidad del producto');
+        return throwError(() => error);
+      })
+    );
+  }
+  
+
 }
