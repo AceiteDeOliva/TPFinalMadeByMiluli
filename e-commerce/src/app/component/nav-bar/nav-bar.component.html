@@ -18,9 +18,10 @@
     </ul>
     <button routerLink="login" class="log-button">Inicio de sesión</button>
     <button routerLink="register" class="register-button">Registrarme</button>
-    <a routerLink="carrito">
-      <img src="/Assets/Logo made by miluli/basket.png" alt="carrito" class="cart">
-    </a>
+    <button (click)="cartButton()" class="cart-button">
+      <img src="/Assets/Logo made by miluli/basket.png" alt="carrito" class="cart-image">
+    </button>
+    
   </div>
 </nav>
 
@@ -61,9 +62,10 @@
     <button class="log-button" (click)="logout()">Cerrar sesión</button>
 
 
-    <a routerLink="carrito">
-      <img src="/Assets/Logo made by miluli/basket.png" alt="carrito" class="cart">
-    </a>
+    <button (click)="cartButton()" class="cart-button">
+      <img src="/Assets/Logo made by miluli/basket.png" alt="carrito" class="cart-image">
+    </button>
+    
   </div>
 </nav>
 

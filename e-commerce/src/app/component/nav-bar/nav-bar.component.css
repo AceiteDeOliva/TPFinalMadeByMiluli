@@ -181,3 +181,21 @@ nav button:hover {
     padding: 8px;
   }
 }
+
+.cart-button {
+  background: none !important;
+  border: none !important;
+  padding: 0;
+  cursor: pointer;
+  outline: none;
+}
+
+.cart-image {
+  width: 50px; 
+  height: auto;
+  transition: transform 0.3s ease; 
+}
+
+.cart-button:hover .cart-image {
+  transform: scale(1.2); 
+}
