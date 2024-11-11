@@ -1,0 +1,25 @@
+<div *ngIf="selectedProduct" class="product-details">
+    <h2>{{ selectedProduct.name }}</h2>
+    
+    <!-- Image element -->
+    <img 
+      [src]="selectedProduct.imageUrl || 'assets/fallback-image.png'" 
+      alt="{{ selectedProduct.name }}" 
+      class="product-image"
+    />
+  
+    <p>{{ selectedProduct.description }}</p>
+    <p>Price: ${{ selectedProduct.price }}</p>
+  
+    <label for="quantity">Quantity:</label>
+    <input 
+      id="quantity" 
+      type="number" 
+      [(ngModel)]="quantity" 
+      min="1" 
+      aria-label="Quantity"
+    />
+  
+    <button (click)="addToCart(quantity)">Add to Cart</button>
+  </div>
+  

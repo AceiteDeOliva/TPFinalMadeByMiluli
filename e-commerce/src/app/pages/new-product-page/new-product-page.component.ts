@@ -5,7 +5,7 @@ import { RouterModule, RouterOutlet } from '@angular/router';
 @Component({
   selector: 'app-new-product-page',
   standalone: true,
-  imports: [ProductFormComponent,RouterModule,RouterOutlet],
+  imports: [ProductFormComponent,RouterModule],
   templateUrl: './new-product-page.component.html',
   styleUrl: './new-product-page.component.css'
 })
