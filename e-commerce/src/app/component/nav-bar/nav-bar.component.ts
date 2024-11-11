@@ -1,5 +1,5 @@
 import { UserService } from '../../services/user-service/user.service';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth-service/auth.service';
@@ -16,9 +16,18 @@ import { map } from 'rxjs/operators';
 export class NavBarComponent {
   credential$: Observable<string | null>;
   accountMenuVisible: boolean = false;
+  categoryMenuVisible: boolean = false;
+  @Output() categorySelected = new EventEmitter<string>();
+
 
   constructor(private userService: UserService, private authService: AuthService, private router: Router) {
     this.credential$ = this.authService.getCredential();
+  }
+
+
+
+  selectCategory(category: string): void {
+    this.categorySelected.emit(category); 
   }
 
   ngOnInit(): void {
@@ -34,6 +43,9 @@ export class NavBarComponent {
     this.accountMenuVisible = !this.accountMenuVisible;
   }
 
+  toggleCategoryMenu() {
+    this.categoryMenuVisible = !this.categoryMenuVisible;
+  }
   switchToUserMode() {
     this.authService.changeCredential('adminUser');
   }

@@ -1,11 +1,16 @@
-
 <nav *ngIf="(credential$ | async) === null" class="full-container">
   <a routerLink="home">
     <img src="/Assets/Logo made by miluli/Flor_MadeByMiluli.png" alt="logo" class="icon" style="cursor: pointer;">
   </a>
   <div class="toTheRight">
     <ul style="cursor: pointer;">
-      <li><a routerLink="categoria">Categorías</a></li>
+      <li class="dropdown">
+        <span (click)="toggleCategoryMenu()">Categoria</span>
+        <ul class="nested" *ngIf="categoryMenuVisible">
+          <li><a routerLink="listCategory" (click)="selectCategory('Amigurumi')">Amigurumis</a></li>
+          <li><a  routerLink="listCategory" (click)="selectCategory('Accesorio')">Accesorios</a></li>
+        </ul>
+      </li>
       <li><a routerLink="ofertas">Ofertas</a></li>
       <li><a routerLink="activeProducts">Productos</a></li>
     </ul>
@@ -18,13 +23,22 @@
 </nav>
 
 
-<nav *ngIf="(isUserOrAdmin() | async)"class="full-container">
+<nav *ngIf="(isUserOrAdmin() | async)" class="full-container">
   <a routerLink="home">
     <img src="/Assets/Logo made by miluli/Flor_MadeByMiluli.png" alt="logo" class="icon" style="cursor: pointer;">
   </a>
   <div class="toTheRight">
     <ul style="cursor: pointer;">
-      <li><a routerLink="categoria">Categorías</a></li>
+
+      <li class="dropdown">
+        <span (click)="toggleCategoryMenu()">Categoria</span>
+        <ul class="nested" *ngIf="categoryMenuVisible">
+          <li><a  (click)="selectCategory('amigurimi')">Amigurumis</a></li>
+          <li><a  (click)="selectCategory('accesorio')">Accesorios</a></li>
+
+        </ul>
+      </li>
+
       <li><a routerLink="ofertas">Ofertas</a></li>
       <li><a routerLink="activeProducts">Productos</a></li>
       <li class="dropdown">
@@ -46,7 +60,7 @@
 </nav>
 
 
-<nav *ngIf="(isAdminOrEmployee() | async)"class="full-container">
+<nav *ngIf="(isAdminOrEmployee() | async)" class="full-container">
   <a routerLink="home">
     <img src="/Assets/Logo made by miluli/Flor_MadeByMiluli.png" alt="logo" class="icon" style="cursor: pointer;">
   </a>
@@ -70,4 +84,3 @@
     <button class="log-button" (click)="logout()">Cerrar sesión</button>
   </div>
 </nav>
-

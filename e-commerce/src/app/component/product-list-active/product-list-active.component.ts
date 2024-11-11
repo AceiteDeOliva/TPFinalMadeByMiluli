@@ -16,9 +16,10 @@ import { UserService } from '../../services/user-service/user.service';
 })
 export class ProductListActiveComponent implements OnInit {
 
-  @Input() filterTerm: string = ''; // Input to receive the filter term
+  @Input() filterTerm: string = '';
+  @Input() categoryFilter:string='';
   products: Product[] = [];
-  filteredProducts: Product[] = []; // Stores filtered products
+  filteredProducts: Product[] = [];
   userCredential: string =  '';
   colors: string[] = ['#F8E1E4', '#FCD5CE', '#95CBEE', '#C4DCBB', '#FEE9B2'];
 
