@@ -10,7 +10,23 @@
           <p><strong>Nombre:</strong> {{ item.details?.name || 'N/D' }}</p>
           <p><strong>Descripción:</strong> {{ item.details?.description || 'Sin descripción disponible' }}</p>
           <p><strong>Precio:</strong> ${{ item.details?.price || 'N/D' }}</p>
-          <p><strong>Cantidad:</strong> {{ item.quantity }}</p>
+          <label for="quantity-{{ item.details?.id }}">Cantidad:</label>
+
+        <p> <label for="quantity-{{ item.details?.id }}">Cantidad: </label>
+          <input
+            id="quantity-{{ item.details?.id }}"
+            type="number"
+            [(ngModel)]="item.quantity"
+            (ngModelChange)="onQuantityChange(item.details?.id, item.quantity)"
+            min="1"
+          /></p> 
+        
+
+          <button *ngIf="item.details && item.details.id" (click)="removeFromCart(item.details.id!)">
+            Remover
+          </button>
+
+
         </div>
       </div>
     </li>

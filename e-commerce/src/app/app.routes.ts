@@ -21,19 +21,19 @@ import { ProductPageComponent } from './pages/product-page/product-page.componen
 
 export const routes: Routes = [
 
-  {path:'cart', component:CartComponent},
-  {path:'home', component:HomeComponent},
-  {path: 'login', component:LoginPageComponent},
-  {path:'register', component:RegisterComponent},
-  {path:'listCategory', component:CategoriesComponent},
-  {path:"activeProducts",component:ActiveProductPagesComponent},
-  {path:'registerEmployee', component: RegisterEmployeeComponent},
-  {path:'productAdmin',component:ManageProductPageComponent},
-  {path: 'profile',  component:ProfilePageComponent},
-  {path: 'manageUsers', component:ManageUsersPageComponent },
-  {path:'nuevoProducto', component: NewProductPageComponent},
-  { path: 'updateProduct/:id', component: UpdateProductPageComponent},
+  { path: 'myCart', component: CartComponent },
+  { path: 'home', component: HomeComponent },
+  { path: 'login', component: LoginPageComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'listCategory', component: CategoriesComponent },
+  { path: "activeProducts", component: ActiveProductPagesComponent },
+  { path: 'registerEmployee', component: RegisterEmployeeComponent },
+  { path: 'productAdmin', component: ManageProductPageComponent },
+  { path: 'profile', component: ProfilePageComponent },
+  { path: 'manageUsers', component: ManageUsersPageComponent },
+  { path: 'nuevoProducto', component: NewProductPageComponent },
+  { path: 'updateProduct/:id', component: UpdateProductPageComponent },
   { path: 'productView/:productId', component: ProductPageComponent },
-  {path:"**",redirectTo:"home"},
+  { path: "**", redirectTo: "home" },
 
 ];

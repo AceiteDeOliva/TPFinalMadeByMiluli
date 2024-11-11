@@ -85,4 +85,7 @@ export class NavBarComponent {
     this.categorySelected.emit(category); // Emit the category to the parent component (if needed)
   }
 
+  cartButton() {
+    this.router.navigate(['/myCart']);
+  }
 }

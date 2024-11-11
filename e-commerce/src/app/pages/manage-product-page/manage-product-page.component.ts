@@ -9,7 +9,7 @@ import { RouterModule, RouterOutlet } from '@angular/router';
 @Component({
   selector: 'app-manage-product-page',
   standalone: true,
-  imports: [ProductListComponent,ReactiveFormsModule,ManageProductsComponent,RouterModule,RouterOutlet],
+  imports: [ReactiveFormsModule,ManageProductsComponent,RouterModule],
   templateUrl: './manage-product-page.component.html',
   styleUrl: './manage-product-page.component.css'
 })
