@@ -1,13 +1,15 @@
 .product-container {
   display: grid;
-  grid-template-columns: repeat(5, 1fr); /* 5 columns for desktop */
+  grid-template-columns: repeat(4, 1fr); /* 5 columns for desktop */
   gap: 20px;
   width: 100%;
   padding: 30px;
   box-sizing: border-box;
 }
-p{
-  background-color:#D1E3EB;
+
+/* Styling for product description */
+p {
+  background-color: #D1E3EB;
   border-radius: 8px;
   padding: 10px;
 }
@@ -16,7 +18,7 @@ p{
 .product-info {
   background-color: #e2f3e0; /* Light green background */
   border-radius: 8px;
-  padding: 40px;/* Increased padding for better spacing */
+  padding: 40px; /* Increased padding for better spacing */
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
   display: flex;
   flex-direction: column; /* Arrange image and text vertically */
@@ -40,6 +42,7 @@ p{
   cursor: pointer; /* Indicates interactivity */
   transition: transform 0.1s ease-in-out, background-color 0.3s ease;
 }
+
 .product-card img {
   width: 150px;
   height: 150px;
@@ -101,11 +104,13 @@ button:hover {
 @media (max-width: 768px) {
   .product-container {
     grid-template-columns: repeat(2, 1fr); /* Two columns for tablets */
+    padding: 20px; /* Slightly reduced padding */
   }
 
   .product-card {
     flex-direction: column; /* Stack content for mobile */
     align-items: center; /* Center align items */
+    padding: 15px; /* Reduced padding for mobile */
   }
 
   .product-card img {
@@ -121,16 +126,22 @@ button:hover {
   .product-card p {
     font-size: 0.9rem; /* Slightly smaller font size */
   }
+
+  button {
+    padding: 6px 12px; /* Smaller button on tablets */
+    font-size: 0.85rem; /* Adjust button text size */
+  }
 }
 
 /* Mobile (small screens) styles */
 @media (max-width: 480px) {
   .product-container {
     grid-template-columns: 1fr; /* Single column layout on small screens */
+    padding: 15px; /* Adjust padding for smaller screens */
   }
 
   .product-card {
-    padding: 15px; /* Slightly reduced padding for mobile */
+    padding: 10px; /* Slightly reduced padding for mobile */
   }
 
   button {

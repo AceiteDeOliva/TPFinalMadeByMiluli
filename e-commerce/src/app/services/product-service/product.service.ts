@@ -208,6 +208,7 @@ uploadImage(file: File): Observable<string> {
 
 
 
+
   fetchProductWithImageByUrl(productUrl: string): Observable<{ details: Product | null; productUrl: string }> {
     const productId = productUrl.split('/').pop();
     if (!productId) return of({ details: null, productUrl }); // Return null if productId is invalid
