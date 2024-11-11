@@ -1,13 +1,19 @@
 import { Component } from '@angular/core';
-import { ProductListActiveComponent } from "../../component/product-list-active/product-list-active.component";
+import { FilterActiveProductsComponent } from '../../component/filter-active-products/filter-active-products.component';
+import { ProductListActiveComponent } from '../../component/product-list-active/product-list-active.component';
+
 
 @Component({
   selector: 'app-active-product-pages',
   standalone: true,
-  imports: [ProductListActiveComponent],
+  imports: [ProductListActiveComponent, FilterActiveProductsComponent],
   templateUrl: './active-product-pages.component.html',
-  styleUrl: './active-product-pages.component.css'
+  styleUrls: ['./active-product-pages.component.css']
 })
 export class ActiveProductPagesComponent {
+  searchTerm: string = '';
 
+  onSearchTermChange(term: string): void {
+    this.searchTerm = term;
+  }
 }

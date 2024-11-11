@@ -1,1 +1,11 @@
-<app-product-list-active></app-product-list-active>
+<div class="container">
+  <div class="header">
+  <img src="/Assets/Logo made by miluli/Logo_MadeByMiluli HORIZONTAL CONTRASTE.png" alt="logo" class="icon" style="cursor: pointer;">
+
+  <app-filter-active-products
+    (searchTermChange)="onSearchTermChange($event)">
+  </app-filter-active-products>
+</div>
+
+  <app-product-list-active [filterTerm]="searchTerm"></app-product-list-active>
+</div>
