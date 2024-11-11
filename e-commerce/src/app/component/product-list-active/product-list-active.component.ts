@@ -20,7 +20,7 @@ export class ProductListActiveComponent implements OnInit {
   products: Product[] = [];
   filteredProducts: Product[] = []; // Stores filtered products
   userCredential: string =  '';
-  colors: string[] = ['#F8E1E4', '#FCD5CE', '#95CBEE', '#D1E3EB', '#C4DCBB', '#FEE9B2'];
+  colors: string[] = ['#F8E1E4', '#FCD5CE', '#95CBEE', '#C4DCBB', '#FEE9B2'];
 
 
 
@@ -85,7 +85,7 @@ export class ProductListActiveComponent implements OnInit {
     });
   }
 
-  
+
   ngOnChanges(): void {
     this.applyFilter();
   }
@@ -98,9 +98,9 @@ export class ProductListActiveComponent implements OnInit {
     );
   }
 
-  editProduct(selectedProduct: Product): void {
+  selectProduct(selectedProduct: Product): void {
     console.log('Navigating to product ID:', selectedProduct.id);
-    this.router.navigate(['updateProduct', selectedProduct.id]);
+    this.router.navigate(['productView', selectedProduct.id]);
   }
   getRandomColor(): string {
     return this.colors[Math.floor(Math.random() * this.colors.length)];}

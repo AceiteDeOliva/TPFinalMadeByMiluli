@@ -1,0 +1,13 @@
+.filter-input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.icon{
+  height: 20px;
+  margin-left: 5px;
+  margin-right: 5px;
+
+}

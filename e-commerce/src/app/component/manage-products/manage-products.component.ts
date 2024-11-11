@@ -9,9 +9,9 @@ import { CommonModule } from '@angular/common';
   templateUrl: './manage-products.component.html',
   styleUrls: ['./manage-products.component.css'],
   standalone: true,
-  imports: [ProductListComponent, FormsModule,RouterModule,RouterOutlet,CommonModule]
+  imports: [ProductListComponent, FormsModule,RouterModule,CommonModule]
 })
 export class ManageProductsComponent {
-  searchTerm: string = ''; 
- 
+  searchTerm: string = '';
+
 }

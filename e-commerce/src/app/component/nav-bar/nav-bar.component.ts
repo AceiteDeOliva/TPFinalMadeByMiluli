@@ -9,7 +9,7 @@ import { map } from 'rxjs/operators';
 @Component({
   selector: 'app-nav-bar',
   standalone: true,
-  imports: [RouterOutlet, RouterModule, CommonModule],
+  imports: [RouterModule, CommonModule],
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.css']
 })
@@ -54,5 +54,5 @@ export class NavBarComponent {
     );
   }
 
-  
+
 }
