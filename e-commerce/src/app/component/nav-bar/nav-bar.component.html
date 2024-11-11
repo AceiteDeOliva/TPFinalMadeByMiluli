@@ -1,11 +1,18 @@
-
 <nav *ngIf="(credential$ | async) === null" class="full-container">
   <a routerLink="home">
     <img src="/Assets/Logo made by miluli/Flor_MadeByMiluli.png" alt="logo" class="icon" style="cursor: pointer;">
   </a>
   <div class="toTheRight">
     <ul style="cursor: pointer;">
-      <li><a routerLink="categoria">Categorías</a></li>
+
+      <li class="dropdown" (mouseover)="toggleCategoryMenu(true)" (mouseleave)="toggleCategoryMenu(false)">
+        <span>Categoria</span>
+        <ul class="nested" *ngIf="categoryMenuVisible">
+          <li><a routerLink="listCategory" (click)="onCategoryClick('Amigurumi')">Amigurumis</a></li>
+          <li><a routerLink="listCategory" (click)="onCategoryClick('Accesorio')">Accesorios</a></li>
+        </ul>
+      </li>
+
       <li><a routerLink="ofertas">Ofertas</a></li>
       <li><a routerLink="activeProducts">Productos</a></li>
     </ul>
@@ -18,17 +25,28 @@
 </nav>
 
 
-<nav *ngIf="(isUserOrAdmin() | async)"class="full-container">
+<nav *ngIf="(isUserOrAdmin() | async)" class="full-container">
   <a routerLink="home">
     <img src="/Assets/Logo made by miluli/Flor_MadeByMiluli.png" alt="logo" class="icon" style="cursor: pointer;">
   </a>
   <div class="toTheRight">
     <ul style="cursor: pointer;">
-      <li><a routerLink="categoria">Categorías</a></li>
+
+
+      <li class="dropdown" (mouseover)="toggleCategoryMenu(true)" (mouseleave)="toggleCategoryMenu(false)">
+        <span>Categoria</span>
+        <ul class="nested" *ngIf="categoryMenuVisible">
+          <li><a routerLink="listCategory" (click)="onCategoryClick('Amigurumi')">Amigurumis</a></li>
+          <li><a routerLink="listCategory" (click)="onCategoryClick('Accesorio')">Accesorios</a></li>
+        </ul>
+      </li>
+
       <li><a routerLink="ofertas">Ofertas</a></li>
       <li><a routerLink="activeProducts">Productos</a></li>
-      <li class="dropdown">
-        <span (click)="toggleAccountMenu()">Mi Cuenta</span>
+
+
+      <li class="dropdown" (mouseover)="toggleAccountMenu(true)" (mouseleave)="toggleAccountMenu(false)">
+        <span>Mi Cuenta</span>
         <ul class="nested" *ngIf="accountMenuVisible">
           <li><a routerLink="profile">Perfil</a></li>
           <li><a routerLink="orders">Pedidos</a></li>
@@ -38,7 +56,11 @@
         </ul>
       </li>
     </ul>
+
+
     <button class="log-button" (click)="logout()">Cerrar sesión</button>
+
+
     <a routerLink="carrito">
       <img src="/Assets/Logo made by miluli/basket.png" alt="carrito" class="cart">
     </a>
@@ -46,7 +68,7 @@
 </nav>
 
 
-<nav *ngIf="(isAdminOrEmployee() | async)"class="full-container">
+<nav *ngIf="(isAdminOrEmployee() | async)" class="full-container">
   <a routerLink="home">
     <img src="/Assets/Logo made by miluli/Flor_MadeByMiluli.png" alt="logo" class="icon" style="cursor: pointer;">
   </a>
@@ -54,11 +76,14 @@
     <ul style="cursor: pointer;">
       <li><a routerLink="productAdmin">Productos</a></li>
       <li><a routerLink="orders">Órdenes</a></li>
+
       <li *ngIf="(credential$ | async) !== 'employee'">
         <a routerLink="manageUsers">Gestión Credenciales</a>
       </li>
-      <li class="dropdown">
-        <span (click)="toggleAccountMenu()">Mi Cuenta</span>
+
+
+      <li class="dropdown" (mouseover)="toggleAccountMenu(true)" (mouseleave)="toggleAccountMenu(false)">
+        <span>Mi Cuenta</span>
         <ul class="nested" *ngIf="accountMenuVisible">
           <li><a routerLink="profile">Perfil</a></li>
           <li *ngIf="(credential$ | async) === 'admin'">
@@ -67,7 +92,7 @@
         </ul>
       </li>
     </ul>
+
     <button class="log-button" (click)="logout()">Cerrar sesión</button>
   </div>
 </nav>
-

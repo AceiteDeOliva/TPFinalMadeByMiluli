@@ -5,7 +5,7 @@
       <div class="product-info">
 
         <h2>{{ product.name }}</h2>
-        <img [src]="product.imageUrl || 'path/to/fallback-image.png'" alt="{{ product.name }}"/>
+        <img [src]="product.imageUrl || '/favicon.ico'" alt="{{ product.name }}"/>
 
     </div>
     <p>Precio: ${{ product.price | number:'1.2-2' }}</p>

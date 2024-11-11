@@ -4,7 +4,7 @@
     <li *ngFor="let item of cartItems">
       <div class="cart-item">
 
-        <img [src]="item.details?.imageUrl || 'path/to/fallback-image.png'" alt="{{ item.details?.name }}" />
+        <img [src]="item.details?.imageUrl || '/favicon.ico'" alt="{{ item.details?.name }}" />
 
         <div class="product-info">
           <p><strong>Nombre:</strong> {{ item.details?.name || 'N/D' }}</p>

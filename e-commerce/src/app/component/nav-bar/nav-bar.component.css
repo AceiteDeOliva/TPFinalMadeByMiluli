@@ -1,6 +1,6 @@
-
 .icon {
   height: 55px;
+  width: auto;  /* Aseguramos que el icono sea proporcional */
 }
 
 .full-container {
@@ -9,6 +9,8 @@
   display: flex;
   align-items: center;
   text-align: center;
+  justify-content: space-between;
+  width: 100;
 }
 
 .toTheRight {
@@ -16,6 +18,7 @@
   align-items: center;
   gap: 25px;
   margin-left: auto;
+  justify-content: flex-end;  /* Aseguramos que los elementos estén alineados a la derecha */
 }
 
 nav ul {
@@ -60,13 +63,17 @@ nav button:hover {
 
 .dropdown {
   position: relative;
+  display: inline-block;
+
 }
 
 .nested {
   display: none;
   position: absolute;
+  flex-wrap: wrap;
   top: 100%;
   left: 0;
+  right: auto;
   background-color: white;
   border: 1px solid #95CBEE;
   z-index: 10000;
@@ -75,7 +82,7 @@ nav button:hover {
 }
 
 .dropdown:hover .nested {
-  display: flex;
+  display:block;
 }
 
 .nested li {
@@ -90,36 +97,44 @@ nav button:hover {
 .nested li:hover {
   background-color: #95CBEE;
 }
+
+/* Media Queries para pantallas pequeñas */
 @media (max-width: 768px) {
-  /* Adjusting the layout of the navbar */
+  .full-container {
+    flex-direction: column;  /* Cambiamos la dirección de los elementos en pantallas pequeñas */
+    align-items: flex-start;  /* Alineamos los elementos a la izquierda */
+    padding: 10px;
+  }
+
   .toTheRight {
     flex-direction: column;
     gap: 15px;
-    align-items: flex-start; /* Align items to the start for better mobile view */
+    align-items: flex-start;
+    width: 100%;
   }
 
-  /* Display all items in the navbar */
+  /* Navbar: mostrar los elementos en una columna */
   nav ul {
     flex-direction: column;
     gap: 15px;
-    display: flex;  /* Ensure the menu items are always visible */
     width: 100%;
     text-align: center;
+    padding: 10px 0;  /* Añadimos algo de padding para los elementos */
   }
 
   nav ul li a {
     padding: 12px 0;
-    font-size: 16px;  /* Adjust font size for mobile */
+    font-size: 16px;  /* Reducimos el tamaño de fuente en pantallas más pequeñas */
   }
 
-  /* Adjust cart placement */
+  /* Cart icon ajustado */
   .toTheRight .cart {
     margin-top: 10px;
   }
 
-  /* Remove the dropdown behavior */
+  /* Dropdown ajustado para móviles */
   .dropdown .nested {
-    display: none;  /* Ensure the nested menu is hidden */
+    display: none;
   }
 
   .nested li {
@@ -130,5 +145,39 @@ nav button:hover {
   .nested li:hover {
     background-color: #95CBEE;
   }
+
+  /* Botones de la navbar ajustados */
+  nav button {
+    padding: 8px 12px;
+    font-size: 14px;  /* Reducimos el tamaño de fuente de los botones en móviles */
+  }
 }
 
+@media (max-width: 480px) {
+  /* Ajustes para pantallas aún más pequeñas (como móviles en modo vertical) */
+  .icon {
+    height: 40px;
+  }
+
+  .full-container {
+    padding: 10px;
+  }
+
+  .toTheRight {
+    gap: 10px;
+  }
+
+  nav ul li a {
+    padding: 10px 0;
+    font-size: 14px;  /* Reducimos aún más el tamaño de fuente */
+  }
+
+  nav button {
+    padding: 6px 10px;
+    font-size: 12px;  /* Ajustamos el tamaño de los botones */
+  }
+
+  .nested li {
+    padding: 8px;
+  }
+}

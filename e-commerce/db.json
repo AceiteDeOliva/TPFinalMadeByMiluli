@@ -42,40 +42,50 @@
       "name": "Mili Rodriguez",
       "description": "mili",
       "price": 5,
-      "category": "amigurimi",
+      "category": "Accesorio",
       "stock": 1,
-      "imageUrl": "http://localhost:3001/images/ad40",
-      "state": "active"
+      "state": "active",
+      "imageUrl": "http://localhost:3001/images/ad40"
     },
     {
       "id": "3",
       "name": "kuromi",
       "description": "kuromi",
       "price": 5,
-      "category": "amigurimi",
+      "category": "amigurumi",
       "stock": 5,
-      "imageUrl": "http://localhost:3001/images/1330",
-      "state": "active"
+      "state": "active",
+      "imageUrl": "http://localhost:3001/images/1330"
     },
     {
       "id": "4",
       "name": "my melo",
       "description": "my melo",
       "price": 5,
-      "category": "amigurimi",
+      "category": "amigurumi",
       "stock": 5,
-      "imageUrl": "http://localhost:3001/images/004e",
-      "state": "active"
+      "state": "active",
+      "imageUrl": "http://localhost:3001/images/004e"
     },
     {
       "id": "5",
       "name": "AMONGUS",
       "description": "AMONGUS",
       "price": 5,
-      "category": "amigurimi",
+      "category": "amigurumi",
       "stock": 5,
-      "imageUrl": "http://localhost:3001/images/89a7",
-      "state": "active"
+      "state": "active",
+      "imageUrl": "http://localhost:3001/images/89a7"
+    },
+    {
+      "id": "6",
+      "name": "mochilita",
+      "description": "lol",
+      "price": 5,
+      "category": "amigurumi",
+      "stock": 5,
+      "state": "active",
+      "imageUrl": "http://localhost:3001/images/4d69"
     }
   ]
 }

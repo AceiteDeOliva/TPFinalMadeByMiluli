@@ -18,9 +18,9 @@ export class ProductListActiveComponent implements OnInit {
 
   @Input() filterTerm: string = ''; // Input to receive the filter term
   @Output() addToCart = new EventEmitter<string>();
+
   products: Product[] = [];
-  filteredProducts: Product[] = []; // Stores filtered products
-  userCredential: string =  '';
+  filteredProducts: Product[] = [];
   colors: string[] = ['#F8E1E4', '#FCD5CE', '#95CBEE', '#C4DCBB', '#FEE9B2'];
 
 
@@ -28,33 +28,21 @@ export class ProductListActiveComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private router: Router,
-    private userService: UserService
   ) {}
 
   ngOnInit(): void {
     this.loadProducts();
-    this.getUserCredential();
-  }
 
-  getUserCredential(): void {
-    const currentUserId = localStorage.getItem('currentUserId');
-    if (currentUserId) {
-      this.userService.getCredential(currentUserId).subscribe({
-        next: (credential) => {
-          this.userCredential = credential;
-        },
-        error: (error) => {
-          console.error('Erros buscando credencial:', error);
-        }
-      });
-    }
   }
 
   loadProducts() {
     this.productService.getProducts().pipe(
       switchMap((data) => {
         this.products = data;
-        const imageRequests = this.products.map(product => {
+        this.applyFilter(); // Apply filter immediately after loading products
+
+        const filteredProducts = this.products; // Use the filtered products for image loading
+        const imageRequests = filteredProducts.map(product => {
           const imageId = product.imageUrl.split('/').pop();
           if (imageId) {
             return this.productService.getImage(imageId).pipe(
@@ -73,18 +61,18 @@ export class ProductListActiveComponent implements OnInit {
           return of(product); // Return original product if no ID
         });
 
-        return forkJoin(imageRequests);
+        return forkJoin(imageRequests); // Load images only for filtered products
       })
     ).subscribe({
       next: (productsWithImages) => {
         this.products = productsWithImages;
-        this.applyFilter(); // Apply filter after loading products
       },
       error: (error) => {
         console.error('Error loading products:', error);
       }
     });
   }
+
 
 
   ngOnChanges(): void {
