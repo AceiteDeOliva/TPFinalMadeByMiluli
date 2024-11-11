@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ProductService } from '../../services/product-service/product.service';
 import { Product } from '../../models/product';
 import { CommonModule } from '@angular/common';
@@ -17,6 +17,7 @@ import { UserService } from '../../services/user-service/user.service';
 export class ProductListActiveComponent implements OnInit {
 
   @Input() filterTerm: string = ''; // Input to receive the filter term
+  @Output() addToCart = new EventEmitter<string>();
   products: Product[] = [];
   filteredProducts: Product[] = []; // Stores filtered products
   userCredential: string =  '';
@@ -99,9 +100,9 @@ export class ProductListActiveComponent implements OnInit {
   }
 
   selectProduct(selectedProduct: Product): void {
-    console.log('Navigating to product ID:', selectedProduct.id);
     this.router.navigate(['productView', selectedProduct.id]);
   }
+  
   getRandomColor(): string {
     return this.colors[Math.floor(Math.random() * this.colors.length)];}
 
