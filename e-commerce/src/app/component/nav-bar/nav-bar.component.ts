@@ -56,7 +56,7 @@ export class NavBarComponent {
   toggleCategoryMenu(isVisible: boolean) {
     this.categoryMenuVisible = isVisible;
   }
-
+  
   switchToUserMode() {
     this.authService.changeCredential('adminUser');
   }
