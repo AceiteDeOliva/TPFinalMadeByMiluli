@@ -17,18 +17,16 @@ import { ActivatedRoute } from '@angular/router';
 export class ProductPageComponent implements OnInit {
   selectedProduct: Product | null | undefined;
   quantity: number = 1;
-  showShippingPrices: boolean = false;
-  showAddedToCartMessage: boolean = false; // Add this variable
 
   constructor(
     private router: Router,
     private cartService: CartService,
     private productService: ProductService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute // Add ActivatedRoute here
   ) {}
 
   ngOnInit(): void {
-    const productUrl = this.route.snapshot.paramMap.get('productId');
+    const productUrl = this.route.snapshot.paramMap.get('productId'); // Use route to get productId
     if (productUrl) {
       this.productService.fetchProductWithImageByUrl(productUrl).subscribe({
         next: (result) => {
@@ -36,7 +34,7 @@ export class ProductPageComponent implements OnInit {
           if (!this.selectedProduct) {
             console.error('Product not found');
           } else {
-            console.log('Loaded Product:', this.selectedProduct);
+            console.log('Loaded Product:', this.selectedProduct); // Log to verify loaded product
           }
         },
         error: (error) => {
@@ -45,26 +43,15 @@ export class ProductPageComponent implements OnInit {
       });
     }
   }
-
   addToCart(quantity: number = 1): void {
     const product = this.selectedProduct;
     if (product) {
       this.cartService.addProductToCart(product.id, quantity).subscribe({
-        next: () => {
-          console.log(`${product.name} added to cart successfully! (Quantity: ${quantity})`);
-          this.showAddedToCartMessage = true;
-          setTimeout(() => {
-            this.showAddedToCartMessage = false;
-          }, 2000); // Message disappears after 3 seconds
-        },
+        next: () => console.log(`${product.name} added to cart successfully! (Quantity: ${quantity})`),
         error: () => alert('Error adding to cart')
       });
     } else {
       console.error('No product selected to add to cart.');
     }
-  }
-
-  toggleShippingPrices() {
-    this.showShippingPrices = !this.showShippingPrices;
   }
 }

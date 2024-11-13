@@ -207,20 +207,6 @@ uploadImage(file: File): Observable<string> {
   }
 
 
-  getTopStockProducts(topN: number): Observable<string[]> {
-    return this.getProducts().pipe(
-      map((products) => {
-        // Filter products with stock > 0, sort by descending stock, and slice to get top N
-        return products
-          .filter(product => product.stock > 0) // Ensure that the product has stock
-          .sort((a, b) => b.stock - a.stock) // Sort in descending order by stock
-          .slice(0, topN) // Take the top N products
-          .map(product => `/productView/${product.id}`); // Return URLs to the product page
-      })
-    );
-  }
-
-
 
 
   fetchProductWithImageByUrl(productUrl: string): Observable<{ details: Product | null; productUrl: string }> {
