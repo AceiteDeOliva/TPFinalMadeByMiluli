@@ -12,7 +12,7 @@ import { ActivatedRoute } from '@angular/router';
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './product-page.component.html',
-  styleUrls: ['./product-page.component.css'] // Corrected typo
+  styleUrls: ['./product-page.component.css']
 })
 export class ProductPageComponent implements OnInit {
   selectedProduct: Product | null | undefined;

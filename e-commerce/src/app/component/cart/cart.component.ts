@@ -10,10 +10,11 @@ import { DecimalPipe } from '@angular/common';  // Import DecimalPipe
 import { UserService } from '../../services/user-service/user.service';
 import { Router, RouterModule } from '@angular/router';
 
+
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [CommonModule, FormsModule,RouterModule],
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css'],
   providers: [DecimalPipe]  // Provide DecimalPipe
@@ -38,6 +39,7 @@ export class CartComponent implements OnInit {
     this.cartService.getCarrito().pipe(
       tap((cart: { productUrl: string; quantity: number }[]) => {
         this.cartItems = cart;
+        console.log('loading'+this.cartItems);
         this.loadProductDetails();
       }),
       catchError((error) => {
@@ -60,7 +62,9 @@ export class CartComponent implements OnInit {
     });
   }
 
-  // Method to calculate the total purchase amount
+
+
+
   calculateTotal() {
     this.totalAmount = this.cartItems.reduce((total, item) => {
       const price = item.details?.price || 0; // Fallback to 0 if no price is found
@@ -68,7 +72,6 @@ export class CartComponent implements OnInit {
     }, 0);
   }
 
-  // Method to format the totalAmount with a thousands separator
   get formattedTotal() {
     return this.decimalPipe.transform(this.totalAmount, '1.0-0')?.replace(',', '.') || '0';
   }
