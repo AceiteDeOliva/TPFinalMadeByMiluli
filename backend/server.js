@@ -1,45 +1,50 @@
-const express = require('express');
-const mercadopago = require('mercadopago');
-const cors = require('cors');
-
-// Configuración del Access Token
-mercadopago.configure({
-  access_token: 'YOUR_ACCESS_TOKEN', // Reemplaza con tu Access Token de Mercado Pago
-});
-
+const express = require("express");
+const mercadopago = require("mercadopago");
 const app = express();
-app.use(express.json());
-app.use(cors()); // Permite que Angular acceda al servidor
 
-// Ruta para crear el Payment Preference
-app.post('/create_preference', async (req, res) => {
+// Set your MercadoPago access token
+mercadopago.configurations.setAccessToken("APP_USR-5935796716183020-111213-2eaa73401457692c082d2d7c23235f19-2093892988");
+
+app.use(express.json());
+
+// Endpoint to create preference
+app.post("/create_preference", (req, res) => {
   const preference = {
     items: [
       {
         title: req.body.title,
+        unit_price: req.body.price,
         quantity: req.body.quantity,
-        currency_id: 'ARS',
-        unit_price: req.body.unit_price,
-      }
+      },
     ],
     back_urls: {
-      success: 'https://www.tu-sitio.com/success',
-      failure: 'https://www.tu-sitio.com/failure',
-      pending: 'https://www.tu-sitio.com/pending'
+      success: "http://localhost:8080/feedback",
+      failure: "http://localhost:8080/feedback",
+      pending: "http://localhost:8080/feedback",
     },
-    auto_return: 'approved',
+    auto_return: "approved",
   };
 
-  try {
-    const response = await mercadopago.preferences.create(preference);
-    res.json({ id: response.body.id });
-  } catch (error) {
-    res.status(500).send(error.message);
-  }
+  mercadopago.preferences.create(preference)
+    .then(response => {
+      res.json({ id: response.body.id, init_point: response.body.init_point });
+    })
+    .catch(error => {
+      console.error(error);
+      res.status(500).send('Error creating preference');
+    });
 });
 
-// Iniciar el servidor
-const PORT = 3002;
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+// Feedback route
+app.get('/feedback', (req, res) => {
+  const paymentId = req.query.payment_id;
+  const status = req.query.status;
+  const merchantOrderId = req.query.merchant_order_id;
+  
+  res.json({ paymentId, status, merchantOrderId });
+});
+
+// Start the server
+app.listen(8080, () => {
+  console.log("Server running on port 8080");
 });
