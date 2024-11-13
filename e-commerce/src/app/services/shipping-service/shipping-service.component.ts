@@ -6,14 +6,20 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ShippingService {
-  private apiUrl = 'https://rapidapi.com/brunoaramburu/api/correo-argentino1/playground/apiendpoint_eff0df8a-fc4a-4b70-9ecb-4310829c8318';  // Replace with actual endpoint
+  private apiUrl = 'https://rapidapi.com/brunoaramburu/api/correo-argentino1/playground/apiendpoint_eff0df8a-fc4a-4b70-9ecb-4310829c8318';
 
   constructor(private http: HttpClient) {}
 
-  calculateShipping(cpOrigen: string, cpDestino: string, provinciaOrigen: string, provinciaDestino: string, peso: string): Observable<any> {
+  calculateShipping(
+    cpOrigen: string,
+    cpDestino: string,
+    provinciaOrigen: string,
+    provinciaDestino: string,
+    peso: string
+  ): Observable<any> {
     const headers = new HttpHeaders({
       'X-RapidAPI-Host': 'correo-argentino1.p.rapidapi.com',
-      'X-RapidAPI-Key': '7961278fmshaf3f74457d4298dp18716jsndcc9c5131efe' // Replace securely
+      'X-RapidAPI-Key': '7961278fmshaf3f74457d4298dp18716jsndcc9c5131efe'
     });
 
     const params = new HttpParams()

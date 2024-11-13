@@ -64,12 +64,12 @@ export class UserService {
   getCredential(userId: string): Observable<string> {
     return this.http.get<User>(`${this.apiUrl}/${userId}`).pipe(
       map((user: User) => {
-        console.log('Fetched user:', user); 
+        console.log('Fetched user:', user);
         return user.credential;
       }),
       catchError((error) => {
         console.error('Error fetching credential:', error);
-        return of(''); 
+        return of('');
       })
     );
 }
@@ -89,10 +89,10 @@ export class UserService {
   }
 
   deleteUser(id: string): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`); 
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
-  
 
-  
+
+
 
 }

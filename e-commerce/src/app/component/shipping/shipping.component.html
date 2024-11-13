@@ -1,20 +1,20 @@
 <div class="shipping-calculator">
   <h2>Calculate Shipping Cost</h2>
-  <form (ngSubmit)="calculateShippingCost()">
+  <form [formGroup]="shippingForm" (ngSubmit)="calculateShippingCost()">
     <label for="cpOrigen">Origin Postal Code:</label>
-    <input type="text" id="cpOrigen" [(ngModel)]="cpOrigen" name="cpOrigen" required />
+    <input type="text" id="cpOrigen" formControlName="cpOrigen" required />
 
     <label for="cpDestino">Destination Postal Code:</label>
-    <input type="text" id="cpDestino" [(ngModel)]="cpDestino" name="cpDestino" required />
+    <input type="text" id="cpDestino" formControlName="cpDestino" required />
 
     <label for="provinciaOrigen">Origin Province:</label>
-    <input type="text" id="provinciaOrigen" [(ngModel)]="provinciaOrigen" name="provinciaOrigen" required />
+    <input type="text" id="provinciaOrigen" formControlName="provinciaOrigen" required />
 
     <label for="provinciaDestino">Destination Province:</label>
-    <input type="text" id="provinciaDestino" [(ngModel)]="provinciaDestino" name="provinciaDestino" required />
+    <input type="text" id="provinciaDestino" formControlName="provinciaDestino" required />
 
     <label for="peso">Weight (kg):</label>
-    <input type="text" id="peso" [(ngModel)]="peso" name="peso" required />
+    <input type="text" id="peso" formControlName="peso" required />
 
     <button type="submit">Calculate Shipping</button>
   </form>

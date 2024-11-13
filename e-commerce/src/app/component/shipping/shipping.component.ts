@@ -1,26 +1,35 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ShippingService } from '../../services/shipping-service/shipping-service.component';
 import { CommonModule } from '@angular/common';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-shipping',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,ReactiveFormsModule],
   templateUrl: './shipping.component.html',
   styleUrl: './shipping.component.css'
 })
 export class ShippingComponent {
-  cpOrigen ='7600';
-  cpDestino = '';
-  provinciaOrigen = 'AR-B';
-  provinciaDestino = '';
-  peso = '';
+  shippingForm: FormGroup;
   shippingCost: any;
 
-  constructor(private shippingService: ShippingService) {}
+  constructor(private shippingService: ShippingService, private fb: FormBuilder) {
+    // Initialize form with default values
+    this.shippingForm = this.fb.group({
+      cpOrigen: '',
+      cpDestino: '',
+      provinciaOrigen: '',
+      provinciaDestino: '',
+      peso: ''
+    });
+  }
 
   calculateShippingCost() {
-    this.shippingService.calculateShipping(this.cpOrigen, this.cpDestino, this.provinciaOrigen, this.provinciaDestino, this.peso)
+    const { cpOrigen, cpDestino, provinciaOrigen, provinciaDestino, peso } = this.shippingForm.value;
+
+    // Pass each form field as an argument to calculateShipping
+    this.shippingService.calculateShipping(cpOrigen, cpDestino, provinciaOrigen, provinciaDestino, peso)
       .subscribe(
         (response) => {
           this.shippingCost = response;
