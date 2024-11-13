@@ -19,6 +19,7 @@ export class CartService {
       map((user) => user.cart), // Extract the cart array from the user object
       catchError((error) => {
         alert('Error: No se encontró el carrito');
+        console.log(this.userUrl);
         return throwError(() => new Error(error));
       })
     );
@@ -118,8 +119,8 @@ export class CartService {
         const updatedCart = cartItems.map(item =>
           item.productUrl.endsWith(productId) ? { ...item, quantity } : item
         );
-  
-        return this.updateCart(updatedCart); 
+
+        return this.updateCart(updatedCart);
       }),
       catchError((error) => {
         alert('Error: No se pudo actualizar la cantidad del producto');
@@ -127,6 +128,6 @@ export class CartService {
       })
     );
   }
-  
+
 
 }

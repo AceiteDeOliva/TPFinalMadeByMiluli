@@ -1,25 +1,45 @@
 <div *ngIf="selectedProduct" class="product-details">
-    <h2>{{ selectedProduct.name }}</h2>
-    
-    <!-- Image element -->
-    <img 
-      [src]="selectedProduct.imageUrl || 'assets/fallback-image.png'" 
-      alt="{{ selectedProduct.name }}" 
+  <div>
+    <img
+      [src]="selectedProduct.imageUrl || '/Assets/Logo made by miluli/Logo_MadeByMiluli CONTRASTE - CENTRADO.png'"
+      alt="{{ selectedProduct.name }}"
       class="product-image"
     />
-  
-    <p>{{ selectedProduct.description }}</p>
-    <p>Price: ${{ selectedProduct.price }}</p>
-  
-    <label for="quantity">Quantity:</label>
-    <input 
-      id="quantity" 
-      type="number" 
-      [(ngModel)]="quantity" 
-      min="1" 
-      aria-label="Quantity"
-    />
-  
-    <button (click)="addToCart(quantity)">Add to Cart</button>
   </div>
-  
+  <div class="info">
+    <h1>{{ selectedProduct.name }}</h1>
+    <h3>${{ selectedProduct.price }}</h3>
+    <p>{{ selectedProduct.description }}</p>
+
+    <div class="quantity-container">
+      <label for="quantity">Cantidad:</label>
+      <input
+        id="quantity"
+        type="number"
+        [(ngModel)]="quantity"
+        min="1"
+        aria-label="Quantity"
+      />
+    </div>
+
+    <button class="add-to-cart" (click)="addToCart(quantity)">Agregar al Carrito</button>
+<div class="added-to-cart-message" [class.show]="showAddedToCartMessage">Producto agregado al carrito!</div>
+
+    <a class="shipping-link" (click)="toggleShippingPrices()">Ver precios de envío</a>
+
+    <div *ngIf="showShippingPrices" class="shipping-prices">
+      <h4>Precios de Envío:</h4>
+      <ul>
+        <li>Local: $5.00</li>
+        <li>Regional: $10.00</li>
+        <li>Internacional: $20.00</li>
+      </ul>
+    </div>
+    <h4>Métodos de Pago:</h4>
+      <ul>
+        <li>Débito</li>
+        <li>Crédito</li>
+        <li>Transferencia</li>
+      </ul>
+  </div>
+</div>
