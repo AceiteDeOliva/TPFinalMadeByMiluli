@@ -1,0 +1,25 @@
+<div class="shipping-calculator">
+  <h2>Calculate Shipping Cost</h2>
+  <form (ngSubmit)="calculateShippingCost()">
+    <label for="cpOrigen">Origin Postal Code:</label>
+    <input type="text" id="cpOrigen" [(ngModel)]="cpOrigen" name="cpOrigen" required />
+
+    <label for="cpDestino">Destination Postal Code:</label>
+    <input type="text" id="cpDestino" [(ngModel)]="cpDestino" name="cpDestino" required />
+
+    <label for="provinciaOrigen">Origin Province:</label>
+    <input type="text" id="provinciaOrigen" [(ngModel)]="provinciaOrigen" name="provinciaOrigen" required />
+
+    <label for="provinciaDestino">Destination Province:</label>
+    <input type="text" id="provinciaDestino" [(ngModel)]="provinciaDestino" name="provinciaDestino" required />
+
+    <label for="peso">Weight (kg):</label>
+    <input type="text" id="peso" [(ngModel)]="peso" name="peso" required />
+
+    <button type="submit">Calculate Shipping</button>
+  </form>
+
+  <div *ngIf="shippingCost" class="result">
+    <h3>Shipping Cost: {{ shippingCost | json }}</h3>
+  </div>
+</div>

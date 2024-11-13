@@ -1,0 +1,49 @@
+/* General Cart Styling */
+.cart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;  /* Add some padding for better spacing */
+}
+
+/* Heading Styling */
+.cart h1 {
+  font-size: 80px;  /* Default font size for large screens */
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #84B6E5; /* Optional: Adds some color */
+  text-align: center; /* Ensure text is centered */
+}
+
+/* Responsive for tablets and medium screens */
+@media (max-width: 1024px) {
+  .cart h1 {
+    font-size: 60px;  /* Decrease font size for medium screens */
+    margin-bottom: 15px;  /* Adjust margin */
+  }
+}
+
+/* Responsive for small screens (phones in landscape) */
+@media (max-width: 768px) {
+  .cart h1 {
+    font-size: 50px;  /* Smaller font size for small screens */
+    margin-bottom: 10px;  /* Adjust margin */
+  }
+
+  .cart {
+    padding: 15px;  /* Adjust padding for smaller screens */
+  }
+}
+
+/* Responsive for very small screens (phones in portrait) */
+@media (max-width: 480px) {
+  .cart h1 {
+    font-size: 40px;  /* Further decrease font size for small screens */
+    margin-bottom: 5px;  /* Adjust margin */
+  }
+
+  .cart {
+    padding: 10px;  /* Further reduce padding for mobile */
+  }
+}
