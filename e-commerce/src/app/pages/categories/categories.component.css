@@ -16,6 +16,12 @@
   max-width: 100%; /* Ensure image is responsive */
   height: auto; /* Maintain aspect ratio */
 }
+.header h1 {
+  font-size: 70px;  /* Increase the font size for the heading */
+  font-weight: bold;
+  margin-bottom: 20px;
+  color:#84B6E5 ;/* Optional: Adds some space below the heading */
+}
 
 /* Mobile / Tablet Styles */
 @media (max-width: 768px) {

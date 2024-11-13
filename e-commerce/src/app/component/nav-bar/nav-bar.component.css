@@ -10,7 +10,7 @@
   align-items: center;
   text-align: center;
   justify-content: space-between;
-  width: 100;
+  width: 100%;
 }
 
 .toTheRight {
@@ -28,12 +28,14 @@ nav ul {
   margin: 0;
   padding: 0;
   gap: 25px;
+  font-size: 20px;
 }
 
 nav ul li a {
   text-decoration: none;
   font-weight: normal;
   color: #000;
+  font-size: 20px;  /* Increased font size */
 }
 
 .cart {
@@ -46,6 +48,7 @@ nav button {
   cursor: pointer;
   color: #000000;
   border-radius: 8px;
+  font-size: 18px;  /* Increased font size for buttons */
 }
 
 .log-button {
@@ -64,7 +67,6 @@ nav button:hover {
 .dropdown {
   position: relative;
   display: inline-block;
-
 }
 
 .nested {
@@ -82,7 +84,7 @@ nav button:hover {
 }
 
 .dropdown:hover .nested {
-  display:block;
+  display: block;
 }
 
 .nested li {
@@ -124,7 +126,7 @@ nav button:hover {
 
   nav ul li a {
     padding: 12px 0;
-    font-size: 16px;  /* Reducimos el tamaño de fuente en pantallas más pequeñas */
+    font-size: 18px;  /* Increased font size for mobile */
   }
 
   /* Cart icon ajustado */
@@ -149,7 +151,7 @@ nav button:hover {
   /* Botones de la navbar ajustados */
   nav button {
     padding: 8px 12px;
-    font-size: 14px;  /* Reducimos el tamaño de fuente de los botones en móviles */
+    font-size: 16px;  /* Larger button text */
   }
 }
 
@@ -169,12 +171,12 @@ nav button:hover {
 
   nav ul li a {
     padding: 10px 0;
-    font-size: 14px;  /* Reducimos aún más el tamaño de fuente */
+    font-size: 16px;  /* Increased font size for smaller mobile screens */
   }
 
   nav button {
     padding: 6px 10px;
-    font-size: 12px;  /* Ajustamos el tamaño de los botones */
+    font-size: 14px;  /* Adjusted button font size */
   }
 
   .nested li {
@@ -191,11 +193,11 @@ nav button:hover {
 }
 
 .cart-image {
-  width: 50px; 
+  width: 50px;
   height: auto;
-  transition: transform 0.3s ease; 
+  transition: transform 0.3s ease;
 }
 
 .cart-button:hover .cart-image {
-  transform: scale(1.2); 
+  transform: scale(1.2);
 }
