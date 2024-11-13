@@ -24,19 +24,11 @@
       "cart": [
         {
           "productUrl": "http://localhost:3000/products/4",
-          "quantity": 4
+          "quantity": 5
         },
         {
-          "productUrl": "http://localhost:3000/products/5",
-          "quantity": 1
-        },
-        {
-          "productUrl": "http://localhost:3000/products/1",
-          "quantity": 1
-        },
-        {
-          "productUrl": "http://localhost:3000/products/2",
-          "quantity": 2
+          "productUrl": "http://localhost:3000/products/3",
+          "quantity": 7
         }
       ],
       "purchaseHistory": [],
@@ -50,7 +42,7 @@
       "description": "GOAT",
       "price": 99999,
       "category": "BEEEEE",
-      "stock": 10,
+      "stock": 1,
       "state": "active",
       "imageUrl": "http://localhost:3001/images/0d50"
     },
@@ -100,7 +92,7 @@
       "description": "lol",
       "price": 5,
       "category": "amigurumi",
-      "stock": 7,
+      "stock": 5,
       "state": "active",
       "imageUrl": "http://localhost:3001/images/4d69"
     }
