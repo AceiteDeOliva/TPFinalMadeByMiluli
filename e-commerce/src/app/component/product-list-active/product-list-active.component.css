@@ -1,45 +1,42 @@
 .product-container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 5 columns for desktop */
+  grid-template-columns: repeat(4, 1fr);
   gap: 20px;
   width: 100%;
   padding: 30px;
   box-sizing: border-box;
 }
 
-/* Styling for product description */
 p {
   background-color: #D1E3EB;
   border-radius: 8px;
   padding: 10px;
 }
 
-/* Individual product card styling */
 .product-info {
-  background-color: #e2f3e0; /* Light green background */
+  background-color: #e2f3e0;
   border-radius: 8px;
-  padding: 40px; /* Increased padding for better spacing */
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+  padding: 40px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   display: flex;
-  flex-direction: column; /* Arrange image and text vertically */
+  flex-direction: column;
   align-items: center;
   box-sizing: border-box;
   position: relative;
   transition: transform 0.1s ease-in-out, background-color 0.3s ease;
 }
 
-/* Product card base styling */
 .product-card {
   background-color: #e2f3e0;
   border-radius: 8px;
-  padding: 9px; /* Padding for the content */
+  padding: 9px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   display: flex;
-  flex-direction: column; /* Stack the content vertically */
+  flex-direction: column;
   align-items: center;
   box-sizing: border-box;
   position: relative;
-  cursor: pointer; /* Indicates interactivity */
+  cursor: pointer;
   transition: transform 0.1s ease-in-out, background-color 0.3s ease;
 }
 
@@ -50,49 +47,43 @@ p {
   border-radius: 8px;
 }
 
-/* Hover effect on the product card */
 .product-card:hover {
-  background-color: #87a77c; /* Slightly darker background */
-  transform: scale(1.02); /* Scale up for emphasis */
+  background-color: #87a77c;
+  transform: scale(1.02);
 }
 
-/* Active state for click */
 .product-card:active {
-  transform: scale(0.98); /* Slightly scale down on click */
+  transform: scale(0.98);
 }
 
-/* Product title */
 .product-card h2 {
   margin: 0;
-  font-size: 1.5rem; /* Slightly larger font for the name */
+  font-size: 1.5rem;
   text-align: center;
 }
 
-/* Product image styling */
 .product-card img {
   max-width: 175px;
   max-height: 175px;
   margin: 15px 0;
-  border-radius: 4px; /* Rounded corners for the image */
+  border-radius: 4px;
 }
 
-/* Product description and price styling */
 .product-card p {
   font-weight: normal;
   margin: 5px 0;
   font-size: 1rem;
-  text-align: center; /* Center text for alignment */
+  text-align: center;
 }
 
-/* Button styling */
 button {
   background-color: #F8E1E4;
   border: 2px solid #FCD5CE;
   color: rgb(8, 3, 3);
-  padding: 8px 14px; /* Reduced padding to make it smaller */
+  padding: 8px 14px;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 0.9rem; /* Adjust button text size */
+  font-size: 0.9rem;
 }
 
 button:hover {
@@ -100,52 +91,55 @@ button:hover {
   color: white;
 }
 
-/* Mobile styles */
 @media (max-width: 768px) {
   .product-container {
-    grid-template-columns: repeat(2, 1fr); /* Two columns for tablets */
-    padding: 20px; /* Slightly reduced padding */
+    grid-template-columns: repeat(2, 1fr);
+    padding: 20px;
   }
 
   .product-card {
-    flex-direction: column; /* Stack content for mobile */
-    align-items: center; /* Center align items */
-    padding: 15px; /* Reduced padding for mobile */
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    width: 100%;
   }
 
   .product-card img {
-    margin-top: 10px; /* Reduce margin */
-    max-width: 100%; /* Ensure image responsiveness */
+    margin-top: 10px;
+    max-width: 100%;
     max-height: none;
+    height: auto;
   }
 
   .product-card h2 {
-    font-size: 1.25rem; /* Reduce font size on tablets */
+    font-size: 1.25rem;
   }
 
   .product-card p {
-    font-size: 0.9rem; /* Slightly smaller font size */
+    font-size: 0.9rem;
   }
 
   button {
-    padding: 6px 12px; /* Smaller button on tablets */
-    font-size: 0.85rem; /* Adjust button text size */
+    padding: 6px 12px;
+    font-size: 0.85rem;
   }
 }
 
-/* Mobile (small screens) styles */
 @media (max-width: 480px) {
   .product-container {
-    grid-template-columns: 1fr; /* Single column layout on small screens */
-    padding: 15px; /* Adjust padding for smaller screens */
+    grid-template-columns: 1fr;
+    padding: 15px;
   }
 
   .product-card {
-    padding: 10px; /* Slightly reduced padding for mobile */
+    padding: 10px;
+    width: 100%;
   }
 
   button {
-    padding: 6px 12px; /* Smaller button on small screens */
-    font-size: 0.8rem; /* Adjust button text size */
+    padding: 6px 12px;
+    font-size: 0.8rem;
+    max-width: 100%;
+    height: auto;
   }
 }
