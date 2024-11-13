@@ -95,7 +95,6 @@ export class CartService {
     );
   }
 
-
   // Remove a product from the cart
   removeProductFromCart(productId: string): Observable<any> {
     const productUrl = `${this.productsUrl}/${productId}`;
@@ -112,7 +111,7 @@ export class CartService {
     );
   }
 
-
+  // Update product quantity in the cart
   updateProductQuantity(productId: string, quantity: number): Observable<any> {
     return this.getCarrito().pipe(
       switchMap((cartItems) => {
@@ -129,5 +128,29 @@ export class CartService {
     );
   }
 
-
+  // Calculate the total price of the cart
+  getTotalCompra(): Observable<number> {
+    return this.getCarrito().pipe(
+      switchMap(cartItems => {
+        // Fetch the prices of the products
+        const productIds = cartItems.map(item => item.productUrl.split('/').pop()); // Extract the product IDs
+        return this.http.get<any[]>(`${this.productsUrl}?id_in=${productIds.join(',')}`).pipe(
+          map(products => {
+            let total = 0;
+            cartItems.forEach(item => {
+              const product = products.find(p => p.id === item.productUrl.split('/').pop());
+              if (product) {
+                total += product.price * item.quantity; // Calculate total price
+              }
+            });
+            return total;
+          }),
+          catchError(error => {
+            alert('Error: No se pudo calcular el total de la compra');
+            return throwError(() => error);
+          })
+        );
+      })
+    );
+  }
 }

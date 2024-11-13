@@ -18,9 +18,10 @@ import { ActiveProductPagesComponent } from './pages/active-product-pages/active
 import { CategoriesComponent } from './pages/categories/categories.component';
 import { ProductPageComponent } from './pages/product-page/product-page.component';
 import { CartPageComponent } from './pages/cart-page/cart-page.component';
-import { PurchaseLoginComponent } from './component/purchase-login/purchase-login.component';
-import { PurchaseLoginPageComponent } from './component/purchase-login-page/purchase-login-page.component';
+
+import { PurchaseLoginPageComponent } from './pages/active-product-pages/purchase-login-page/purchase-login-page.component';
 import { ShippingPageComponent } from './pages/shipping-page/shipping-page.component';
+
 
 
 export const routes: Routes = [
@@ -40,6 +41,7 @@ export const routes: Routes = [
   { path: 'productView/:productId', component: ProductPageComponent },
   { path: 'loginPurchase', component:PurchaseLoginPageComponent },
   { path: 'shippingInfo', component: ShippingPageComponent},
+
   { path: "**", redirectTo: "home" },
 
 ];

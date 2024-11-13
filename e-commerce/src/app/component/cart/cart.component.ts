@@ -8,12 +8,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DecimalPipe } from '@angular/common';  // Import DecimalPipe
 import { UserService } from '../../services/user-service/user.service';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule,RouterModule],
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css'],
   providers: [DecimalPipe]  // Provide DecimalPipe
@@ -108,10 +108,10 @@ export class CartComponent implements OnInit {
 
     if (!currentUser) {
       // If not logged in, redirect to login page
-      this.router.navigate(['/loginPurchase']);
+      this.router.navigate(['loginPurchase']);
     } else {
       // If logged in, redirect to shipping info page
-      this.router.navigate(['/shippingInfo']);
+      this.router.navigate(['shippingInfo']);
     }
   }
 }
