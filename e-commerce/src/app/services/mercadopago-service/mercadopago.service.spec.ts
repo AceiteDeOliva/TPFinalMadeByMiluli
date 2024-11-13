@@ -1,19 +1,34 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { MercadopagoService } from './mercadopago.service';
+import { TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class MercadopagoService {
+describe('MercadopagoService', () => {
+  let service: MercadopagoService;
+  let httpMock: HttpTestingController;
 
-  private apiUrl = 'http://localhost:3002/create_preference'; // URL de tu servidor Node.js
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
+      providers: [MercadopagoService]
+    });
+    service = TestBed.inject(MercadopagoService);
+    httpMock = TestBed.inject(HttpTestingController);
+  });
 
-  constructor(private http: HttpClient) { }
+  afterEach(() => {
+    httpMock.verify();
+  });
 
-  createPreference(title: string, quantity: number, unitPrice: number): Observable<any> {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    const body = { title, quantity, unit_price: unitPrice };
-    return this.http.post<any>(this.apiUrl, body, { headers });
-  }
-}
+  it('should be created', () => {
+    expect(service).toBeTruthy();
+  });
+
+  it('should call createPreference with the correct parameters', () => {
+    const preferenceData = { title: 'Test Product', quantity: 1, unit_price: 100 };
+    service.createPreference(preferenceData).subscribe();
+
+    const req = httpMock.expectOne('http://localhost:3002/create_preference');
+    expect(req.request.method).toBe('POST');
+    expect(req.request.body).toEqual(preferenceData);
+  });
+});

@@ -17,6 +17,7 @@ import { RegisterEmployeeComponent } from './pages/register-employee/register-em
 import { ActiveProductPagesComponent } from './pages/active-product-pages/active-product-pages.component';
 import { CategoriesComponent } from './pages/categories/categories.component';
 import { ProductPageComponent } from './pages/product-page/product-page.component';
+import { CheckOutComponent } from './component/checkOut/check-out/check-out.component';
 
 
 export const routes: Routes = [
@@ -34,6 +35,7 @@ export const routes: Routes = [
   { path: 'nuevoProducto', component: NewProductPageComponent },
   { path: 'updateProduct/:id', component: UpdateProductPageComponent },
   { path: 'productView/:productId', component: ProductPageComponent },
+  {path:'checkout', component: CheckOutComponent},
   { path: "**", redirectTo: "home" },
 
 ];
