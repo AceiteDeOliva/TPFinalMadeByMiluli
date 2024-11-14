@@ -1,8 +1,8 @@
 import { Component, EventEmitter } from '@angular/core';
 import { CartComponent } from "../../component/cart/cart.component";
 import { SubtotalComponent } from "../../component/subtotal/subtotal.component";
-import { CartService } from '../../services/cart-service/cart.service';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart-page',
@@ -14,9 +14,8 @@ import { CommonModule } from '@angular/common';
 export class CartPageComponent {
 
   cartSubtotal: number = 0;
-  cartLenght: number =0;
-  isEmpty:boolean=false
 
+  constructor(private router: Router) {}
 
   onSubtotalChanged(subtotal: number): void {
     this.cartSubtotal=subtotal;
@@ -24,5 +23,8 @@ export class CartPageComponent {
   }
 
 
+  onProceedToPayment(): void {
+    this.router.navigate(['shippingInfo']);
+  }
 
 }

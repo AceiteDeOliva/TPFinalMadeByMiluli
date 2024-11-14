@@ -1,10 +1,13 @@
-export interface Product {
-  email: string;
-  nombre: string;
-  direccion: string;
-  products: Product [];
-  category: string;
-  stock: number;
-  imageUrl: string;
-  state: "active"|"inactive";
+import { CartItem } from './cartItem';
+
+export interface Order {
+  products: CartItem[];  
+  date: Date;
+  recipientName: string;
+  recipientSurname: string;
+  street: string;
+  provinciaDestino: string;
+  cpDestino: string;
+  shippingMethod: 'domicilio' | 'sucursal';
+  shippingCost: number;
 }

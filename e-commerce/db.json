@@ -27,11 +27,11 @@
       "password": "12345",
       "cart": [
         {
-          "productUrl": "http://localhost:3000/products/4",
-          "quantity": 6
+          "productUrl": "http://localhost:3000/products/1",
+          "quantity": 1
         },
         {
-          "productUrl": "http://localhost:3000/products/1",
+          "productUrl": "http://localhost:3000/products/2",
           "quantity": 1
         }
       ],
