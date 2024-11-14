@@ -7,7 +7,6 @@ import { Product } from '../../models/product';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MercadopagoService } from '../../services/mercadopago-service/mercadopago.service';
-import { Router } from '@angular/router';
 import { PreferenceData } from '../../models/preference';
 import { DecimalPipe } from '@angular/common';
 import { UserService } from '../../services/user-service/user.service';
