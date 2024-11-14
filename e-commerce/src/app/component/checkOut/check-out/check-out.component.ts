@@ -1,92 +1,56 @@
 import { Component, OnInit } from '@angular/core';
-import { firstValueFrom } from 'rxjs';
 import { MercadopagoService } from '../../../services/mercadopago-service/mercadopago.service';
-declare var MercadoPago: any;
+
+declare var MercadoPago: any; // Declare MercadoPago SDK
 
 @Component({
-  selector: 'app-check-out',
+  selector: 'app-checkout',
   templateUrl: './check-out.component.html',
-  styleUrls: ['./check-out.component.css']
+  styleUrls: ['./check-out.component.css'],
 })
-export class CheckOutComponent implements OnInit {
-  mp: any;  // MercadoPago instance
-  preferenceId: string = '';  // Payment preference ID from backend
+export class CheckoutComponent implements OnInit {
+  total: number = 100; // Example total, replace with actual total calculation
 
-  constructor(private mercadopagoService: MercadopagoService) {}
+  constructor(private mpService: MercadopagoService) {}
 
   ngOnInit(): void {
     // Initialize MercadoPago with your public key
-    this.mp = new MercadoPago('APP_USR-45356463-6ac7-49ed-a858-abeea75d9906', {
-      locale: 'es-AR', // Set your locale
-    });
+    const mp = new MercadoPago('APP_USR-45356463-6ac7-49ed-a858-abeea75d9906', { locale: 'es-AR' });
 
-    // Call backend to get preferenceId
-    this.getPreferenceId();
-  }
-
-  // Call backend through the service to get preferenceId
-  getPreferenceId() {
-    const preferenceData = {
-      title: 'Mi producto',
+    // Create order data
+    const orderData = {
+      title: 'Compra en Made by Miluli',
       quantity: 1,
-      unit_price: 2000
+      price: this.total,
     };
-  
-    firstValueFrom(this.mercadopagoService.createPreference(preferenceData)).then(
-      (response: { id: string }) => {  // Specify the expected response type
-        this.preferenceId = response.id;
-        this.createPaymentBrick();
-        this.createWallet();
-      },
-      (error) => {
-        console.error('Error fetching preferenceId:', error);
-      }
-    );
-  }
-  
 
-  // Method to create the payment button with MercadoPago bricks
-  createPaymentBrick() {
-    const bricksBuilder = this.mp.bricks();
+    // Call the backend to create the preference and render the MercadoPago button
+    this.mpService.createPreference(orderData).toPromise().then((response) => {
+      const preferenceId = response.id;
 
-    bricksBuilder.create('button', {
-      initialization: {
-        preferenceId: this.preferenceId,  // Set the preferenceId
-      },
-      callbacks: {
-        onReady: () => {
-          console.log('Payment button is ready');
-        },
-        onError: (error: any) => {
-          console.error('Error creating payment button', error);
-        },
-      }
-    }).mount('#mercadopago-button-container');
-  }
-
-  // Method to create the payment wallet brick with MercadoPago
-  createWallet() {
-    const bricksBuilder = this.mp.bricks();
-  
-    // Ensure three arguments: type, container ID, and options
-    bricksBuilder.create('wallet', '#wallet_container', {
-      initialization: {
-        preferenceId: this.preferenceId,  // Use the preferenceId for wallet
-      },
-      customization: {
-        texts: {
-          valueProp: 'smart_option',  // Customize wallet text
-        },
-      },
-      callbacks: {
-        onReady: () => {
-          console.log('Wallet is ready');
-        },
-        onError: (error: any) => {
-          console.error('Error creating wallet', error);
-        },
-      }
+      // Create the MercadoPago button automatically
+      this.createCheckoutButton(mp, preferenceId);
+    }).catch((error) => {
+      console.error('Error creating preference:', error);
+      alert('Error al crear preferencia');
     });
   }
-  
+
+  createCheckoutButton(mp: any, preferenceId: string) {
+    const brickBuilder = mp.bricks();
+
+    // Render the MercadoPago wallet button automatically
+    brickBuilder
+      .create('wallet', 'wallet_container', {
+        initialization: {
+          preferenceId: preferenceId,
+        },
+      })
+      .then(() => {
+        console.log('Checkout button rendered');
+      })
+      .catch((err: any) => {
+        console.error('Error creating checkout button', err);
+      });
+  }
 }
