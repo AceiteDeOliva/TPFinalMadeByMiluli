@@ -1,34 +1,32 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class ShippingService {
-  private apiUrl = 'https://rapidapi.com/brunoaramburu/api/correo-argentino1/playground/apiendpoint_eff0df8a-fc4a-4b70-9ecb-4310829c8318';
+  private shippingDataSubject = new BehaviorSubject<any>(null); // For storing form data
+  private shippingCostSubject = new BehaviorSubject<number>(0); // For storing shipping cost
 
-  constructor(private http: HttpClient) {}
+  constructor() {}
 
-  calculateShipping(
-    cpOrigen: string,
-    cpDestino: string,
-    provinciaOrigen: string,
-    provinciaDestino: string,
-    peso: string
-  ): Observable<any> {
-    const headers = new HttpHeaders({
-      'X-RapidAPI-Host': 'correo-argentino1.p.rapidapi.com',
-      'X-RapidAPI-Key': '7961278fmshaf3f74457d4298dp18716jsndcc9c5131efe'
-    });
+  // Get the shipping data observable
+  getShippingData() {
+    return this.shippingDataSubject.asObservable();
+  }
 
-    const params = new HttpParams()
-      .set('cpOrigen', cpOrigen)
-      .set('cpDestino', cpDestino)
-      .set('provinciaOrigen', provinciaOrigen)
-      .set('provinciaDestino', provinciaDestino)
-      .set('peso', peso);
+  // Get the shipping cost observable
+  getShippingCost() {
+    return this.shippingCostSubject.asObservable();
+  }
 
-    return this.http.get(this.apiUrl, { headers, params });
+  // Set the shipping data
+  setShippingData(data: any) {
+    this.shippingDataSubject.next(data);
+  }
+
+  // Set the shipping cost
+  setShippingCost(cost: number) {
+    this.shippingCostSubject.next(cost);
   }
 }

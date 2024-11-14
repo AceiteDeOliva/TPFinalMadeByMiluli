@@ -28,12 +28,7 @@
     </ul>
   </div>
 
-  <!-- Solo mostrar el total si hay items en el carrito -->
-  <div *ngIf="cartItems.length > 0" class="totalCompra">
-    <h2>Total carrito</h2>
-    <h2>${{ formattedTotal }}</h2>
-    <button class="comprar" (click)="onStartPurchase()">Iniciar Compra</button>
-  </div>
+
 </div>
 
 <ng-template #emptyCart>

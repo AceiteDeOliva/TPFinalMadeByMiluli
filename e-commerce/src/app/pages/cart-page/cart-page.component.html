@@ -1,5 +1,13 @@
 <div class="cart">
-<h1>Carrito</h1>
-<app-cart></app-cart>
+  <h1>Carrito</h1>
+  <div class="sideBySide">
+    <!-- Cart component emits cart updates and empty cart status -->
+    <app-cart (subtotal)="onSubtotalChanged($event)"></app-cart>
+
+    <!-- Show subtotal only if the cart is not empty -->
+    <app-subtotal *ngIf="cartSubtotal>0"  [cartSubtotal]="cartSubtotal" [path]="'shippingInfo'"></app-subtotal>
+
+  </div>
+
 
 </div>

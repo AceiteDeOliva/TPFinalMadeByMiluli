@@ -1,0 +1,22 @@
+<div class="order-summary">
+  <h2>Resumen de Compra</h2>
+
+  <!-- Display Subtotal -->
+  <div class="summary-item">
+    <span>Subtotal:</span>
+    <span>{{ cartSubtotal  }}</span>
+  </div>
+
+  <!-- Display Shipping Cost -->
+  <div class="summary-item">
+    <span>Shipping Cost:</span>
+    <span>{{ shippingCost  }}</span>
+  </div>
+
+  <!-- Display Total Order Amount -->
+  <div class="summary-item">
+    <span><strong>Total:</strong></span>
+    <span><strong>{{ totalOrderAmount  }}</strong></span>
+  </div>
+  <button class="pagar"(click)="goToPayment()">Pagar Orden</button>
+</div>

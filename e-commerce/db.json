@@ -24,14 +24,6 @@
       "cart": [
         {
           "productUrl": "http://localhost:3000/products/3",
-          "quantity": 2
-        },
-        {
-          "productUrl": "http://localhost:3000/products/5",
-          "quantity": 1
-        },
-        {
-          "productUrl": "http://localhost:3000/products/4",
           "quantity": 1
         }
       ],
