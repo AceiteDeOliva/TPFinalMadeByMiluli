@@ -24,7 +24,11 @@
       "cart": [
         {
           "productUrl": "http://localhost:3000/products/4",
-          "quantity": 5
+          "quantity": 6
+        },
+        {
+          "productUrl": "http://localhost:3000/products/1",
+          "quantity": 1
         }
       ],
       "purchaseHistory": [],

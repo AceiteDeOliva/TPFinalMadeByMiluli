@@ -2,7 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserService } from '../../services/user-service/user.service';
-import { ShippingService } from '../../services/shipping-service/shipping-service.component';
+import { ShippingService } from '../../services/shipping-service/shipping.service';
 
 @Component({
   selector: 'app-shippingComponent',
