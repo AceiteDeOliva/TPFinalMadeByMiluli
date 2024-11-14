@@ -1,10 +1,13 @@
+import { CartItem } from "./cartItem";
+import { Order } from "./orders";
+
 export interface User {
     id:string;
     name: string;
     surname: string;
     email: string;
     password: string;
-    cart: Array<{ productUrl: string; quantity: number }>;
-    purchaseHistory: Array<{ productId: string; quantity: number; date: Date }>;
+    cart: CartItem[];
+    purchaseHistory: Order[];
     credential: 'user' | 'employee'|'manager'|'admin';
 }

@@ -1,0 +1,47 @@
+.payment-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+  }
+  
+  h2 {
+    text-align: center;
+    color: #333;
+  }
+  
+  .payment-option {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  
+  .payment-option h3 {
+    color: #0072bb;
+    margin-bottom: 10px;
+  }
+  
+  #wallet_container {
+    height: 50px;
+    margin-bottom: 10px;
+  }
+  
+  .payment-option p {
+    color: #555;
+    line-height: 1.6;
+  }
+  
+  .payment-option a {
+    color: #0072bb;
+    text-decoration: none;
+  }
+  
+  .payment-option a:hover {
+    text-decoration: underline;
+  }
+  

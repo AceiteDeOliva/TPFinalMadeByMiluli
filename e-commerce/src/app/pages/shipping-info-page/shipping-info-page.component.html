@@ -1,5 +1,4 @@
 <div class="container">
   <app-shippingComponent (formSubmitted)="formValidation($event)"></app-shippingComponent>
-<app-subtotal [path]="'payment'" *ngIf="formValid"></app-subtotal>
+  <app-subtotal *ngIf="formValid" (proceedToPayment)="onProceedToCheckout()"></app-subtotal>
 </div>
-
