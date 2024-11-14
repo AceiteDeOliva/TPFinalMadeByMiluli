@@ -1,6 +1,6 @@
 import { Component, Input, input, OnInit } from '@angular/core';
 import { CartService } from '../../services/cart-service/cart.service';  // Import CartService
-import { ShippingService } from '../../services/shipping-service/shipping-service.component';
+import { ShippingService } from '../../services/shipping-service/shipping.service';
 import { Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
