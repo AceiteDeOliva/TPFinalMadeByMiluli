@@ -17,9 +17,11 @@ import { RegisterEmployeeComponent } from './pages/register-employee/register-em
 import { ActiveProductPagesComponent } from './pages/active-product-pages/active-product-pages.component';
 import { CategoriesComponent } from './pages/categories/categories.component';
 import { ProductPageComponent } from './pages/product-page/product-page.component';
+import { CheckoutComponent } from './component/checkOut/check-out/check-out.component';
 import { CartPageComponent } from './pages/cart-page/cart-page.component';
 import { PurchaseLoginPageComponent } from './pages/active-product-pages/purchase-login-page/purchase-login-page.component';
 import { ShippingInfoPageComponent } from './pages/shipping-info-page/shipping-info-page.component';
+
 
 
 
@@ -39,9 +41,9 @@ export const routes: Routes = [
   { path: 'nuevoProducto', component: NewProductPageComponent },
   { path: 'updateProduct/:id', component: UpdateProductPageComponent },
   { path: 'productView/:productId', component: ProductPageComponent },
+  { path: 'checkout', component: CheckoutComponent },
   { path: 'loginPurchase', component:PurchaseLoginPageComponent },
   { path: 'shippingInfo', component: ShippingInfoPageComponent},
-
   { path: "**", redirectTo: "home" },
 
 ];

@@ -23,8 +23,8 @@
       "password": "12345",
       "cart": [
         {
-          "productUrl": "http://localhost:3000/products/3",
-          "quantity": 1
+          "productUrl": "http://localhost:3000/products/4",
+          "quantity": 5
         }
       ],
       "purchaseHistory": [],

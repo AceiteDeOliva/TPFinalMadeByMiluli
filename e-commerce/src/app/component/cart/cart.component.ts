@@ -6,6 +6,9 @@ import { ProductService } from '../../services/product-service/product.service';
 import { Product } from '../../models/product';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { MercadopagoService } from '../../services/mercadopago-service/mercadopago.service';
+import { Router } from '@angular/router';
+import { PreferenceData } from '../../models/preference';
 import { DecimalPipe } from '@angular/common';
 import { UserService } from '../../services/user-service/user.service';
 import { Router, RouterModule } from '@angular/router';
@@ -29,9 +32,11 @@ export class CartComponent implements OnInit {
     private cartService: CartService,
     private userService: UserService,
     private productService: ProductService,
+    private mercadopagoService: MercadopagoService,
     private decimalPipe: DecimalPipe,
     private router: Router
   ) {}
+
 
   ngOnInit(): void {
     this.loadCart();
@@ -125,6 +130,7 @@ export class CartComponent implements OnInit {
       return;
     }
 
+
     this.cartService.updateProductQuantity(productId, quantity).pipe(
       tap(() => {
         this.loadCart();  // Reload the cart after updating the quantity
@@ -147,4 +153,5 @@ export class CartComponent implements OnInit {
       this.router.navigate(['shippingInfo']);  // Redirigir a la página de información de envío si está logueado
     }
   }
+
 }
