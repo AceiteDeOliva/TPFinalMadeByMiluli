@@ -1,0 +1,57 @@
+/* subtotal.component.css */
+.order-summary {
+  background-color: #C4DCBB;
+  border: 2px solid #C4DCBB;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 8px;
+  padding: 25px;
+  width: 100%;
+  max-width: 500px;
+  margin: 20px auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  width: 100%;
+}
+
+.summary-item span {
+  font-size: 20px;
+  font-family: sans-serif, Arial, Helvetica, sans-serif;
+}
+
+strong {
+  font-weight: bold;
+  color: #2c3e50; /* Optional: give strong text a darker color */
+}
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+.pagar {
+  width: 80%;
+  padding: 12px;
+  background-color: #95CBEE;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s; /* Transition for both background and text color */
+  margin-top: 15px; /* Adds spacing between inputs and the submit button */
+}
+
+/* Targeting the button directly */
+.pagar:hover {
+  background-color: #FCD5CE;
+  color: black;
+}

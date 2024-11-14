@@ -7,6 +7,16 @@
   padding: 20px;  /* Add some padding for better spacing */
 }
 
+.sideBySide {
+  display: flex;  /* Enable flexbox for side-by-side layout */
+  flex-direction: row;  /* Items will be arranged side by side */
+  justify-content: center;  /* Space between the two components */
+  width: 100%;  /* Ensure it takes full width */
+  gap: 30px;  /* Add some space between the components */
+  margin-top: 30px;  /* Adjust spacing between the heading and the components */
+}
+
+
 /* Heading Styling */
 .cart h1 {
   font-size: 80px;  /* Default font size for large screens */
@@ -45,5 +55,9 @@
 
   .cart {
     padding: 10px;  /* Further reduce padding for mobile */
+  }
+
+  .sideBySide {
+    flex-direction: column;  /* Stack components vertically on small screens */
   }
 }

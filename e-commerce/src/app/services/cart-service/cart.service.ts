@@ -17,7 +17,7 @@ export class CartService {
   // Fetch the cart items for the current user or from localStorage if guest
   getCarrito(): Observable<{ productUrl: string; quantity: number }[]> {
     if (this.currentUserId) {
-      // Fetch cart from backend if the user is logged in
+
       return this.http.get<User>(this.userUrl).pipe(
         map((user) => user.cart), // Extract the cart array from the user object
         catchError((error) => {
@@ -66,7 +66,7 @@ export class CartService {
     return cart.find(item => item.productUrl === productUrl);
   }
 
-  // Update the quantity of an existing product in the cart
+ 
   private updateProductQuantityInCart(cart: Array<{ productUrl: string; quantity: number }>, productUrl: string, quantity: number): void {
     const existingProduct = this.findProductInCart(cart, productUrl);
     if (existingProduct) {
@@ -74,12 +74,12 @@ export class CartService {
     }
   }
 
-  // Add a new product to the cart
+
   private addNewProductToCart(cart: Array<{ productUrl: string; quantity: number }>, productUrl: string, quantity: number): void {
     cart.push({ productUrl, quantity });
   }
 
-  // Update the user's cart by sending a PUT request to update the entire user object
+
   private updateCart(updatedCart: Array<{ productUrl: string; quantity: number }>): Observable<any> {
     return this.http.get<User>(this.userUrl).pipe(
       switchMap((user) => {
@@ -93,7 +93,7 @@ export class CartService {
     );
   }
 
-  // Clear the cart by setting it to an empty array
+
   clearCart(): Observable<any> {
     return this.http.get<User>(this.userUrl).pipe(
       switchMap((user) => {
