@@ -12,8 +12,6 @@
           <li><a routerLink="listCategory" (click)="onCategoryClick('Accesorio')">Accesorios</a></li>
         </ul>
       </li>
-
-      <li><a routerLink="ofertas">Ofertas</a></li>
       <li><a routerLink="activeProducts">Productos</a></li>
     </ul>
     <button routerLink="login" class="log-button">Inicio de sesión</button>
@@ -41,10 +39,7 @@
           <li><a routerLink="listCategory" (click)="onCategoryClick('Accesorio')">Accesorios</a></li>
         </ul>
       </li>
-
-      <li><a routerLink="ofertas">Ofertas</a></li>
       <li><a routerLink="activeProducts">Productos</a></li>
-
 
       <li class="dropdown" (mouseover)="toggleAccountMenu(true)" (mouseleave)="toggleAccountMenu(false)">
         <span>Mi Cuenta</span>
@@ -52,7 +47,7 @@
           <li><a routerLink="profile">Perfil</a></li>
           <li><a routerLink="orders">Pedidos</a></li>
           <li *ngIf="(credential$ | async) === 'adminUser'">
-            <a routerLink="homeAdmin" (click)="switchToAdminMode()">Modo Admin</a>
+            <a routerLink="homeEmployee" (click)="switchToAdminMode()">Modo Admin</a>
           </li>
         </ul>
       </li>
@@ -71,7 +66,7 @@
 
 
 <nav *ngIf="(isAdminOrEmployee() | async)" class="full-container">
-  <a routerLink="home">
+  <a routerLink="homeEmployee">
     <img src="/Assets/Logo made by miluli/Flor_MadeByMiluli.png" alt="logo" class="icon" style="cursor: pointer;">
   </a>
   <div class="toTheRight">

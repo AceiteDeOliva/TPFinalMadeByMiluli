@@ -9,7 +9,7 @@
       "cart": [
         {
           "productUrl": "http://localhost:3000/products/3",
-          "quantity": 4
+          "quantity": 1
         },
         {
           "productUrl": "http://localhost:3000/products/5",
@@ -207,8 +207,8 @@
       "price": 60000,
       "category": "Accesorio",
       "stock": 2,
-      "imageUrl": "http://localhost:3001/images/a9af",
-      "state": "active"
+      "state": "active",
+      "imageUrl": "http://localhost:3001/images/a9af"
     },
     {
       "id": "18",
