@@ -4,16 +4,16 @@
     <button routerLink="/nuevoProducto">Nuevo Producto</button>
   </div>
 
-  <input 
-    type="text" 
-    placeholder="Search products..." 
-    [(ngModel)]="searchTerm" 
+  <input
+    type="text"
+    placeholder="Buscar Producto..."
+    [(ngModel)]="searchTerm"
     class="filter-input"
   />
 
-  <app-product-list 
+  <app-product-list
     [filterTerm]="searchTerm" >
   </app-product-list>
 
-  
+
 </div>
