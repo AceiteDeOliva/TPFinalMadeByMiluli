@@ -29,6 +29,15 @@ h1{
   flex: 1 0 150px;
   margin: 5px;
 }
+.form-control select {
+  width: 100%;
+  padding: 7px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  box-sizing: border-box;
+}
 
 .form-control label {
   margin-bottom: 5px;
@@ -91,6 +100,13 @@ button:hover {
   height: auto;
   align-items: center;
 }
+.image-preview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
 
 .custom-file-upload {
   margin-top: 10px;

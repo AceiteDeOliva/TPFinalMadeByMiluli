@@ -8,8 +8,12 @@
       "password": "admin",
       "cart": [
         {
-          "productUrl": "http://localhost:3000/products/1",
-          "quantity": 2
+          "productUrl": "http://localhost:3000/products/3",
+          "quantity": 4
+        },
+        {
+          "productUrl": "http://localhost:3000/products/5",
+          "quantity": 1
         }
       ],
       "purchaseHistory": [],
@@ -38,63 +42,233 @@
   "products": [
     {
       "id": "1",
-      "name": "La Cabra",
-      "description": "GOAT",
-      "price": 99999,
-      "category": "BEEEEE",
+      "name": "Pikachu",
+      "description": "Amigurumi de Pikachu hecho a mano en cashmilon de verano, suave y de alta calidad. Con un tamaño de 12 cm, este Pikachu es el compañero perfecto para los fans de Pokémon. Ideal como decoración o regalo especial.",
+      "price": 10000,
+      "category": "amigurumi",
       "stock": 10,
       "state": "active",
-      "imageUrl": "http://localhost:3001/images/0d50"
+      "imageUrl": "http://localhost:3001/images/1442"
     },
     {
       "id": "2",
-      "name": "Mili Rodriguez",
-      "description": "mili",
-      "price": 5,
-      "category": "Accesorio",
-      "stock": 1,
+      "name": "My Melody",
+      "description": "Amigurumi de My Melody hecho a mano ,suave y esponjoso. Con un tamaño compacto de 12 cm, este muñeco es ideal para decorar o llevar a cualquier lugar. Un regalo perfecto para los amantes de My Melody y el universo de Sanrio. ¡Añade un toque adorable a tu colección!",
+      "price": 10000,
+      "category": "amigurumi",
+      "stock": 5,
       "state": "active",
-      "imageUrl": "http://localhost:3001/images/ad40"
+      "imageUrl": "http://localhost:3001/images/5ca8"
     },
     {
       "id": "3",
-      "name": "kuromi",
-      "description": "kuromi",
-      "price": 5,
-      "category": "amigurumi",
+      "name": "Necessaire",
+      "description": "Necessaire hecho a mano de 15 cm de alto y 20 cm de ancho, con cierre resistente. Ideal para organizar maquillaje, higiene o accesorios personales, perfecto para el día a día o viajes. ¡Práctico y elegante!",
+      "price": 15000,
+      "category": "Accesorio",
       "stock": 5,
       "state": "active",
-      "imageUrl": "http://localhost:3001/images/1330"
+      "imageUrl": "http://localhost:3001/images/96f6"
     },
     {
       "id": "4",
-      "name": "my melo",
-      "description": "my melo",
-      "price": 5,
-      "category": "amigurumi",
-      "stock": 5,
+      "name": "Checkered  bag",
+      "description": "Bolso de hombro hecho a mano con hilo de algodón en tonos burdeos y crema. Con un tamaño de 25 cm x 28 cm, es perfecto para lo esencial como llaves, teléfono y tarjetas. Un accesorio elegante y moderno para tu día a día.",
+      "price": 25000,
+      "category": "Accesorio",
+      "stock": 6,
       "state": "active",
-      "imageUrl": "http://localhost:3001/images/004e"
+      "imageUrl": "http://localhost:3001/images/a225"
     },
     {
       "id": "5",
-      "name": "AMONGUS",
-      "description": "AMONGUS",
-      "price": 5,
+      "name": "Los Gatitos",
+      "description": "Este adorable gatito amigurumi de 8 cm es perfecto para llaves, mochilas o bolsos. Hecho a mano con hilo de alta calidad y estilo siamés (o el que prefieras). Un solo gatito, ideal para los amantes de los gatos. ¡Un regalo tierno y lleno de personalidad!",
+      "price": 6000,
       "category": "amigurumi",
-      "stock": 5,
+      "stock": 15,
       "state": "active",
-      "imageUrl": "http://localhost:3001/images/89a7"
+      "imageUrl": "http://localhost:3001/images/a781"
     },
     {
       "id": "6",
-      "name": "mochilita",
-      "description": "lol",
-      "price": 5,
+      "name": "Luffy y Chopper",
+      "description": "Muñecos a crochet de Luffy y Chopper de 8 cm, perfectos para decorar o agregar a tu colección. Hechos a mano con detalles únicos, ideales para los fans de One Piece. ¡Un toque adorable para tu espacio!",
+      "price": 16000,
       "category": "amigurumi",
       "stock": 7,
       "state": "active",
-      "imageUrl": "http://localhost:3001/images/4d69"
+      "imageUrl": "http://localhost:3001/images/6f04"
+    },
+    {
+      "id": "7",
+      "name": "Chunky Miffy",
+      "description": "Este adorable Miffy de 30 cm está hecho a mano con hilo de chenille de alta calidad, lo que le da una textura suave y esponjosa. Perfecto como decoración o para regalar, su tamaño y diseño único lo convierten en un compañero encantador para cualquier espacio. ¡El toque tierno y moderno que estabas buscando!",
+      "price": 20000,
+      "category": "amigurumi",
+      "stock": 5,
+      "imageUrl": "http://localhost:3001/images/f2be",
+      "state": "active"
+    },
+    {
+      "id": "8",
+      "name": "Godsilly",
+      "description": "Este adorable dinosaurio amigurumi de 10 cm, hecho a mano con hilo de alta calidad, es perfecto para los amantes de los animales y el crochet. Su tamaño compacto lo convierte en un accesorio único para decorar o regalar. ¡Un toque tierno y divertido para cualquier colección!",
+      "price": 10000,
+      "category": "amigurumi",
+      "stock": 16,
+      "imageUrl": "http://localhost:3001/images/943b",
+      "state": "active"
+    },
+    {
+      "id": "9",
+      "name": "Gorrito y Mitones",
+      "description": "Gorrito y mitones a crochet hechos a mano, con un diseño de líneas grises y negras. Perfectos para mantenerte abrigado con estilo, ideales para el frío. Un set cómodo y elegante para tus días de invierno.",
+      "price": 20000,
+      "category": "Accesorio",
+      "stock": 10,
+      "imageUrl": "http://localhost:3001/images/38c0",
+      "state": "active"
+    },
+    {
+      "id": "10",
+      "name": "Bear Hat",
+      "description": "Este gorrito blanco con orejas de oso está hecho a mano a crochet con hilo muy suave, ideal para el invierno. Perfecto para mantenerte abrigado y darle un toque tierno a tu look. ¡Un accesorio cálido y adorable!",
+      "price": 20000,
+      "category": "Accesorio",
+      "stock": 15,
+      "state": "active",
+      "imageUrl": "http://localhost:3001/images/5811"
+    },
+    {
+      "id": "11",
+      "name": "Pochita",
+      "description": "Adorable Pochita de 10 cm hecha a mano, perfecta para decorar o regalar. Con detalles cuidadosamente tejidos, es el accesorio ideal para los fans del anime y los coleccionistas. ¡Un toque tierno y único para tu colección!",
+      "price": 10000,
+      "category": "amigurumi",
+      "stock": 11,
+      "state": "active",
+      "imageUrl": "http://localhost:3001/images/1091"
+    },
+    {
+      "id": "12",
+      "name": "Round Kitty",
+      "description": "Este gatito redondo de 8 cm, hecho a mano, es perfecto para agregar un toque adorable a tus llaves, mochilas o como decoración. Su diseño compacto y tierno lo convierte en el accesorio ideal para los amantes de los gatos. ¡Un regalo encantador y único!",
+      "price": 8000,
+      "category": "amigurumi",
+      "stock": 10,
+      "imageUrl": "http://localhost:3001/images/19f2",
+      "state": "active"
+    },
+    {
+      "id": "13",
+      "name": "Goku Niño y Nube Voladora",
+      "description": "Este adorable set de Goku niño de 20 cm con su nube voladora está hecho a mano, ideal para los fans de Dragon Ball. Con detalles únicos, es perfecto para decorar tu espacio o añadir a tu colección. ¡Un toque tierno y épico para los seguidores de Goku!",
+      "price": 22000,
+      "category": "amigurumi",
+      "stock": 5,
+      "imageUrl": "http://localhost:3001/images/c64c",
+      "state": "active"
+    },
+    {
+      "id": "14",
+      "name": "Small Miffy",
+      "description": "Este adorable llavero de Miffy de 8 cm está hecho a mano con mucho cariño. Perfecto para darle un toque tierno a tus llaves, mochilas o bolsos. ¡Un accesorio encantador y compacto para los fans de Miffy!",
+      "price": 6000,
+      "category": "amigurumi",
+      "stock": 20,
+      "imageUrl": "http://localhost:3001/images/37bb",
+      "state": "active"
+    },
+    {
+      "id": "15",
+      "name": "Ramo de Flores",
+      "description": "Este encantador llavero ramo de flores de 5 cm está hecho a mano, ideal para añadir un toque colorido y fresco a tus llaves, mochilas o bolsos. ¡Un detalle delicado y único para tu colección de accesorios!",
+      "price": 6000,
+      "category": "amigurumi",
+      "stock": 22,
+      "imageUrl": "http://localhost:3001/images/66b0",
+      "state": "active"
+    },
+    {
+      "id": "16",
+      "name": "Suculenta ",
+      "description": "Este almohadón de suculenta de 40 cm, hecho a mano en crochet, aporta un toque fresco y natural a tu espacio. Con detalles cuidados y materiales suaves, es perfecto para decorar con estilo y comodidad. ¡Una pieza única para los amantes de la decoración artesanal!",
+      "price": 30000,
+      "category": "Accesorio",
+      "stock": 10,
+      "imageUrl": "http://localhost:3001/images/2414",
+      "state": "active"
+    },
+    {
+      "id": "17",
+      "name": "Sweater",
+      "description": "Este sweater blanco con negro es perfecto para un look casual y moderno. Hecho con materiales suaves y cómodos, su diseño sencillo pero elegante lo convierte en una prenda versátil para cualquier ocasión. ¡Un básico que no puede faltar en tu armario!",
+      "price": 60000,
+      "category": "Accesorio",
+      "stock": 2,
+      "imageUrl": "http://localhost:3001/images/a9af",
+      "state": "active"
+    },
+    {
+      "id": "18",
+      "name": "Accesorio Personalizado",
+      "description": "¡Crea tu accesorio único y personalizado! Si deseas un diseño especial, no dudes en enviarnos tu consulta por email. Nos encantará saber tus ideas y trabajar contigo para crear la pieza perfecta. Solo envíanos los detalles que deseas (colores, nombre, diseño) y nos encargaremos de hacer realidad tu pedido. ¡Esperamos tu mensaje!",
+      "price": 10000,
+      "category": "Accesorio",
+      "stock": 5,
+      "imageUrl": "http://localhost:3001/images/a88f",
+      "state": "active"
+    },
+    {
+      "id": "19",
+      "name": "Amigurumi Personalizado",
+      "description": "¡Crea tu amigurumi único y personalizado! Si deseas un diseño especial, no dudes en enviarnos tu consulta por email, indicando tus preferencias (colores, nombre, diseño). El precio abonado corresponde al pedido finalizado y confirmado. Nos encantará saber tus ideas y trabajar contigo para crear la pieza perfecta. ¡Esperamos tu mensaje y nos encargaremos de hacer realidad tu pedido!",
+      "price": 10000,
+      "category": "amigurumi",
+      "stock": 10,
+      "imageUrl": "http://localhost:3001/images/6589",
+      "state": "active"
+    },
+    {
+      "id": "20",
+      "name": "Heart Tote  Bag",
+      "description": "Esta tote bag de 35x35 cm con cuadrados de corazones es perfecta para añadir un toque romántico y único a tu look. Hecha a mano con materiales resistentes, es ideal para llevar tus pertenencias diarias con estilo. ¡Un accesorio funcional y lleno de amor para tu día a día!",
+      "price": 30000,
+      "category": "amigurumi",
+      "stock": 10,
+      "state": "active",
+      "imageUrl": "http://localhost:3001/images/ad9f"
+    },
+    {
+      "id": "21",
+      "name": "Katamari Damacy ",
+      "description": "Este Prince de Katamari Damacy de 15 cm viene con su bola magnética, perfecta para recrear la magia del juego. Hecho a mano con detalles fieles al diseño original, es un accesorio ideal para los fanáticos. ¡Un toque único para tu colección o decoración!",
+      "price": 25000,
+      "category": "amigurimi",
+      "stock": 23,
+      "state": "active",
+      "imageUrl": "http://localhost:3001/images/4972"
+    },
+    {
+      "id": "22",
+      "name": "Bandana",
+      "description": "Esta bandana artesanal, hecha en hilo de algodón, es perfecta para añadir un toque natural y fresco a tu estilo. Su textura suave y diseño versátil la hacen ideal para llevar en el cabello, el cuello o como accesorio en tu bolso. ¡Un complemento único y cómodo para tu look diario!",
+      "price": 15000,
+      "category": "Accesorio",
+      "stock": 15,
+      "imageUrl": "http://localhost:3001/images/9262",
+      "state": "active"
+    },
+    {
+      "id": "23",
+      "name": "Among Us",
+      "description": "Este amigurumi de Among Us de 10 cm es ideal para los fans del juego. Hecho a mano con detalles precisos, es perfecto para decorar tu espacio o llevar contigo. ¡Un toque divertido y geek para cualquier lugar!",
+      "price": 8000,
+      "category": "amigurumi",
+      "stock": 25,
+      "imageUrl": "http://localhost:3001/images/d620",
+      "state": "active"
     }
   ]
 }

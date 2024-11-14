@@ -38,6 +38,7 @@ p {
   position: relative;
   cursor: pointer;
   transition: transform 0.1s ease-in-out, background-color 0.3s ease;
+  color:#000000b6
 }
 
 .product-card img {

@@ -2,7 +2,7 @@
 .product-details {
   background-color: #d1e3eb;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap; /* Prevent wrapping of elements */
   gap: 60px;
   width: 70%;
   padding: 20px;
@@ -11,9 +11,10 @@
   margin: 20px auto;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   justify-content: center;
-  align-items: flex-start;
+  align-items: center; /* Center elements vertically */
   text-align: left;
 }
+
 
 /* Product Image with Border */
 .product-image {
@@ -23,7 +24,9 @@
   border-radius: 10px;
   padding: 5px;
   margin-bottom: 15px;
-  height: 50%;
+  height: auto; /* Adjusted to auto to maintain image aspect ratio */
+  object-fit: cover; /* Ensures the image covers the container */
+  max-height: 350px; /* Set a max height for the image */
 }
 
 /* Product Information */
@@ -84,20 +87,18 @@ input[type="number"] {
 
 /* Confirmation Message Styling */
 .added-to-cart-message {
-  color: #4caf50; /* Success color */
+  color: #4caf50;
   font-size: 0.9rem;
-  margin-top: 10px; /* Space below the button */
-  text-align: center;
+  margin-top: 10px;
   font-weight: bold;
-  opacity: 0; /* Initially hidden */
+  opacity: 0;
   transition: opacity 0.3s ease-in-out;
 }
 
 .added-to-cart-message.show {
-  opacity: 1; /* Show message */
+  opacity: 1;
 }
 
-/* Shipping Link Styling */
 .shipping-link {
   display: block;
   margin-top: 10px;
@@ -112,7 +113,7 @@ input[type="number"] {
   color: #388e3c;
 }
 
-/* Shipping Prices Styling */
+
 .shipping-prices {
   margin-top: 15px;
   padding: 10px;
@@ -138,70 +139,67 @@ input[type="number"] {
   margin: 5px 0;
 }
 
-/* Responsive Styling */
+
 @media (max-width: 768px) {
   .product-details {
-    width: 95%; /* Make the container almost full width on small screens */
-    gap: 15px; /* Reduce the gap for smaller screens */
+    width: 95%;
+    gap: 15px;
   }
 
   .product-image {
-    width: 90%; /* Ensure image is full-width on mobile */
-    max-width: none; /* Remove the max-width on mobile */
+    width: 90%;
+    max-width: none;
   }
 
   .info h1 {
-    font-size: 1.4rem; /* Adjust title size */
+    font-size: 1.4rem;
   }
 
   .info h3 {
-    font-size: 1.2rem; /* Adjust subtitle size */
+    font-size: 1.2rem;
   }
 
   .info p {
-    font-size: 0.85rem; /* Smaller paragraph font size */
-  }
+    font-size: 0.85rem;
 
   .quantity-container {
-    flex-direction: column; /* Stack quantity label and input vertically */
-    gap: 10px;
+    flex-direction: column;
   }
 
   input[type="number"] {
-    width: 50px; /* Smaller input width on mobile */
+    width: 50px;
   }
 
   .add-to-cart {
-    padding: 10px 20px; /* Adjust padding */
-    font-size: 0.9rem; /* Smaller button text */
+    padding: 10px 20px;
+    font-size: 0.9rem;
   }
 
   .shipping-prices {
-    padding: 8px; /* Smaller padding for mobile */
+    padding: 8px;
   }
 
   .shipping-prices h4 {
-    font-size: 1rem; /* Smaller header for shipping prices */
+    font-size: 1rem;
   }
 
   .shipping-prices ul {
-    padding-left: 10px; /* Ensure proper indentation on smaller screens */
+    padding-left: 10px;
   }
 }
 
-/* For very small screens (below 480px) */
 @media (max-width: 480px) {
   .product-details {
-    width: 100%; /* Full width for very small screens */
-    padding: 15px; /* Adjust padding for tiny screens */
+    width: 100%;
+    padding: 15px;
   }
 
   .product-image {
-    width: 90%; /* Full width image */
+    width: 90%;
   }
 
   .info h1 {
-    font-size: 1.2rem; /* Further reduce font size for small screens */
+    font-size: 1.2rem;
   }
 
   .info h3 {
@@ -222,6 +220,7 @@ input[type="number"] {
   }
 
   .shipping-prices {
-    padding: 6px; /* Further reduce padding */
+    padding: 6px;
   }
+}
 }
