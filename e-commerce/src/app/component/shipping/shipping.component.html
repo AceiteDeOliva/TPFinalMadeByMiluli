@@ -1,0 +1,76 @@
+<div class="shipping">
+  <form [formGroup]="shippingForm" (ngSubmit)="saveShippingData()">
+    <h2>Datos Destinatario</h2>
+
+    <!-- Recipient Name Field -->
+    <label for="recipientName">Nombre:</label>
+    <div *ngIf="shippingForm.get('recipientName')?.invalid && (shippingForm.get('recipientName')?.touched || shippingForm.get('recipientName')?.dirty)">
+      <small *ngIf="shippingForm.get('recipientName')?.hasError('required')">Este campo es obligatorio.</small>
+    </div>
+    <input type="text" id="recipientName" formControlName="recipientName" required />
+
+    <!-- Recipient Surname Field -->
+    <label for="recipientSurname">Apellido:</label>
+    <div *ngIf="shippingForm.get('recipientSurname')?.invalid && (shippingForm.get('recipientSurname')?.touched || shippingForm.get('recipientSurname')?.dirty)">
+      <small *ngIf="shippingForm.get('recipientSurname')?.hasError('required')">Este campo es obligatorio.</small>
+    </div>
+    <input type="text" id="recipientSurname" formControlName="recipientSurname" required />
+
+    <div *ngIf="isLoggedIn">
+      <label for="email">Correo Electrónico:</label>
+      <div *ngIf="shippingForm.get('email')?.invalid && (shippingForm.get('email')?.touched || shippingForm.get('email')?.dirty)">
+        <small *ngIf="shippingForm.get('email')?.hasError('required')">Este campo es obligatorio.</small>
+        <small *ngIf="shippingForm.get('email')?.hasError('email')">El formato del correo electrónico no es válido.</small>
+      </div>
+      <input type="email" id="email" formControlName="email" [value]="userEmail" />
+    </div>
+
+    <div *ngIf="!isLoggedIn">
+      <label for="email">Correo Electrónico:</label>
+      <div *ngIf="shippingForm.get('email')?.invalid && (shippingForm.get('email')?.touched || shippingForm.get('email')?.dirty)">
+        <small *ngIf="shippingForm.get('email')?.hasError('required')">Este campo es obligatorio.</small>
+        <small *ngIf="shippingForm.get('email')?.hasError('email')">El formato del correo electrónico no es válido.</small>
+      </div>
+      <input type="email" id="email" formControlName="email" required />
+    </div>
+
+    <h2>Selecciona el Tipo de Envío</h2>
+    <label>
+      <input type="radio" formControlName="shippingMethod" value="domicilio" /> Envío a Domicilio: $8000
+    </label>
+    <label>
+      <input type="radio" formControlName="shippingMethod" value="sucursal" /> Envío a Sucursal: $6000
+    </label>
+    <div *ngIf="shippingForm.get('shippingMethod')?.value === 'domicilio'">
+      <p>Envío a Domicilio seleccionado. Costo adicional de $8000.</p>
+    </div>
+    <div *ngIf="shippingForm.get('shippingMethod')?.value === 'sucursal'">
+      <p>Envío a Sucursal seleccionado. Costo adicional de $6000.</p>
+    </div>
+
+    <h2>Dirección de Entrega</h2>
+    <label for="street">Calle:</label>
+    <div *ngIf="shippingForm.get('street')?.invalid && (shippingForm.get('street')?.touched || shippingForm.get('street')?.dirty)">
+      <small *ngIf="shippingForm.get('street')?.hasError('required')">Este campo es obligatorio.</small>
+    </div>
+    <input type="text" id="street" formControlName="street" required />
+
+    <label for="provinciaDestino">Provincia:</label>
+    <div *ngIf="shippingForm.get('provinciaDestino')?.invalid && (shippingForm.get('provinciaDestino')?.touched || shippingForm.get('provinciaDestino')?.dirty)">
+      <small *ngIf="shippingForm.get('provinciaDestino')?.hasError('required')">Este campo es obligatorio.</small>
+    </div>
+    <input type="text" id="provinciaDestino" formControlName="provinciaDestino" required />
+
+    <label for="cpDestino">Código Postal:</label>
+    <div *ngIf="shippingForm.get('cpDestino')?.invalid && (shippingForm.get('cpDestino')?.touched || shippingForm.get('cpDestino')?.dirty)">
+      <small *ngIf="shippingForm.get('cpDestino')?.hasError('required')">Este campo es obligatorio.</small>
+    </div>
+    <input type="text" id="cpDestino" formControlName="cpDestino" required />
+
+    <button type="submit" [disabled]="shippingForm.invalid">
+      {{ shippingForm.invalid ? 'Formulario Incompleto' : 'Guardar'}}
+    </button>
+  </form>
+</div>
+
+

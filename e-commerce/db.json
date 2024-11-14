@@ -38,7 +38,7 @@
       "description": "GOAT",
       "price": 99999,
       "category": "BEEEEE",
-      "stock": 1,
+      "stock": 10,
       "state": "active",
       "imageUrl": "http://localhost:3001/images/0d50"
     },
@@ -88,7 +88,7 @@
       "description": "lol",
       "price": 5,
       "category": "amigurumi",
-      "stock": 5,
+      "stock": 7,
       "state": "active",
       "imageUrl": "http://localhost:3001/images/4d69"
     }

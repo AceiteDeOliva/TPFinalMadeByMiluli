@@ -1,0 +1,152 @@
+/* General Styles */
+.shipping {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #FCD5CE;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  justify-content: center;
+  text-align: center;
+  padding: 30px;
+  align-items: center;
+  margin: 15px;
+  border-radius: 12px;
+
+}
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+label {
+  display: block; /* Makes the label take up the full width and stack on its own line */
+  font-size: 18px;
+  margin-bottom: 5px; /* Adds space between label and input */
+}
+
+
+small {
+  display: block; /* Make sure the error message appears on its own line */
+  color: rgb(218, 89, 89);
+  font-size: 1.2rem; /* Adjust font size for error messages */
+  margin-top: 5px; /* Adds spacing between input and error message */
+  margin-bottom: 10px; /* Adds spacing between error message and next form element */
+}
+
+
+/* Styling for input fields */
+input[type="text"],
+input[type="email"] {
+  width: 90%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus {
+  border-color: #C4DCBB;
+  outline: none;
+}
+
+input:focus {
+  border-color: #0066cc;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 102, 204, 0.5);
+}
+
+
+/* Styling for submit button */
+button[type="submit"] {
+  width: 50%;
+  padding: 12px;
+  background-color: #95CBEE;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 15px; /* Adds spacing between inputs and the submit button */
+}
+
+button[type="submit"]:hover {
+  background-color: #C4DCBB;
+  color: black;
+}
+
+/* Styling for result message */
+.result {
+  margin-top: 20px;
+  background-color: #e1f5e1;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #4CAF50;
+}
+
+.result h3 {
+  font-size: 18px;
+  color: #333;
+}
+
+/* Styling for checkbox input */
+.shipping input[type="checkbox"] {
+  width: 22px; /* Adjust size of checkbox */
+  height: 22px;
+  margin-right: 10px; /* Space between checkbox and label text */
+  accent-color: #007bff; /* Set the color of the checkbox when checked */
+  border-radius: 10px; /* Make the checkbox rounded */
+  background-color: white; /* Ensure background is white for better visibility */
+  border: 2px solid #007bff; /* Set the border color */
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+}
+
+/* Hover effect for checkbox */
+.shipping input[type="checkbox"]:hover {
+  background-color: #f1f1f1;
+}
+
+/* Adjust layout on smaller screens */
+@media (max-width: 480px) {
+  .shipping {
+    width: 100%;
+    padding: 10px;
+  }
+
+  h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+
+  label {
+    font-size: 14px;
+    margin-bottom: 6px;
+  }
+
+  input[type="text"],
+  input[type="email"] {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  button[type="submit"] {
+    font-size: 14px;
+    padding: 10px;
+    width: 100%; /* Full width on small screens */
+  }
+
+  .result h3 {
+    font-size: 16px;
+  }
+
+  /* Adjust input and button for smaller screens */
+  input[type="text"],
+  input[type="email"] {
+    width: 100%;
+  }
+}

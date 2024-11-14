@@ -1,3 +1,4 @@
+/* General Styles */
 .container {
   padding: 15px;
 }
@@ -11,17 +12,47 @@
 }
 
 .header img {
-  width: 400px;
+  width: 600px; /* Default larger image size */
+  max-width: 100%; /* Ensure image is responsive */
+  height: auto; /* Maintain aspect ratio */
+}
+.header h1 {
+  font-size: 70px;  /* Increase the font size for the heading */
+  font-weight: bold;
+  margin-bottom: 20px;
+  color:#84B6E5 ;/* Optional: Adds some space below the heading */
 }
 
+/* Mobile / Tablet Styles */
 @media (max-width: 768px) {
   .header {
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center; /* Center align elements */
+    gap: 15px; /* Adjust gap between elements */
   }
 
   .container {
-    padding: 15px;
+    padding: 20px; /* Ensure adequate padding on smaller screens */
+  }
+
+  .header img {
+    width: 90%; /* Make the image responsive to screen size */
+    max-width: 500px; /* Limit image size on tablets */
+  }
+}
+
+/* Smaller Mobile Styles */
+@media (max-width: 480px) {
+  .header img {
+    width: 100%; /* Full-width image on mobile devices */
+    max-width: 400px; /* Restrict image size on very small screens */
+  }
+
+  .container {
+    padding: 10px; /* Reduce padding on mobile */
+  }
+
+  .header {
+    gap: 10px; /* Smaller gap between elements on small screens */
   }
 }
