@@ -21,6 +21,8 @@ import { CheckoutComponent } from './component/checkOut/check-out/check-out.comp
 import { CartPageComponent } from './pages/cart-page/cart-page.component';
 import { PurchaseLoginPageComponent } from './pages/active-product-pages/purchase-login-page/purchase-login-page.component';
 import { ShippingInfoPageComponent } from './pages/shipping-info-page/shipping-info-page.component';
+import { HomeEmployeeComponent } from './component/home-employee/home-employee.component';
+import { LowStockListComponent } from './pages/low-stock-list/low-stock-list.component';
 
 
 
@@ -30,6 +32,7 @@ export const routes: Routes = [
 
   { path: 'myCart', component: CartPageComponent },
   { path: 'home', component: HomeComponent },
+  { path: 'homeEmployee', component: HomeEmployeeComponent },
   { path: 'login', component: LoginPageComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'listCategory', component: CategoriesComponent },
@@ -44,6 +47,7 @@ export const routes: Routes = [
   { path: 'checkout', component: CheckoutComponent },
   { path: 'loginPurchase', component:PurchaseLoginPageComponent },
   { path: 'shippingInfo', component: ShippingInfoPageComponent},
+  { path: 'stock', component: LowStockListComponent },
   { path: "**", redirectTo: "home" },
 
 ];

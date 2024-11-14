@@ -63,6 +63,7 @@ export class NavBarComponent {
 
   switchToAdminMode() {
     this.authService.changeCredential('admin');
+
   }
 
 

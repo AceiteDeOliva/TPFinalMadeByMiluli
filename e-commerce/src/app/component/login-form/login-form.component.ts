@@ -50,7 +50,12 @@ export class LoginFormComponent {
           () => {
             console.log('Guest cart synced successfully!');
             // Redirect to home after syncing the cart
-            this.router.navigate(['/home']);
+            if(user.credential=== 'user'){
+              this.router.navigate(['/home']);
+            }else {
+              this.router.navigate(['/homeEmployee']);
+            }
+
           },
           error => {
             console.error('Error syncing guest cart:', error);
