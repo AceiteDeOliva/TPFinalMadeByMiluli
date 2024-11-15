@@ -1,47 +1,52 @@
-<div *ngIf="selectedProduct" class="product-details">
-  <div>
-    <img
-      [src]="selectedProduct.imageUrl || '/Assets/Logo made by miluli/Logo_MadeByMiluli CONTRASTE - CENTRADO.png'"
-      alt="{{ selectedProduct.name }}"
-      class="product-image"
-    />
-  </div>
-  <div class="info">
-    <h1>{{ selectedProduct.name }}</h1>
-    <h3>${{ selectedProduct.price }}</h3>
-    <p>{{ selectedProduct.description }}</p>
 
-    <div class="quantity-container">
-      <label for="quantity">Cantidad:</label>
-      <input
-        id="quantity"
-        type="number"
-        [(ngModel)]="quantity"
-        min="1"
-        [max]="selectedProduct.stock"
-        aria-label="Quantity"
+
+  <div *ngIf="selectedProduct" class="product-details">
+    <button class="volver">Volver</button>
+    <div>
+      <img
+        [src]="selectedProduct.imageUrl || '/Assets/Logo made by miluli/Logo_MadeByMiluli CONTRASTE - CENTRADO.png'"
+        alt="{{ selectedProduct.name }}"
+        class="product-image"
       />
     </div>
+    <div class="info">
+      <h1>{{ selectedProduct.name }}</h1>
+      <h3>${{ selectedProduct.price }}</h3>
+      <p>{{ selectedProduct.description }}</p>
 
-    <button class="add-to-cart" (click)="addToCart(quantity)">Agregar al Carrito</button>
-    <div class="added-to-cart-message" [class.show]="showAddedToCartMessage">
-      {{ cartMessage }}  <!-- Muestra el mensaje de éxito o error -->
-    </div>
-  
-    <a class="shipping-link" (click)="toggleShippingPrices()">Ver precios de envío</a>
+      <div class="quantity-container">
+        <label for="quantity">Cantidad:</label>
+        <input
+          id="quantity"
+          type="number"
+          [(ngModel)]="quantity"
+          min="1"
+          [max]="selectedProduct.stock"
+          aria-label="Quantity"
+        />
+      </div>
 
-    <div *ngIf="showShippingPrices" class="shipping-prices">
-      <h4>Precios de Envío:</h4>
+      <button class="button" (click)="addToCart(quantity)">Agregar al Carrito</button>
+      <div class="added-to-cart-message" [class.show]="showAddedToCartMessage">
+        {{ cartMessage }}  <!-- Muestra el mensaje de éxito o error -->
+      </div>
+
+      <a class="shipping-link" (click)="toggleShippingPrices()">Ver precios de envío</a>
+
+      <div *ngIf="showShippingPrices" class="shipping-prices">
+        <h4>Precios de Envío:</h4>
+        <ul>
+          <li>Envío a Domicilio: $8000</li>
+          <li>Envío a Sucursal:  $6000</li>
+        </ul>
+      </div>
+      <h4>Métodos de Pago:</h4>
       <ul>
-        <li>Envío a Domicilio: $8000</li>
-        <li>Envío a Sucursal:  $6000</li>
+        <li>Débito</li>
+        <li>Crédito</li>
+        <li>Transferencia</li>
       </ul>
     </div>
-    <h4>Métodos de Pago:</h4>
-    <ul>
-      <li>Débito</li>
-      <li>Crédito</li>
-      <li>Transferencia</li>
-    </ul>
   </div>
-</div>
+
+
