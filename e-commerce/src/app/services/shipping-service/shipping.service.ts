@@ -6,7 +6,7 @@ import { Order } from '../../models/orders';
   providedIn: 'root'
 })
 export class ShippingService {
-  private shippingDataSubject = new BehaviorSubject<Order | null>(null); 
+  private shippingDataSubject = new BehaviorSubject<Order | null>(null);
 
   constructor() {}
 
@@ -19,4 +19,7 @@ export class ShippingService {
   setShippingData(data: Order) {
     this.shippingDataSubject.next(data);
   }
+
+
+  
 }

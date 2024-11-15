@@ -45,7 +45,7 @@
         <span>Mi Cuenta</span>
         <ul class="nested" *ngIf="accountMenuVisible">
           <li><a routerLink="profile">Perfil</a></li>
-          <li><a routerLink="orders">Pedidos</a></li>
+          <li><a routerLink="purchase">Pedidos</a></li>
           <li *ngIf="(credential$ | async) === 'adminUser'">
             <a routerLink="homeEmployee" (click)="switchToAdminMode()">Modo Admin</a>
           </li>
