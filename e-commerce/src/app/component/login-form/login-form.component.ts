@@ -41,7 +41,7 @@ export class LoginFormComponent {
 
     this.userService.authenticateUser(email, password).subscribe(user => {
       if (user) {
-        alert('Login successful!');
+        
         localStorage.setItem('currentUserId', user.id);
         this.authService.changeCredential(user.credential);
 
