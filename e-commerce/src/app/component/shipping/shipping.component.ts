@@ -19,8 +19,6 @@ export class ShippingComponent implements OnInit {
   isLoggedIn: boolean = false;
   userEmail: string = '';
   products: CartItem[] = [];
-  shippingCost: number = 0;
-  cartSubtotal: number = 0; // Add cartSubtotal property
 
   @Output() formSubmitted: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -33,7 +31,7 @@ export class ShippingComponent implements OnInit {
     this.shippingForm = this.fb.group({
       recipientName: ['', Validators.required],
       recipientSurname: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]], // Initialize email as required but not disabled
+      email: ['', [Validators.required, Validators.email]],
       street: ['', Validators.required],
       provinciaDestino: ['', Validators.required],
       cpDestino: ['', Validators.required],
@@ -42,34 +40,45 @@ export class ShippingComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Fetch cart items
-    this.cartService.getCarrito().subscribe({
-      next: (cartItems) => {
-        this.products = cartItems;
-        this.fetchCartSubtotal(); // Fetch subtotal after cart items are loaded
-      },
-      error: () => {
-        console.error('Error fetching cart items');
-      }
+
+
+    this.cartService.getCarrito().subscribe((cartItems) => {
+      this.products = cartItems;
     });
 
-    // Check if user is logged in and pre-fill email if they are
-    this.userService.getUser().subscribe((users) => {
-      const currentUser = users.find((user) => user.email);
-      if (currentUser) {
-        this.isLoggedIn = true;
-        this.userEmail = currentUser.email;
-        this.shippingForm.controls['email'].setValue(this.userEmail);
-      } else {
+
+    const currentUserId = localStorage.getItem('currentUserId');
+
+    if (currentUserId) {
+      this.userService.getUserById(currentUserId).subscribe((currentUser) => {
+        if (currentUser) {
+          this.isLoggedIn = true;
+          this.userEmail = currentUser.email;
+
+          this.shippingForm.controls['email'].setValue(this.userEmail);
+          this.shippingForm.controls['email'].disable();
+        } else {
+          this.isLoggedIn = false;
+          this.shippingForm.controls['email'].enable();
+        }
+      }, (error) => {
+        console.error('Error fetching user:', error);
         this.isLoggedIn = false;
-      }
-    });
+        this.shippingForm.controls['email'].enable();
+      });
+    } else {
+      this.isLoggedIn = false;
+      this.shippingForm.controls['email'].enable();
+    }
+
   }
 
   saveShippingData(): void {
     if (this.shippingForm.valid) {
       const orderData: Order = {
-        products: this.products, // Use CartItem here
+
+        products: this.products,  
+
         date: new Date(),
         recipientName: this.shippingForm.value.recipientName,
         recipientSurname: this.shippingForm.value.recipientSurname,
