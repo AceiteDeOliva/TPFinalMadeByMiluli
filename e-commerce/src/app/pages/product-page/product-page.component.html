@@ -1,7 +1,7 @@
 
 
   <div *ngIf="selectedProduct" class="product-details">
-    <button class="volver">Volver</button>
+    <button routerLink="/activeProducts"  class="volver">Volver</button>
     <div>
       <img
         [src]="selectedProduct.imageUrl || '/Assets/Logo made by miluli/Logo_MadeByMiluli CONTRASTE - CENTRADO.png'"
