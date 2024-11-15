@@ -36,7 +36,7 @@
       "password": "12345",
       "cart": [
         {
-          "productUrl": "http://localhost:3000/products/4",
+          "productUrl": "http://localhost:3000/products/6",
           "quantity": 1
         }
       ],
@@ -84,6 +84,29 @@
           "shippingCost": 6000,
           "totalCost": 22000,
           "state": "Procesando"
+        },
+        {
+          "orderId": "",
+          "products": [
+            {
+              "productUrl": "http://localhost:3000/products/1",
+              "quantity": 1
+            },
+            {
+              "productUrl": "http://localhost:3000/products/3",
+              "quantity": 1
+            }
+          ],
+          "date": "2024-11-15T11:22:34.014Z",
+          "recipientName": "José Valentín",
+          "recipientSurname": "Letamendía Muzio",
+          "street": "Olavarría 3583",
+          "provinciaDestino": "Buenos Aires",
+          "cpDestino": "7600",
+          "shippingMethod": "domicilio",
+          "shippingCost": 6000,
+          "totalCost": 31000,
+          "state": "Pendiente"
         }
       ],
       "credential": "user"

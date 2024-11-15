@@ -10,10 +10,9 @@
       <p>Total Cost: {{ order.totalCost | currency }}</p>
       <p><strong>Estado:</strong> {{ order.state}}</p>
 
-      <!-- Mostrar productos solo para la orden actual -->
+      <!-- Mostrar productos solo para la orden actual 
       <div *ngIf="order.products && order.products.length > 0">
         <h4>Productos:</h4>
->>>>>>> 531d7dcdb8cf6ac5be9a058779f82ed6f3a3473c
         <ul>
           <li *ngFor="let product of order.products">
             Producto: {{ product.nombre }} - Cantidad: {{ product.quantity }}
@@ -24,6 +23,7 @@
       <div *ngIf="!order.products || order.products.length === 0">
         <p>No hay productos en esta orden.</p>
       </div>
+    -->
 
       <hr />
     </div>
