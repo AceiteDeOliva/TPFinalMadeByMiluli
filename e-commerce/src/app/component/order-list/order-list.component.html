@@ -1,6 +1,6 @@
 <div class="order-list">
     <h1>All Orders</h1>
-    
+
     <!-- Check if orders exist -->
     <div *ngIf="allOrders.length > 0; else noOrders">
       <div *ngFor="let order of allOrders" class="order-card">
@@ -12,14 +12,14 @@
         <p><strong>Shipping Cost:</strong> {{ order.shippingCost | currency }}</p>
         <p><strong>Total Cost:</strong> {{ order.totalCost | currency }}</p>
         <p><strong>Estado:</strong> {{ order.state }}</p>
-  
+
         <!-- Dropdown to Change State -->
         <div>
           <label for="stateSelect">Change State:</label>
           <select
             id="stateSelect"
             [value]="order.state"
-            (change)="changeOrderState(order, $event.target.value)"
+            
           >
             <option value="Pending">Pending</option>
             <option value="Processing">Processing</option>
@@ -31,7 +31,7 @@
             <option value="Refunded">Refunded</option>
           </select>
         </div>
-  
+
         <!-- List of products -->
         <div>
           <h3>Products:</h3>
@@ -44,10 +44,9 @@
         </div>
       </div>
     </div>
-  
+
     <!-- No orders fallback -->
     <ng-template #noOrders>
       <p>No orders available at the moment.</p>
     </ng-template>
   </div>
-  
