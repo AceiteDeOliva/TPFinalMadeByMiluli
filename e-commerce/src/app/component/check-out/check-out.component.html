@@ -1,11 +1,27 @@
 <div class="checkout-container">
-  <h1>Resumen de su orden</h1>
   <div class="orden">
-    <h2></h2>
-  <app-cart [inputIsTrue]="false"></app-cart>
-  </div>
-  <app-subtotal [inCheckout]="true"></app-subtotal>
-</div>
+    <h1>Resumen de Orden</h1>
+    <div *ngIf="shippingData">
+      <h2>Datos Destinatario</h2>
+      <p><strong>Fecha:</strong> {{ shippingData.date | date: 'short' }}</p>
+      <p><strong>Nombre:</strong> {{ shippingData.recipientName }}</p>
+      <p><strong>Apellido:</strong> {{ shippingData.recipientSurname }}</p>
 
-<div id="wallet_container">
-</div>
+      <h2>Dirección</h2>
+      <p><strong>Calle:</strong> {{ shippingData.street }}</p>
+      <p><strong>Provincia:</strong> {{ shippingData.provinciaDestino }}</p>
+      <p><strong>Código postal:</strong> {{ shippingData.cpDestino }}</p>
+
+      <h2>Información de Envío</h2>
+      <p><strong>Método de envío:</strong> {{ shippingData.shippingMethod }}</p>
+      <p><strong>Costo de envío:</strong> {{ shippingData.shippingCost | currency }}</p>
+      <h2>Productos</h2>
+
+      <div *ngFor="let product of cartProducts">
+        <p><strong>{{ product.name }}</strong> - {{ product.price | currency }}</p>
+      </div>
+      <h3>Total a pagar</h3>
+      <p>{{ shippingData.totalCost }}</p>
+    </div>
+    <div id="wallet_container"></div>
+  </div>
