@@ -3,14 +3,12 @@ import { Component, OnInit } from '@angular/core';
 import { MercadopagoService } from '../../services/mercadopago-service/mercadopago.service';
 import { CheckoutDataService } from '../../services/checkout-data/checkout-data.service';
 import { lastValueFrom } from 'rxjs';
-<<<<<<< HEAD:e-commerce/src/app/component/check-out/check-out.component.ts
 import { ShippingService } from '../../services/shipping-service/shipping.service';
 import { Order } from '../../models/orders';
-=======
 import { SubtotalComponent } from "../../subtotal/subtotal.component";
 import { CartPageComponent } from "../../../pages/cart-page/cart-page.component";
 import { CartComponent } from "../../cart/cart.component";
->>>>>>> afceaa68fb9103d3f3eb1e32f398b12c28b902a5:e-commerce/src/app/component/checkOut/check-out/check-out.component.ts
+
 
 declare var MercadoPago: any;
 
