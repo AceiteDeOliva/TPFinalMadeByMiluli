@@ -17,6 +17,7 @@ import { UserService } from '../../services/user-service/user.service';
 
 export class ProductListComponent implements OnInit {
   @Input() filterTerm: string = ''; // Input to receive the filter term
+  @Input() stock: number =0;
   products: Product[] = [];
   filteredProducts: Product[] = []; // Stores filtered products
   userCredential: string =  '';
@@ -68,7 +69,7 @@ export class ProductListComponent implements OnInit {
           }
           return of(product); // Return original product if no ID
         });
-  
+
         return forkJoin(imageRequests);
       })
     ).subscribe({
@@ -81,18 +82,25 @@ export class ProductListComponent implements OnInit {
       }
     });
   }
-  
+
   // Method to apply filter
   ngOnChanges(): void {
     this.applyFilter();
   }
 
   applyFilter(): void {
-    const lowerFilter = this.filterTerm.toLowerCase();
-    this.filteredProducts = this.products.filter(product =>
-      product.name.toLowerCase().includes(lowerFilter) ||
-      product.category.toLowerCase().includes(lowerFilter)
-    );
+    if(this.stock!==0)
+    {
+    this.filteredProducts= this.products.filter(product =>
+      product.stock < this.stock);
+    } else{
+      const lowerFilter = this.filterTerm.toLowerCase();
+      this.filteredProducts = this.products.filter(product =>
+        product.name.toLowerCase().includes(lowerFilter) ||
+        product.category.toLowerCase().includes(lowerFilter)
+      );
+    }
+
   }
 
   editProduct(selectedProduct: Product): void {
@@ -101,5 +109,5 @@ export class ProductListComponent implements OnInit {
   }
 
 
-  
+
 }

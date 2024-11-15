@@ -1,0 +1,14 @@
+<div class="container">
+  <h2>¿Cómo desea continuar para realizar su compra?</h2>
+  <div  class="option" *ngIf="!continueAsGuest">
+    <a  (click)="continueAsGuestPage()">Continuar como Invitado</a>
+  </div>
+
+  <div  class="option" *ngIf="!continueAsGuest">
+    <a  (click)="navigateToLogin()">Iniciar sesión</a>
+  </div>
+
+  <div class="option" *ngIf="!continueAsGuest">
+    <a  (click)="navigateToRegister()">Registrarse</a>
+  </div>
+</div>
