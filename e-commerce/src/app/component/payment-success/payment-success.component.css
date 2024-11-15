@@ -1,0 +1,83 @@
+.payment-status-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 30px;
+    margin: 20px;
+    background-color: #f9f9f9; /* Light background color */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for styling */
+  }
+  
+  .payment-status-container h1 {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    color: #333333;
+  }
+  
+  .payment-status-container .success-message {
+    font-size: 1.2em;
+    color: #28a745; /* Green for success */
+    margin: 10px 0;
+    font-weight: bold;
+  }
+  
+  .payment-status-container p {
+    font-size: 1em;
+    color: #555555;
+    margin: 10px 0;
+  }
+  
+  .action-buttons {
+    display: flex;
+    gap: 15px; /* Space between buttons */
+    margin-top: 20px;
+  }
+  
+  .action-buttons .button {
+    background-color: #fee9b2;
+    border: 1px solid rgb(100, 169, 243);
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 1em;
+    color: #000000;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .action-buttons .button:hover {
+    background-color: #95cbee;
+    color: white;
+  }
+  
+  .action-buttons .button.secondary {
+    background-color: #e0e0e0;
+    border: 1px solid #cccccc;
+    color: #333333;
+  }
+  
+  .action-buttons .button.secondary:hover {
+    background-color: #bdbdbd;
+    color: white;
+  }
+  
+  @media (max-width: 600px) {
+    .payment-status-container {
+      padding: 15px;
+      margin: 10px;
+    }
+  
+    .action-buttons {
+      flex-direction: column;
+      gap: 10px;
+      width: 100%;
+    }
+  
+    .action-buttons .button {
+      width: 100%;
+    }
+  }
+  

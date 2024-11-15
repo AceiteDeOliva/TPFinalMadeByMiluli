@@ -26,36 +26,44 @@
         {
           "products": [
             {
-              "productUrl": "http://localhost:3000/products/1",
+              "productUrl": "http://localhost:3000/products/11",
+              "quantity": 1
+            },
+            {
+              "productUrl": "http://localhost:3000/products/5",
               "quantity": 1
             }
           ],
-          "date": "2024-11-15T07:45:11.634Z",
+          "date": "2024-11-15T08:29:44.588Z",
           "recipientName": "J.",
           "recipientSurname": "M.",
           "street": "Olavarría 3583",
           "provinciaDestino": "Buenos Aires",
           "cpDestino": "7600",
-          "shippingMethod": "sucursal",
+          "shippingMethod": "domicilio",
           "shippingCost": 6000,
-          "totalCost": 16000
+          "totalCost": 22000
         },
         {
           "products": [
             {
-              "productUrl": "http://localhost:3000/products/1",
+              "productUrl": "http://localhost:3000/products/11",
+              "quantity": 1
+            },
+            {
+              "productUrl": "http://localhost:3000/products/5",
               "quantity": 1
             }
           ],
-          "date": "2024-11-15T07:45:25.991Z",
+          "date": "2024-11-15T08:29:44.588Z",
           "recipientName": "J.",
           "recipientSurname": "M.",
           "street": "Olavarría 3583",
           "provinciaDestino": "Buenos Aires",
           "cpDestino": "7600",
-          "shippingMethod": "sucursal",
+          "shippingMethod": "domicilio",
           "shippingCost": 6000,
-          "totalCost": 16000
+          "totalCost": 22000
         }
       ],
       "credential": "user"
