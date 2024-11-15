@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute,RouterModule } from '@angular/router';
 import { UserService } from '../../services/user-service/user.service';
 import { ShippingService } from '../../services/shipping-service/shipping.service';
 import { CommonModule } from '@angular/common';
@@ -8,7 +8,7 @@ import { CartService } from '../../services/cart-service/cart.service';
 @Component({
   selector: 'app-payment-success',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,RouterModule],
   templateUrl: './payment-success.component.html',
   styleUrls: ['./payment-success.component.css']
 })
