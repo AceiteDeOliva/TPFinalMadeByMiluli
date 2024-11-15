@@ -35,6 +35,7 @@
       <input type="email" id="email" formControlName="email" [readonly]="isLoggedIn" />
     </div>
 
+    
 
     <h2>Selecciona el Tipo de Envío</h2>
     <label>
@@ -49,6 +50,7 @@
     <div *ngIf="shippingForm.get('shippingMethod')?.value === 'sucursal'">
       <p>Envío a Sucursal seleccionado. Costo adicional de $6000.</p>
     </div>
+
 
     <h2>Dirección de Entrega</h2>
     <label for="street">Calle:</label>
@@ -68,6 +70,7 @@
       <small *ngIf="shippingForm.get('cpDestino')?.hasError('required')">Este campo es obligatorio.</small>
     </div>
     <input type="text" id="cpDestino" formControlName="cpDestino" required />
+
 
     <button type="submit" [disabled]="shippingForm.invalid">
       {{ shippingForm.invalid ? 'Formulario Incompleto' : 'Guardar'}}
