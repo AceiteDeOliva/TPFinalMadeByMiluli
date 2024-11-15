@@ -5,8 +5,8 @@
         <div class="cart-item">
           <img [src]="item.details?.imageUrl || '/favicon.ico'" alt="{{ item.details?.name }}" />
           <div class="product-info">
-            <p><strong>Nombre:</strong> {{ item.details?.name || 'N/D' }}</p>
-            <p><strong>Precio:</strong> ${{ item.details?.price || 'N/D' }}</p>
+            <h3> {{ item.details?.name || 'N/D' }}</h3>
+            <p> ${{ item.details?.price || 'N/D' }}</p>
 
             <!-- Contenedor de cantidad y botón -->
             <div class="quantity-container">
