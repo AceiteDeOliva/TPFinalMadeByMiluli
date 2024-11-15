@@ -42,7 +42,7 @@ export class CartComponent implements OnInit {
     this.loadCart();
   }
 
-  // Load cart items and fetch their details
+
   loadCart() {
     this.cartService.getCarrito().pipe(
       tap((cart: { productUrl: string; quantity: number }[]) => {
@@ -52,28 +52,28 @@ export class CartComponent implements OnInit {
       }),
       catchError((error) => {
         console.error('Error loading cart:', error);
-        return of([]); // Si hay error, devolvemos un carrito vacío
+        return of([]);
       })
     ).subscribe();
   }
 
-  // Fetch product details for each item in the cart
+
   loadProductDetails() {
     const productRequests = this.cartItems.map(item =>
       this.productService.fetchProductWithImageByUrl(item.productUrl).pipe(
         map(productWithImage => {
           if (productWithImage.details?.state === 'active') {
-            // Comprobar si la cantidad solicitada no supera el stock
+
             const availableQuantity = Math.min(item.quantity, productWithImage.details.stock);
 
-            // Solo agregar los productos activos al carrito con la cantidad correcta
+
             return {
               ...item,
               quantity: availableQuantity,
               details: productWithImage.details
             };
           } else {
-            // Si el producto está inactivo, no lo agregamos al carrito
+
             return null;
           }
         })
@@ -82,14 +82,14 @@ export class CartComponent implements OnInit {
 
     forkJoin(productRequests).subscribe({
       next: (updatedItems) => {
-        // Filtramos los productos nulos (inactivos) y actualizamos el carrito
+
         this.cartItems = updatedItems.filter(item => item !== null) as { productUrl: string; quantity: number; details: any }[];
-        this.calculateTotal();  // Recalcular el total después de actualizar el carrito
+        this.calculateTotal();
         this.emitCartUpdated();
       },
       error: (error) => {
         console.error('Error fetching product details:', error);
-        this.cartItems = []; // Si ocurre un error, vaciar el carrito
+        this.cartItems = [];
         this.calculateTotal();
         this.emitCartUpdated();
       }
@@ -104,27 +104,27 @@ export class CartComponent implements OnInit {
 
   }
 
-  // Calculate the total order amount (subtotal)
+
   calculateTotal() {
     this.totalAmount = this.cartItems.reduce((total, item) => {
       const price = item.details?.price || 0;
       return total + (price * item.quantity);
     }, 0);
 
-    // Emit the updated subtotal
-    this.subtotal.emit(this.totalAmount);  // Emitting the subtotal value
+
+    this.subtotal.emit(this.totalAmount);
   }
 
-  // Format the total amount
+
   get formattedTotal() {
     return this.decimalPipe.transform(this.totalAmount, '1.0-0')?.replace(',', '.') || '0';
   }
 
-  // Remove product from cart by ID
+
   removeFromCart(productId: string) {
     this.cartService.removeProductFromCart(productId).pipe(
       tap(() => {
-        this.loadCart();  // Reload the cart after removing the product
+        this.loadCart();
         this.calculateTotal();
       }),
       catchError(error => {
@@ -134,7 +134,7 @@ export class CartComponent implements OnInit {
     ).subscribe();
   }
 
-  // Update the quantity of a product in the cart
+
   onQuantityChange(productId: string | undefined, quantity: number) {
     if (!productId) {
       console.warn('Product ID is undefined, cannot update quantity.');
@@ -149,7 +149,7 @@ export class CartComponent implements OnInit {
 
     this.cartService.updateProductQuantity(productId, quantity).pipe(
       tap(() => {
-        this.loadCart();  // Reload the cart after updating the quantity
+        this.loadCart();
         this.calculateTotal();
       }),
       catchError((error) => {
@@ -159,14 +159,14 @@ export class CartComponent implements OnInit {
     ).subscribe();
   }
 
-  // Navigate to the appropriate page (login or shipping info) based on user login status
+
   onStartPurchase() {
     const currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
 
     if (!currentUser) {
-      this.router.navigate(['loginPurchase']);  // Redirigir a la página de login si no está logueado
+      this.router.navigate(['loginPurchase']);
     } else {
-      this.router.navigate(['shippingInfo']);  // Redirigir a la página de información de envío si está logueado
+      this.router.navigate(['shippingInfo']);  
     }
   }
 
