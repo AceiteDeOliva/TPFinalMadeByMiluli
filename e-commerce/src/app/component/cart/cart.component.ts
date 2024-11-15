@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { forkJoin, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { CartService } from '../../services/cart-service/cart.service';
@@ -25,6 +25,7 @@ export class CartComponent implements OnInit {
   totalAmount: number = 0;
   @Output() subtotal = new EventEmitter<number>();
   @Output() lenght =new EventEmitter<number>();
+  @Input() inputIsTrue: boolean = true;
 
 
   constructor(
@@ -51,35 +52,51 @@ export class CartComponent implements OnInit {
       }),
       catchError((error) => {
         console.error('Error loading cart:', error);
-        return of([]);
+        return of([]); // Si hay error, devolvemos un carrito vacío
       })
     ).subscribe();
-
   }
 
   // Fetch product details for each item in the cart
   loadProductDetails() {
     const productRequests = this.cartItems.map(item =>
       this.productService.fetchProductWithImageByUrl(item.productUrl).pipe(
-        map(productWithImage => ({ ...item, details: productWithImage.details }))
+        map(productWithImage => {
+          if (productWithImage.details?.state === 'active') {
+            // Comprobar si la cantidad solicitada no supera el stock
+            const availableQuantity = Math.min(item.quantity, productWithImage.details.stock);
+
+            // Solo agregar los productos activos al carrito con la cantidad correcta
+            return {
+              ...item,
+              quantity: availableQuantity,
+              details: productWithImage.details
+            };
+          } else {
+            // Si el producto está inactivo, no lo agregamos al carrito
+            return null;
+          }
+        })
       )
     );
-    this.calculateTotal();
 
     forkJoin(productRequests).subscribe({
       next: (updatedItems) => {
-        this.cartItems = updatedItems;
-        this.calculateTotal();  // Recalculate total when cart is updated
+        // Filtramos los productos nulos (inactivos) y actualizamos el carrito
+        this.cartItems = updatedItems.filter(item => item !== null) as { productUrl: string; quantity: number; details: any }[];
+        this.calculateTotal();  // Recalcular el total después de actualizar el carrito
         this.emitCartUpdated();
       },
       error: (error) => {
         console.error('Error fetching product details:', error);
-        this.cartItems = [];
+        this.cartItems = []; // Si ocurre un error, vaciar el carrito
         this.calculateTotal();
         this.emitCartUpdated();
       }
     });
   }
+
+
 
 
   emitCartUpdated() {

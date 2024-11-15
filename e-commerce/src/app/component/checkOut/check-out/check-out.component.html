@@ -1,5 +1,11 @@
-
-<div>
-    <div id="wallet_container"></div> 
+<div class="checkout-container">
+  <h1>Resumen de su orden</h1>
+  <div class="orden">
+    <h2></h2>
+  <app-cart [inputIsTrue]="false"></app-cart>
   </div>
-  
+  <app-subtotal [inCheckout]="true"></app-subtotal>
+</div>
+
+<div id="wallet_container">
+</div>

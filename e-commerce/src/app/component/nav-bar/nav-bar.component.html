@@ -6,7 +6,7 @@
     <ul style="cursor: pointer;">
 
       <li class="dropdown" (mouseover)="toggleCategoryMenu(true)" (mouseleave)="toggleCategoryMenu(false)">
-        <span>Categoría</span>
+        <span>Categorías</span>
         <ul class="nested" *ngIf="categoryMenuVisible">
           <li><a routerLink="listCategory" (click)="onCategoryClick('Amigurumi')">Amigurumis</a></li>
           <li><a routerLink="listCategory" (click)="onCategoryClick('Accesorio')">Accesorios</a></li>
@@ -33,7 +33,7 @@
 
 
       <li class="dropdown" (mouseover)="toggleCategoryMenu(true)" (mouseleave)="toggleCategoryMenu(false)">
-        <span>Categoría</span>
+        <span>Categorías</span>
         <ul class="nested" *ngIf="categoryMenuVisible">
           <li><a routerLink="listCategory" (click)="onCategoryClick('Amigurumi')">Amigurumis</a></li>
           <li><a routerLink="listCategory" (click)="onCategoryClick('Accesorio')">Accesorios</a></li>

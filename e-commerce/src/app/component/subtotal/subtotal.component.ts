@@ -15,6 +15,8 @@ export class SubtotalComponent implements OnInit {
   @Input() cartSubtotal: number = 0; // Parent component should pass cartSubtotal
   @Output() proceedToPayment = new EventEmitter<void>();
   @Input() path: string = '';
+  @Input() inCheckout:boolean =false;
+
 
   shippingCost: number = 0;
   totalOrderAmount: number = 0;

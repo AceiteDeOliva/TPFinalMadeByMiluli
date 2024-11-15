@@ -63,6 +63,14 @@
         {
           "productUrl": "http://localhost:3000/products/3",
           "quantity": 1
+        },
+        {
+          "productUrl": "http://localhost:3000/products/4",
+          "quantity": 5
+        },
+        {
+          "productUrl": "http://localhost:3000/products/2",
+          "quantity": 1
         }
       ],
       "purchaseHistory": [],
@@ -87,7 +95,7 @@
       "price": 10000,
       "category": "amigurumi",
       "stock": 5,
-      "state": "active",
+      "state": "inactive",
       "imageUrl": "http://localhost:3001/images/5ca8"
     },
     {
@@ -106,7 +114,7 @@
       "description": "Bolso de hombro hecho a mano con hilo de algodón en tonos burdeos y crema. Con un tamaño de 25 cm x 28 cm, es perfecto para lo esencial como llaves, teléfono y tarjetas. Un accesorio elegante y moderno para tu día a día.",
       "price": 25000,
       "category": "Accesorio",
-      "stock": 6,
+      "stock": 2,
       "state": "active",
       "imageUrl": "http://localhost:3001/images/a225"
     },

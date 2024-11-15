@@ -19,6 +19,7 @@ export class ProductPageComponent implements OnInit {
   quantity: number = 1;
   showShippingPrices: boolean = false;
   showAddedToCartMessage: boolean = false; // Add this variable
+  cartMessage:string='';
 
   constructor(
     private router: Router,
@@ -50,14 +51,18 @@ export class ProductPageComponent implements OnInit {
     const product = this.selectedProduct;
     if (product) {
       this.cartService.addProductToCart(product.id, quantity).subscribe({
-        next: () => {
+        next: (response) => {
           console.log(`${product.name} added to cart successfully! (Quantity: ${quantity})`);
           this.showAddedToCartMessage = true;
+          this.cartMessage = response.message;  // Asignar el mensaje recibido desde el servicio
           setTimeout(() => {
-            this.showAddedToCartMessage = false;
-          }, 2000); // Message disappears after 3 seconds
+            this.showAddedToCartMessage = false; // Ocultar el mensaje después de 2 segundos
+          }, 2000);
         },
-        error: () => alert('Error adding to cart')
+        error: () => {
+          this.cartMessage = 'Error adding to cart';
+          alert(this.cartMessage);
+        }
       });
     } else {
       console.error('No product selected to add to cart.');
@@ -67,4 +72,5 @@ export class ProductPageComponent implements OnInit {
   toggleShippingPrices() {
     this.showShippingPrices = !this.showShippingPrices;
   }
+
 }

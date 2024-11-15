@@ -18,13 +18,16 @@
         type="number"
         [(ngModel)]="quantity"
         min="1"
+        [max]="selectedProduct.stock"
         aria-label="Quantity"
       />
     </div>
 
     <button class="add-to-cart" (click)="addToCart(quantity)">Agregar al Carrito</button>
-    <div class="added-to-cart-message" [class.show]="showAddedToCartMessage">Producto agregado al carrito!</div>
-
+    <div class="added-to-cart-message" [class.show]="showAddedToCartMessage">
+      {{ cartMessage }}  <!-- Muestra el mensaje de éxito o error -->
+    </div>
+  
     <a class="shipping-link" (click)="toggleShippingPrices()">Ver precios de envío</a>
 
     <div *ngIf="showShippingPrices" class="shipping-prices">

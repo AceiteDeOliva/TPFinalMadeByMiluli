@@ -2,13 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { MercadopagoService } from '../../../services/mercadopago-service/mercadopago.service';
 import { CheckoutDataService } from '../../../services/checkout-data/checkout-data.service';
 import { lastValueFrom } from 'rxjs';
+import { SubtotalComponent } from "../../subtotal/subtotal.component";
+import { CartPageComponent } from "../../../pages/cart-page/cart-page.component";
+import { CartComponent } from "../../cart/cart.component";
 
 declare var MercadoPago: any;
 
 @Component({
   selector: 'app-checkout',
   templateUrl: './check-out.component.html',
+  standalone: true,
   styleUrls: ['./check-out.component.css'],
+  imports: [SubtotalComponent, CartComponent],
 })
 export class CheckoutComponent implements OnInit {
   total: number = 0;

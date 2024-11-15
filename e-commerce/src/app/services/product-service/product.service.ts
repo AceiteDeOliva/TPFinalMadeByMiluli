@@ -97,20 +97,6 @@ export class ProductService {
   }
 
 
-  private SearchCategory(category: string) {
-    const categoryArray: Product[] = [];
-    return this.http.get<Product[]>(`${this.apiUrlProducts}?category=${category}`).pipe(
-      map(products => {
-        if (products.length > 0) {
-          categoryArray.push(...products);
-          return categoryArray;
-        } else {
-          return null;
-        }
-      })
-    );
-  }
-
   //Obtener todos los productos
   getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(this.apiUrlProducts).pipe(
