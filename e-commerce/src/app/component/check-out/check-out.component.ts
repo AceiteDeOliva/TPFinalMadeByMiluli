@@ -11,6 +11,7 @@ import { Product } from '../../models/product';
 import { map } from 'rxjs';
 
 
+
 declare var MercadoPago: any;
 
 @Component({
