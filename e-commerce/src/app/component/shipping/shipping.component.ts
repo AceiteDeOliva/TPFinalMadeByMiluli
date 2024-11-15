@@ -21,6 +21,8 @@ export class ShippingComponent implements OnInit {
   products: CartItem[] = [];
 
   @Output() formSubmitted: EventEmitter<boolean> = new EventEmitter<boolean>();
+  cartSubtotal: number = 0;
+  shippingCost: number = 0;
 
   constructor(
     private fb: FormBuilder,
@@ -41,6 +43,7 @@ export class ShippingComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.fetchCartSubtotal();
 
     this.cartService.getCarrito().subscribe((cartItems) => {
       this.products = cartItems;
