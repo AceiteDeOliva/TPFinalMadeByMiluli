@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../../services/user-service/user.service';
 import { ShippingService } from '../../services/shipping-service/shipping.service';
 import { CommonModule } from '@angular/common';
@@ -12,18 +13,28 @@ import { CartService } from '../../services/cart-service/cart.service';
   styleUrls: ['./payment-success.component.css']
 })
 export class PaymentSuccessComponent implements OnInit {
+  paymentStatus: string | null = null; // Declare the property
+  paymentId: string | null = null;     // Declare the property
   orderSaved = false;
   userId: string | null = localStorage.getItem("currentUserId");
   errorMessage: string | null = null;
 
   constructor(
+    private route: ActivatedRoute, // Inject ActivatedRoute
     private userService: UserService,
     private shippingService: ShippingService,
-    private cartService :CartService
+    private cartService: CartService
   ) {}
 
   ngOnInit(): void {
+    this.paymentStatus = this.route.snapshot.queryParamMap.get('collection_status');
+    this.paymentId = this.route.snapshot.queryParamMap.get('payment_id');
+
+    console.log('Payment Status:', this.paymentStatus);
+    console.log('Payment ID:', this.paymentId);
+
     this.saveOrder();
+
   }
 
   private saveOrder(): void {
@@ -37,6 +48,7 @@ export class PaymentSuccessComponent implements OnInit {
                 console.log('Order successfully added to purchase history');
                 this.orderSaved = true;
                 this.clearUserCart();
+                this.clearShippingData();
               },
               error: (err) => {
                 console.error('Failed to save order:', err);
@@ -69,4 +81,14 @@ export class PaymentSuccessComponent implements OnInit {
       }
     });
   }
+
+  clearShippingData(): void {
+    this.shippingService.clearShippingData();
+  }
+  
+  
 }
+
+
+
+

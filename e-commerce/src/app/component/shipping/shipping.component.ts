@@ -19,13 +19,10 @@ export class ShippingComponent implements OnInit {
   isLoggedIn: boolean = false;
   userEmail: string = '';
   products: CartItem[] = [];
-shippingCost:number=0;
+  shippingCost:number=0;
   cartSubtotal:number=0;
-
-
   @Output() formSubmitted: EventEmitter<boolean> = new EventEmitter<boolean>();
-  cartSubtotal: number = 0;
-  shippingCost: number = 0;
+
 
   constructor(
     private fb: FormBuilder,

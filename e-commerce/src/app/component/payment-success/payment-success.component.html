@@ -1,16 +1,10 @@
-<div class="payment-success-container">
-  <h1>Payment Status</h1>
-  
-  <ng-container *ngIf="orderSaved; else errorTemplate">
-    <p class="success-message">🎉 Your order has been placed successfully!</p>
-    <p>Thank you for your purchase. We will process your order shortly.</p>
-    <a class="button" routerLink="/shop">Continue Shopping</a>
-    <a class="button secondary" routerLink="/user/orders">View Your Orders</a>
-  </ng-container>
+<div class="payment-status-container">
+  <h1>Estado del Pedido</h1>
 
-  <ng-template #errorTemplate>
-    <p class="error-message">⚠️ There was an issue with your order:</p>
-    <p>{{ errorMessage || 'An unexpected error occurred. Please try again.' }}</p>
-    <a class="button" routerLink="/cart">Go Back to Cart</a>
-  </ng-template>
+  <p class="success-message">🎉 ¡Tu pedido se ha procesado con éxito!</p>
+  <p>Gracias por tu compra. Te mantendremos informado sobre el estado de tu pedido.</p>
+  <div class="action-buttons">
+    <a class="button" routerLink="/shop">Seguir Comprando</a>
+    <a class="button secondary" routerLink="/user/orders">Ver Tus Pedidos</a>
+  </div>
 </div>
