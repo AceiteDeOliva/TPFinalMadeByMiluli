@@ -79,9 +79,8 @@ export class ShippingComponent implements OnInit {
   saveShippingData(): void {
     if (this.shippingForm.valid) {
       const orderData: Order = {
-
+        orderId: '',
         products: this.products,
-
         date: new Date(),
         recipientName: this.shippingForm.value.recipientName,
         recipientSurname: this.shippingForm.value.recipientSurname,
@@ -90,7 +89,9 @@ export class ShippingComponent implements OnInit {
         cpDestino: this.shippingForm.value.cpDestino,
         shippingMethod: this.shippingForm.value.shippingMethod,
         shippingCost: this.shippingCost,
-        totalCost: this.cartSubtotal + this.shippingCost
+        totalCost: this.cartSubtotal + this.shippingCost,
+        state: 'Pendiente',
+        
       };
 
       this.shippingService.setShippingData(orderData);
@@ -108,6 +109,7 @@ export class ShippingComponent implements OnInit {
       next: (subtotal) => {
         this.cartSubtotal = subtotal;
         this.updateShippingCost();
+        
       },
       error: () => {
         console.error('Error fetching cart subtotal');

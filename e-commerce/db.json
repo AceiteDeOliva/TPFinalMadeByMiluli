@@ -42,7 +42,8 @@
           "cpDestino": "7600",
           "shippingMethod": "domicilio",
           "shippingCost": 6000,
-          "totalCost": 22000
+          "totalCost": 22000,
+          "state": "Procesando"
         },
         {
           "products": [
@@ -63,7 +64,8 @@
           "cpDestino": "7600",
           "shippingMethod": "domicilio",
           "shippingCost": 6000,
-          "totalCost": 22000
+          "totalCost": 22000,
+          "state": "Procesando"
         }
       ],
       "credential": "user"

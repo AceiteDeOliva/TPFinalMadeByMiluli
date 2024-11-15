@@ -1,0 +1,53 @@
+<div class="order-list">
+    <h1>All Orders</h1>
+    
+    <!-- Check if orders exist -->
+    <div *ngIf="allOrders.length > 0; else noOrders">
+      <div *ngFor="let order of allOrders" class="order-card">
+        <h2>Order Details</h2>
+        <p><strong>Date:</strong> {{ order.date | date }}</p>
+        <p><strong>Recipient:</strong> {{ order.recipientName }} {{ order.recipientSurname }}</p>
+        <p><strong>Shipping Address:</strong> {{ order.street }}, {{ order.provinciaDestino }}, {{ order.cpDestino }}</p>
+        <p><strong>Shipping Method:</strong> {{ order.shippingMethod }}</p>
+        <p><strong>Shipping Cost:</strong> {{ order.shippingCost | currency }}</p>
+        <p><strong>Total Cost:</strong> {{ order.totalCost | currency }}</p>
+        <p><strong>Estado:</strong> {{ order.state }}</p>
+  
+        <!-- Dropdown to Change State -->
+        <div>
+          <label for="stateSelect">Change State:</label>
+          <select
+            id="stateSelect"
+            [value]="order.state"
+            (change)="changeOrderState(order, $event.target.value)"
+          >
+            <option value="Pending">Pending</option>
+            <option value="Processing">Processing</option>
+            <option value="Shipped">Shipped</option>
+            <option value="Delivered">Delivered</option>
+            <option value="Cancelled">Cancelled</option>
+            <option value="Returned">Returned</option>
+            <option value="Failed">Failed</option>
+            <option value="Refunded">Refunded</option>
+          </select>
+        </div>
+  
+        <!-- List of products -->
+        <div>
+          <h3>Products:</h3>
+          <ul>
+            <li *ngFor="let product of order.products">
+              <p><strong>Product URL:</strong> <a [href]="product.productUrl" target="_blank">{{ product.productUrl }}</a></p>
+              <p><strong>Quantity:</strong> {{ product.quantity }}</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  
+    <!-- No orders fallback -->
+    <ng-template #noOrders>
+      <p>No orders available at the moment.</p>
+    </ng-template>
+  </div>
+  

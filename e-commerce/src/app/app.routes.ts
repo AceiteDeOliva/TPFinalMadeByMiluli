@@ -26,6 +26,7 @@ import { HomeEmployeeComponent } from './component/home-employee/home-employee.c
 import { LowStockListComponent } from './pages/low-stock-list/low-stock-list.component';
 import { LoginForOrderPagesComponent } from './pages/login-for-order-pages/login-for-order-pages.component';
 import { PurchaseHistoryComponent } from './component/purchase-history-list/purchase-history-list.component';
+import { OrderListComponent } from './component/order-list/order-list.component';
 
 
 
@@ -49,14 +50,15 @@ export const routes: Routes = [
   { path: 'updateProduct/:id', component: UpdateProductPageComponent },
   { path: 'productView/:productId', component: ProductPageComponent },
   { path: 'checkout', component: CheckoutComponent },
-  { path: 'loginPurchase', component:PurchaseLoginPageComponent },
-  { path: 'shippingInfo', component: ShippingInfoPageComponent},
+  { path: 'loginPurchase', component: PurchaseLoginPageComponent },
+  { path: 'shippingInfo', component: ShippingInfoPageComponent },
   { path: 'payment-success', component: PaymentSuccessComponent },
   //{ path: 'payment-failure', component: PaymentFailureComponent },
   //{ path: 'payment-pending', component: PaymentPendingComponent },
   { path: 'stock', component: LowStockListComponent },
   { path: 'loginForOrder', component: LoginForOrderPagesComponent },
-  { path: 'orders', component: PurchaseHistoryComponent },
+  { path: 'purchaseHistory', component: PurchaseHistoryComponent },
+  { path: 'orders', component: OrderListComponent },
   { path: "**", redirectTo: "home" },
 
 ];

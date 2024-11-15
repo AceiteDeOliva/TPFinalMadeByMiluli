@@ -93,6 +93,16 @@ export class UserService {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 
+  updateOrderState(userId: string, orderId: string, newState: Order['state']): Observable<User> {
+    return this.http.patch<User>(`${this.apiUrl}/${userId}`, {
+      purchaseHistory: [
+        {
+          id: orderId,
+          state: newState,
+        },
+      ],
+    });
+  }
 
   addOrderToPurchaseHistory(userId: string, order: Order): Observable<User> { //adds order to user by id
     return this.getUserById(userId).pipe(
