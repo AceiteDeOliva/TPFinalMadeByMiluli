@@ -6,7 +6,9 @@ import { Order } from '../../models/orders';
   providedIn: 'root'
 })
 export class ShippingService {
+
   private shippingDataSubject = new BehaviorSubject<Order | null>(this.getStoredShippingData());
+
 
   constructor() {}
 
@@ -32,4 +34,7 @@ export class ShippingService {
     const storedData = localStorage.getItem('shippingData');
     return storedData ? JSON.parse(storedData) : null;
   }
+
+
+  
 }
