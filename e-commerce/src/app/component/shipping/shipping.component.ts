@@ -41,6 +41,7 @@ export class ShippingComponent implements OnInit {
 
   ngOnInit(): void {
 
+
     this.cartService.getCarrito().subscribe((cartItems) => {
       this.products = cartItems;
     });
@@ -69,12 +70,15 @@ export class ShippingComponent implements OnInit {
       this.isLoggedIn = false;
       this.shippingForm.controls['email'].enable();
     }
+
   }
 
-  saveShippingData() {
+  saveShippingData(): void {
     if (this.shippingForm.valid) {
       const orderData: Order = {
+
         products: this.products,  
+
         date: new Date(),
         recipientName: this.shippingForm.value.recipientName,
         recipientSurname: this.shippingForm.value.recipientSurname,
@@ -82,7 +86,8 @@ export class ShippingComponent implements OnInit {
         provinciaDestino: this.shippingForm.value.provinciaDestino,
         cpDestino: this.shippingForm.value.cpDestino,
         shippingMethod: this.shippingForm.value.shippingMethod,
-        shippingCost: this.getSelectedShippingCost(),
+        shippingCost: this.shippingCost,
+        totalCost: this.cartSubtotal + this.shippingCost 
       };
 
       this.shippingService.setShippingData(orderData);
@@ -95,8 +100,20 @@ export class ShippingComponent implements OnInit {
     }
   }
 
-  getSelectedShippingCost(): number {
+  private fetchCartSubtotal(): void {
+    this.cartService.getTotalCompra().subscribe({
+      next: (subtotal) => {
+        this.cartSubtotal = subtotal; 
+        this.updateShippingCost(); 
+      },
+      error: () => {
+        console.error('Error fetching cart subtotal');
+      }
+    });
+  }
+
+  private updateShippingCost(): void {
     const shippingMethod = this.shippingForm.value.shippingMethod;
-    return shippingMethod === 'domicilio' ? 8000 : 6000;
+    this.shippingCost = shippingMethod === 'domicilio' ? 8000 : 6000;
   }
 }

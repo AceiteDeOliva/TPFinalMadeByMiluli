@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../../services/user-service/user.service';
 import { ShippingService } from '../../services/shipping-service/shipping.service';
 import { CommonModule } from '@angular/common';
+import { MercadopagoService } from '../../services/mercadopago-service/mercadopago.service';
 
 @Component({
   selector: 'app-payment-success',
@@ -14,56 +15,81 @@ import { CommonModule } from '@angular/common';
 export class PaymentSuccessComponent implements OnInit {
   paymentStatus: string | null = null;
   paymentId: string | null = null;
-  preferenceId: string | null = null;
   orderSaved = false;
-  userId: string | null = null;
+  userId: string | null = localStorage.getItem("currentUserId");
   errorMessage: string | null = null;
 
   constructor(
     private route: ActivatedRoute,
     private userService: UserService,
+    private mercadopagoService: MercadopagoService,
     private shippingService: ShippingService
   ) {}
 
   ngOnInit(): void {
-    // Get payment status, payment_id, and preference_id from URL
-    this.paymentStatus = this.route.snapshot.queryParamMap.get('collection_status');
     this.paymentId = this.route.snapshot.queryParamMap.get('payment_id');
-    this.preferenceId = this.route.snapshot.queryParamMap.get('preference_id');
-    this.userId = localStorage.getItem('currentUserId');
-
-    // If the payment is approved, proceed to save the order
-    if (this.paymentStatus === 'approved' && this.paymentId && this.userId) {
-      this.saveOrder();
+  
+    if (this.paymentId) {
+      this.checkPaymentStatus(this.paymentId); // Check payment status from the server
     } else {
-      this.errorMessage = 'Payment was not approved or information is missing.';
+      this.errorMessage = 'Missing payment ID.';
     }
+  }
+  
+  checkPaymentStatus(paymentId: string): void {
+    this.mercadopagoService.getPaymentStatus(paymentId).subscribe({
+      next: (response: { status: string }) => {
+        if (response.status === 'approved') {
+          console.log('Payment successful!');
+  
+          // Call saveOrder to save the order if payment is successful
+          this.saveOrder();
+        } else if (response.status === 'unknown') {
+          this.errorMessage = 'Payment not found. Please try again.';
+        } else {
+          this.errorMessage = `Payment ${response.status}.`;
+        }
+      },
+      error: (err) => {
+        console.error('Error checking payment status:', err);
+        this.errorMessage = 'Could not verify payment status.';
+      }
+    });
   }
 
   private saveOrder(): void {
-    // Retrieve the order from the ShippingService
+    // Retrieve the order details from ShippingService
     this.shippingService.getShippingData().subscribe({
       next: (order) => {
         if (order) {
-          // Save the order to the user's purchase history
-          this.userService.addOrderToPurchaseHistory(this.userId!, order).subscribe({
-            next: () => {
-              console.log('Order successfully added to purchase history');
-              this.orderSaved = true;
-            },
-            error: (err) => {
-              console.error('Failed to save order:', err);
-              this.errorMessage = 'Failed to save the order. Please try again.';
-            },
-          });
+          const userId = this.userId; // Retrieve userId from local storage or component property
+          if (userId) {
+            // Save the order to the user's purchase history
+            this.userService.addOrderToPurchaseHistory(userId, order).subscribe({
+              next: () => {
+                console.log('Order successfully added to purchase history');
+                this.orderSaved = true; 
+              },
+              error: (err) => {
+                console.error('Failed to save order:', err);
+                this.errorMessage = 'Failed to save the order. Please try again.';
+              },
+            });
+          } else {
+            console.error('User ID is missing. Cannot save order.');
+            this.errorMessage = 'User ID is missing.';
+          }
         } else {
           this.errorMessage = 'Order data is missing.';
         }
       },
       error: (err) => {
-        console.error('Error fetching shipping data:', err);
+        console.error('Error fetching order data:', err);
         this.errorMessage = 'Could not retrieve order data.';
       }
     });
   }
+  
+  
+  
 }

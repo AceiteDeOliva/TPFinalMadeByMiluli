@@ -9,5 +9,6 @@ export interface Order {
   provinciaDestino: string;
   cpDestino: string;
   shippingMethod: 'domicilio' | 'sucursal';
-  shippingCost: number;
+  shippingCost: number,
+  totalCost:number;
 }
