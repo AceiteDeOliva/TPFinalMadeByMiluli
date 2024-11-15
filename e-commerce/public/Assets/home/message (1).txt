@@ -19,11 +19,10 @@ export class ShippingComponent implements OnInit {
   isLoggedIn: boolean = false;
   userEmail: string = '';
   products: CartItem[] = [];
-shippingCost:number=0;
-  cartSubtotal:number=0;
-
 
   @Output() formSubmitted: EventEmitter<boolean> = new EventEmitter<boolean>();
+  cartSubtotal: number = 0;
+  shippingCost: number = 0;
 
   constructor(
     private fb: FormBuilder,
@@ -81,7 +80,7 @@ shippingCost:number=0;
     if (this.shippingForm.valid) {
       const orderData: Order = {
 
-        products: this.products,
+        products: this.products,  
 
         date: new Date(),
         recipientName: this.shippingForm.value.recipientName,
@@ -91,7 +90,7 @@ shippingCost:number=0;
         cpDestino: this.shippingForm.value.cpDestino,
         shippingMethod: this.shippingForm.value.shippingMethod,
         shippingCost: this.shippingCost,
-        totalCost: this.cartSubtotal + this.shippingCost
+        totalCost: this.cartSubtotal + this.shippingCost 
       };
 
       this.shippingService.setShippingData(orderData);
@@ -107,8 +106,8 @@ shippingCost:number=0;
   private fetchCartSubtotal(): void {
     this.cartService.getTotalCompra().subscribe({
       next: (subtotal) => {
-        this.cartSubtotal = subtotal;
-        this.updateShippingCost();
+        this.cartSubtotal = subtotal; 
+        this.updateShippingCost(); 
       },
       error: () => {
         console.error('Error fetching cart subtotal');
@@ -119,6 +118,5 @@ shippingCost:number=0;
   private updateShippingCost(): void {
     const shippingMethod = this.shippingForm.value.shippingMethod;
     this.shippingCost = shippingMethod === 'domicilio' ? 8000 : 6000;
-    console.log("precio de envio"+this.shippingCost);
   }
 }

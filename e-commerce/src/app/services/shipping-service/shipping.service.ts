@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Order } from '../../models/orders'; 
+import { Order } from '../../models/orders';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShippingService {
-  private shippingDataSubject = new BehaviorSubject<Order | null>(null); // For storing form data as Order
+  private shippingDataSubject = new BehaviorSubject<Order | null>(null); 
 
   constructor() {}
 

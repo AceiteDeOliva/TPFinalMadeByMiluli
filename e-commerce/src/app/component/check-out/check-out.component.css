@@ -1,64 +1,65 @@
-/* Wrapper for the cart and subtotal */
 .checkout-container {
-  display: flex;
-  justify-content: space-between; /* Space between the cart and subtotal */
-  gap: 20px; /* Space between the elements */
-  margin-bottom: 20px; /* Bottom margin for the wallet */
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #FCD5CE;
+  border-radius: 15px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);;
 }
 
-/* Style for the cart component */
-app-cart {
-  flex: 1; /* Allow the cart to take up available space */
-  max-width: 45%; /* Max width of the cart to prevent it from being too wide */
-  min-width: 300px; /* Set a minimum width */
+.orden {
+  padding: 20px;
 }
 
-/* Style for the subtotal component */
-app-subtotal {
-  flex: 1; /* Allow the subtotal to take up available space */
-  max-width: 45%; /* Max width of the subtotal to match cart */
-  min-width: 300px; /* Set a minimum width */
+.orden h1 {
+  font-size: 40px;
+  color: black;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #e0e0e0;
+  padding-bottom: 10px;
 }
 
-/* Style for the wallet button container */
+.orden h2 {
+  font-size: 20px;
+  color: blanck;
+  margin-top: 20px;
+  align-items: center;
+}
+
+.orden p {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  color: #666;
+  line-height: 1.5;
+  margin: 5px 0;
+}
+
+.orden p strong {
+  color: #333;
+}
+
 #wallet_container {
-  width: 100%; /* Full width */
-  text-align: center; /* Center the wallet button */
-  margin-top: 10px; /* Space between the subtotal and wallet button */
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #D1E3EB;
+  border-radius: 8px;
+  text-align: center;
 }
 
-/* Style for the wallet button */
-#wallet_button {
-  padding: 10px 20px; /* Smaller padding for a smaller button */
-  font-size: 14px; /* Smaller font size */
-  background-color: #0070b8; /* Wallet button color */
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-/* Hover effect for the wallet button */
-#wallet_button:hover {
-  background-color: #005f8a; /* Darker shade on hover */
-}
-
-/* Additional responsive styling for smaller screens */
-@media (max-width: 768px) {
+@media (max-width: 600px) {
   .checkout-container {
-    flex-direction: column; /* Stack cart and subtotal vertically on smaller screens */
-    gap: 10px; /* Adjust space for smaller screens */
+    padding: 10px;
   }
 
-  app-cart, app-subtotal {
-    max-width: 100%; /* Ensure components take full width */
-    min-width: unset; /* Remove minimum width restriction on small screens */
+  .orden h1 {
+    font-size: 20px;
   }
 
-  /* Adjust the wallet button on smaller screens if necessary */
-  #wallet_button {
-    width: 100%; /* Full width for the wallet button */
-    padding: 12px; /* Adjust padding for better appearance */
+  .orden h2 {
+    font-size: 18px;
+  }
+
+  .orden p {
+    font-size: 14px;
   }
 }
