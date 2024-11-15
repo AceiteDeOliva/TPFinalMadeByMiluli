@@ -2,28 +2,20 @@
   <form [formGroup]="shippingForm" (ngSubmit)="saveShippingData()">
     <h2>Datos Destinatario</h2>
 
-    <!-- Recipient Name Field -->
+
     <label for="recipientName">Nombre:</label>
     <div *ngIf="shippingForm.get('recipientName')?.invalid && (shippingForm.get('recipientName')?.touched || shippingForm.get('recipientName')?.dirty)">
       <small *ngIf="shippingForm.get('recipientName')?.hasError('required')">Este campo es obligatorio.</small>
     </div>
     <input type="text" id="recipientName" formControlName="recipientName" required />
 
-    <!-- Recipient Surname Field -->
+
     <label for="recipientSurname">Apellido:</label>
     <div *ngIf="shippingForm.get('recipientSurname')?.invalid && (shippingForm.get('recipientSurname')?.touched || shippingForm.get('recipientSurname')?.dirty)">
       <small *ngIf="shippingForm.get('recipientSurname')?.hasError('required')">Este campo es obligatorio.</small>
     </div>
     <input type="text" id="recipientSurname" formControlName="recipientSurname" required />
 
-    <div *ngIf="isLoggedIn">
-      <label for="email">Correo Electrónico:</label>
-      <div *ngIf="shippingForm.get('email')?.invalid && (shippingForm.get('email')?.touched || shippingForm.get('email')?.dirty)">
-        <small *ngIf="shippingForm.get('email')?.hasError('required')">Este campo es obligatorio.</small>
-        <small *ngIf="shippingForm.get('email')?.hasError('email')">El formato del correo electrónico no es válido.</small>
-      </div>
-      <input type="email" id="email" formControlName="email" [value]="userEmail" />
-    </div>
 
     <div *ngIf="!isLoggedIn">
       <label for="email">Correo Electrónico:</label>
@@ -33,6 +25,16 @@
       </div>
       <input type="email" id="email" formControlName="email" required />
     </div>
+
+    <div *ngIf="isLoggedIn">
+      <label for="email">Correo Electrónico:</label>
+      <div *ngIf="shippingForm.get('email')?.invalid && (shippingForm.get('email')?.touched || shippingForm.get('email')?.dirty)">
+        <small *ngIf="shippingForm.get('email')?.hasError('required')">Este campo es obligatorio.</small>
+        <small *ngIf="shippingForm.get('email')?.hasError('email')">El formato del correo electrónico no es válido.</small>
+      </div>
+      <input type="email" id="email" formControlName="email" [readonly]="isLoggedIn" />
+    </div>
+
 
     <h2>Selecciona el Tipo de Envío</h2>
     <label>

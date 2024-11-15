@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './shipping.component.html',
   styleUrls: ['./shipping.component.css'],
   standalone: true,
-  imports: [CommonModule,ReactiveFormsModule]
+  imports: [CommonModule, ReactiveFormsModule]
 })
 export class ShippingComponent implements OnInit {
   shippingForm: FormGroup;
@@ -31,7 +31,7 @@ export class ShippingComponent implements OnInit {
     this.shippingForm = this.fb.group({
       recipientName: ['', Validators.required],
       recipientSurname: ['', Validators.required],
-      email: [{ value: '', disabled: true }, [Validators.required, Validators.email]],
+      email: ['', [Validators.required, Validators.email]], // Initialize email as required but not disabled
       street: ['', Validators.required],
       provinciaDestino: ['', Validators.required],
       cpDestino: ['', Validators.required],
@@ -46,16 +46,29 @@ export class ShippingComponent implements OnInit {
     });
 
     // Check if user is logged in and pre-fill email if they are
-    this.userService.getUser().subscribe((users) => {
-      const currentUser = users.find((user) => user.email);
-      if (currentUser) {
-        this.isLoggedIn = true;
-        this.userEmail = currentUser.email;
-        this.shippingForm.controls['email'].setValue(this.userEmail);
-      } else {
+    const currentUserId = localStorage.getItem('currentUserId'); // Retrieve the user ID from localStorage
+
+    if (currentUserId) {
+      this.userService.getUserById(currentUserId).subscribe((currentUser) => {
+        if (currentUser) {
+          this.isLoggedIn = true;
+          this.userEmail = currentUser.email;
+          // Pre-fill the email field if logged in and disable it to make it read-only
+          this.shippingForm.controls['email'].setValue(this.userEmail);
+          this.shippingForm.controls['email'].disable();
+        } else {
+          this.isLoggedIn = false;
+          this.shippingForm.controls['email'].enable(); // Enable the email field for manual input when not logged in
+        }
+      }, (error) => {
+        console.error('Error fetching user:', error);
         this.isLoggedIn = false;
-      }
-    });
+        this.shippingForm.controls['email'].enable(); // Enable email field in case of error
+      });
+    } else {
+      this.isLoggedIn = false;
+      this.shippingForm.controls['email'].enable(); // Enable email field when not logged in
+    }
   }
 
   saveShippingData() {
