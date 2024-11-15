@@ -18,5 +18,7 @@
     <span><strong>Total:</strong></span>
     <span><strong>{{ totalOrderAmount  }}</strong></span>
   </div>
-  <button class="pagar"(click)="onProceedToPayment()">continuar</button>
+
+  <button *ngIf="!inCheckout" class="pagar"(click)="onProceedToPayment()">continuar</button>
+
 </div>

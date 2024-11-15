@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { catchError, map, Observable, switchMap, throwError, of } from 'rxjs';
 import { User } from '../../models/user';
 import { CartItem } from '../../models/cartItem';
+import { ProductService } from '../product-service/product.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class CartService {
   private userUrl = `http://localhost:3000/users/${this.currentUserId}`;
   private productsUrl = 'http://localhost:3000/products';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private productService: ProductService) { }
 
   // Fetch the cart items for the current user or from localStorage if guest
   getCarrito(): Observable<{ productUrl: string; quantity: number }[]> {
@@ -32,41 +33,97 @@ export class CartService {
     }
   }
 
-  // Add a product to the cart, either by updating quantity or adding new
-  addProductToCart(productId: string, quantity: number = 1): Observable<any> {
+  addProductToCart(productId: string, quantity: number = 1): Observable<{ message: string }> {
     const productUrl = `${this.productsUrl}/${productId}`;
 
     return this.getCarrito().pipe(
       switchMap((cartItems) => {
-        const existingProduct = this.findProductInCart(cartItems, productUrl);
+        // Fetch product details, including stock information
+        return this.productService.getProductById(productId).pipe(
+          switchMap(product => {
+            if (product) {
+              // Find the product in the cart, if it exists
+              const existingProduct = this.findProductInCart(cartItems, productUrl);
 
-        if (existingProduct) {
-          this.updateProductQuantityInCart(cartItems, productUrl, quantity);
-        } else {
-          this.addNewProductToCart(cartItems, productUrl, quantity);
-        }
+              // If the product exists in the cart, check the total quantity
+              const totalQuantity = existingProduct ? existingProduct.quantity + quantity : quantity;
 
-        // Update the cart in localStorage for guests or on backend for logged-in users
-        if (this.currentUserId) {
-          return this.updateCart(cartItems); // Update cart on backend
-        } else {
-          this.saveGuestCart(cartItems); // Save cart to localStorage for guest
-          return of(null);
-        }
+              // Check if the total quantity exceeds the stock available
+              if (totalQuantity > product.stock) {
+                return of({ message: 'Error: La cantidad solicitada supera el stock disponible.' });
+              }
+
+              // If the product exists, update its quantity
+              if (existingProduct) {
+                this.updateProductQuantityInCart(cartItems, productUrl, quantity);
+              } else {
+                // Otherwise, add a new product to the cart
+                this.addNewProductToCart(cartItems, productUrl, quantity);
+              }
+
+              // If the user is logged in, update the cart on the server
+              if (this.currentUserId) {
+                return this.updateCart(cartItems).pipe(
+                  map(() => ({ message: 'Producto agregado al carrito exitosamente.' }))
+                );
+              } else {
+                // For guest users, save the cart in localStorage
+                this.saveGuestCart(cartItems);
+                return of({ message: 'Producto agregado al carrito exitosamente.' });
+              }
+            } else {
+              return of({ message: 'Error: Producto no encontrado.' });
+            }
+          })
+        );
       }),
       catchError((error) => {
-        alert('Error: No se pudo agregar el producto al carrito');
-        return throwError(() => error);
+        return of({ message: 'Error: No se pudo agregar el producto al carrito.' });
       })
     );
   }
+
+
+
+
+
+
+  reduceStock(productId: string, quantity: number): Observable<any> {
+    // First, get the product data (including stock) from the server
+    return this.http.get<any>(`${this.productsUrl}/${productId}`).pipe(
+      switchMap((product) => {
+        // Check if there's enough stock available
+        if (product.stock < quantity) {
+          alert('Error: No hay suficiente stock');
+          return throwError(() => new Error('Stock insuficiente'));
+        }
+
+        // Reduce the stock by the quantity requested
+        const updatedStock = product.stock - quantity;
+
+        // Now, update the stock on the server with the reduced quantity
+        return this.http.put(`${this.productsUrl}/reduce-stock`, {
+          id: productId,
+          stock: updatedStock,
+        }).pipe(
+          catchError((error) => {
+            console.error('Error updating stock:', error);
+            return throwError(() => error);
+          })
+        );
+      })
+    );
+  }
+
+
+
 
   // Helper function to find an existing product in the cart
   private findProductInCart(cart: Array<{ productUrl: string; quantity: number }>, productUrl: string) {
     return cart.find(item => item.productUrl === productUrl);
   }
 
- 
+
   private updateProductQuantityInCart(cart: Array<{ productUrl: string; quantity: number }>, productUrl: string, quantity: number): void {
     const existingProduct = this.findProductInCart(cart, productUrl);
     if (existingProduct) {
@@ -92,6 +149,7 @@ export class CartService {
       })
     );
   }
+
 
 
   clearCart(): Observable<any> {

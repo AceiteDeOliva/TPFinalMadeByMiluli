@@ -1,13 +1,11 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { RegisterFormComponent } from "../../component/register-form/register-form.component";
-import { LoginFormComponent } from '../../component/login-form/login-form.component';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login-for-order-pages',
   standalone: true,
-  imports: [LoginFormComponent, RegisterFormComponent, CommonModule],
+  imports: [CommonModule],
   templateUrl: './login-for-order-pages.component.html',
   styleUrls: ['./login-for-order-pages.component.css']
 })

@@ -5,32 +5,39 @@
         <div class="cart-item">
           <img [src]="item.details?.imageUrl || '/favicon.ico'" alt="{{ item.details?.name }}" />
           <div class="product-info">
-            <h3> {{ item.details?.name || 'N/D' }}</h3>
-            <p> ${{ item.details?.price || 'N/D' }}</p>
+            <h3>{{ item.details?.name || 'N/D' }}</h3>
+            <p>${{ item.details?.price || 'N/D' }}</p>
 
             <!-- Contenedor de cantidad y botón -->
             <div class="quantity-container">
-              <label for="quantity-{{ item.details?.id }}">Cantidad: </label>
-              <input
-                id="quantity-{{ item.details?.id }}"
-                type="number"
-                [(ngModel)]="item.quantity"
-                (ngModelChange)="onQuantityChange(item.details?.id, item.quantity)"
-                min="1"
-              />
-              <button class="remover" *ngIf="item.details && item.details.id" (click)="removeFromCart(item.details.id!)">
-                Remover
-              </button>
+              <!-- Show input if inputIsTrue is true, else show read-only quantity -->
+              <ng-container *ngIf="inputIsTrue; else readOnlyQuantity">
+                <label for="quantity-{{ item.details?.id }}">Cantidad: </label>
+                <input
+                  id="quantity-{{ item.details?.id }}"
+                  type="number"
+                  [(ngModel)]="item.quantity"
+                  (ngModelChange)="onQuantityChange(item.details?.id, item.quantity)"
+                  min="1"
+                  [max]="item.details?.stock ?? 0" 
+                />
+                <button class="remover" *ngIf="item.details && item.details.id" (click)="removeFromCart(item.details.id!)">
+                  Remover
+                </button>
+              </ng-container>
+
+              <!-- Read-only quantity if inputIsTrue is false -->
+              <ng-template #readOnlyQuantity>
+                <span>{{ item.quantity }}</span>
+              </ng-template>
             </div>
+
           </div>
         </div>
       </li>
     </ul>
   </div>
-
-
 </div>
-
 
 <ng-template #emptyCart>
   <p class="empty-cart-message">Tu carrito está vacío</p>

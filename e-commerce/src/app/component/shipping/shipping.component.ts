@@ -3,9 +3,9 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { UserService } from '../../services/user-service/user.service';
 import { ShippingService } from '../../services/shipping-service/shipping.service';
 import { CartService } from '../../services/cart-service/cart.service';
-import { Order } from '../../models/orders';
 import { CartItem } from '../../models/cartItem';
 import { CommonModule } from '@angular/common';
+import { Order } from '../../models/orders';
 
 @Component({
   selector: 'app-shippingComponent',
