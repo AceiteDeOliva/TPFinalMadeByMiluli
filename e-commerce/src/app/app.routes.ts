@@ -25,8 +25,7 @@ import { PaymentSuccessComponent } from './component/payment-success/payment-suc
 import { HomeEmployeeComponent } from './component/home-employee/home-employee.component';
 import { LowStockListComponent } from './pages/low-stock-list/low-stock-list.component';
 import { LoginForOrderPagesComponent } from './pages/login-for-order-pages/login-for-order-pages.component';
-import { PurchaseHistoryComponent } from './component/purchase-history-list/purchase-history-list.component';
-
+import { PurchaseHistoryPageComponent } from './pages/purchase-history-page/purchase-history-page.component';
 
 
 
@@ -56,7 +55,7 @@ export const routes: Routes = [
   //{ path: 'payment-pending', component: PaymentPendingComponent },
   { path: 'stock', component: LowStockListComponent },
   { path: 'loginForOrder', component: LoginForOrderPagesComponent },
-  { path: 'orders', component: PurchaseHistoryComponent },
+  { path: 'purchase', component:PurchaseHistoryPageComponent},
   { path: "**", redirectTo: "home" },
 
 ];
