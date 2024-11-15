@@ -18,7 +18,7 @@ export class ShippingComponent implements OnInit {
   shippingForm: FormGroup;
   isLoggedIn: boolean = false;
   userEmail: string = '';
-  products: CartItem[] = []; 
+  products: CartItem[] = [];
 
   @Output() formSubmitted: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -31,7 +31,7 @@ export class ShippingComponent implements OnInit {
     this.shippingForm = this.fb.group({
       recipientName: ['', Validators.required],
       recipientSurname: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]], // Initialize email as required but not disabled
+      email: ['', [Validators.required, Validators.email]],
       street: ['', Validators.required],
       provinciaDestino: ['', Validators.required],
       cpDestino: ['', Validators.required],
@@ -40,41 +40,41 @@ export class ShippingComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Fetch cart items
+
     this.cartService.getCarrito().subscribe((cartItems) => {
       this.products = cartItems;
     });
 
-    // Check if user is logged in and pre-fill email if they are
-    const currentUserId = localStorage.getItem('currentUserId'); // Retrieve the user ID from localStorage
+
+    const currentUserId = localStorage.getItem('currentUserId');
 
     if (currentUserId) {
       this.userService.getUserById(currentUserId).subscribe((currentUser) => {
         if (currentUser) {
           this.isLoggedIn = true;
           this.userEmail = currentUser.email;
-          // Pre-fill the email field if logged in and disable it to make it read-only
+
           this.shippingForm.controls['email'].setValue(this.userEmail);
           this.shippingForm.controls['email'].disable();
         } else {
           this.isLoggedIn = false;
-          this.shippingForm.controls['email'].enable(); // Enable the email field for manual input when not logged in
+          this.shippingForm.controls['email'].enable();
         }
       }, (error) => {
         console.error('Error fetching user:', error);
         this.isLoggedIn = false;
-        this.shippingForm.controls['email'].enable(); // Enable email field in case of error
+        this.shippingForm.controls['email'].enable();
       });
     } else {
       this.isLoggedIn = false;
-      this.shippingForm.controls['email'].enable(); // Enable email field when not logged in
+      this.shippingForm.controls['email'].enable();
     }
   }
 
   saveShippingData() {
     if (this.shippingForm.valid) {
       const orderData: Order = {
-        products: this.products,  // Use CartItem here
+        products: this.products,  
         date: new Date(),
         recipientName: this.shippingForm.value.recipientName,
         recipientSurname: this.shippingForm.value.recipientSurname,
