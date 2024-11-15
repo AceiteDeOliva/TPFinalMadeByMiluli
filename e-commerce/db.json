@@ -27,15 +27,140 @@
       "password": "12345",
       "cart": [
         {
-          "productUrl": "http://localhost:3000/products/1",
-          "quantity": 1
-        },
-        {
-          "productUrl": "http://localhost:3000/products/2",
+          "productUrl": "http://localhost:3000/products/3",
           "quantity": 1
         }
       ],
-      "purchaseHistory": [],
+      "purchaseHistory": [
+        {
+          "products": [
+            {
+              "productUrl": "http://localhost:3000/products/3",
+              "quantity": 1
+            }
+          ],
+          "date": "2024-11-15T02:40:14.642Z",
+          "recipientName": "J.",
+          "recipientSurname": "M.",
+          "street": "Olavarría 3583",
+          "provinciaDestino": "Buenos Aires",
+          "cpDestino": "7600",
+          "shippingMethod": "domicilio",
+          "shippingCost": 8000
+        },
+        {
+          "products": [
+            {
+              "productUrl": "http://localhost:3000/products/3",
+              "quantity": 1
+            }
+          ],
+          "date": "2024-11-15T03:00:02.993Z",
+          "recipientName": "J.",
+          "recipientSurname": "M.",
+          "street": "Olavarría 3583",
+          "provinciaDestino": "Buenos Aires",
+          "cpDestino": "7600",
+          "shippingMethod": "sucursal",
+          "shippingCost": 6000
+        },
+        {
+          "products": [
+            {
+              "productUrl": "http://localhost:3000/products/3",
+              "quantity": 1
+            }
+          ],
+          "date": "2024-11-15T03:02:00.358Z",
+          "recipientName": "J.",
+          "recipientSurname": "M.",
+          "street": "Olavarría 3583",
+          "provinciaDestino": "Buenos Aires",
+          "cpDestino": "7600",
+          "shippingMethod": "domicilio",
+          "shippingCost": 8000
+        },
+        {
+          "products": [
+            {
+              "productUrl": "http://localhost:3000/products/3",
+              "quantity": 1
+            }
+          ],
+          "date": "2024-11-15T03:16:22.239Z",
+          "recipientName": "J.",
+          "recipientSurname": "M.",
+          "street": "Olavarría 3583",
+          "provinciaDestino": "Buenos Aires",
+          "cpDestino": "7600",
+          "shippingMethod": "domicilio",
+          "shippingCost": 8000
+        },
+        {
+          "products": [
+            {
+              "productUrl": "http://localhost:3000/products/3",
+              "quantity": 1
+            }
+          ],
+          "date": "2024-11-15T03:19:06.894Z",
+          "recipientName": "J.",
+          "recipientSurname": "M.",
+          "street": "Olavarría 3583",
+          "provinciaDestino": "Buenos Aires",
+          "cpDestino": "7600",
+          "shippingMethod": "domicilio",
+          "shippingCost": 8000
+        },
+        {
+          "products": [
+            {
+              "productUrl": "http://localhost:3000/products/3",
+              "quantity": 1
+            }
+          ],
+          "date": "2024-11-15T03:23:28.588Z",
+          "recipientName": "J.",
+          "recipientSurname": "M.",
+          "street": "Olavarría 3583",
+          "provinciaDestino": "Buenos Aires",
+          "cpDestino": "7600",
+          "shippingMethod": "domicilio",
+          "shippingCost": 8000
+        },
+        {
+          "products": [
+            {
+              "productUrl": "http://localhost:3000/products/3",
+              "quantity": 1
+            }
+          ],
+          "date": "2024-11-15T03:27:44.617Z",
+          "recipientName": "J.",
+          "recipientSurname": "M.",
+          "street": "Olavarría 3583",
+          "provinciaDestino": "Buenos Aires",
+          "cpDestino": "7600",
+          "shippingMethod": "domicilio",
+          "shippingCost": 8000
+        },
+        {
+          "products": [
+            {
+              "productUrl": "http://localhost:3000/products/3",
+              "quantity": 1
+            }
+          ],
+          "date": "2024-11-15T03:32:50.694Z",
+          "recipientName": "J.",
+          "recipientSurname": "M.",
+          "street": "Olavarría 3583",
+          "provinciaDestino": "Buenos Aires",
+          "cpDestino": "7600",
+          "shippingMethod": "domicilio",
+          "shippingCost": 8000
+        }
+      ],
       "credential": "user"
     }
   ],
