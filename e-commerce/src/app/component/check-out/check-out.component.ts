@@ -5,10 +5,8 @@ import { CheckoutDataService } from '../../services/checkout-data/checkout-data.
 import { lastValueFrom } from 'rxjs';
 import { ShippingService } from '../../services/shipping-service/shipping.service';
 import { Order } from '../../models/orders';
-import { SubtotalComponent } from "../../subtotal/subtotal.component";
-import { CartPageComponent } from "../../../pages/cart-page/cart-page.component";
-import { CartComponent } from "../../cart/cart.component";
-
+import { SubtotalComponent } from '../subtotal/subtotal.component';
+import { CartComponent } from '../cart/cart.component';
 
 declare var MercadoPago: any;
 
