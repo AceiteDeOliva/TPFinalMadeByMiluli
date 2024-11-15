@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { map, catchError, switchMap } from 'rxjs/operators';
+import { Order } from '../../models/orders';
 
 @Injectable({
   providedIn: 'root'
@@ -88,10 +89,29 @@ export class UserService {
     return this.http.get<User>(`${this.apiUrl}/${userId}`);
   }
 
-  deleteUser(id: string): Observable<void> {
+  deleteUser(id: string): Observable<void> { //deletes user by id
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 
+
+  addOrderToPurchaseHistory(userId: string, order: Order): Observable<User> { //adds order to user by id
+    return this.getUserById(userId).pipe(
+      switchMap((user) => {
+        // Append the new order to the purchaseHistory array
+        const updatedUser = {
+          ...user,
+          purchaseHistory: [...user.purchaseHistory, order]
+        };
+        
+        // Update the user with the new purchase history
+        return this.updateUser(userId, { purchaseHistory: updatedUser.purchaseHistory });
+      }),
+      catchError((error) => {
+        console.error('Error adding order to purchase history:', error);
+        return throwError(() => new Error('Error adding order to purchase history'));
+      })
+    );
+  }
 
 
 

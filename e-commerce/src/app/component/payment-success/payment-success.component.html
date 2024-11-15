@@ -1,0 +1,13 @@
+<div *ngIf="orderSaved; else notSaved">
+  <h1>Thank you for your purchase!</h1>
+  <p>Your payment has been approved, and your order has been saved successfully.</p>
+</div>
+
+<ng-template #notSaved>
+  <div *ngIf="errorMessage">
+    <h1>Payment Information</h1>
+    <p>{{ errorMessage }}</p>
+  </div>
+</ng-template>
+
+  

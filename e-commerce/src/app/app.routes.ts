@@ -17,13 +17,15 @@ import { RegisterEmployeeComponent } from './pages/register-employee/register-em
 import { ActiveProductPagesComponent } from './pages/active-product-pages/active-product-pages.component';
 import { CategoriesComponent } from './pages/categories/categories.component';
 import { ProductPageComponent } from './pages/product-page/product-page.component';
-import { CheckoutComponent } from './component/checkOut/check-out/check-out.component';
+import { CheckoutComponent } from './component/check-out/check-out.component';
 import { CartPageComponent } from './pages/cart-page/cart-page.component';
 import { PurchaseLoginPageComponent } from './pages/active-product-pages/purchase-login-page/purchase-login-page.component';
 import { ShippingInfoPageComponent } from './pages/shipping-info-page/shipping-info-page.component';
+import { PaymentSuccessComponent } from './component/payment-success/payment-success.component';
 import { HomeEmployeeComponent } from './component/home-employee/home-employee.component';
 import { LowStockListComponent } from './pages/low-stock-list/low-stock-list.component';
 import { LoginForOrderPagesComponent } from './pages/login-for-order-pages/login-for-order-pages.component';
+
 
 
 
@@ -48,9 +50,11 @@ export const routes: Routes = [
   { path: 'checkout', component: CheckoutComponent },
   { path: 'loginPurchase', component:PurchaseLoginPageComponent },
   { path: 'shippingInfo', component: ShippingInfoPageComponent},
+  { path: 'payment-success', component: PaymentSuccessComponent },
+  //{ path: 'payment-failure', component: PaymentFailureComponent },
+  //{ path: 'payment-pending', component: PaymentPendingComponent },
   { path: 'stock', component: LowStockListComponent },
   { path: 'loginForOrder', component: LoginForOrderPagesComponent },
-
   { path: "**", redirectTo: "home" },
 
 ];

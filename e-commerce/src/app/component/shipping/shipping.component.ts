@@ -18,7 +18,7 @@ export class ShippingComponent implements OnInit {
   shippingForm: FormGroup;
   isLoggedIn: boolean = false;
   userEmail: string = '';
-  products: CartItem[] = [];  // Use CartItem here
+  products: CartItem[] = []; 
 
   @Output() formSubmitted: EventEmitter<boolean> = new EventEmitter<boolean>();
 
