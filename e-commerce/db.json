@@ -6,13 +6,26 @@
       "surname": "admin",
       "email": "admin@admin.com",
       "password": "admin",
-      "cart": [
+      "cart": [],
+      "purchaseHistory": [
         {
-          "productUrl": "http://localhost:3000/products/3",
-          "quantity": 1
+          "products": [
+            {
+              "productUrl": "http://localhost:3000/products/4",
+              "quantity": 1
+            }
+          ],
+          "date": "2024-11-15T09:59:30.534Z",
+          "recipientName": "Milagros",
+          "recipientSurname": "Rodriguez",
+          "street": "50 Twining Flats Road",
+          "provinciaDestino": "csgdgfg",
+          "cpDestino": "76009",
+          "shippingMethod": "sucursal",
+          "shippingCost": 6000,
+          "totalCost": 31000
         }
       ],
-      "purchaseHistory": [],
       "credential": "admin"
     },
     {
@@ -21,7 +34,12 @@
       "surname": "Leta",
       "email": "josevl@live.com",
       "password": "12345",
-      "cart": [],
+      "cart": [
+        {
+          "productUrl": "http://localhost:3000/products/4",
+          "quantity": 1
+        }
+      ],
       "purchaseHistory": [
         {
           "products": [
