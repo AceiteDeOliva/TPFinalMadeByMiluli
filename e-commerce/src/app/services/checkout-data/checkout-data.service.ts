@@ -6,9 +6,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CheckoutDataService {
-  // BehaviorSubject to hold the total amount with an initial value of 0
   private totalAmountSubject = new BehaviorSubject<number>(0);
-
+  
   // Setter method to update the total amount
   setTotalAmount(amount: number): void {
     this.totalAmountSubject.next(amount);
