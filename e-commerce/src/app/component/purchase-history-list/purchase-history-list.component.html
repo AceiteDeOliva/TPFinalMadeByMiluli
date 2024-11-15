@@ -1,0 +1,25 @@
+<div *ngIf="purchaseHistory.length > 0; else noHistory">
+    <h2>Purchase History</h2>
+    <div *ngFor="let order of purchaseHistory" class="order">
+      <h3>Order Date: {{ order.date | date: 'medium' }}</h3>
+      <p>Recipient: {{ order.recipientName }} {{ order.recipientSurname }}</p>
+      <p>Address: {{ order.street }}, {{ order.provinciaDestino }}, {{ order.cpDestino }}</p>
+      <p>Shipping Method: {{ order.shippingMethod }}</p>
+      <p>Shipping Cost: {{ order.shippingCost | currency }}</p>
+      <p>Total Cost: {{ order.totalCost | currency }}</p>
+      <div>
+        <h4>Products:</h4>
+        <ul>
+          <li *ngFor="let product of order.products">
+            Product: {{ product.productUrl }} - Quantity: {{ product.quantity }}
+          </li>
+        </ul>
+      </div>
+      <hr />
+    </div>
+  </div>
+  
+  <ng-template #noHistory>
+    <p>No purchase history available.</p>
+  </ng-template>
+  

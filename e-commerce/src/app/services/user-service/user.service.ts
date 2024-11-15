@@ -113,6 +113,16 @@ export class UserService {
     );
   }
 
+  getPurchaseHistory(userId: string): Observable<any[]> {
+    return this.http.get<any>(`${this.apiUrl}/${userId}`).pipe(
+      map((user) => user.purchaseHistory || []), // Safely access purchaseHistory
+      catchError((error) => {
+        console.error('Error fetching purchase history:', error);
+        return throwError(() => error);
+      })
+    );
+  }
+  
 
 
 }
