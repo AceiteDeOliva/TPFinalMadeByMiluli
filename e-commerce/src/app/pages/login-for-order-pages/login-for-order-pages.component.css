@@ -1,0 +1,56 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  background-color: #FCD5CE;
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.option {
+  background-color: #D1E3EB;
+  font-weight: bold;
+  cursor: pointer;
+  color: black;
+  margin-right: 10px;
+  text-align: center;
+  font-size: 1.2rem;
+  padding: 20px;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 300px;
+}
+
+
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+  }
+
+  .option {
+    font-size: 1rem;
+    padding: 15px;
+    width: 90%;
+  }
+
+  div > a {
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .option {
+    font-size: 0.9rem;
+    padding: 10px;
+    width: 90%;
+  }
+
+  div > a {
+    font-size: 0.8rem;
+    margin-bottom: 15px; /* Adjusted for mobile as well */
+  }
+}

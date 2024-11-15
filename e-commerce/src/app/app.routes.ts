@@ -23,6 +23,7 @@ import { PurchaseLoginPageComponent } from './pages/active-product-pages/purchas
 import { ShippingInfoPageComponent } from './pages/shipping-info-page/shipping-info-page.component';
 import { HomeEmployeeComponent } from './component/home-employee/home-employee.component';
 import { LowStockListComponent } from './pages/low-stock-list/low-stock-list.component';
+import { LoginForOrderPagesComponent } from './pages/login-for-order-pages/login-for-order-pages.component';
 
 
 
@@ -48,6 +49,8 @@ export const routes: Routes = [
   { path: 'loginPurchase', component:PurchaseLoginPageComponent },
   { path: 'shippingInfo', component: ShippingInfoPageComponent},
   { path: 'stock', component: LowStockListComponent },
+  { path: 'loginForOrder', component: LoginForOrderPagesComponent },
+
   { path: "**", redirectTo: "home" },
 
 ];

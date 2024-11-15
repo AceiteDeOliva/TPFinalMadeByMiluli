@@ -24,14 +24,44 @@
       "cart": [
         {
           "productUrl": "http://localhost:3000/products/3",
-          "quantity": 4
+          "quantity": 1
+        },
+        {
+          "productUrl": "http://localhost:3000/products/5",
+          "quantity": 1
+        }
+      ],
+      "purchaseHistory": [],
+      "credential": "user"
+    },
+    {
+      "id": "58ea",
+      "name": "Milagros",
+      "surname": "Rodriguez",
+      "email": "milagrosabril.r@gmail.com",
+      "password": "admin",
+      "cart": [
+        {
+          "productUrl": "http://localhost:3000/products/3",
+          "quantity": 2
         },
         {
           "productUrl": "http://localhost:3000/products/2",
           "quantity": 1
-        },
+        }
+      ],
+      "purchaseHistory": [],
+      "credential": "user"
+    },
+    {
+      "id": "f97f",
+      "name": "Milagros",
+      "surname": "Rodriguez",
+      "email": "milagroabril.r@gmail.com",
+      "password": "admin",
+      "cart": [
         {
-          "productUrl": "http://localhost:3000/products/4",
+          "productUrl": "http://localhost:3000/products/3",
           "quantity": 1
         }
       ],
