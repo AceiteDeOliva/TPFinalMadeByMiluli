@@ -21,22 +21,22 @@ h2 {
 }
 
 label {
-  display: block; /* Makes the label take up the full width and stack on its own line */
+  display: block;
   font-size: 18px;
-  margin-bottom: 5px; /* Adds space between label and input */
+  margin-bottom: 5px;
 }
 
 
 small {
-  display: block; /* Make sure the error message appears on its own line */
+  display: block;
   color: rgb(218, 89, 89);
-  font-size: 1.2rem; /* Adjust font size for error messages */
-  margin-top: 5px; /* Adds spacing between input and error message */
-  margin-bottom: 10px; /* Adds spacing between error message and next form element */
+  font-size: 1.2rem;
+  margin-top: 5px;
+  margin-bottom: 10px;
 }
 
 
-/* Styling for input fields */
+
 input[type="text"],
 input[type="email"] {
   width: 90%;
@@ -60,7 +60,6 @@ input:focus {
 }
 
 
-/* Styling for submit button */
 button[type="submit"] {
   width: 50%;
   padding: 12px;
@@ -71,7 +70,7 @@ button[type="submit"] {
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s;
-  margin-top: 15px; /* Adds spacing between inputs and the submit button */
+  margin-top: 15px;
 }
 
 button[type="submit"]:hover {
@@ -79,7 +78,7 @@ button[type="submit"]:hover {
   color: black;
 }
 
-/* Styling for result message */
+
 .result {
   margin-top: 20px;
   background-color: #e1f5e1;
@@ -93,25 +92,24 @@ button[type="submit"]:hover {
   color: #333;
 }
 
-/* Styling for checkbox input */
+
 .shipping input[type="checkbox"] {
-  width: 22px; /* Adjust size of checkbox */
+  width: 22px;
   height: 22px;
-  margin-right: 10px; /* Space between checkbox and label text */
-  accent-color: #007bff; /* Set the color of the checkbox when checked */
-  border-radius: 10px; /* Make the checkbox rounded */
-  background-color: white; /* Ensure background is white for better visibility */
-  border: 2px solid #007bff; /* Set the border color */
+  margin-right: 10px;
+  accent-color: #007bff;
+  border-radius: 10px;
+  background-color: white;
+  border: 2px solid #007bff;
   transition: background-color 0.2s ease;
   cursor: pointer;
 }
 
-/* Hover effect for checkbox */
+
 .shipping input[type="checkbox"]:hover {
   background-color: #f1f1f1;
 }
 
-/* Adjust layout on smaller screens */
 @media (max-width: 480px) {
   .shipping {
     width: 100%;
@@ -137,14 +135,14 @@ button[type="submit"]:hover {
   button[type="submit"] {
     font-size: 14px;
     padding: 10px;
-    width: 100%; /* Full width on small screens */
+    width: 100%;
   }
 
   .result h3 {
     font-size: 16px;
   }
 
-  /* Adjust input and button for smaller screens */
+
   input[type="text"],
   input[type="email"] {
     width: 100%;
