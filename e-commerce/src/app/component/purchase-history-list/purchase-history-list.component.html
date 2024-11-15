@@ -1,6 +1,7 @@
-<div *ngIf="purchaseHistory.length > 0; else noHistory">
-    <h2>Purchase History</h2>
-    <div *ngFor="let order of purchaseHistory" class="order">
+<div class="container" *ngIf="purchaseHistory && purchaseHistory.length > 0; else noHistory">
+  <div *ngFor="let order of purchaseHistory" class="order">
+    <h2>Orden #{{ order.id }}</h2> <!-- Asumiendo que cada orden tiene un ID -->
+    <div>
       <h3>Order Date: {{ order.date | date: 'medium' }}</h3>
       <p>Recipient: {{ order.recipientName }} {{ order.recipientSurname }}</p>
       <p>Address: {{ order.street }}, {{ order.provinciaDestino }}, {{ order.cpDestino }}</p>
@@ -8,19 +9,29 @@
       <p>Shipping Cost: {{ order.shippingCost | currency }}</p>
       <p>Total Cost: {{ order.totalCost | currency }}</p>
       <p><strong>Estado:</strong> {{ order.state}}</p>
-      <div>
-        <h4>Products:</h4>
+
+      <!-- Mostrar productos solo para la orden actual -->
+      <div *ngIf="order.products && order.products.length > 0">
+        <h4>Productos:</h4>
+>>>>>>> 531d7dcdb8cf6ac5be9a058779f82ed6f3a3473c
         <ul>
           <li *ngFor="let product of order.products">
-            Product: {{ product.productUrl }} - Quantity: {{ product.quantity }}
+            Producto: {{ product.nombre }} - Cantidad: {{ product.quantity }}
           </li>
         </ul>
       </div>
+
+      <div *ngIf="!order.products || order.products.length === 0">
+        <p>No hay productos en esta orden.</p>
+      </div>
+
       <hr />
     </div>
   </div>
-  
-  <ng-template #noHistory>
-    <p>No purchase history available.</p>
-  </ng-template>
-  
+</div>
+
+<ng-template #noHistory>
+  <div class="noHistory">
+    <p>No has realizado órdenes todavía.</p>
+  </div>
+</ng-template>

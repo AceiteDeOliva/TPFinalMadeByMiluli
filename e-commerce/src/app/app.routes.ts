@@ -32,7 +32,6 @@ import { OrderListComponent } from './component/order-list/order-list.component'
 
 
 
-
 export const routes: Routes = [
 
   { path: 'myCart', component: CartPageComponent },
