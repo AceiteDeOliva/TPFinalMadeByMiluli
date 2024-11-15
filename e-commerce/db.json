@@ -35,15 +35,16 @@
               "quantity": 1
             }
           ],
-          "date": "2024-11-15T02:40:14.642Z",
+          "date": "2024-11-15T05:46:03.114Z",
           "recipientName": "J.",
           "recipientSurname": "M.",
           "street": "Olavarría 3583",
           "provinciaDestino": "Buenos Aires",
           "cpDestino": "7600",
-          "shippingMethod": "domicilio",
-          "shippingCost": 8000
-        },
+          "shippingMethod": "sucursal",
+          "shippingCost": 6000,
+          "totalCost": 21000
+        }
       ],
       "credential": "user"
     },

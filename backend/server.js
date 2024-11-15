@@ -10,6 +10,8 @@ const client = new MercadoPagoConfig({
 
 const app = express();
 const port = 8080;
+const processedPayments = new Set();
+
 app.use(cors());
 app.use(express.json());
 
@@ -27,11 +29,11 @@ app.post("/create_preference", async (req, res) => {
       ],
       back_urls: {
         success: 'http://localhost:4200/payment-success',
-        failure: 'http://localhost:4200/payment-success',
-        pending: 'http://localhost:4200/payment-success',
+        failure: 'http://localhost:4200/home',
+        pending: 'http://localhost:4200/home',
       },
       auto_return: 'approved',
-      notification_url: "https://8473-190-190-36-138.ngrok-free.app/webhook"
+      notification_url: "https://8f60-190-190-36-138.ngrok-free.app/webhook"
     };
 
     const preference = new Preference(client);
@@ -43,61 +45,43 @@ app.post("/create_preference", async (req, res) => {
   }
 });
 
+
 // Webhook to handle MercadoPago notifications
+const paymentStatusStore = new Map(); // In-memory store for payment statuses
+
 app.post("/webhook", async (req, res) => {
-  const paymentId = req.query.id;
+  const paymentId = req.query['data.id'];
+
+  if (!paymentId) {
+    console.error("No payment ID found in the notification.");
+    return res.sendStatus(400);
+  }
+
+  if (processedPayments.has(paymentId)) {
+    console.log("Duplicate payment notification, ignoring:", paymentId);
+    return res.sendStatus(200);
+  }
 
   try {
     const response = await fetch(`https://api.mercadopago.com/v1/payments/${paymentId}`, {
       method: 'GET',
-      headers: { 'Authorization': `Bearer ${client.accessToken}` }
-    });
-
-    if (response.ok) {
-      const data = await response.json();
-
-      if (data.status === 'approved') {
-        console.log("Payment approved:", data);
-        
-      } else {
-        console.log("Payment status:", data.status);
+      headers: {
+        'Authorization': `Bearer ${client.accessToken}`
       }
-      res.sendStatus(200); // Respond with 200 for all statuses to avoid repeated notifications
-    } else {
-      console.error("Failed to fetch payment data");
-      res.sendStatus(500);
-    }
-
-    res.sendStatus(200);
-
-  } catch (error) {
-    console.error('Error in webhook:', error);
-    res.sendStatus(500);
-  }
-});
-
-// Payment status endpoint for client-side checks
-app.get("/payment-status/:paymentId", async (req, res) => {
-  const paymentId = req.params.paymentId;
-
-  try {
-    const response = await fetch(`https://api.mercadopago.com/v1/payments/${paymentId}`, {
-      method: 'GET',
-      headers: { 'Authorization': `Bearer ${client.accessToken}` }
     });
 
     if (response.ok) {
       const data = await response.json();
-      res.json({ status: data.status, paymentData: data });
-    } else {
-      console.error('Error fetching payment details:', response.statusText);
-      res.status(500).json({ error: "Error fetching payment details" });
+      console.log(data);
     }
+
+   res.sendStatus(200);
   } catch (error) {
-    console.error('Error processing payment-status:', error);
-    res.status(500).json({ error: "Server error in payment-status" });
+    console.error("Error in webhook handler:", error);
+    return res.sendStatus(500);
   }
 });
+
 
 // Start the server
 app.listen(port, () => {
