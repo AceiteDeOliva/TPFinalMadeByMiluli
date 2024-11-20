@@ -4,6 +4,7 @@ import { ShippingService } from '../../services/shipping-service/shipping.servic
 import { CheckoutDataService } from '../../services/checkout-data/checkout-data.service';
 import { CommonModule } from '@angular/common';
 
+
 @Component({
   selector: 'app-subtotal',
   templateUrl: './subtotal.component.html',
@@ -24,7 +25,7 @@ export class SubtotalComponent implements OnInit {
   constructor(
     private checkoutDataService: CheckoutDataService,
     private cartService: CartService,
-    private shippingService: ShippingService
+    private shippingService: ShippingService,
   ) {}
 
   ngOnInit(): void {
@@ -37,6 +38,7 @@ export class SubtotalComponent implements OnInit {
     } else {
       this.calculateTotal();
     }
+
 
     // Fetch the shipping cost from ShippingService
     this.shippingService.getShippingData().subscribe((order) => {
@@ -51,6 +53,7 @@ export class SubtotalComponent implements OnInit {
   }
 
   onProceedToPayment() {
-    this.proceedToPayment.emit();
+      this.proceedToPayment.emit();
+
   }
 }

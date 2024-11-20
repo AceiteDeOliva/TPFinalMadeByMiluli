@@ -8,7 +8,9 @@ import { User } from '../../models/user';
 })
 export class AuthService {
   private credentialSubject = new BehaviorSubject<string | null>(null); // Initialize with null
-
+ islogin:boolean =false;
+ canCheckout: boolean = false;
+ canship: boolean = false;
 
   constructor(private userService: UserService) {
     const userId = localStorage.getItem('currentUserId');
@@ -18,7 +20,7 @@ export class AuthService {
           this.credentialSubject.next(user.credential || null);
         },
         error: () => {
-          this.credentialSubject.next(null); // Si ocurre un error, establece credencial como null
+          this.credentialSubject.next(null);
         }
       });
     } else {
@@ -27,10 +29,57 @@ export class AuthService {
   }
 
   changeCredential(credential: string | null): void {
-    this.credentialSubject.next(credential); // Update the BehaviorSubject with the new credential
+    this.credentialSubject.next(credential);
   }
 
   getCredential(): Observable<string | null> {
-    return this.credentialSubject.asObservable(); // Return the observable to subscribe to
+    return this.credentialSubject.asObservable();
+  }
+
+  login(userCredential: string) {
+    const user = { isLogin: true, credential: userCredential };
+    localStorage.setItem('currentUser', JSON.stringify(user));
+  }
+
+  logout() {
+    localStorage.removeItem('currentUser');
+  }
+
+  get currentUser() {
+    const user = localStorage.getItem('currentUser');
+    return user ? JSON.parse(user) : null;
+  }
+
+  get isLogin() {
+    return this.currentUser && this.currentUser.isLogin;
+  }
+
+  //
+  get credential() {
+    return this.currentUser ? this.currentUser.credential : null;
+  }
+  enableCheckout() {
+    this.canCheckout = true; // Set it to true to allow checkout
+  }
+
+  disableCheckout() {
+    this.canCheckout = false; // Set it to false to disallow checkout
+  }
+
+  // Use this to check if the user can checkout
+  isCheckoutEnabled(): boolean {
+    return this.canCheckout;
+  }
+  enableShipping() {
+    this.canship = true; // Set it to true to allow checkout
+  }
+
+  disableShipping() {
+    this.canship = false; // Set it to false to disallow checkout
+  }
+
+  // Use this to check if the user can checkout
+  isShippingEnabled(): boolean {
+    return this.canship;
   }
 }

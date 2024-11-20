@@ -1,21 +1,22 @@
 <div class="container" *ngIf="purchaseHistory && purchaseHistory.length > 0; else noHistory">
   <div *ngFor="let order of purchaseHistory" class="order">
-    <h2>Orden #{{ order.id }}</h2> <!-- Asumiendo que cada orden tiene un ID -->
+    <h2>Orden #{{ order.orderId }}</h2>
     <div>
-      <h3>Order Date: {{ order.date | date: 'medium' }}</h3>
-      <p>Recipient: {{ order.recipientName }} {{ order.recipientSurname }}</p>
-      <p>Address: {{ order.street }}, {{ order.provinciaDestino }}, {{ order.cpDestino }}</p>
-      <p>Shipping Method: {{ order.shippingMethod }}</p>
-      <p>Shipping Cost: {{ order.shippingCost | currency }}</p>
-      <p>Total Cost: {{ order.totalCost | currency }}</p>
-      <p><strong>Estado:</strong> {{ order.state}}</p>
+      <h3>fecha: {{ order.date | date: 'medium' }}</h3>
+      <p><strong>Destinatario:</strong> {{ order.recipientName }} {{ order.recipientSurname }}</p>
+      <p><strong>Dirección:</strong> {{ order.street }}, {{ order.provinciaDestino }}, {{ order.cpDestino }}</p>
+      <p><strong>Tipo de envio:</strong> {{ order.shippingMethod }}</p>
+      <p><strong>Costo de envio:</strong> {{ order.shippingCost | currency }}</p>
+      <p><strong>Costo total:</strong> {{ order.totalCost | currency }}</p>
+      <p><strong>Estado:</strong> {{ order.state }}</p>
 
-      <!-- Mostrar productos solo para la orden actual 
-      <div *ngIf="order.products && order.products.length > 0">
-        <h4>Productos:</h4>
+
+      <div class="productos" *ngIf="order.products && order.products.length > 0">
+
         <ul>
+          <h4>Productos:</h4>
           <li *ngFor="let product of order.products">
-            Producto: {{ product.nombre }} - Cantidad: {{ product.quantity }}
+            {{ product.quantity }} x {{ product.productName || 'Producto no disponible' }} -{{ product.price}}
           </li>
         </ul>
       </div>
@@ -23,7 +24,6 @@
       <div *ngIf="!order.products || order.products.length === 0">
         <p>No hay productos en esta orden.</p>
       </div>
-    -->
 
       <hr />
     </div>

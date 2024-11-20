@@ -11,6 +11,7 @@ import { PreferenceData } from '../../models/preference';
 import { DecimalPipe } from '@angular/common';
 import { UserService } from '../../services/user-service/user.service';
 import { Router, RouterModule } from '@angular/router';
+import { AuthService } from '../../services/auth-service/auth.service';
 
 @Component({
   selector: 'app-cart',
@@ -34,12 +35,14 @@ export class CartComponent implements OnInit {
     private productService: ProductService,
     private mercadopagoService: MercadopagoService,
     private decimalPipe: DecimalPipe,
-    private router: Router
+    private router: Router,
+    private authService :AuthService
   ) {}
 
 
   ngOnInit(): void {
     this.loadCart();
+    this.authService.enableShipping();
   }
 
 
@@ -162,11 +165,10 @@ export class CartComponent implements OnInit {
 
   onStartPurchase() {
     const currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
-
     if (!currentUser) {
       this.router.navigate(['loginPurchase']);
     } else {
-      this.router.navigate(['shippingInfo']);  
+      this.router.navigate(['shippingInfo']);
     }
   }
 

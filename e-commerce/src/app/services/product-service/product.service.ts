@@ -206,6 +206,20 @@ uploadImage(file: File): Observable<string> {
     );
   }
 
+  fetchProductWithoutImageByUrl(productUrl: string): Observable<{ details: Product | null; productUrl: string }> {
+    const productId = productUrl.split('/').pop();
+    if (!productId) return of({ details: null, productUrl }); // Devuelve null si el productId es inválido
+
+    return this.getProductById(productId).pipe( // Usar `getProductById` directamente
+      map(product => {
+        return { details: product, productUrl }; // Solo devuelve los detalles del producto sin la imagen
+      }),
+      catchError(error => {
+        console.error(`Error al obtener el producto con ID ${productId}:`, error);
+        return of({ details: null, productUrl }); // Devuelve null en caso de error
+      })
+    );
+  }
 
 
 

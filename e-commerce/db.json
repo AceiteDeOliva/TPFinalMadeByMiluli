@@ -6,13 +6,27 @@
       "surname": "admin",
       "email": "admin@admin.com",
       "password": "admin",
-      "cart": [],
+      "cart": [
+        {
+          "productUrl": "http://localhost:3000/products/4",
+          "quantity": 1
+        }
+      ],
       "purchaseHistory": [
         {
+          "orderId": "1223",
           "products": [
             {
               "productUrl": "http://localhost:3000/products/4",
               "quantity": 1
+            },
+            {
+              "productUrl": "http://localhost:3000/products/5",
+              "quantity": 2
+            },
+            {
+              "productUrl": "http://localhost:3000/products/6",
+              "quantity": 3
             }
           ],
           "date": "2024-11-15T09:59:30.534Z",
@@ -23,7 +37,38 @@
           "cpDestino": "76009",
           "shippingMethod": "sucursal",
           "shippingCost": 6000,
-          "totalCost": 31000
+          "totalCost": 31000,
+          "state": "active"
+        },
+        {
+          "orderId": "123",
+          "products": [
+            {
+              "productUrl": "http://localhost:3000/products/7",
+              "quantity": 1,
+              "price": 10
+            },
+            {
+              "productUrl": "http://localhost:3000/products/9",
+              "quantity": 2,
+              "price": 6000
+            },
+            {
+              "productUrl": "http://localhost:3000/products/10",
+              "quantity": 3,
+              "price": 10000
+            }
+          ],
+          "date": "2024-11-15T09:59:30.534Z",
+          "recipientName": "Milagros",
+          "recipientSurname": "Rodriguez",
+          "street": "50 Twining Flats Road",
+          "provinciaDestino": "csgdgfg",
+          "cpDestino": "76009",
+          "shippingMethod": "sucursal",
+          "shippingCost": 6000,
+          "totalCost": 31000,
+          "state": "active"
         }
       ],
       "credential": "admin"
@@ -42,6 +87,7 @@
       ],
       "purchaseHistory": [
         {
+          "orderId": "1224",
           "products": [
             {
               "productUrl": "http://localhost:3000/products/11",
@@ -64,6 +110,7 @@
           "state": "Procesando"
         },
         {
+          "orderId": "1225",
           "products": [
             {
               "productUrl": "http://localhost:3000/products/11",
@@ -86,7 +133,7 @@
           "state": "Procesando"
         },
         {
-          "orderId": "",
+          "orderId": "12235",
           "products": [
             {
               "productUrl": "http://localhost:3000/products/1",

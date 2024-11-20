@@ -6,6 +6,10 @@ import { CartService } from '../../services/cart-service/cart.service';
 import { CartItem } from '../../models/cartItem';
 import { CommonModule } from '@angular/common';
 import { Order } from '../../models/orders';
+import { ProductService } from '../../services/product-service/product.service';
+import { map } from 'rxjs';
+import { forkJoin } from 'rxjs';
+import { AuthService } from '../../services/auth-service/auth.service';
 
 @Component({
   selector: 'app-shippingComponent',
@@ -28,7 +32,9 @@ export class ShippingComponent implements OnInit {
     private fb: FormBuilder,
     private userService: UserService,
     private shippingService: ShippingService,
-    private cartService: CartService
+    private cartService: CartService,
+    private productService: ProductService,
+    private authService :AuthService
   ) {
     this.shippingForm = this.fb.group({
       recipientName: ['', Validators.required],
@@ -44,11 +50,21 @@ export class ShippingComponent implements OnInit {
   ngOnInit(): void {
 
     this.fetchCartSubtotal();
-
     this.cartService.getCarrito().subscribe((cartItems) => {
-      this.products = cartItems;
-    });
+      const productRequests = cartItems.map((cartItem) =>
+        this.productService.fetchProductWithoutImageByUrl(cartItem.productUrl).pipe(
+          map(({ details }) => ({
+            ...cartItem,
+            price: details?.price
+          }))
+        )
+      );
 
+
+      forkJoin(productRequests).subscribe((updatedCartItems) => {
+        this.products = updatedCartItems;
+      });
+    });
 
     const currentUserId = localStorage.getItem('currentUserId');
 
@@ -75,11 +91,12 @@ export class ShippingComponent implements OnInit {
     }
 
   }
-
   saveShippingData(): void {
     if (this.shippingForm.valid) {
+      
+      const orderId = `${Date.now()}-${Math.floor(Math.random() * 1000)}`;
       const orderData: Order = {
-        orderId: '',
+        orderId: orderId,
         products: this.products,
         date: new Date(),
         recipientName: this.shippingForm.value.recipientName,
@@ -91,7 +108,6 @@ export class ShippingComponent implements OnInit {
         shippingCost: this.shippingCost,
         totalCost: this.cartSubtotal + this.shippingCost,
         state: 'Pendiente',
-        
       };
 
       this.shippingService.setShippingData(orderData);
@@ -102,6 +118,9 @@ export class ShippingComponent implements OnInit {
       console.log('Form is invalid');
       this.formSubmitted.emit(false);
     }
+
+    this.authService.enableCheckout();
+
   }
 
   private fetchCartSubtotal(): void {
@@ -109,7 +128,7 @@ export class ShippingComponent implements OnInit {
       next: (subtotal) => {
         this.cartSubtotal = subtotal;
         this.updateShippingCost();
-        
+
       },
       error: () => {
         console.error('Error fetching cart subtotal');

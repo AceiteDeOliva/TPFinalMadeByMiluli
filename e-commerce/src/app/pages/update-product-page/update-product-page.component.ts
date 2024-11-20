@@ -5,7 +5,7 @@ import { RouterModule, RouterOutlet } from '@angular/router';
 @Component({
   selector: 'app-update-product-page',
   standalone: true,
-  imports: [ProductUpdateFormComponent,RouterModule,RouterOutlet],
+  imports: [ProductUpdateFormComponent,RouterModule],
   templateUrl: './update-product-page.component.html',
   styleUrl: './update-product-page.component.css'
 })
