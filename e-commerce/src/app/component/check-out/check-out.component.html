@@ -15,10 +15,15 @@
       <h2>Información de Envío</h2>
       <p><strong>Método de envío:</strong> {{ shippingData.shippingMethod }}</p>
       <p><strong>Costo de envío:</strong> {{ shippingData.shippingCost | currency }}</p>
-      <h2>Productos</h2>
 
+
+      <h2>Productos</h2>
       <div *ngFor="let product of cartProducts">
-        <p><strong>{{ product.name }}</strong> - {{ product.price | currency }}</p>
+        <p>
+          <strong>{{ product.quantity }} x {{ product.name }}</strong> -
+          {{ product.price | currency }}
+
+        </p>
       </div>
       <h3>Total a pagar</h3>
       <p>{{ shippingData.totalCost }}</p>

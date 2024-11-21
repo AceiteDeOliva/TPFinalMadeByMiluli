@@ -73,27 +73,27 @@ console.log("productos en el carriot"+this.shippingData.Products)
   getProductsFromCart(cart: any[]): void {
     const productRequests = cart.map(item => {
       return this.productService.fetchProductWithImageByUrl(item.productUrl).pipe(
-        map(({ details, productUrl }) => {
+        map(({ details }) => {
           if (details) {
             return {
               ...details,
-              quantity: item.quantity // Add quantity to the product from the cart
+              quantity: item.quantity // Add the quantity to the product object
             };
           }
-          // If product is not found, return null (or you can skip or handle differently)
-          console.warn(`Product not found for ${productUrl}`);
+
+          console.warn(`Product not found for ${item.productUrl}`);
           return null;
         })
       );
     });
 
-    // Combine all product observables and subscribe to them
     forkJoin(productRequests).subscribe((products) => {
-      // Filter out any null values (products not found)
+      // Filter out null products and keep those with valid data
       this.cartProducts = products.filter(product => product !== null);
-      console.log('Cart products:', this.cartProducts); // Log to verify the result
+      console.log('Cart products with quantities:', this.cartProducts);
     });
   }
+
 
 
 

@@ -94,16 +94,21 @@ export class UserService {
   }
 
   updateOrderState(userId: string, orderId: string, newState: Order['state']): Observable<User> {
-    return this.http.patch<User>(`${this.apiUrl}/${userId}`, {
-      purchaseHistory: [
-        {
-          id: orderId,
-          state: newState,
-        },
-      ],
-    });
+    return this.http.get<User>(`http://localhost:3000/users/${userId}`).pipe(
+      map((user) => {
+        const order = user.purchaseHistory.find(o => o.orderId === orderId);
+        if (!order) {
+          throw new Error(`Order with ID ${orderId} not found for User ${userId}`);
+        }
+        order.state = newState;
+        return user;
+      }),
+      switchMap((updatedUser) =>
+        this.http.put<User>(`http://localhost:3000/users/${userId}`, updatedUser)
+      )
+    );
   }
-
+  
   addOrderToPurchaseHistory(userId: string, order: Order): Observable<User> { //adds order to user by id
     return this.getUserById(userId).pipe(
       switchMap((user) => {

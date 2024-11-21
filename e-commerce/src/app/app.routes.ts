@@ -1,6 +1,6 @@
 import { ProductUpdateFormComponent } from './component/product-update-form/product-update-form.component';
 import { Component } from '@angular/core';
-import { Routes } from '@angular/router';
+import { Routes, ActivatedRoute } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { CartComponent } from './component/cart/cart.component';
 import { AppComponent } from './app.component';
@@ -19,7 +19,7 @@ import { CategoriesComponent } from './pages/categories/categories.component';
 import { ProductPageComponent } from './pages/product-page/product-page.component';
 import { CheckoutComponent } from './component/check-out/check-out.component';
 import { CartPageComponent } from './pages/cart-page/cart-page.component';
-import { PurchaseLoginPageComponent } from './pages/active-product-pages/purchase-login-page/purchase-login-page.component';
+import { PurchaseLoginPageComponent } from './pages/purchase-login-page/purchase-login-page.component';
 import { ShippingInfoPageComponent } from './pages/shipping-info-page/shipping-info-page.component';
 import { PaymentSuccessComponent } from './component/payment-success/payment-success.component';
 import { HomeEmployeeComponent } from './component/home-employee/home-employee.component';
@@ -27,6 +27,9 @@ import { LowStockListComponent } from './pages/low-stock-list/low-stock-list.com
 import { LoginForOrderPagesComponent } from './pages/login-for-order-pages/login-for-order-pages.component';
 import { PurchaseHistoryComponent } from './component/purchase-history-list/purchase-history-list.component';
 import { OrderListComponent } from './component/order-list/order-list.component';
+import { authGuardFn } from './guard/auth.guard-fn';
+import { authGuardFnCheckOut} from './guard/auth.guard-fn-checkout';
+import { authGuardFnShipping } from './guard/auth.guard-fn-shipping';
 
 
 
@@ -39,25 +42,27 @@ export const routes: Routes = [
   { path: 'homeEmployee', component: HomeEmployeeComponent },
   { path: 'login', component: LoginPageComponent },
   { path: 'register', component: RegisterComponent },
+
   { path: 'listCategory', component: CategoriesComponent },
+
   { path: "activeProducts", component: ActiveProductPagesComponent },
-  { path: 'registerEmployee', component: RegisterEmployeeComponent },
-  { path: 'productAdmin', component: ManageProductPageComponent },
+  { path: 'registerEmployee', component: RegisterEmployeeComponent, canActivate: [() => authGuardFn(['admin', 'manager'])] },
+  { path: 'productAdmin', component: ManageProductPageComponent, canActivate: [() => authGuardFn(['admin', 'manager'])] },
   { path: 'profile', component: ProfilePageComponent },
-  { path: 'manageUsers', component: ManageUsersPageComponent },
-  { path: 'nuevoProducto', component: NewProductPageComponent },
-  { path: 'updateProduct/:id', component: UpdateProductPageComponent },
+  { path: 'manageUsers', component: ManageUsersPageComponent, canActivate: [() => authGuardFn(['admin', 'manager'])] },
+  { path: 'nuevoProducto', component: NewProductPageComponent, canActivate: [() => authGuardFn(['admin', 'manager'])] },
+  { path: 'updateProduct/:id', component: UpdateProductPageComponent, canActivate: [() => authGuardFn(['admin', 'manager'])] },
   { path: 'productView/:productId', component: ProductPageComponent },
-  { path: 'checkout', component: CheckoutComponent },
+  { path: 'checkout', component: CheckoutComponent, canActivate: [authGuardFnCheckOut] },
   { path: 'loginPurchase', component: PurchaseLoginPageComponent },
-  { path: 'shippingInfo', component: ShippingInfoPageComponent },
+  { path: 'shippingInfo', component: ShippingInfoPageComponent,canActivate: [authGuardFnShipping]},
   { path: 'payment-success', component: PaymentSuccessComponent },
   //{ path: 'payment-failure', component: PaymentFailureComponent },
   //{ path: 'payment-pending', component: PaymentPendingComponent },
-  { path: 'stock', component: LowStockListComponent },
+  { path: 'stock', component: LowStockListComponent , canActivate: [() => authGuardFn(['admin', 'manager','employee'])]  },
   { path: 'loginForOrder', component: LoginForOrderPagesComponent },
   { path: 'purchaseHistory', component: PurchaseHistoryComponent },
-  { path: 'orders', component: OrderListComponent },
+  { path: 'orders', component: OrderListComponent , canActivate: [() => authGuardFn(['admin', 'manager', 'employee'])]  },
   { path: "**", redirectTo: "home" },
 
 ];

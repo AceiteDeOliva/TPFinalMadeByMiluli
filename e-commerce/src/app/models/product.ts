@@ -7,4 +7,5 @@ export interface Product {
     stock: number;
     imageUrl: string;
     state: "active"|"inactive";
+    quantity?: number;
 }

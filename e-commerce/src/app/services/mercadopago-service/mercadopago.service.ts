@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class MercadopagoService {
   private apiUrl = 'http://localhost:8080/create_preference'; // Your backend API
-  private baseUrl = 'http://localhost:8080'; 
+  private baseUrl = 'http://localhost:8080';
 
   constructor(private http: HttpClient) {}
 
