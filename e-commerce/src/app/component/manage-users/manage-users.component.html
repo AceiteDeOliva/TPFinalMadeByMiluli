@@ -30,9 +30,9 @@
         <app-profile-update-form
           [userData]="selectedEmployee"
           [isAdmin]="isAllowed"
-          (saveChanges)="onSaveChanges($event)">
+          (saveChanges)="onSaveChanges($event)"
+          (deleteProfile)="onDelete($event)">
         </app-profile-update-form>
-        <button class="delete-button" (click)="onDelete()">Eliminar Empleado</button>
       </div>
     </div>
 
