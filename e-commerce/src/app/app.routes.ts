@@ -30,6 +30,7 @@ import { OrderListComponent } from './component/order-list/order-list.component'
 import { authGuardFn } from './guard/auth.guard-fn';
 import { authGuardFnCheckOut} from './guard/auth.guard-fn-checkout';
 import { authGuardFnShipping } from './guard/auth.guard-fn-shipping';
+import { StockComponent } from './pages/stock/stock.component';
 
 
 
@@ -54,8 +55,9 @@ export const routes: Routes = [
   { path: 'checkout', component: CheckoutComponent, canActivate: [authGuardFnCheckOut] },
   { path: 'loginPurchase', component: PurchaseLoginPageComponent },
   { path: 'shippingInfo', component: ShippingInfoPageComponent,canActivate: [authGuardFnShipping]},
+  { path: 'lowStock', component: LowStockListComponent , canActivate: [() => authGuardFn(['admin', 'manager','employee'])]  },
+  { path: 'stock', component: StockComponent , canActivate: [() => authGuardFn(['admin', 'manager','employee'])]  },
   { path: 'payment-status', component: PaymentStatusComponent },
-  { path: 'stock', component: LowStockListComponent , canActivate: [() => authGuardFn(['admin', 'manager','employee'])]  },
   { path: 'loginForOrder', component: LoginForOrderPagesComponent },
   { path: 'purchaseHistory', component: PurchaseHistoryComponent },
   { path: 'orders', component: OrderListComponent , canActivate: [() => authGuardFn(['admin', 'manager', 'employee'])]  },

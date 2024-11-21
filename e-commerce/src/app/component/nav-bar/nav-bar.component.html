@@ -41,6 +41,7 @@
       </li>
       <li><a routerLink="activeProducts">Productos</a></li>
 
+
       <li class="dropdown" (mouseover)="toggleAccountMenu(true)" (mouseleave)="toggleAccountMenu(false)">
         <span>Mi Cuenta</span>
         <ul class="nested" *ngIf="accountMenuVisible">
@@ -71,7 +72,13 @@
   </a>
   <div class="toTheRight">
     <ul style="cursor: pointer;">
-      <li><a routerLink="productAdmin">Productos</a></li>
+
+      <li >
+        <a routerLink="stock">Stock</a>
+      </li>
+
+      <li *ngIf="(credential$ | async) !== 'employee'">
+        <a routerLink="productAdmin">Productos</a></li>
       <li><a routerLink="orders">Órdenes</a></li>
 
       <li *ngIf="(credential$ | async) !== 'employee'">
