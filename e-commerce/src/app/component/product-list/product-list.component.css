@@ -3,6 +3,26 @@
   grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
   gap: 20px; /* Space between items */
   width: 100%; /* Ensure container takes full width */
+  justify-items: center; /* Center the grid items horizontally */
+  align-items: start; /* Align items to the start (top) by default */
+}
+
+.no-products {
+  grid-column: span 3; /* Make the 'No hay productos' message span across all columns */
+  text-align: center;
+  color: #666;
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-top: 50px;
+  padding: 20px;
+  background-color: #C4DCBB;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center; /* Center the text horizontally */
+  align-items: center; /* Center the text vertically */
+  height: 200px; /* Set a fixed height to make sure it's centered vertically */
 }
 
 .product-card {
@@ -48,6 +68,7 @@
   margin: 5px 0; /* Adds spacing between paragraphs */
   font-size: 1rem; /* Adjust font size for better readability */
 }
+
 p{
   padding: 5px;
 }

@@ -37,7 +37,12 @@
       "surname": "Leta",
       "email": "josevl@live.com",
       "password": "12345",
-      "cart": [],
+      "cart": [
+        {
+          "productUrl": "http://localhost:3000/products/15",
+          "quantity": 1
+        }
+      ],
       "purchaseHistory": [],
       "credential": "employee"
     },
