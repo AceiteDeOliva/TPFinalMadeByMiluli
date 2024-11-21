@@ -10,7 +10,7 @@
   align-items: center;
   text-align: center;
   justify-content: space-between;
-  width: 100%;
+  width: 99%;
 }
 
 .toTheRight {
@@ -69,7 +69,7 @@ nav button {
   color: #000000;
   border-radius: 8px;
   font-size: 18px;  /* Increased font size for buttons */
-  
+
 }
 
 nav button:hover {

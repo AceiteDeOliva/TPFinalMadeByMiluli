@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ProductService } from '../../services/product-service/product.service';
 import { ActivatedRoute, RouterModule } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-product-page',
@@ -21,7 +22,9 @@ export class ProductPageComponent implements OnInit {
   showAddedToCartMessage: boolean = false; // Add this variable
   cartMessage:string='';
 
+
   constructor(
+    private location: Location,
     private router: Router,
     private cartService: CartService,
     private productService: ProductService,
@@ -72,5 +75,7 @@ export class ProductPageComponent implements OnInit {
   toggleShippingPrices() {
     this.showShippingPrices = !this.showShippingPrices;
   }
-
+  goBack(): void {
+    this.location.back();
+  }
 }

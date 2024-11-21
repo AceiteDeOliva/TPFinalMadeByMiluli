@@ -1,7 +1,7 @@
 
 
   <div *ngIf="selectedProduct" class="product-details">
-    <button routerLink="/activeProducts"  class="volver">Volver</button>
+    <button (click)=" goBack()"  class="volver">Volver</button>
     <div>
       <img
         [src]="selectedProduct.imageUrl || '/Assets/Logo made by miluli/Logo_MadeByMiluli CONTRASTE - CENTRADO.png'"
@@ -28,7 +28,7 @@
 
       <button class="button" (click)="addToCart(quantity)">Agregar al Carrito</button>
       <div class="added-to-cart-message" [class.show]="showAddedToCartMessage">
-        {{ cartMessage }}  <!-- Muestra el mensaje de éxito o error -->
+        {{ cartMessage }}
       </div>
 
       <a class="shipping-link" (click)="toggleShippingPrices()">Ver precios de envío</a>
