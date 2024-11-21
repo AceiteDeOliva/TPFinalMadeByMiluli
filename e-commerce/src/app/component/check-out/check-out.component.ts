@@ -23,9 +23,9 @@ declare var MercadoPago: any;
 })
 export class CheckoutComponent implements OnInit {
   total: number = 0;
-  shippingData: any;  // Aquí se guardará la data de envío
-  products: Product[] = [];  // Aquí se guardarán los productos obtenidos
-  cartProducts: Product[] = [];  // Productos del carrito
+  shippingData: any;
+  products: Product[] = [];
+  cartProducts: Product[] = [];
 
 
 
@@ -59,7 +59,7 @@ export class CheckoutComponent implements OnInit {
   }
 
 
-  // Obtén los datos de envío
+
   getShippingData(): void {
     this.shippingService.getShippingData().subscribe((data) => {
       this.shippingData = data;
@@ -77,7 +77,7 @@ console.log("productos en el carriot"+this.shippingData.Products)
           if (details) {
             return {
               ...details,
-              quantity: item.quantity // Add the quantity to the product object
+              quantity: item.quantity
             };
           }
 
@@ -88,7 +88,7 @@ console.log("productos en el carriot"+this.shippingData.Products)
     });
 
     forkJoin(productRequests).subscribe((products) => {
-      // Filter out null products and keep those with valid data
+
       this.cartProducts = products.filter(product => product !== null);
       console.log('Cart products with quantities:', this.cartProducts);
     });
@@ -118,14 +118,14 @@ console.log("productos en el carriot"+this.shippingData.Products)
 
 
   onPaymentSuccess() {
-    // Retrieve the saved order data from ShippingService
+
     this.shippingService.getShippingData().subscribe((order: Order | null) => {
       if (order) {
-        // Get the user ID (Assuming you have it stored in localStorage or elsewhere)
+
         const userId = localStorage.getItem('currentUserId');
 
         if (userId) {
-          // Save the order to the user's purchaseHistory in UserService
+        
           this.userService.addOrderToPurchaseHistory(userId, order).subscribe(() => {
             console.log('Order saved to purchase history');
           });

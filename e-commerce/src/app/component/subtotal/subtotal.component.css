@@ -1,4 +1,4 @@
-/* subtotal.component.css */
+
 .order-summary {
   background-color: #C4DCBB;
   border: 2px solid #C4DCBB;
@@ -30,7 +30,7 @@
 
 strong {
   font-weight: bold;
-  color: #2c3e50; /* Optional: give strong text a darker color */
+  color: #2c3e50;
 }
 
 h2 {
@@ -46,12 +46,54 @@ h2 {
   border-radius: 8px;
   font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.3s, color 0.3s; /* Transition for both background and text color */
-  margin-top: 15px; /* Adds spacing between inputs and the submit button */
+  transition: background-color 0.3s, color 0.3s;
+  margin-top: 15px;
 }
 
-/* Targeting the button directly */
+
 .pagar:hover {
   background-color: #FCD5CE;
   color: black;
+}
+@media (max-width: 768px) {
+  .order-summary {
+    padding: 20px;
+    max-width: 80%;
+  }
+
+  h2 {
+    font-size: 22px;
+    margin-bottom: 15px;
+  }
+
+  .summary-item span {
+    font-size: 18px;
+  }
+
+  .pagar {
+    width: 50%;
+    font-size: 15px;
+    padding: 12px;
+  }
+}
+@media (max-width: 480px) {
+  .order-summary {
+    padding: 15px;
+    max-width: 95%;
+  }
+
+  h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  .summary-item span {
+    font-size: 16px;
+  }
+
+  .pagar {
+    width: 50%;
+    font-size: 14px;
+    padding: 10px;
+  }
 }

@@ -47,17 +47,17 @@ export class UserService {
   }
 
 
-  private checkUserExists(email: string): Observable<boolean> { //Checks if email is already registered
+  private checkUserExists(email: string): Observable<boolean> {
     return this.http.get<any[]>(`${this.apiUrl}?email=${email}`).pipe(
-      map(users => users.length > 0) // Return true if user with that email exists
+      map(users => users.length > 0)
     );
   }
 
   getUser(): Observable<User[]> {
     return this.http.get<User[]>(this.apiUrl).pipe(
       catchError((error) => {
-        console.error('Error fetching users:', error); // Log error
-        return of([]); // Return empty array on error
+        console.error('Error fetching users:', error);
+        return of([]);
       })
     );
   }
@@ -76,7 +76,7 @@ export class UserService {
 }
 
 
-  updateUser(userId: string, updatedFields: Partial<User>): Observable<User> { //updates user info
+  updateUser(userId: string, updatedFields: Partial<User>): Observable<User> {
     return this.http.patch<User>(`${this.apiUrl}/${userId}`, updatedFields).pipe(
       catchError(error => {
         console.error('Error updating user:', error);
@@ -85,11 +85,11 @@ export class UserService {
     );
   }
 
-  getUserById(userId: string): Observable<User> { //gets user by id
+  getUserById(userId: string): Observable<User> {
     return this.http.get<User>(`${this.apiUrl}/${userId}`);
   }
 
-  deleteUser(id: string): Observable<void> { //deletes user by id
+  deleteUser(id: string): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 
@@ -108,17 +108,17 @@ export class UserService {
       )
     );
   }
-  
-  addOrderToPurchaseHistory(userId: string, order: Order): Observable<User> { //adds order to user by id
+
+  addOrderToPurchaseHistory(userId: string, order: Order): Observable<User> {
     return this.getUserById(userId).pipe(
       switchMap((user) => {
-        // Append the new order to the purchaseHistory array
+
         const updatedUser = {
           ...user,
           purchaseHistory: [...user.purchaseHistory, order]
         };
-        
-        // Update the user with the new purchase history
+
+
         return this.updateUser(userId, { purchaseHistory: updatedUser.purchaseHistory });
       }),
       catchError((error) => {
@@ -130,14 +130,14 @@ export class UserService {
 
   getPurchaseHistory(userId: string): Observable<any[]> {
     return this.http.get<any>(`${this.apiUrl}/${userId}`).pipe(
-      map((user) => user.purchaseHistory || []), // Safely access purchaseHistory
+      map((user) => user.purchaseHistory || []), 
       catchError((error) => {
         console.error('Error fetching purchase history:', error);
         return throwError(() => error);
       })
     );
   }
-  
+
 
 
 }

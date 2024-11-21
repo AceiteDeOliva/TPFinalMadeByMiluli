@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { forkJoin, Observable, of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { map, catchError, switchMap } from 'rxjs/operators';
 import { Product } from '../../models/product';
 
@@ -14,7 +14,7 @@ export class ProductService {
   constructor(private http: HttpClient) { }
 
 
-  // Agregar productos al JSON
+
   addProduct(
     name: string,
     description: string,
@@ -26,29 +26,29 @@ export class ProductService {
     return this.checkProductExists(name).pipe(
       switchMap(exists => {
         if (exists) {
-          return of(false); // Producto con el mismo nombre ya existe
+          return of(false);
         } else {
-          // Sube la imagen y obtiene la URL
+
           return this.uploadImage(image).pipe(
             switchMap(imageUrl => {
               if (!imageUrl) {
                 console.error('Error uploading image');
                 return of(false);
               }
-              // Generate the next ID for the new product
+
               return this.generateNextId().pipe(
                 switchMap(id => {
                   const newProduct: Product = {
-                    id, // Use the generated string ID here
+                    id,
                     name,
                     description,
                     price,
                     category,
                     stock,
-                    imageUrl, // Use the URL of the uploaded image
+                    imageUrl,
                     state: "active"
                   };
-                  // Save the new product to the JSON of products
+
                   return this.http.post<Product>(this.apiUrlProducts, newProduct).pipe(
                     map(() => true),
                     catchError(error => {
@@ -65,17 +65,17 @@ export class ProductService {
     );
   }
 
-  // genera id secuencial
+
   private generateNextId(): Observable<string> {
     return this.http.get<Product[]>(this.apiUrlProducts).pipe(
       map(products => {
-        // Find the highest numeric ID by converting each to a number
+
         const highestId = products.reduce((maxId, product) => {
-          const numericId = parseInt(product.id, 10); // Convert ID to a number
+          const numericId = parseInt(product.id, 10);
           return isNaN(numericId) ? maxId : Math.max(maxId, numericId);
         }, 0);
 
-        // Generate the next ID and convert it to a string
+
         const nextId = (highestId + 1).toString();
         return nextId;
       })
@@ -83,7 +83,7 @@ export class ProductService {
   }
 
 
-  // chequea si existe un productocon elmismonombre
+
   private checkProductExists(name: string): Observable<boolean> {
     return this.http.get<Product[]>(`${this.apiUrlProducts}?name=${name}`).pipe(
       map(product => product.length > 0)
@@ -97,7 +97,7 @@ export class ProductService {
   }
 
 
-  //Obtener todos los productos
+
   getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(this.apiUrlProducts).pipe(
       catchError((error) => {
@@ -107,7 +107,7 @@ export class ProductService {
     );
   }
 
-// Método para subir una imagen y guardar su URL en images.json
+
 uploadImage(file: File): Observable<string> {
   return new Observable(observer => {
     const reader = new FileReader();
@@ -116,7 +116,7 @@ uploadImage(file: File): Observable<string> {
       const base64String = reader.result as string;
       const imageData = { data: base64String };
 
-      // Envía la imagen al servidor JSON
+
       this.http.post<{ id: number }>(this.apiUrlImages, imageData).subscribe({
         next: (response) => {
           observer.next(this.apiUrlImages + '/' + response.id);
@@ -137,7 +137,7 @@ uploadImage(file: File): Observable<string> {
   });
 }
 
-  // Include the getImage method to fetch images by ID
+
   getImage(imageId: string): Observable<{ data: string }> {
     return this.http.get<{ data: string }>(`${this.apiUrlImages}/${imageId}`).pipe(
       catchError(error => {
@@ -158,7 +158,7 @@ uploadImage(file: File): Observable<string> {
   }
 
 
-  updateProduct(updatedProduct: Product): Observable<Product> { //updates product
+  updateProduct(updatedProduct: Product): Observable<Product> {
     return this.http.put<Product>(`${this.apiUrlProducts}/${updatedProduct.id}`, updatedProduct).pipe(
       catchError(error => {
         console.error('Error updating product:', error);
@@ -168,7 +168,7 @@ uploadImage(file: File): Observable<string> {
   }
 
 
-  deleteImage(imageId: string): Observable<void> { //deletes image from images.json by id
+  deleteImage(imageId: string): Observable<void> {
     return this.http.delete<void>(`${this.apiUrlImages}/${imageId}`).pipe(
       catchError(error => {
         console.error('Error deleting image:', error);
@@ -177,9 +177,9 @@ uploadImage(file: File): Observable<string> {
     );
   }
 
-  deleteProduct(product: Product): Observable<void> { //deletes the product
+  deleteProduct(product: Product): Observable<void> {
 
-    const imageId = product.imageUrl.split('/').pop() || '';//gets the image ID
+    const imageId = product.imageUrl.split('/').pop() || '';
     return this.deleteImage(imageId).pipe(
       switchMap(() => {
         return this.http.delete<void>(`${this.apiUrlProducts}/${product.id}`);
@@ -196,27 +196,27 @@ uploadImage(file: File): Observable<string> {
   getTopStockProducts(topN: number): Observable<string[]> {
     return this.getProducts().pipe(
       map((products) => {
-        // Filter products with stock > 0, sort by descending stock, and slice to get top N
+
         return products
-          .filter(product => product.stock > 0) // Ensure that the product has stock
-          .sort((a, b) => b.stock - a.stock) // Sort in descending order by stock
-          .slice(0, topN) // Take the top N products
-          .map(product => `/productView/${product.id}`); // Return URLs to the product page
+          .filter(product => product.stock > 0)
+          .sort((a, b) => b.stock - a.stock)
+          .slice(0, topN)
+          .map(product => `/productView/${product.id}`);
       })
     );
   }
 
   fetchProductWithoutImageByUrl(productUrl: string): Observable<{ details: Product | null; productUrl: string }> {
     const productId = productUrl.split('/').pop();
-    if (!productId) return of({ details: null, productUrl }); // Devuelve null si el productId es inválido
+    if (!productId) return of({ details: null, productUrl });
 
-    return this.getProductById(productId).pipe( // Usar `getProductById` directamente
+    return this.getProductById(productId).pipe(
       map(product => {
-        return { details: product, productUrl }; // Solo devuelve los detalles del producto sin la imagen
+        return { details: product, productUrl };
       }),
       catchError(error => {
         console.error(`Error al obtener el producto con ID ${productId}:`, error);
-        return of({ details: null, productUrl }); // Devuelve null en caso de error
+        return of({ details: null, productUrl });
       })
     );
   }
@@ -225,18 +225,18 @@ uploadImage(file: File): Observable<string> {
 
   fetchProductWithImageByUrl(productUrl: string): Observable<{ details: Product | null; productUrl: string }> {
     const productId = productUrl.split('/').pop();
-    if (!productId) return of({ details: null, productUrl }); // Return null if productId is invalid
+    if (!productId) return of({ details: null, productUrl });
 
-    return this.getProductById(productId).pipe( // Use `getProductById` directly
+    return this.getProductById(productId).pipe(
       switchMap(product => {
         if (!product) return of({ details: null, productUrl });
 
         const imageId = product.imageUrl.split('/').pop();
         if (imageId) {
-          return this.getImage(imageId).pipe( // Use `getImage` directly
+          return this.getImage(imageId).pipe(
             map(imageData => {
               if (imageData?.data) {
-                product.imageUrl = imageData.data; // Update image URL
+                product.imageUrl = imageData.data;
               }
               return { details: product, productUrl };
             }),
@@ -247,7 +247,7 @@ uploadImage(file: File): Observable<string> {
           );
         }
 
-        return of({ details: product, productUrl }); // Return product if no image ID
+        return of({ details: product, productUrl });
       }),
       catchError(error => {
         console.error(`Error fetching product with ID ${productId}:`, error);

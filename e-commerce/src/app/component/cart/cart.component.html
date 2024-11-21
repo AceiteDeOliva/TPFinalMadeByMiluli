@@ -8,9 +8,9 @@
             <h3>{{ item.details?.name || 'N/D' }}</h3>
             <p>${{ item.details?.price || 'N/D' }}</p>
 
-            <!-- Contenedor de cantidad y botón -->
+            
             <div class="quantity-container">
-              <!-- Show input if inputIsTrue is true, else show read-only quantity -->
+
               <ng-container *ngIf="inputIsTrue; else readOnlyQuantity">
                 <label for="quantity-{{ item.details?.id }}">Cantidad: </label>
                 <input
@@ -19,14 +19,14 @@
                   [(ngModel)]="item.quantity"
                   (ngModelChange)="onQuantityChange(item.details?.id, item.quantity)"
                   min="1"
-                  [max]="item.details?.stock ?? 0" 
+                  [max]="item.details?.stock ?? 0"
                 />
                 <button class="remover" *ngIf="item.details && item.details.id" (click)="removeFromCart(item.details.id!)">
                   Remover
                 </button>
               </ng-container>
 
-              <!-- Read-only quantity if inputIsTrue is false -->
+
               <ng-template #readOnlyQuantity>
                 <span>{{ item.quantity }}</span>
               </ng-template>

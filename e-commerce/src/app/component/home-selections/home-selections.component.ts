@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { CategoryService } from '../../services/category-service/category-service.component';
-import { Router } from '@angular/router'; // Correct the import
+import { Router } from '@angular/router'; 
 import { RouterModule } from '@angular/router';
 
 @Component({
@@ -19,17 +19,17 @@ export class HomeSelectionsComponent {
   ) {}
 
   ngOnInit(): void {
-    // Check if there's a saved category in localStorage
+
     const savedCategory = localStorage.getItem('selectedCategory');
     if (savedCategory) {
-      this.categoryService.changeCategory(savedCategory); // Load saved category into the service
+      this.categoryService.changeCategory(savedCategory);
     }
   }
 
   onCategoryClick(category: string): void {
-    this.categoryService.changeCategory(category); // Update the CategoryService with the selected category
-    localStorage.setItem('selectedCategory', category); // Save the selected category in localStorage
+    this.categoryService.changeCategory(category);
+    localStorage.setItem('selectedCategory', category);
     this.categorySelected.emit(category);
-    this.router.navigate(['listCategory']);// Emit the category to the parent component (if needed)
+    this.router.navigate(['listCategory']);
   }
 }

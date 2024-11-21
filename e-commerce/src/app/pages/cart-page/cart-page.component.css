@@ -1,63 +1,61 @@
-/* General Cart Styling */
+
 .cart {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding: 20px;  /* Add some padding for better spacing */
+  padding: 20px;
 }
 
 .sideBySide {
-  display: flex;  /* Enable flexbox for side-by-side layout */
-  flex-direction: row;  /* Items will be arranged side by side */
-  justify-content: center;  /* Space between the two components */
-  width: 100%;  /* Ensure it takes full width */
-  gap: 30px;  /* Add some space between the components */
-  margin-top: 30px;  /* Adjust spacing between the heading and the components */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  gap: 30px;
+  margin-top: 30px;
 }
 
 
-/* Heading Styling */
 .cart h1 {
-  font-size: 80px;  /* Default font size for large screens */
+  font-size: 80px;
   font-weight: bold;
   margin-bottom: 20px;
-  color: #84B6E5; /* Optional: Adds some color */
-  text-align: center; /* Ensure text is centered */
+  color: #84B6E5;
+  text-align: center;
 }
 
-/* Responsive for tablets and medium screens */
+
 @media (max-width: 1024px) {
   .cart h1 {
-    font-size: 60px;  /* Decrease font size for medium screens */
-    margin-bottom: 15px;  /* Adjust margin */
+    font-size: 60px;
+    margin-bottom: 15px;
   }
 }
 
-/* Responsive for small screens (phones in landscape) */
+
 @media (max-width: 768px) {
   .cart h1 {
-    font-size: 50px;  /* Smaller font size for small screens */
-    margin-bottom: 10px;  /* Adjust margin */
+    font-size: 50px;
+    margin-bottom: 10px;
   }
 
   .cart {
-    padding: 15px;  /* Adjust padding for smaller screens */
+    padding: 15px;
   }
 }
 
-/* Responsive for very small screens (phones in portrait) */
 @media (max-width: 480px) {
   .cart h1 {
-    font-size: 40px;  /* Further decrease font size for small screens */
-    margin-bottom: 5px;  /* Adjust margin */
+    font-size: 40px;
+    margin-bottom: 5px;
   }
 
   .cart {
-    padding: 10px;  /* Further reduce padding for mobile */
+    padding: 10px;
   }
 
   .sideBySide {
-    flex-direction: column;  /* Stack components vertically on small screens */
+    flex-direction: column;
   }
 }

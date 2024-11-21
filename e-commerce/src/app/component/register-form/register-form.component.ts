@@ -37,15 +37,15 @@ export class RegisterFormComponent {
   }
 
   ngOnInit() {
-    this.setAvailableCredentials();  // Llamar al método para establecer credenciales disponibles
+    this.setAvailableCredentials();
   }
 
   private setAvailableCredentials() {
     const currentUserId = localStorage.getItem('currentUserId');
     if (currentUserId) {
       this.userService.getCredential(currentUserId).subscribe(credential => {
-        this.credential = credential; 
-  
+        this.credential = credential;
+
         if (credential === 'admin') {
           this.availableCredentials = ['user', 'employee', 'manager', 'admin'];
         } else if (credential === 'manager') {
@@ -60,14 +60,14 @@ export class RegisterFormComponent {
 
   register() {
 
-    if (this.registerForm.invalid) { // checks if all fields are filled
+    if (this.registerForm.invalid) {
       alert('Please fill in all required fields.');
       return;
     }
 
     const { name, surname, email, password, password2 , credential} = this.registerForm.value;
 
-    if (password !== password2) { //checks if passwords match
+    if (password !== password2) { 
       alert('Passwords do not match.');
       return;
     }
@@ -81,15 +81,15 @@ export class RegisterFormComponent {
             this.router.navigate(['/login']);
           }else{
             this.router.navigate(['/manageUsers']);
-          } 
+          }
         } else {
           alert('User already exists.');
         }
       }),
       catchError((error) => {
         console.error('Registration error', error);
-        alert('An error occurred during registration.'); 
-        return of(false); 
+        alert('An error occurred during registration.');
+        return of(false);
       })
     ).subscribe();
 

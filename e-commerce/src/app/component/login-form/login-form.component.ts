@@ -23,7 +23,7 @@ export class LoginFormComponent {
     private router: Router,
     private userService: UserService,
     private authService: AuthService,
-    private cartService: CartService  // Inject CartService here
+    private cartService: CartService
   ) {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -41,15 +41,15 @@ export class LoginFormComponent {
 
     this.userService.authenticateUser(email, password).subscribe(user => {
       if (user) {
-        
+
         localStorage.setItem('currentUserId', user.id);
         this.authService.changeCredential(user.credential);
 
-        // Sync guest cart to the user's cart after successful login
+
         this.cartService.syncGuestCart(user.id).subscribe(
           () => {
             console.log('Guest cart synced successfully!');
-            // Redirect to home after syncing the cart
+
             if(user.credential=== 'user'){
               this.router.navigate(['/home']);
             }else {
@@ -59,7 +59,7 @@ export class LoginFormComponent {
           },
           error => {
             console.error('Error syncing guest cart:', error);
-            // Handle error if syncing fails
+          
             alert('There was an error syncing your cart.');
           }
         );

@@ -65,3 +65,28 @@ button:hover {
       max-width: 100%;
   }
 }
+@media (max-width: 480px) {
+  .header {
+    margin-bottom: 10px;
+
+  }
+
+  .container {
+    padding: 10px;
+
+  }
+
+  button {
+    font-size: 14px;
+
+    padding: 12px 20px;
+  }
+
+  .form-control {
+    font-size: 14px;
+  }
+
+  .product-image {
+    max-width: 90%;
+  }
+}

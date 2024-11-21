@@ -1,14 +1,14 @@
 .product-container {
-  display: grid; /* Use grid layout */
-  grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
-  gap: 20px; /* Space between items */
-  width: 100%; /* Ensure container takes full width */
-  justify-items: center; /* Center the grid items horizontally */
-  align-items: start; /* Align items to the start (top) by default */
+  display: grid; 
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  width: 100%;
+  justify-items: center;
+  align-items: start;
 }
 
 .no-products {
-  grid-column: span 3; /* Make the 'No hay productos' message span across all columns */
+  grid-column: span 3;
   text-align: center;
   color: #666;
   font-size: 1.5em;
@@ -20,53 +20,53 @@
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   display: flex;
-  justify-content: center; /* Center the text horizontally */
-  align-items: center; /* Center the text vertically */
-  height: 200px; /* Set a fixed height to make sure it's centered vertically */
+  justify-content: center;
+  align-items: center;
+  height: 200px;
 }
 
 .product-card {
-  background-color: #C4DCBB; /* Background color for product card */
+  background-color: #C4DCBB;
   border-radius: 8px;
-  padding: 20px; /* Maintain padding for balance */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   display: flex;
-  flex-direction: row; /* Keep text on the left */
+  flex-direction: row;
   align-items: center;
-  box-sizing: border-box; /* Include padding and margin in width calculations */
+  box-sizing: border-box;
   position: relative;
   padding-bottom: 40px;
-  cursor: pointer; /* Indicate clickability */
+  cursor: pointer;
   transition: transform 0.1s ease-in-out, background-color 0.3s ease;
 }
 
-/* Hover and active states for interactivity */
+
 .product-card:hover {
-  background-color: #87a77c; /* Slightly lighter background on hover */
-  transform: scale(1.02); /* Scale up slightly */
+  background-color: #87a77c;
+  transform: scale(1.02);
 }
 
 .product-card:active {
-  transform: scale(0.98); /* Scale down slightly on click */
+  transform: scale(0.98);
 }
 
 .product-card h2 {
-  flex: 1; /* Take up available space */
+  flex: 1;
   margin: 0;
-  font-size: 1.5rem; /* Increase font size for product name */
+  font-size: 1.5rem;
 }
 
 .product-card img {
-  max-width: 175px; /* Adjust size of the image */
-  max-height: 175px; /* Adjust maximum height */
-  margin-left: 15px; /* Add space between text and image */
-  border-radius: 4px; /* Optional: round the corners of the image */
+  max-width: 175px;
+  max-height: 175px;
+  margin-left: 15px;
+  border-radius: 4px;
 }
 
 .product-card p {
-  font-weight: normal; /* Ensure all paragraphs are not bold */
-  margin: 5px 0; /* Adds spacing between paragraphs */
-  font-size: 1rem; /* Adjust font size for better readability */
+  font-weight: normal;
+  margin: 5px 0;
+  font-size: 1rem;
 }
 
 p{
@@ -76,27 +76,47 @@ p{
 /* Mobile styles */
 @media (max-width: 768px) {
   .product-container {
-    grid-template-columns: repeat(2, 1fr); /* 2 equal columns on mobile */
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .product-card {
-    flex-direction: column; /* Stack text and image vertically */
-    align-items: flex-start; /* Align items to the start */
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px;
   }
 
   .product-card img {
-    margin-left: 0; /* Remove left margin on mobile */
-    margin-top: 10px; /* Add some space above the image */
-    max-width: 100%; /* Make the image responsive */
-    max-height: none; /* Remove height restriction */
+    margin-left: 0;
+    margin-top: 10px;
+    max-width: 100%;
+    max-height: none;
   }
 
   .product-card h2 {
-    font-size: 1.25rem; /* Reduce font size for mobile */
+    font-size: 1.25rem;
   }
 
   .product-card p {
-    font-size: 0.9rem; /* Adjust font size for better readability */
+    font-size: 0.9rem;
   }
 
+}
+
+
+@media (max-width: 480px) {
+  .product-card {
+    padding: 10px;
+  }
+
+  .product-card h2 {
+    font-size: 1.1rem;
+  }
+
+  .product-card p {
+    font-size: 0.85rem;
+  }
+
+  .product-container {
+    grid-template-columns: 1fr;
+  }
 }

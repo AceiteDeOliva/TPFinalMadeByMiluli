@@ -1,119 +1,143 @@
-
-
 .form-control-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
 .form-control {
-    background-color: #C4DCBB;
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-    border-radius: 8px;
-    box-sizing: border-box;
-    flex: 1 0 150px;
-    margin: 5px;
+  background-color: #C4DCBB;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border-radius: 8px;
+  box-sizing: border-box;
+  flex: 1 0 150px;
+  margin: 5px;
 }
 
 .form-control label {
-    margin-bottom: 5px;
+  margin-bottom: 5px;
 }
 
 .form-control input,
 .form-control textarea {
-    width: auto;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+  width: auto;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 button {
-    background-color: #C4DCBB;
-    border: 1px solid rgb(100, 169, 243);
-    padding: 10px 15px;
-    cursor: pointer;
-    margin: 20px auto;
-    display: block;
-    color: #000000;
-    border-radius: 8px;
+  background-color: #C4DCBB;
+  border: 1px solid rgb(100, 169, 243);
+  padding: 10px 15px;
+  cursor: pointer;
+  margin: 20px auto;
+  display: block;
+  color: #000000;
+  border-radius: 8px;
 }
 
 button:hover {
-    background-color: #95CBEE;
-    color: white;
+  background-color: #95CBEE;
+  color: white;
 }
 
 .file-input {
-    display: none;
+  display: none;
 }
 
 .custom-file-upload {
-    display: flex;
-    padding: 10px 15px;
-    cursor: pointer;
-    border: 1px solid #95CBEE;
-    border-radius: 4px;
-    background-color: #FEE9B2;
-    color: #000000;
-    margin-top: 10px;
+  display: flex;
+  padding: 10px 15px;
+  cursor: pointer;
+  border: 1px solid #95CBEE;
+  border-radius: 4px;
+  background-color: #FEE9B2;
+  color: #000000;
+  margin-top: 10px;
 }
 
 .custom-file-upload:hover {
-    background-color: #95CBEE;
-    color: white;
+  background-color: #95CBEE;
+  color: white;
 }
 
 .preview {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 10px;
 }
 
 .preview img {
-    max-width: 1000px;
-    height: auto;
-    align-items: center;
+  max-width: 1000px;
+  height: auto;
+  align-items: center;
 }
 
 .custom-file-upload {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
+
 @media (max-width: 768px) {
-    .header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
+  .header {
+      flex-direction: column;
+      align-items: flex-start;
+  }
 
-    .header button {
-        position: relative;
-        margin-bottom: 10px;
-    }
+  .header button {
+      position: relative;
+      margin-bottom: 10px;
+  }
 
-    .container {
-        padding: 15px;
-    }
+  .container {
+      padding: 15px;
+  }
 
-    .form-control-container {
-        flex-direction: column;
-        align-items: stretch;
-    }
+  .form-control-container {
+      flex-direction: column;
+      align-items: stretch;
+  }
 
-    .form-control {
-        flex: 1 0 100%; /* Full width on mobile */
-        margin: 10px 0; /* Spacing between controls */
-    }
+  .form-control {
+      flex: 1 0 100%;
+      margin: 10px 0;
+  }
 
-    button {
-        width: 100%; /* Full-width buttons on mobile */
-    }
+  button {
+      width: 100%;
+  }
 
-    .preview img {
-        max-width: 100%; /* Ensure images are responsive */
-    }
+  .preview img {
+      max-width: 100%;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .form-control {
+      padding: 8px;
+  }
+
+  .form-control input,
+  .form-control textarea {
+      font-size: 0.9em;
+  }
+
+  button {
+    text-align: center;
+      font-size: 1em;
+  }
+
+  .custom-file-upload {
+      padding: 8px 12px;
+  }
+
+  .preview img {
+      max-width: 100%;
+  }
 }

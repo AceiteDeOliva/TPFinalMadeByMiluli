@@ -18,7 +18,7 @@ export class HomeEmployeeComponent {
   ) {}
 
   onStockClick(category: string): void {
-    
-    this.router.navigate(['listCategory']);// Emit the category to the parent component (if needed)
+
+    this.router.navigate(['listCategory']);
   }
 }

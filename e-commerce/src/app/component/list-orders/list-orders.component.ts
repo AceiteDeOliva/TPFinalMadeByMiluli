@@ -12,8 +12,8 @@ import { ShippingService } from '../../services/shipping-service/shipping.servic
 })
 export class ListOrdersComponent implements OnInit {
 
-  shippingData: any = {}; // Define appropriate structure for shippingData
-  cartProducts: any[] = []; // Array to hold processed cart products
+  shippingData: any = {};
+  cartProducts: any[] = [];
 
   constructor(
     private productService: ProductService,
@@ -21,48 +21,48 @@ export class ListOrdersComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getShippingData(); // Initialize shipping data fetch
+    this.getShippingData();
   }
 
-  // Obtén los datos de envío
+
   getShippingData(): void {
     this.shippingService.getShippingData().subscribe((data) => {
       this.shippingData = data;
 
-      console.log("Productos en el carrito:", this.shippingData.products); // Log products in the cart
+      console.log("Productos en el carrito:", this.shippingData.products);
 
-      // Check if there are products in the cart and process them
+
       if (this.shippingData.products && this.shippingData.products.length > 0) {
-        this.getProductsFromCart(this.shippingData.products); // Call to process the products
+        this.getProductsFromCart(this.shippingData.products);
       }
     });
   }
 
-  // Process products from the cart
+
   getProductsFromCart(cart: any[]): void {
     const productRequests = cart.map(item => {
       return this.productService.fetchProductWithImageByUrl(item.productUrl).pipe(
         map(({ details, productUrl }) => {
           if (details) {
-            // Return product details along with quantity from the cart
+
             return {
               ...details,
-              quantity: item.quantity // Add quantity from the cart
+              quantity: item.quantity
             };
           }
 
-          // If product is not found, log a warning and return null
+
           console.warn(`Product not found for ${productUrl}`);
           return null;
         })
       );
     });
 
-    // Combine all product observables and subscribe to them
+
     forkJoin(productRequests).subscribe((products) => {
-      // Filter out any null values (products not found)
+
       this.cartProducts = products.filter(product => product !== null);
-      console.log('Productos en el carrito:', this.cartProducts); // Log the processed cart products
+      console.log('Productos en el carrito:', this.cartProducts);
     });
   }
 }

@@ -1,17 +1,17 @@
-
-h1{
+h1 {
   text-align: center;
 }
-.topAtributes{
+
+.topAtributes {
   display: flex;
   flex-wrap: wrap;
-
 }
-.bottomAtributes{
+
+.bottomAtributes {
   display: flex;
   flex-wrap: wrap;
-
 }
+
 .form-control-container {
   display: flex;
   flex-wrap: wrap;
@@ -29,6 +29,7 @@ h1{
   flex: 1 0 150px;
   margin: 5px;
 }
+
 .form-control select {
   width: 100%;
   padding: 7px;
@@ -100,6 +101,7 @@ button:hover {
   height: auto;
   align-items: center;
 }
+
 .image-preview {
   display: flex;
   justify-content: center;
@@ -107,44 +109,10 @@ button:hover {
   width: 100%;
 }
 
-
 .custom-file-upload {
   margin-top: 10px;
 }
 
-@media (max-width: 768px) {
-  .header {
-      flex-direction: column;
-      align-items: flex-start;
-  }
-
-  .header button {
-      position: relative;
-      margin-bottom: 10px;
-  }
-
-  .container {
-      padding: 15px;
-  }
-
-  .form-control-container {
-      flex-direction: column;
-      align-items: stretch;
-  }
-
-  .form-control {
-      flex: 1 0 100%;
-      margin: 10px 0;
-  }
-
-  button {
-      width: 100%;
-  }
-
-  .product-image {
-      max-width: 100%;
-  }
-}
 .delete-button {
   background-color: #F8E1E4;
   border: 2px solid #FCD5CE;
@@ -157,4 +125,86 @@ button:hover {
 .delete-button:hover {
   background-color: #FCD5CE;
   color: white;
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .header button {
+    position: relative;
+    margin-bottom: 10px;
+  }
+
+  .container {
+    padding: 15px;
+  }
+
+  .form-control-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .form-control {
+    flex: 1 0 100%;
+    margin: 10px 0;
+  }
+
+  button {
+    width: 100%;
+  }
+
+  .product-image {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .container {
+    padding: 10px;
+  }
+
+  .form-control-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .form-control {
+    flex: 1 0 100%;
+    margin: 8px 0;
+  }
+
+  .form-control select {
+    font-size: 0.85rem;
+  }
+
+  button {
+    width: 100%;
+    padding: 12px 18px;
+    font-size: 1rem;
+  }
+
+  .product-image {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .custom-file-upload {
+    padding: 8px 12px;
+  }
+
+  .delete-button {
+    padding: 8px 12px;
+  }
+
+  .preview {
+    margin-bottom: 15px; 
+  }
 }

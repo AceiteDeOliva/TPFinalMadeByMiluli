@@ -1,7 +1,7 @@
 <div class="order-list">
   <h1>Órdenes</h1>
 
-  <!-- Filter Dropdown -->
+
   <div class="filter-container">
     <label for="statusFilter">Filtrar por estado:</label>
     <select id="statusFilter" [(ngModel)]="filterStatus" (change)="filterOrders()">
@@ -17,7 +17,7 @@
     </select>
   </div>
 
-  <!-- Check if orders exist -->
+
   <div *ngIf="filteredOrders.length > 0; else noOrders">
     <div *ngFor="let entry of filteredOrders" class="order-card">
       <h2>Orden # {{ entry.order.orderId }}</h2>
@@ -30,7 +30,7 @@
       <p><strong>Total:</strong> {{ entry.order.totalCost | currency }}</p>
       <p><strong>Estado:</strong> {{ entry.order.state }}</p>
 
-      <!-- Dropdown to Change State -->
+
       <div>
         <label for="stateSelect">Cambiar estado:</label>
         <select
@@ -49,7 +49,7 @@
         </select>
       </div>
 
-      <!-- List of products -->
+
       <div>
         <h3>Productos:</h3>
         <ul>
@@ -63,7 +63,7 @@
     </div>
   </div>
 
-  <!-- No orders fallback -->
+
   <ng-template #noOrders>
     <p class="no-orders">No hay órdenes.</p>
   </ng-template>

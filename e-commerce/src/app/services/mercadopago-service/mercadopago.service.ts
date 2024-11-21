@@ -1,4 +1,4 @@
-// mercadopago.service.ts
+
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class MercadopagoService {
-  private apiUrl = 'http://localhost:8080/create_preference'; // Your backend API
+  private apiUrl = 'http://localhost:8080/create_preference';
   private baseUrl = 'http://localhost:8080';
 
   constructor(private http: HttpClient) {}

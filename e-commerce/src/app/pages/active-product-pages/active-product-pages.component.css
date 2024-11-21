@@ -1,3 +1,4 @@
+
 .container {
   padding: 15px;
 }
@@ -14,14 +15,37 @@
   width: 700px;
 }
 
-@media (max-width: 768px) {
+
+@media (max-width: 480px) {
+  .container {
+    padding: 10px;
+  }
+
   .header {
     flex-direction: column;
     align-items: center;
     gap: 10px;
   }
 
+  .header img {
+    width: 100%;
+    max-width: 500px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+
   .container {
     padding: 15px;
+  }
+
+  .header img {
+    width: 100%;
+    max-width: 600px;
   }
 }

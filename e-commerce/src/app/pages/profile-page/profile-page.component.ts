@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../services/user-service/user.service'; 
+import { UserService } from '../../services/user-service/user.service';
 import { User } from '../../models/user';
 import { ProfileUpdateFormComponent } from '../../component/profile-update-form/profile-update-form.component';
 
@@ -8,7 +8,7 @@ import { ProfileUpdateFormComponent } from '../../component/profile-update-form/
   templateUrl: './profile-page.component.html',
   styleUrls: ['./profile-page.component.css'],
   standalone: true,
-  imports: [ProfileUpdateFormComponent] // Add the form component here
+  imports: [ProfileUpdateFormComponent] 
 })
 export class ProfilePageComponent implements OnInit {
   userData!: User;
@@ -26,8 +26,8 @@ export class ProfilePageComponent implements OnInit {
     if (userId) {
       this.userService.getUserById(userId).subscribe({
         next: (user) => {
-          this.userData = user; 
-          this.isAdmin = user.credential === 'admin'; 
+          this.userData = user;
+          this.isAdmin = user.credential === 'admin';
         },
         error: (error) => {
           console.error('Error fetching user data:', error);
@@ -37,13 +37,13 @@ export class ProfilePageComponent implements OnInit {
       console.error('No user ID found in localStorage');
     }
   }
-  
+
 
 onSaveChanges(updatedUser: Partial<User>) {
   this.userService.updateUser(this.userData.id, updatedUser).subscribe({
     next: (updated) => {
       console.log('User updated:', updated);
-      this.userData = { ...this.userData, ...updated }; 
+      this.userData = { ...this.userData, ...updated };
       alert('User updated successfully!');
     },
     error: (error) => {
