@@ -8,17 +8,22 @@ import { map } from 'rxjs';
 import { catchError, of, forkJoin } from 'rxjs';
 import { CartItem } from '../../models/cartItem';
 import { Observable } from 'rxjs';
+import { FormsModule } from '@angular/forms';
+
+
 
 @Component({
   selector: 'app-order-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,FormsModule],
   templateUrl: './order-list.component.html',
   styleUrls: ['./order-list.component.css']
 })
 export class OrderListComponent {
   allUsers: User[] = []; // All users
   allOrders: { order: Order; userId: string }[] = []; // Keep userId separately with each order
+  filteredOrders: { order: Order; userId: string }[] = []; // Filtered orders to display
+  filterStatus: string = ''; // Current status filter
 
   constructor(
     private userService: UserService,
@@ -37,9 +42,21 @@ export class OrderListComponent {
         }))
       );
 
+      // Initialize filteredOrders with all orders
+      this.filteredOrders = [...this.allOrders];
+
       // Fetch product details for each order item
       this.updateOrderProducts();
     });
+  }
+
+  // Filter orders by status
+  filterOrders(): void {
+    if (this.filterStatus) {
+      this.filteredOrders = this.allOrders.filter(entry => entry.order.state === this.filterStatus);
+    } else {
+      this.filteredOrders = [...this.allOrders]; // Reset to all orders if no filter
+    }
   }
 
   // Function to update product names in each order
@@ -100,7 +117,4 @@ export class OrderListComponent {
       }
     });
   }
-  
-  
-  
 }

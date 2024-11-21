@@ -1,9 +1,25 @@
 <div class="order-list">
   <h1>Órdenes</h1>
 
+  <!-- Filter Dropdown -->
+  <div class="filter-container">
+    <label for="statusFilter">Filtrar por estado:</label>
+    <select id="statusFilter" [(ngModel)]="filterStatus" (change)="filterOrders()">
+      <option value="">Todos</option>
+      <option value="Pendiente">Pendiente</option>
+      <option value="Procesando">Procesando</option>
+      <option value="Enviado">Enviado</option>
+      <option value="Entregado">Entregado</option>
+      <option value="Cancelado">Cancelado</option>
+      <option value="Devuelto">Devuelto</option>
+      <option value="Fallido">Fallido</option>
+      <option value="Reembolsado">Reembolsado</option>
+    </select>
+  </div>
+
   <!-- Check if orders exist -->
-  <div *ngIf="allOrders.length > 0; else noOrders">
-    <div *ngFor="let entry of allOrders" class="order-card">
+  <div *ngIf="filteredOrders.length > 0; else noOrders">
+    <div *ngFor="let entry of filteredOrders" class="order-card">
       <h2>Orden # {{ entry.order.orderId }}</h2>
       <p><strong>ID de Usuario:</strong> {{ entry.userId }}</p>
       <p><strong>Fecha:</strong> {{ entry.order.date | date }}</p>
