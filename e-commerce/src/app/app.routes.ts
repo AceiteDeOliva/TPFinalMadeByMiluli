@@ -21,7 +21,7 @@ import { CheckoutComponent } from './component/check-out/check-out.component';
 import { CartPageComponent } from './pages/cart-page/cart-page.component';
 import { PurchaseLoginPageComponent } from './pages/purchase-login-page/purchase-login-page.component';
 import { ShippingInfoPageComponent } from './pages/shipping-info-page/shipping-info-page.component';
-import { PaymentSuccessComponent } from './component/payment-success/payment-success.component';
+import { PaymentStatusComponent } from './component/payment-status/payment-status.component';
 import { HomeEmployeeComponent } from './component/home-employee/home-employee.component';
 import { LowStockListComponent } from './pages/low-stock-list/low-stock-list.component';
 import { LoginForOrderPagesComponent } from './pages/login-for-order-pages/login-for-order-pages.component';
@@ -43,9 +43,7 @@ export const routes: Routes = [
   { path: 'homeEmployee', component: HomeEmployeeComponent },
   { path: 'login', component: LoginPageComponent },
   { path: 'register', component: RegisterComponent },
-
   { path: 'listCategory', component: CategoriesComponent },
-
   { path: "activeProducts", component: ActiveProductPagesComponent },
   { path: 'registerEmployee', component: RegisterEmployeeComponent, canActivate: [() => authGuardFn(['admin', 'manager'])] },
   { path: 'productAdmin', component: ManageProductPageComponent, canActivate: [() => authGuardFn(['admin', 'manager'])] },
@@ -57,11 +55,9 @@ export const routes: Routes = [
   { path: 'checkout', component: CheckoutComponent, canActivate: [authGuardFnCheckOut] },
   { path: 'loginPurchase', component: PurchaseLoginPageComponent },
   { path: 'shippingInfo', component: ShippingInfoPageComponent,canActivate: [authGuardFnShipping]},
-  { path: 'payment-success', component: PaymentSuccessComponent },
-  //{ path: 'payment-failure', component: PaymentFailureComponent },
-  //{ path: 'payment-pending', component: PaymentPendingComponent },
   { path: 'lowStock', component: LowStockListComponent , canActivate: [() => authGuardFn(['admin', 'manager','employee'])]  },
   { path: 'stock', component: StockComponent , canActivate: [() => authGuardFn(['admin', 'manager','employee'])]  },
+  { path: 'payment-status', component: PaymentStatusComponent },
   { path: 'loginForOrder', component: LoginForOrderPagesComponent },
   { path: 'purchaseHistory', component: PurchaseHistoryComponent },
   { path: 'orders', component: OrderListComponent , canActivate: [() => authGuardFn(['admin', 'manager', 'employee'])]  },

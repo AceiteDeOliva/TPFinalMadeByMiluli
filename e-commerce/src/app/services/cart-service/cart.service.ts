@@ -85,35 +85,27 @@ export class CartService {
 
 
 
-
-
-
   reduceStock(productId: string, quantity: number): Observable<any> {
-    // First, get the product data (including stock) from the server
-    return this.http.get<any>(`${this.productsUrl}/${productId}`).pipe(
-      switchMap((product) => {
-        // Check if there's enough stock available
+    const productUrl = `${this.productsUrl}/${productId}`;
+    
+    return this.http.get<any>(productUrl).pipe(
+      switchMap(product => {
         if (product.stock < quantity) {
-          alert('Error: No hay suficiente stock');
-          return throwError(() => new Error('Stock insuficiente'));
+          return throwError(() => new Error('Stock insufficient.'));
         }
-
-        // Reduce the stock by the quantity requested
+  
+        // Update the stock
         const updatedStock = product.stock - quantity;
-
-        // Now, update the stock on the server with the reduced quantity
-        return this.http.put(`${this.productsUrl}/reduce-stock`, {
-          id: productId,
-          stock: updatedStock,
-        }).pipe(
-          catchError((error) => {
-            console.error('Error updating stock:', error);
-            return throwError(() => error);
-          })
-        );
+  
+        return this.http.put(productUrl, { ...product, stock: updatedStock });
+      }),
+      catchError(err => {
+        console.error('Error reducing stock for product:', productId, err);
+        return throwError(() => err);
       })
     );
   }
+  
 
 
 
@@ -262,4 +254,7 @@ export class CartService {
   private saveGuestCart(cart: CartItem[]): void {
     localStorage.setItem('guestCart', JSON.stringify(cart));
   }
+
+
+  
 }

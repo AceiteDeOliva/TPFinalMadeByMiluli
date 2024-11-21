@@ -9,10 +9,10 @@ import { CartService } from '../../services/cart-service/cart.service';
   selector: 'app-payment-success',
   standalone: true,
   imports: [CommonModule, RouterModule],
-  templateUrl: './payment-success.component.html',
-  styleUrls: ['./payment-success.component.css']
+  templateUrl: './payment-status.component.html',
+  styleUrls: ['./payment-status.component.css']
 })
-export class PaymentSuccessComponent implements OnInit {
+export class PaymentStatusComponent implements OnInit {
   paymentStatus: string | null = null;
   paymentId: string | null = null;
   orderSaved = false;
@@ -60,6 +60,7 @@ export class PaymentSuccessComponent implements OnInit {
                 this.orderSaved = true;
 
                 if (state !== 'Fallido') {
+                  this.reduceStock();
                   this.clearUserCart();
                   this.clearShippingData();
                 }
@@ -99,4 +100,27 @@ export class PaymentSuccessComponent implements OnInit {
   private clearShippingData(): void {
     this.shippingService.clearShippingData();
   }
+
+  private reduceStock(): void {
+    this.cartService.getCarrito().subscribe({
+      next: (cartItems) => {
+        const reduceStockObservables = cartItems.map(item =>
+          this.cartService.reduceStock(item.productUrl.split('/').pop()!, item.quantity)
+        );
+        Promise.all(reduceStockObservables.map(obs => obs.toPromise()))
+          .then(() => {
+            console.log('Stock successfully reduced for all products.');
+          })
+          .catch(err => {
+            console.error('Error reducing stock:', err);
+            this.errorMessage = 'Failed to reduce stock for some products.';
+          });
+      },
+      error: (err) => {
+        console.error('Failed to fetch cart items for stock reduction:', err);
+        this.errorMessage = 'Could not fetch cart items to reduce stock.';
+      }
+    });
+  }
+  
 }

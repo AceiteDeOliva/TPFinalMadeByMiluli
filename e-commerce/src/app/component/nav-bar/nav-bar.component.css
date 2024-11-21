@@ -32,11 +32,31 @@ nav ul {
 }
 
 nav ul li a {
+  display: inline-block; /* Treat the link as a box */
   text-decoration: none;
   font-weight: normal;
   color: #000;
-  font-size: 20px;  /* Increased font size */
+  font-size: 20px;
+  padding: 5px 10px; /* Add padding to enlarge the clickable area */
+  transition: transform 0.3s ease; /* Smooth scaling transition */
 }
+
+nav ul li a:hover {
+  transform: scale(1.1); /* Scale the entire link box */
+}
+
+nav ul li span {
+  display: inline-block; /* Allows the span to behave like a box */
+  font-size: 20px; /* Match the size with the links */
+  color: #000; /* Set the text color */
+  padding: 5px 10px; /* Add padding for a larger hoverable area */
+  transition: transform 0.3s ease; /* Smooth scaling transition */
+}
+
+nav ul li span:hover {
+  transform: scale(1.1); /* Scale the entire span */
+}
+
 
 .cart {
   height: 40px;
@@ -49,6 +69,29 @@ nav button {
   color: #000000;
   border-radius: 8px;
   font-size: 18px;  /* Increased font size for buttons */
+  
+}
+
+nav button:hover {
+  background-color: #95CBEE;
+  color: white;
+
+}
+
+a img.icon {
+  display: inline-block; /* Ensure the image behaves like a block for transformation */
+  transition: transform 0.3s ease; /* Smooth scaling transition */
+  cursor: pointer; /* Ensure the pointer cursor is consistent */
+}
+
+a img.icon:hover {
+  transform: scale(1.1); /* Scale the image to 110% */
+}
+
+
+.cart-button:hover .cart-image {
+  transform: scale(1.2); /* Already implemented */
+  transition: transform 0.3s ease;
 }
 
 .log-button {
