@@ -19,7 +19,7 @@ import { CategoriesComponent } from './pages/categories/categories.component';
 import { ProductPageComponent } from './pages/product-page/product-page.component';
 import { CheckoutComponent } from './component/check-out/check-out.component';
 import { CartPageComponent } from './pages/cart-page/cart-page.component';
-import { PurchaseLoginPageComponent } from './pages/active-product-pages/purchase-login-page/purchase-login-page.component';
+import { PurchaseLoginPageComponent } from './pages/purchase-login-page/purchase-login-page.component';
 import { ShippingInfoPageComponent } from './pages/shipping-info-page/shipping-info-page.component';
 import { PaymentSuccessComponent } from './component/payment-success/payment-success.component';
 import { HomeEmployeeComponent } from './component/home-employee/home-employee.component';

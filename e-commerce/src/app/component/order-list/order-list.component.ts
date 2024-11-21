@@ -5,7 +5,7 @@ import { User } from '../../models/user';
 import { CommonModule } from '@angular/common';
 import { ProductService } from '../../services/product-service/product.service';
 import { map } from 'rxjs';
-import { catchError,of,forkJoin } from 'rxjs';
+import { catchError, of, forkJoin } from 'rxjs';
 import { CartItem } from '../../models/cartItem';
 import { Observable } from 'rxjs';
 
@@ -14,11 +14,11 @@ import { Observable } from 'rxjs';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './order-list.component.html',
-  styleUrl: './order-list.component.css'
+  styleUrls: ['./order-list.component.css']
 })
 export class OrderListComponent {
   allUsers: User[] = []; // All users
-  allOrders: Order[] = []; // Extracted orders with userId
+  allOrders: { order: Order; userId: string }[] = []; // Keep userId separately with each order
 
   constructor(
     private userService: UserService,
@@ -29,10 +29,10 @@ export class OrderListComponent {
     this.userService.getUser().subscribe((users: User[]) => {
       this.allUsers = users;
 
-      // Flatten the purchase history with userId
+      // Create orders with userId separately
       this.allOrders = users.flatMap(user =>
         user.purchaseHistory.map(order => ({
-          ...order,
+          order,
           userId: user.id
         }))
       );
@@ -46,7 +46,7 @@ export class OrderListComponent {
   private updateOrderProducts(): void {
     const productRequests: Observable<CartItem>[] = []; // Explicitly define the type
 
-    this.allOrders.forEach(order => {
+    this.allOrders.forEach(({ order }) => {
       order.products.forEach(cartItem => {
         productRequests.push(
           this.productService.fetchProductWithoutImageByUrl(cartItem.productUrl).pipe(
@@ -80,18 +80,27 @@ export class OrderListComponent {
   }
 
   // Function to handle state change
- /* changeOrderState(order: Order, newState: 'Pendiente' | 'Procesando' | 'Enviado' | 'Entregado' | 'Cancelado' | 'Devuelto' | 'Fallido' | 'Reembolsado'): void {
-    const originalState = order.state;
-    order.state = newState;
-
-    this.userService.updateOrderState(order.userId, order.orderId, newState).subscribe({
+  changeOrderState(order: Order, userId: string, event: Event): void {
+    const newState = (event.target as HTMLSelectElement).value as Order['state']; // Extract the selected value and cast type
+  
+    console.log(`Attempting to change state of Order ${order.orderId} to ${newState}`);
+  
+    const originalState = order.state; // Save original state in case of error
+    order.state = newState; // Optimistically update the UI
+  
+    // Call the service to persist the state change
+    this.userService.updateOrderState(userId, order.orderId, newState).subscribe({
       next: () => {
-        console.log(`Order ${order.orderId} state updated to ${newState}`);
+        console.log(`Order ${order.orderId} state successfully updated to ${newState}`);
       },
       error: (err) => {
-        console.error('Failed to update order state:', err);
-        order.state = originalState; // Revert state on error
+        console.error(`Failed to update order ${order.orderId} state:`, err);
+        alert(`No se pudo actualizar el estado. Inténtalo nuevamente.`);
+        order.state = originalState; // Rollback state in case of failure
       }
     });
-  }*/
+  }
+  
+  
+  
 }

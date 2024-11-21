@@ -1,47 +1,46 @@
 <div class="order-list">
-  <h1>Ordenes</h1>
+  <h1>Órdenes</h1>
 
   <!-- Check if orders exist -->
   <div *ngIf="allOrders.length > 0; else noOrders">
-    <div *ngFor="let order of allOrders" class="order-card">
-      <h2>Orden # {{ order.orderId }}</h2>
-      <p><strong>Fecha:</strong> {{ order.date | date }}</p>
-      <p><strong>Destinatario:</strong> {{ order.recipientName }} {{ order.recipientSurname }}</p>
-      <p><strong>Dirección:</strong> {{ order.street }}, {{ order.provinciaDestino }}, {{ order.cpDestino }}</p>
-      <p><strong>Metodo de Envío:</strong> {{ order.shippingMethod }}</p>
-      <p><strong>Costo de Envío:</strong> {{ order.shippingCost | currency }}</p>
-      <p><strong>Total:</strong> {{ order.totalCost | currency }}</p>
-      <p><strong>Estado:</strong> {{ order.state }}</p>
+    <div *ngFor="let entry of allOrders" class="order-card">
+      <h2>Orden # {{ entry.order.orderId }}</h2>
+      <p><strong>ID de Usuario:</strong> {{ entry.userId }}</p>
+      <p><strong>Fecha:</strong> {{ entry.order.date | date }}</p>
+      <p><strong>Destinatario:</strong> {{ entry.order.recipientName }} {{ entry.order.recipientSurname }}</p>
+      <p><strong>Dirección:</strong> {{ entry.order.street }}, {{ entry.order.provinciaDestino }}, {{ entry.order.cpDestino }}</p>
+      <p><strong>Método de Envío:</strong> {{ entry.order.shippingMethod }}</p>
+      <p><strong>Costo de Envío:</strong> {{ entry.order.shippingCost | currency }}</p>
+      <p><strong>Total:</strong> {{ entry.order.totalCost | currency }}</p>
+      <p><strong>Estado:</strong> {{ entry.order.state }}</p>
 
-      <!-- Dropdown to Change State
+      <!-- Dropdown to Change State -->
       <div>
         <label for="stateSelect">Cambiar estado:</label>
         <select
-        id="stateSelect"
-        [value]="order.state"
-        (change)="changeOrderState(order, $event.target.value)"
-      >
-        <option value="Pendiente">Pendiente</option>
-        <option value="Procesando">Procesando</option>
-        <option value="Enviado">Enviado</option>
-        <option value="Entregado">Entregado</option>
-        <option value="Cancelado">Cancelado</option>
-        <option value="Devuelto">Devuelto</option>
-        <option value="Fallido">Fallido</option>
-        <option value="Reembolsado">Reembolsado</option>
-      </select>
+          id="stateSelect"
+          [value]="entry.order.state"
+          (change)="changeOrderState(entry.order, entry.userId, $event)"
+        >
+          <option value="Pendiente">Pendiente</option>
+          <option value="Procesando">Procesando</option>
+          <option value="Enviado">Enviado</option>
+          <option value="Entregado">Entregado</option>
+          <option value="Cancelado">Cancelado</option>
+          <option value="Devuelto">Devuelto</option>
+          <option value="Fallido">Fallido</option>
+          <option value="Reembolsado">Reembolsado</option>
+        </select>
       </div>
-
 
       <!-- List of products -->
       <div>
         <h3>Productos:</h3>
         <ul>
-          <li *ngFor="let product of order.products">
-              <p><strong>{{ product.productName || product.productUrl }} </strong> </p>
-
-            <p><strong>Cantidad:</strong> {{ product.quantity }} </p>
-            <p><strong>Precio:</strong> {{ product.price | currency }}</p>
+          <li *ngFor="let product of entry.order.products">
+            <p><strong>{{ product.productName || 'Producto no disponible' }}</strong></p>
+            <p><strong>Cantidad:</strong> {{ product.quantity }}</p>
+            <p><strong>Precio:</strong> {{ product.price ? (product.price | currency) : 'No especificado' }}</p>
           </li>
         </ul>
       </div>

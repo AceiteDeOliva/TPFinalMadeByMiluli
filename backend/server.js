@@ -28,9 +28,9 @@ app.post("/create_preference", async (req, res) => {
         },
       ],
       back_urls: {
-        success: 'http://localhost:4200/payment-success',
-        failure: 'http://localhost:4200/home',
-        pending: 'http://localhost:4200/home',
+        success: 'http://localhost:4200/payment-status?status=success',
+        failure: 'http://localhost:4200/payment-status?status=failure',
+        pending: 'http://localhost:4200/payment-status?status=pending',
       },
       auto_return: 'approved',
       notification_url: "https://8f60-190-190-36-138.ngrok-free.app/webhook"

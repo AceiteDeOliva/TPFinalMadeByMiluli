@@ -6,69 +6,27 @@
       "surname": "admin",
       "email": "admin@admin.com",
       "password": "admin",
-      "cart": [
-        {
-          "productUrl": "http://localhost:3000/products/4",
-          "quantity": 1
-        }
-      ],
+      "cart": [],
       "purchaseHistory": [
         {
-          "orderId": "1223",
+          "orderId": "1732149175411-229",
           "products": [
             {
               "productUrl": "http://localhost:3000/products/4",
-              "quantity": 1
-            },
-            {
-              "productUrl": "http://localhost:3000/products/5",
-              "quantity": 2
-            },
-            {
-              "productUrl": "http://localhost:3000/products/6",
-              "quantity": 3
-            }
-          ],
-          "date": "2024-11-15T09:59:30.534Z",
-          "recipientName": "Milagros",
-          "recipientSurname": "Rodriguez",
-          "street": "50 Twining Flats Road",
-          "provinciaDestino": "csgdgfg",
-          "cpDestino": "76009",
-          "shippingMethod": "sucursal",
-          "shippingCost": 6000,
-          "totalCost": 31000,
-          "state": "active"
-        },
-        {
-          "orderId": "123",
-          "products": [
-            {
-              "productUrl": "http://localhost:3000/products/7",
               "quantity": 1,
-              "price": 10
-            },
-            {
-              "productUrl": "http://localhost:3000/products/9",
-              "quantity": 2,
-              "price": 6000
-            },
-            {
-              "productUrl": "http://localhost:3000/products/10",
-              "quantity": 3,
-              "price": 10000
+              "price": 25000
             }
           ],
-          "date": "2024-11-15T09:59:30.534Z",
-          "recipientName": "Milagros",
-          "recipientSurname": "Rodriguez",
-          "street": "50 Twining Flats Road",
-          "provinciaDestino": "csgdgfg",
-          "cpDestino": "76009",
-          "shippingMethod": "sucursal",
+          "date": "2024-11-21T00:32:55.411Z",
+          "recipientName": "J.",
+          "recipientSurname": "M.",
+          "street": "Olavarría 3583",
+          "provinciaDestino": "Buenos Aires",
+          "cpDestino": "7600",
+          "shippingMethod": "domicilio",
           "shippingCost": 6000,
           "totalCost": 31000,
-          "state": "active"
+          "state": "Procesando"
         }
       ],
       "credential": "admin"
@@ -79,83 +37,8 @@
       "surname": "Leta",
       "email": "josevl@live.com",
       "password": "12345",
-      "cart": [
-        {
-          "productUrl": "http://localhost:3000/products/6",
-          "quantity": 1
-        }
-      ],
-      "purchaseHistory": [
-        {
-          "orderId": "1224",
-          "products": [
-            {
-              "productUrl": "http://localhost:3000/products/11",
-              "quantity": 1
-            },
-            {
-              "productUrl": "http://localhost:3000/products/5",
-              "quantity": 1
-            }
-          ],
-          "date": "2024-11-15T08:29:44.588Z",
-          "recipientName": "J.",
-          "recipientSurname": "M.",
-          "street": "Olavarría 3583",
-          "provinciaDestino": "Buenos Aires",
-          "cpDestino": "7600",
-          "shippingMethod": "domicilio",
-          "shippingCost": 6000,
-          "totalCost": 22000,
-          "state": "Procesando"
-        },
-        {
-          "orderId": "1225",
-          "products": [
-            {
-              "productUrl": "http://localhost:3000/products/11",
-              "quantity": 1
-            },
-            {
-              "productUrl": "http://localhost:3000/products/5",
-              "quantity": 1
-            }
-          ],
-          "date": "2024-11-15T08:29:44.588Z",
-          "recipientName": "J.",
-          "recipientSurname": "M.",
-          "street": "Olavarría 3583",
-          "provinciaDestino": "Buenos Aires",
-          "cpDestino": "7600",
-          "shippingMethod": "domicilio",
-          "shippingCost": 6000,
-          "totalCost": 22000,
-          "state": "Procesando"
-        },
-        {
-          "orderId": "12235",
-          "products": [
-            {
-              "productUrl": "http://localhost:3000/products/1",
-              "quantity": 1
-            },
-            {
-              "productUrl": "http://localhost:3000/products/3",
-              "quantity": 1
-            }
-          ],
-          "date": "2024-11-15T11:22:34.014Z",
-          "recipientName": "José Valentín",
-          "recipientSurname": "Letamendía Muzio",
-          "street": "Olavarría 3583",
-          "provinciaDestino": "Buenos Aires",
-          "cpDestino": "7600",
-          "shippingMethod": "domicilio",
-          "shippingCost": 6000,
-          "totalCost": 31000,
-          "state": "Pendiente"
-        }
-      ],
+      "cart": [],
+      "purchaseHistory": [],
       "credential": "user"
     },
     {
