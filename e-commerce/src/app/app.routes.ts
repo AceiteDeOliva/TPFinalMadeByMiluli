@@ -50,7 +50,7 @@ export const routes: Routes = [
   { path: 'profile', component: ProfilePageComponent },
   { path: 'manageUsers', component: ManageUsersPageComponent, canActivate: [() => authGuardFn(['admin', 'manager'])] },
   { path: 'nuevoProducto', component: NewProductPageComponent, canActivate: [() => authGuardFn(['admin', 'manager'])] },
-  { path: 'updateProduct/:id', component: UpdateProductPageComponent, canActivate: [() => authGuardFn(['admin', 'manager'])] },
+  { path: 'updateProduct/:id', component: UpdateProductPageComponent, canActivate: [() => authGuardFn(['admin', 'manager', 'employee'])] },
   { path: 'productView/:productId', component: ProductPageComponent },
   { path: 'checkout', component: CheckoutComponent, canActivate: [authGuardFnCheckOut] },
   { path: 'loginPurchase', component: PurchaseLoginPageComponent },
