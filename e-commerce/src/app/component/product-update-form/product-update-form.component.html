@@ -58,7 +58,7 @@
       <img [src]="imagePreviewUrl" alt="Product Image" class="product-image" *ngIf="imagePreviewUrl" />
     </div>
     <div *ngIf="isEditing">
-      <button type="button" class="custom-file-upload" (click)="triggerFileInput()">
+      <button type="button" class="custom-file-upload" *ngIf="userRole !== 'employee'" (click)="triggerFileInput()">
         Subir Imagen
       </button>
       <input id="imagen" type="file" accept="image/*" class="file-input" (change)="onFileSelected($event)"
