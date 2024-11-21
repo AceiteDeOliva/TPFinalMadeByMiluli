@@ -99,6 +99,7 @@ button:hover {
   .product-card {
     width: 95%;
     max-width: 300px;
+    padding: 18px; 
   }
 
   .product-card h2 {

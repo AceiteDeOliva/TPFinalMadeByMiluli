@@ -18,43 +18,43 @@ export class CategoriesComponent {
   constructor(private categoryService: CategoryService, private router: Router) {}
 
   ngOnInit(): void {
-    // Check localStorage for a saved category on component initialization
+
     const savedCategory = localStorage.getItem('selectedCategory');
     if (savedCategory) {
       this.selectedCategory = savedCategory;
-      this.categoryService.changeCategory(savedCategory); // Ensure the service has the correct category
+      this.categoryService.changeCategory(savedCategory);
     }
 
-    // Subscribe to currentCategory$ to get the latest selected category
+
     this.categoryService.currentCategory$.subscribe(category => {
-      // Only update if the category has changed from the stored one
+
       if (category !== this.selectedCategory) {
         this.selectedCategory = category;
-        localStorage.setItem('selectedCategory', category); // Save to localStorage
+        localStorage.setItem('selectedCategory', category);
       }
     });
 
-    // Optionally: Listen for route changes to reset the category when needed
+
     this.router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
-        // Reset the filter on specific routes or on navbar click
-        if (event.url === '/home') {  // Modify as needed for your routes
-          this.categoryService.resetCategory();  // Reset category filter
-          localStorage.removeItem('selectedCategory'); // Clear localStorage
+
+        if (event.url === '/home') {
+          this.categoryService.resetCategory();
+          localStorage.removeItem('selectedCategory');
         }
       }
     });
   }
 
   get displayCategory(): string {
-    this.title = this.selectedCategory + 's'; // Add "s" to the category for plural
+    this.title = this.selectedCategory + 's';
     return this.title;
   }
 
-  // This method will be triggered when a navbar item is clicked
+
   onCategoryClick(category: string): void {
     this.selectedCategory = category;
-    localStorage.setItem('selectedCategory', category); // Save to localStorage
-    this.categoryService.changeCategory(category); // Update the category in the service
+    localStorage.setItem('selectedCategory', category);
+    this.categoryService.changeCategory(category); 
   }
 }

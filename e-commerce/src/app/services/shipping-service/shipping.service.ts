@@ -12,29 +12,29 @@ export class ShippingService {
 
   constructor() {}
 
-  // Get the shipping data as an observable
+
   getShippingData() {
     return this.shippingDataSubject.asObservable();
   }
 
-  // Set the shipping data and save it to localStorage
+
   setShippingData(data: Order) {
     this.shippingDataSubject.next(data);
-    localStorage.setItem('shippingData', JSON.stringify(data)); // Save to localStorage
+    localStorage.setItem('shippingData', JSON.stringify(data));
   }
 
-  // Clear the shipping data (e.g., after order processing)
+
   clearShippingData() {
     this.shippingDataSubject.next(null);
-    localStorage.removeItem('shippingData'); // Remove from localStorage
+    localStorage.removeItem('shippingData');
   }
 
-  // Retrieve the stored shipping data from localStorage
+  
   private getStoredShippingData(): Order | null {
     const storedData = localStorage.getItem('shippingData');
     return storedData ? JSON.parse(storedData) : null;
   }
 
 
-  
+
 }

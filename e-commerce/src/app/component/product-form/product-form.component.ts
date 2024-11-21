@@ -15,7 +15,7 @@ import { Router, RouterModule, RouterOutlet } from '@angular/router';
 
 export class ProductFormComponent {
   productForm: FormGroup;
-  imagePreviewUrl: string | ArrayBuffer | null = null; //Variable to save the image preview
+  imagePreviewUrl: string | ArrayBuffer | null = null;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -33,36 +33,36 @@ export class ProductFormComponent {
   }
 
   onImageSelected(event: Event): void {
-    const input = event.target as HTMLInputElement; //casts the event to an HTML input(for the product image button)
-    if (input.files && input.files[0]) { //Checks the file was actually selected and not null
-      const file = input.files[0]; //declares the file
-      const reader = new FileReader(); //declares the FileReader
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      const file = input.files[0];
+      const reader = new FileReader();
 
       reader.onload = () => {
-        this.imagePreviewUrl = reader.result; //the image for the preview
+        this.imagePreviewUrl = reader.result;
       };
 
-      reader.readAsDataURL(file);  //reads the file
-      this.productForm.patchValue({ image: file }); //saves the image in the product form
+      reader.readAsDataURL(file);
+      this.productForm.patchValue({ image: file });
     }
   }
 
-  triggerFileInput() { //function to trigger on the upload image button
-    const fileInput = document.getElementById('imagen') as HTMLInputElement; //casts the image as a HTML input
+  triggerFileInput() {
+    const fileInput = document.getElementById('imagen') as HTMLInputElement;
     if (fileInput) {
-      fileInput.click(); //opens the explorer
+      fileInput.click();
     }
   }
 
-  submitProduct() {//submits the product to the server
-    if (this.productForm.invalid) { //if all fields are full
+  submitProduct() {
+    if (this.productForm.invalid) {
       alert('Completar todos los campos .');
       return;
     }
 
-    const { name, description, price, category, stock, image } = this.productForm.value; //destructures the form to access each field
+    const { name, description, price, category, stock, image } = this.productForm.value;
 
-    this.productService.addProduct(name, description, price, category, stock, image).subscribe({//calls the addProduct method from the product service
+    this.productService.addProduct(name, description, price, category, stock, image).subscribe({
       next: (response) => {
         alert('Producto agregado correctamente');
         this.router.navigate(['/productAdmin']);

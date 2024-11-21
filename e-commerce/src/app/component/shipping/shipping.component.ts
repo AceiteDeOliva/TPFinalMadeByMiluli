@@ -50,7 +50,7 @@ export class ShippingComponent implements OnInit {
   ngOnInit(): void {
     this.fetchCartSubtotal();
 
-    // Subscribe to cart items
+
     this.cartService.getCarrito().subscribe((cartItems) => {
       const productRequests = cartItems.map((cartItem) =>
         this.productService.fetchProductWithoutImageByUrl(cartItem.productUrl).pipe(
@@ -66,7 +66,7 @@ export class ShippingComponent implements OnInit {
       });
     });
 
-    // User authentication check
+
     const currentUserId = localStorage.getItem('currentUserId');
     if (currentUserId) {
       this.userService.getUserById(currentUserId).subscribe((currentUser) => {
@@ -89,7 +89,7 @@ export class ShippingComponent implements OnInit {
       this.shippingForm.controls['email'].enable();
     }
 
-    // Subscribe to changes in shippingMethod to update shipping cost
+
     this.shippingForm.get('shippingMethod')?.valueChanges.subscribe((method) => {
       this.updateShippingCost(method);
     });
@@ -133,10 +133,10 @@ export class ShippingComponent implements OnInit {
       next: (subtotal) => {
         this.cartSubtotal = subtotal;
 
-        // Get the current shipping method from the form (or wherever it's stored)
+
         const shippingMethod = this.shippingForm.get('shippingMethod')?.value;
 
-        // Pass the shippingMethod to the updateShippingCost method
+
         if (shippingMethod) {
           this.updateShippingCost(shippingMethod);
         } else {
@@ -150,7 +150,7 @@ export class ShippingComponent implements OnInit {
   }
 
   private updateShippingCost(shippingMethod: string): void {
-    // Calculate shipping cost based on shipping method
+
     this.shippingCost = shippingMethod === 'domicilio' ? 8000 : 6000;
     console.log("Precio de envio: " + this.shippingCost);
   }

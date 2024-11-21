@@ -25,7 +25,7 @@ export class ProductUpdateFormComponent implements OnInit {
   imagePreviewUrl: string | ArrayBuffer | null = '';
   selectedFile: File | null = null;
   oldImageId: string | null = null;
-  userRole: string | null = null; 
+  userRole: string | null = null;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -67,7 +67,7 @@ export class ProductUpdateFormComponent implements OnInit {
             this.productForm.patchValue(product);
 
             if (product.imageUrl.startsWith('data:image')) {
-              this.imagePreviewUrl = product.imageUrl; // Directly use base64 image
+              this.imagePreviewUrl = product.imageUrl; 
             } else {
               const imageId = product.imageUrl.split('/').pop();
               this.oldImageId = imageId || null;
@@ -103,7 +103,7 @@ export class ProductUpdateFormComponent implements OnInit {
     this.isEditing = true;
 
     if (this.userRole === 'employee') {
-      // Disable all fields except stock for employee users
+
       this.productForm.get('name')?.disable();
       this.productForm.get('description')?.disable();
       this.productForm.get('price')?.disable();
@@ -193,7 +193,7 @@ export class ProductUpdateFormComponent implements OnInit {
   onCancel() {
     this.isEditing = false;
     this.selectedFile = null;
-    this.ngOnInit(); //
+    this.ngOnInit();
   }
 
 
@@ -202,7 +202,7 @@ export class ProductUpdateFormComponent implements OnInit {
       console.warn('Employees are not allowed to delete products.');
       return;
     }
-  
+
     const confirmed = window.confirm("¿Estas seguro de eliminar este producto?");
     if (confirmed && this.product) {
       this.productService.deleteProduct(this.product).subscribe({

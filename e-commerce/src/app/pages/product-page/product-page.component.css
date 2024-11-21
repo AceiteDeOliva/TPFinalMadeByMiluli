@@ -1,6 +1,6 @@
 
 .product-details {
-  position: relative; /* Establish positioning context for .volver */
+  position: relative;
   background-color: #d1e3eb;
   display: flex;
   flex-wrap: nowrap;
@@ -17,9 +17,9 @@
 }
 
 .volver {
-  position: absolute; /* Position relative to the parent container */
-  top: 10px; /* Distance from the top of the parent */
-  left: 10px; /* Distance from the left of the parent */
+  position: absolute;
+  top: 10px;
+  left: 10px;
   background-color: #f8e1e4;
   border: none;
   color: #333;
@@ -28,7 +28,7 @@
   cursor: pointer;
   font-size: 1rem;
   transition: background-color 0.3s ease;
-  z-index: 10; /* Ensure it appears above other elements */
+  z-index: 10;
 }
 
 
@@ -37,7 +37,7 @@
   color: white;
 }
 
-/* Product Image with Border */
+
 .product-image {
   margin-top: 40px;
   width: 20rem;
@@ -45,12 +45,12 @@
   border-radius: 10px;
   padding: 5px;
   margin-bottom: 15px;
-  height: auto; /* Adjusted to auto to maintain image aspect ratio */
-  object-fit: cover; /* Ensures the image covers the container */
-  max-height: 350px; /* Set a max height for the image */
+  height: auto;
+  object-fit: cover;
+  max-height: 350px;
 }
 
-/* Product Information */
+
 .info h1 {
   font-size: 2rem;
   color: #333;
@@ -67,7 +67,7 @@
   color: #666;
 }
 
-/* Quantity Input Container */
+
 .quantity-container {
   display: flex;
   align-items: center;
@@ -88,7 +88,7 @@ input[type="number"] {
   width: 60px;
 }
 
-/* Add to Cart Button Styling */
+
 .button {
   background-color: #f8e1e4;
   border: none;
@@ -106,7 +106,7 @@ input[type="number"] {
   color: white;
 }
 
-/* Confirmation Message Styling */
+
 .added-to-cart-message {
   color: #4caf50;
   font-size: 0.9rem;

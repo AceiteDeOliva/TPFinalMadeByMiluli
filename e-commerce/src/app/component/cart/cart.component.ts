@@ -19,7 +19,7 @@ import { AuthService } from '../../services/auth-service/auth.service';
   imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css'],
-  providers: [DecimalPipe]  // Provide DecimalPipe
+  providers: [DecimalPipe]  
 })
 export class CartComponent implements OnInit {
   cartItems: Array<{ productUrl: string; quantity: number; details?: Product | null }> = [];

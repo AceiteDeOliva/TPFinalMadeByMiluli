@@ -22,7 +22,7 @@ export class ProductSliderComponent implements OnInit {
   constructor(private productService: ProductService, private router: Router) {}
 
   ngOnInit(): void {
-    // Fetch the top 4 product URLs with the most stock
+
     this.productService.getTopStockProducts(4).pipe(
       switchMap((urls) => {
         const productDetails$ = urls.map(url =>
@@ -33,10 +33,10 @@ export class ProductSliderComponent implements OnInit {
         return forkJoin(productDetails$);
       })
     ).subscribe((products) => {
-      // Filter out products with null details
+
       this.topStockProducts = products.filter(product => product.details !== null);
 
-      // Assign a random color to each product
+
       this.topStockProducts.forEach((product) => {
         this.productColors[product.productUrl] = this.getRandomColorForProduct();
       });
@@ -45,20 +45,20 @@ export class ProductSliderComponent implements OnInit {
     });
   }
 
-  // Navigate to the product page when a product is clicked
+
   navigateToProductPage(url: string) {
-    if (url) {  // Ensure url is not null or undefined
+    if (url) {
       this.router.navigate([url]);
     }
   }
 
-  // Get a random color, avoiding the last used color
+
   getRandomColorForProduct(): string {
     const colors = ['#F8E1E4', '#FCD5CE', '#95CBEE', '#C4DCBB', '#FEE9B2'];
     let color: string;
     do {
       color = colors[Math.floor(Math.random() * colors.length)];
-    } while (color === this.productColors[color]); // Ensure the color is not the same as the last one
+    } while (color === this.productColors[color]);
     return color;
   }
 }

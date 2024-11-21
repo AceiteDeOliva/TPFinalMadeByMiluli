@@ -3,21 +3,21 @@
   padding: 10px;
   border-right: 2px solid #ccc;
   background-color: #95CBEE;
-  text-align: center; /* Center text for the main container */
+  text-align: center;
   border-radius: 8px;
 }
 
 .header-container {
   display: flex;
-  align-items: center; /* Center items vertically */
-  justify-content: space-between; /* Space between heading and button */
-  margin-bottom: 20px; /* Space below the header */
-  width: 92%; /* Adjust as needed */
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  width: 92%;
 }
 
 .nuevo {
-  background-color: #FEE9B2; /* Button background color */
-  border: 1px solid rgb(100, 169, 243); /* Button border color */
+  background-color: #FEE9B2;
+  border: 1px solid rgb(100, 169, 243);
   padding: 10px 15px;
   color: #000;
   border-radius: 8px;
@@ -26,9 +26,9 @@
 }
 
 h2 {
-  margin: 0; /* Remove default margin to keep alignment */
-  flex-grow: 1; /* Allow the heading to take up remaining space */
-  text-align: center; /* Center the heading text */
+  margin: 0;
+  flex-grow: 1;
+  text-align: center;
 }
 
 .full-container {
@@ -37,16 +37,16 @@ h2 {
   align-items: flex-start;
 }
 
-.icon{
+.icon {
   height: 20px;
   margin-left: 5px;
   margin-right: 5px;
-
 }
+
 .employee-list {
   flex: 1;
   padding: 10px;
-  border-right: 2px;
+  border-right: 2px solid #ccc;
   background-color: #95CBEE;
 }
 
@@ -68,7 +68,6 @@ h2 {
   background-color: #87a77c;
 }
 
-
 .form-container {
   flex: 1;
   background-color: #C4DCBB;
@@ -89,18 +88,18 @@ h2 {
 }
 
 .form-control input,
-.form-control select ,.filter-input{
-  padding: 10px; /* Padding for inputs and selects */
-  border: 1px solid #ccc; /* Border for inputs and selects */
-  border-radius: 4px; /* Rounded corners for inputs and selects */
-  margin-top: 5px; /* Margin on top of inputs and selects */
+.form-control select,
+.filter-input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-top: 5px;
   margin-bottom: 5px;
 }
 
-/* Button styling */
 button {
-  background-color: #FEE9B2; /* Original button background color */
-  border: 1px solid rgb(100, 169, 243); /* Original button border color */
+  background-color: #FEE9B2;
+  border: 1px solid rgb(100, 169, 243);
   padding: 10px 15px;
   color: #000;
   border-radius: 8px;
@@ -110,11 +109,10 @@ button {
 }
 
 button:hover {
-  background-color: #95CBEE; /* Original button hover background color */
+  background-color: #95CBEE;
   color: white;
 }
 
-/* Alert styles */
 .alert {
   padding: 10px;
   border-radius: 8px;
@@ -143,4 +141,77 @@ button:hover {
 .delete-button:hover {
   background-color: #FCD5CE;
   color: white;
+}
+
+
+@media (max-width: 768px) {
+  .header-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .employee-list,
+  .form-container {
+    flex: 1;
+    padding: 10px;
+  }
+
+  .manage-users {
+    flex: 1;
+    margin-bottom: 20px;
+  }
+
+  button {
+    width: 100%;
+    padding: 12px;
+  }
+
+  .form-control input,
+  .form-control select,
+  .filter-input {
+    width: 100%;
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .header-container {
+    width: 100%;
+  }
+
+  .employee-list,
+  .form-container {
+    flex: 1;
+    padding: 8px;
+  }
+
+  .manage-users {
+    padding: 8px;
+  }
+
+  button {
+    padding: 14px;
+    font-size: 16px;
+  }
+
+  .form-control input,
+  .form-control select,
+  .filter-input {
+    padding: 14px;
+    font-size: 14px;
+  }
+
+  h2 {
+    font-size: 1.1rem;
+  }
+
+  .delete-button {
+    padding: 8px 12px;
+  }
 }

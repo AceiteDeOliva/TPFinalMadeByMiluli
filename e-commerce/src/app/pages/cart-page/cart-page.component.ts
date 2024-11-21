@@ -19,9 +19,9 @@ export class CartPageComponent {
   constructor(private router: Router) {}
 
   ngOnInit() {
-    // Check if the user is logged in by checking localStorage or using a service
+
     const currentUser = localStorage.getItem('currentUserId');
-    this.isLoggedIn = !!currentUser; // Set to true if user is logged in, false otherwise
+    this.isLoggedIn = !!currentUser;
   }
 
   onSubtotalChanged(subtotal: number): void {
@@ -30,10 +30,10 @@ export class CartPageComponent {
 
   onProceedToPayment(): void {
     if (this.isLoggedIn) {
-      // Navigate to the shipping info page if logged in
+
       this.router.navigate(['shippingInfo']);
     } else {
-      // Navigate to the login page if not logged in
+  
       this.router.navigate(['loginForOrder']);
     }
   }

@@ -109,10 +109,43 @@ button[type="submit"]:hover {
 .shipping input[type="checkbox"]:hover {
   background-color: #f1f1f1;
 }
+@media (max-width: 768px) {
+  .shipping {
+    width: 90%;
+    padding: 15px;
+  }
+
+  h2 {
+    font-size: 22px;
+    margin-bottom: 18px;
+  }
+
+  label {
+    font-size: 16px;
+    margin-bottom: 6px;
+  }
+
+  input[type="text"],
+  input[type="email"] {
+    font-size: 14px;
+    padding: 12px;
+    width: 50%;
+  }
+
+  button[type="submit"] {
+    font-size: 15px;
+    padding: 12px;
+    width: 50%;
+  }
+
+  .result h3 {
+    font-size: 17px;
+  }
+}
 
 @media (max-width: 480px) {
   .shipping {
-    width: 100%;
+    width: 90%;
     padding: 10px;
   }
 
@@ -135,7 +168,7 @@ button[type="submit"]:hover {
   button[type="submit"] {
     font-size: 14px;
     padding: 10px;
-    width: 100%;
+    width: 50%;
   }
 
   .result h3 {
@@ -145,6 +178,6 @@ button[type="submit"]:hover {
 
   input[type="text"],
   input[type="email"] {
-    width: 100%;
+    width: 50%;
   }
 }

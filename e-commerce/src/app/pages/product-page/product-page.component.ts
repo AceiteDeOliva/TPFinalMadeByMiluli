@@ -19,7 +19,7 @@ export class ProductPageComponent implements OnInit {
   selectedProduct: Product | null | undefined;
   quantity: number = 1;
   showShippingPrices: boolean = false;
-  showAddedToCartMessage: boolean = false; // Add this variable
+  showAddedToCartMessage: boolean = false;
   cartMessage:string='';
 
 
@@ -57,9 +57,9 @@ export class ProductPageComponent implements OnInit {
         next: (response) => {
           console.log(`${product.name} added to cart successfully! (Quantity: ${quantity})`);
           this.showAddedToCartMessage = true;
-          this.cartMessage = response.message;  // Asignar el mensaje recibido desde el servicio
+          this.cartMessage = response.message;
           setTimeout(() => {
-            this.showAddedToCartMessage = false; // Ocultar el mensaje después de 2 segundos
+            this.showAddedToCartMessage = false; 
           }, 2000);
         },
         error: () => {

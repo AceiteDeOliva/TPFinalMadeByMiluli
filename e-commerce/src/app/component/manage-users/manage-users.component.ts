@@ -52,13 +52,13 @@ export class ManageUsersComponent implements OnInit {
         this.isAllowed = credential === 'admin' || credential === 'manager';
 
         if (this.isAllowed) {
-          // Load all employees if admin
+
           this.userService.getUser().subscribe(data => {
             this.employees = data;
             this.filteredEmployees = this.employees;
           });
         } else {
-          // If user is not admin or manager, clear the employee list
+
           this.employees = [];
           this.filteredEmployees = [];
         }
@@ -86,44 +86,44 @@ export class ManageUsersComponent implements OnInit {
       `${employee.name} ${employee.surname}`.toLowerCase().includes(this.filterText.toLowerCase())
     );
   }
-  
+
 
   selectEmployee(employee: User) {
     const currentUserId = localStorage.getItem('currentUserId');
-  
+
     if (currentUserId) {
       this.userService.getCredential(currentUserId).subscribe(credential => {
         if (credential === 'manager' && employee.credential !== 'employee') {
           this.errorMessage = 'Managers solo pueden editar empleados.';
           return;
         }
-  
+
         this.selectedEmployee = employee;
         this.profileForm.patchValue(employee);
         this.isEditing = true;
-        this.successMessage = null; // Clear any previous success message
-        this.errorMessage = null;  // Clear any previous error message
+        this.successMessage = null;
+        this.errorMessage = null;
       });
     }
   }
-  
+
   onSaveChanges(updatedFields: Partial<User>) {
     if (this.selectedEmployee) {
       const updatedEmployee = { ...this.selectedEmployee, ...updatedFields };
-  
+
       this.userService.updateUser(this.selectedEmployee.id, updatedEmployee).subscribe(
         updatedData => {
           console.log('Employee updated:', updatedData);
-  
-          // Update the local employees array
+
+
           const index = this.employees.findIndex(emp => emp.id === this.selectedEmployee!.id);
           if (index > -1) {
-            this.employees[index] = updatedData; // Update the specific employee
+            this.employees[index] = updatedData;
           }
-  
-          // Update the filtered list as well
+
+
           this.filterEmployees();
-  
+
           this.selectedEmployee = updatedData;
           this.isEditing = false;
           this.successMessage = 'Perfil Modificado Exitosamente!';
@@ -135,7 +135,7 @@ export class ManageUsersComponent implements OnInit {
       );
     }
   }
-  
+
 
 
  onEdit() {
@@ -162,8 +162,8 @@ export class ManageUsersComponent implements OnInit {
 
   onCancel() {
     this.isEditing = false;
-    this.selectedEmployee = null; // Clear selectedEmployee to close the form
-    this.profileForm.reset(); // Reset the form fields
+    this.selectedEmployee = null;
+    this.profileForm.reset();
     this.successMessage = null;
     this.errorMessage = null;
   }
@@ -182,12 +182,12 @@ export class ManageUsersComponent implements OnInit {
       this.userService.deleteUser(this.selectedEmployee.id).subscribe(
         () => {
           console.log('Employee eliminado:', this.selectedEmployee);
-  
-          // Remove the deleted employee from the local arrays
+
+
           this.employees = this.employees.filter(emp => emp.id !== this.selectedEmployee!.id);
           this.filteredEmployees = this.filteredEmployees.filter(emp => emp.id !== this.selectedEmployee!.id);
-  
-          this.selectedEmployee = null; // Clear the selection
+
+          this.selectedEmployee = null;
           this.successMessage = 'Empleado Eliminado Exitosamente';
         },
         error => {
@@ -197,9 +197,9 @@ export class ManageUsersComponent implements OnInit {
       );
     }
   }
-  
 
-  goToRegister() { //Link to register function
+
+  goToRegister() { 
     this.router.navigate(['registerEmployee']);
   }
 }

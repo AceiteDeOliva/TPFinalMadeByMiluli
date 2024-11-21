@@ -1,3 +1,4 @@
+
 .order-list {
   max-width: 1200px;
   margin: 0 auto;
@@ -85,7 +86,7 @@
   background-color: #D1E3EB;
   border-radius: 8px;
   margin-bottom: 10px;
-  flex-direction: column; /* Stack the elements vertically */
+  flex-direction: column;
   padding: 10px;
 }
 
@@ -101,13 +102,6 @@
 .no-orders {
   text-align: center;
   color: #666;
-  font-size: 1.2em;
-  margin-top: 50px;
-}
-
-.no-orders {
-  text-align: center;
-  color: #666;
   font-size: 1.5em;
   font-weight: bold;
   margin-top: 50px;
@@ -116,4 +110,83 @@
   border: 1px solid #ddd;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+@media (max-width: 768px) {
+  .order-list {
+    padding: 15px;
+  }
+
+  .filter-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .filter-container select {
+    width: 100%;
+  }
+
+  .order-card {
+    padding: 15px;
+    margin-bottom: 15px;
+  }
+
+  .order-card h2 {
+    font-size: 18px;
+  }
+
+  .order-card p {
+    font-size: 14px;
+  }
+
+  .order-card ul li {
+    padding: 8px;
+  }
+
+  .order-card ul li a {
+    font-size: 14px;
+  }
+
+  .no-orders {
+    font-size: 1.2em;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .order-list {
+    padding: 10px;
+  }
+
+  .filter-container select {
+    padding: 8px 10px;
+    font-size: 14px;
+  }
+
+  .order-card {
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  .order-card h2 {
+    font-size: 16px;
+  }
+
+  .order-card p {
+    font-size: 12px;
+  }
+
+  .order-card ul li {
+    padding: 6px;
+  }
+
+  .order-card ul li a {
+    font-size: 12px;
+  }
+
+  .no-orders {
+    font-size: 1.1em;
+    padding: 10px;
+  }
 }

@@ -1,105 +1,98 @@
-/* Global font size */
 body, label {
-  font-size: 20px;  /* Aumentar tamaño de fuente */
+  font-size: 20px;
   font-family: Arial, sans-serif;
-  font-weight: bold; /* Fuente en negrita */
+  font-weight: bold;
 }
 
 h1 {
-  font-size: 60px;  /* Aumentar tamaño del título */
+  font-size: 60px;
 }
 
-/* Cart container styling */
 .cart {
   display: flex;
-  flex-direction: column;  /* Stack items vertically for better alignment */
+  flex-direction: column;
   align-items: center;
   background-color: #95CBEE;
   border-radius: 8px;
   justify-content: center;
-  width: 100%;  /* Allow cart to be responsive */
-  max-width: 1200px;  /* Limit max width for large screens */
-  box-sizing: border-box;  /* Ensure padding doesn't overflow */
+  width: 100%;
+  max-width: 1200px;
+  box-sizing: border-box;
   overflow: hidden;
   padding: 25px;
   margin: 20px auto;
 }
 
-/* Empty cart message styling */
 .empty-cart-message {
-  font-size: 24px;  /* Larger font size */
-  color: black;  /* Red color for attention */
-  text-align: center;  /* Center the text */
-  font-weight: bold;  /* Bold text */
-  padding: 20px;  /* Add some padding around the message */
-  border: 2px solid #95CBEE;  /* Add a border around the message */
-  border-radius: 10px;  /* Rounded corners */
-  background-color: #FEE9B2;  /* Light red background */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  /* Subtle shadow */
-  width: 50%;  /* Make the message width 50% of its container */
-  margin: 20px auto;  /* Center the message on the page */
+  font-size: 24px;
+  color: black;
+  text-align: center;
+  font-weight: bold;
+  padding: 20px;
+  border: 2px solid #95CBEE;
+  border-radius: 10px;
+  background-color: #FEE9B2;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 50%;
+  margin: 20px auto;
 }
 
-/* Product list grid */
 ul {
   list-style-type: none;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);  /* 3 productos por fila */
-  gap: 20px;  /* Reducir espacio entre productos */
-  width: 100%;  /* Ensure it takes up the full container width */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  width: 100%;
 }
 
-/* Cart item styling */
 .cart-item {
   display: grid;
-  grid-template-columns: 1fr 2fr; /* Two equal columns */
+  grid-template-columns: 1fr 2fr;
   align-items: center;
   justify-items: center;
-  padding: 20px; /* Padding inside the item */
+  padding: 20px;
   background-color: #FCD5CE;
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 380px;
   box-sizing: border-box;
-  gap: 5px; /* Add spacing between grid items */
+  gap: 5px;
 }
 
 .cart-item > * {
-  width: 100%; /* Make each child take up the full width of its grid cell */
+  width: 100%;
   text-align: left;
-
 }
 
-
-/* Cart item image */
 .cart-item img {
-  width: 200px;  /* Aumentar el tamaño de las imágenes */
-  height: 200px;  /* Aumentar el tamaño de las imágenes */
+  width: 200px;
+  height: 200px;
   object-fit: cover;
   margin-right: 20px;
-  border-radius: 8px;  /* Reducir bordes de las imágenes */
+  border-radius: 8px;
 }
-label{font-size: 16px;}
 
-/* Product info styling */
+label {
+  font-size: 16px;
+}
+
 .product-info {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   max-width: 100%;
-  height: auto;  /* Allow product info to adjust based on content */
+  height: auto;
   text-align: center;
 }
 
 .product-info p {
   margin: 8px 0;
-  font-size: 18px;  /* Aumentar tamaño del texto dentro de los productos */
+  font-size: 18px;
 }
 
-/* Quantity container */
 .quantity-container {
   display: flex;
   flex-direction: column;
@@ -107,22 +100,20 @@ label{font-size: 16px;}
   margin-top: 8px;
 }
 
-/* Input styles */
 input[type="number"] {
-  width: 30px;  /* Ajustar ancho de la cantidad */
+  width: 30px;
   margin-bottom: 5px;
-  font-size: 16px;  /* Aumentar tamaño de la fuente en el input */
-  padding: 5px;  /* Ajustar padding */
+  font-size: 16px;
+  padding: 5px;
   border-radius: 8px;
 }
 
-/* Button styles */
 .remover {
   background-color: #FF6B6B;
   color: white;
   border: none;
-  padding: 10px;  /* Reducir padding */
-  font-size: 18px;  /* Aumentar tamaño de la fuente */
+  padding: 10px;
+  font-size: 18px;
   border-radius: 8px;
   cursor: pointer;
   margin-top: 15px;
@@ -132,23 +123,22 @@ input[type="number"] {
   background-color: #95CBEE;
   color: white;
   border: none;
-  padding: 14px;  /* Reducir padding */
-  font-size: 20px;  /* Aumentar tamaño de la fuente */
+  padding: 14px;
+  font-size: 20px;
   border-radius: 8px;
   cursor: pointer;
   margin-top: 15px;
 }
 
 .comprar:hover {
-  background-color:#FEE9B2;
-  color:black;
+  background-color: #FEE9B2;
+  color: black;
 }
 
 .remover:hover {
   background-color: #FF3B3B;
 }
 
-/* Product container styling */
 .product {
   display: flex;
   flex-direction: column;
@@ -157,19 +147,16 @@ input[type="number"] {
   margin: 20px;
 }
 
-/* Media Queries for Mobile Responsiveness */
-
-/* For smaller screens like tablets */
 @media (max-width: 768px) {
   ul {
-    grid-template-columns: repeat(2, 1fr);  /* 2 productos por fila en pantallas más pequeñas */
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .cart-item {
     flex-direction: column;
     align-items: flex-start;
-    height: auto;  /* Ajuste de altura en pantallas más pequeñas */
-    width: 100%;  /* Ensure the cart items take up full width on smaller screens */
+    height: auto;
+    width: 100%;
   }
 
   .cart-item img {
@@ -181,21 +168,20 @@ input[type="number"] {
   }
 
   .empty-cart-message {
-    font-size: 20px;  /* Adjust font size for smaller screens */
-    width: 80%;  /* Make the message width 80% of its container */
+    font-size: 20px;
+    width: 80%;
   }
 }
 
-/* For very small screens (phones in portrait) */
 @media (max-width: 480px) {
   ul {
-    grid-template-columns: 1fr;  /* 1 producto por fila en pantallas más pequeñas */
+    grid-template-columns: 1fr;
   }
 
   .cart-item {
     padding: 15px;
-    height: auto;  /* Allow cart items to resize based on content */
-    width: 100%;  /* Full width for cart items on smaller screens */
+    height: auto;
+    width: 100%;
   }
 
   .cart-item img {
@@ -205,11 +191,11 @@ input[type="number"] {
   }
 
   .product-info p {
-    font-size: 18px;  /* Smaller font size on small screens */
+    font-size: 18px;
   }
 
   .remover, .comprar {
-    padding: 12px;  /* Smaller padding on mobile */
-    font-size: 16px;  /* Smaller font size on mobile */
+    padding: 12px;
+    font-size: 16px;
   }
 }

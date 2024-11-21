@@ -7,7 +7,7 @@ import { User } from '../../models/user';
   providedIn: 'root'
 })
 export class AuthService {
-  private credentialSubject = new BehaviorSubject<string | null>(null); // Initialize with null
+  private credentialSubject = new BehaviorSubject<string | null>(null);
  islogin:boolean =false;
  canCheckout: boolean = false;
  canship: boolean = false;
@@ -59,26 +59,26 @@ export class AuthService {
     return this.currentUser ? this.currentUser.credential : null;
   }
   enableCheckout() {
-    this.canCheckout = true; // Set it to true to allow checkout
+    this.canCheckout = true;
   }
 
   disableCheckout() {
-    this.canCheckout = false; // Set it to false to disallow checkout
+    this.canCheckout = false;
   }
 
-  // Use this to check if the user can checkout
+
   isCheckoutEnabled(): boolean {
     return this.canCheckout;
   }
   enableShipping() {
-    this.canship = true; // Set it to true to allow checkout
+    this.canship = true;
   }
 
   disableShipping() {
-    this.canship = false; // Set it to false to disallow checkout
+    this.canship = false;
   }
 
-  // Use this to check if the user can checkout
+  
   isShippingEnabled(): boolean {
     return this.canship;
   }

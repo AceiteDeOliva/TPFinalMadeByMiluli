@@ -51,6 +51,6 @@
 
   div > a {
     font-size: 0.8rem;
-    margin-bottom: 15px; /* Adjusted for mobile as well */
+    margin-bottom: 15px; 
   }
 }

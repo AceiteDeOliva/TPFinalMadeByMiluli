@@ -14,14 +14,14 @@ import { Router } from '@angular/router';
 })
 export class ProductListActiveComponent implements OnInit, AfterViewInit {
 
-  @Input() filterTerm: string = ''; // Input to receive the filter term
+  @Input() filterTerm: string = '';
   @Output() addToCart = new EventEmitter<string>();
 
   products: Product[] = [];
   filteredProducts: Product[] = [];
   colors: string[] = ['#F8E1E4', '#FCD5CE', '#95CBEE', '#C4DCBB', '#FEE9B2'];
-  productColors: { [id: string]: string } = {}; // Store random color by product ID
-  lastColor: string | null = null;  // Track the last color used
+  productColors: { [id: string]: string } = {};
+  lastColor: string | null = null;
 
   constructor(
     private productService: ProductService,
@@ -37,31 +37,31 @@ export class ProductListActiveComponent implements OnInit, AfterViewInit {
     this.productService.getProducts().pipe(
       switchMap((data) => {
         this.products = data;
-        this.applyFilter(); // Apply filter immediately after loading products
+        this.applyFilter();
 
-        const filteredProducts = this.products; // Use the filtered products for image loading
+        const filteredProducts = this.products;
         const imageRequests = filteredProducts.map(product => {
           const imageId = product.imageUrl.split('/').pop();
           if (imageId) {
             return this.productService.getImage(imageId).pipe(
               map(imageData => {
                 if (imageData && imageData.data) {
-                  product.imageUrl = imageData.data; // Update image URL
+                  product.imageUrl = imageData.data;
                 }
-                this.productColors[product.id] = this.getRandomColorForProduct();  // Store the color for each product
-                return product; // Return modified product
+                this.productColors[product.id] = this.getRandomColorForProduct();
+                return product;
               }),
               catchError(error => {
                 console.error('Error loading image data:', error);
-                return of(product); // Return original product on error
+                return of(product);
               })
             );
           }
-          this.productColors[product.id] = this.getRandomColorForProduct();  // Store the color for each product if no image
-          return of(product); // Return original product if no ID
+          this.productColors[product.id] = this.getRandomColorForProduct();
+          return of(product);
         });
 
-        return forkJoin(imageRequests); // Load images only for filtered products
+        return forkJoin(imageRequests);
       })
     ).subscribe({
       next: (productsWithImages) => {
@@ -90,7 +90,7 @@ export class ProductListActiveComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    // Trigger a manual change detection cycle
+
     this.cdr.detectChanges();
   }
 
@@ -98,8 +98,8 @@ export class ProductListActiveComponent implements OnInit, AfterViewInit {
     let color: string;
     do {
       color = this.colors[Math.floor(Math.random() * this.colors.length)];
-    } while (color === this.lastColor); // Ensure the color is not the same as the last one
-    this.lastColor = color; // Update the last color
+    } while (color === this.lastColor);
+    this.lastColor = color;
     return color;
   }
 }

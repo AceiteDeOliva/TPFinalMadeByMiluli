@@ -30,15 +30,15 @@ export class PurchaseHistoryComponent implements OnInit {
         next: (history) => {
           this.purchaseHistory = history;
 
-          // Iterate over each order and fetch product details
+
           this.purchaseHistory.forEach(order => {
             order.products.forEach(cartItem => {
-              // Fetch product details without image
+
               this.productService.fetchProductWithoutImageByUrl(cartItem.productUrl).subscribe({
                 next: (response) => {
-                  // Check if the details exist and assign the product name
+
                   if (response.details) {
-                    cartItem.productName = response.details.name; // Assign the product name
+                    cartItem.productName = response.details.name; 
                   } else {
                     console.error('Product details not found for URL:', cartItem.productUrl);
                   }

@@ -6,7 +6,16 @@
       "surname": "admin",
       "email": "admin@admin.com",
       "password": "admin",
-      "cart": [],
+      "cart": [
+        {
+          "productUrl": "http://localhost:3000/products/4",
+          "quantity": 1
+        },
+        {
+          "productUrl": "http://localhost:3000/products/5",
+          "quantity": 2
+        }
+      ],
       "purchaseHistory": [
         {
           "orderId": "1732149175411-229",
@@ -26,7 +35,7 @@
           "shippingMethod": "domicilio",
           "shippingCost": 6000,
           "totalCost": 31000,
-          "state": "Procesando"
+          "state": "Fallido"
         }
       ],
       "credential": "admin"
