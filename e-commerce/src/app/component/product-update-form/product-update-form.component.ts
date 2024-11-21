@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../../services/product-service/product.service';
 import { Observable, of } from 'rxjs';
 import { catchError, switchMap, map } from 'rxjs/operators';
+import { UserService } from '../../services/user-service/user.service';
 
 @Component({
   selector: 'app-product-update-form',
@@ -24,12 +25,14 @@ export class ProductUpdateFormComponent implements OnInit {
   imagePreviewUrl: string | ArrayBuffer | null = '';
   selectedFile: File | null = null;
   oldImageId: string | null = null;
+  userRole: string | null = null; 
 
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private productService: ProductService
+    private productService: ProductService,
+    private userService: UserService
   ) {
     this.productForm = this.formBuilder.group({
       name: ['', Validators.required],
@@ -43,6 +46,15 @@ export class ProductUpdateFormComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    const currentUserId = localStorage.getItem('currentUserId');
+    if (currentUserId) {
+      this.userService.getCredential(currentUserId).subscribe((role) => {
+        this.userRole = role;
+        console.log('User role:', this.userRole);
+      });
+    }
+
     this.route.paramMap
       .pipe(
         switchMap((params) => {
@@ -89,6 +101,15 @@ export class ProductUpdateFormComponent implements OnInit {
 
   onEdit() {
     this.isEditing = true;
+
+    if (this.userRole === 'employee') {
+      // Disable all fields except stock for employee users
+      this.productForm.get('name')?.disable();
+      this.productForm.get('description')?.disable();
+      this.productForm.get('price')?.disable();
+      this.productForm.get('category')?.disable();
+      this.productForm.get('state')?.disable();
+    }
   }
 
   triggerFileInput() {
@@ -177,6 +198,11 @@ export class ProductUpdateFormComponent implements OnInit {
 
 
   deleteProduct() {
+    if (this.userRole === 'employee') {
+      console.warn('Employees are not allowed to delete products.');
+      return;
+    }
+  
     const confirmed = window.confirm("¿Estas seguro de eliminar este producto?");
     if (confirmed && this.product) {
       this.productService.deleteProduct(this.product).subscribe({
@@ -184,7 +210,7 @@ export class ProductUpdateFormComponent implements OnInit {
           console.log('Producto eliminado');
           this.router.navigate(['/productAdmin']);
         },
-        error: error => console.error('Error eliminando producto:', error)
+        error: (error) => console.error('Error eliminando producto:', error)
       });
     }
   }
