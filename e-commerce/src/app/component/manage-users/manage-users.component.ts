@@ -6,6 +6,7 @@ import { User } from '../../models/user';
 import { ProfileUpdateFormComponent } from "../profile-update-form/profile-update-form.component";
 import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-manage-users',
@@ -177,29 +178,34 @@ export class ManageUsersComponent implements OnInit {
     this.errorMessage = null;
   }
 
-  onDelete() {
-    if (this.selectedEmployee) {
-      this.userService.deleteUser(this.selectedEmployee.id).subscribe(
-        () => {
-          console.log('Employee eliminado:', this.selectedEmployee);
+  onDelete(userId: string) {
+    this.userService
+      .deleteUser(userId)
+      .pipe(
+        tap(() => {
+          console.log('Employee eliminado:', userId);
   
-          // Remove the deleted employee from the local arrays
-          this.employees = this.employees.filter(emp => emp.id !== this.selectedEmployee!.id);
-          this.filteredEmployees = this.filteredEmployees.filter(emp => emp.id !== this.selectedEmployee!.id);
+          // Update the local arrays to remove the deleted user
+          this.employees = this.employees.filter(emp => emp.id !== userId);
+          this.filteredEmployees = this.filteredEmployees.filter(emp => emp.id !== userId);
   
           this.selectedEmployee = null; // Clear the selection
           this.successMessage = 'Empleado Eliminado Exitosamente';
-        },
-        error => {
+        })
+      )
+      .subscribe({
+        error: error => {
           console.error('Delete error:', error);
           this.errorMessage = 'Error al eliminar empleado.';
-        }
-      );
-    }
+        },
+      });
   }
   
-
+  
   goToRegister() { //Link to register function
     this.router.navigate(['registerEmployee']);
   }
+
+
+
 }

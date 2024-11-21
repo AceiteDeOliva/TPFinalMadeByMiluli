@@ -131,16 +131,3 @@ button:hover {
   color: #721C24;
 }
 
-.delete-button {
-  background-color: #F8E1E4;
-  border: 2px solid #FCD5CE;
-  color: rgb(8, 3, 3);
-  padding: 10px 15px;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.delete-button:hover {
-  background-color: #FCD5CE;
-  color: white;
-}
