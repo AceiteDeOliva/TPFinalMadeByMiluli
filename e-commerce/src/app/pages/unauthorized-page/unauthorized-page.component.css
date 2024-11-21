@@ -1,0 +1,47 @@
+
+
+
+div {
+  background-color: #C4DCBB;
+  border-radius: 8px;
+  text-align: center;
+  margin: 20px auto;
+  padding: 20px;
+  max-width: 80%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+h1 {
+  color: #fcb0a3;
+  text-shadow: 2px 2px 0 rgba(252, 176, 163, 0.5);
+  font-size: 4rem;
+  text-align: center;
+}
+p{
+  color: #000000;
+  font-size: 1.2rem;
+}
+
+
+@media (max-width: 768px) {
+  div {
+    padding: 15px;
+    font-size: 1.2rem;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  div {
+    padding: 10px;
+    font-size: 1rem;
+  }
+
+  h1 {
+    font-size: 1.2rem;
+  }
+}
