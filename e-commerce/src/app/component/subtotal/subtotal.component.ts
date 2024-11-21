@@ -4,7 +4,6 @@ import { ShippingService } from '../../services/shipping-service/shipping.servic
 import { CheckoutDataService } from '../../services/checkout-data/checkout-data.service';
 import { CommonModule } from '@angular/common';
 
-
 @Component({
   selector: 'app-subtotal',
   templateUrl: './subtotal.component.html',
@@ -13,11 +12,10 @@ import { CommonModule } from '@angular/common';
   standalone: true
 })
 export class SubtotalComponent implements OnInit {
-  @Input() cartSubtotal: number = 0; // Parent component should pass cartSubtotal
+  @Input() cartSubtotal: number = 0;
   @Output() proceedToPayment = new EventEmitter<void>();
   @Input() path: string = '';
-  @Input() inCheckout:boolean =false;
-
+  @Input() inCheckout: boolean = false;
 
   shippingCost: number = 0;
   totalOrderAmount: number = 0;
@@ -29,6 +27,13 @@ export class SubtotalComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // Check if the path is 'shippingInfo' to set shipping cost to 0
+    if (this.path === 'shippingInfo') {
+      this.shippingCost = 0;
+      this.calculateTotal();
+      return; // Skip the shippingService logic if we're in the 'shippingInfo' path
+    }
+
     // Fetch cart subtotal if not passed as Input
     if (!this.cartSubtotal) {
       this.cartService.getTotalCompra().subscribe((subtotal) => {
@@ -39,12 +44,13 @@ export class SubtotalComponent implements OnInit {
       this.calculateTotal();
     }
 
-
-    // Fetch the shipping cost from ShippingService
-    this.shippingService.getShippingData().subscribe((order) => {
-      this.shippingCost = order?.shippingCost || 0;
-      this.calculateTotal();
-    });
+    // Fetch shipping data only if not in the 'shippingInfo' path
+    if (this.path !== 'shippingInfo') {
+      this.shippingService.getShippingData().subscribe((order) => {
+        this.shippingCost = order?.shippingCost || 0;
+        this.calculateTotal();
+      });
+    }
   }
 
   calculateTotal(): void {
@@ -53,7 +59,6 @@ export class SubtotalComponent implements OnInit {
   }
 
   onProceedToPayment() {
-      this.proceedToPayment.emit();
-
+    this.proceedToPayment.emit();
   }
 }

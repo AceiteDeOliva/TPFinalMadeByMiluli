@@ -31,9 +31,7 @@ export class CartComponent implements OnInit {
 
   constructor(
     private cartService: CartService,
-    private userService: UserService,
     private productService: ProductService,
-    private mercadopagoService: MercadopagoService,
     private decimalPipe: DecimalPipe,
     private router: Router,
     private authService :AuthService

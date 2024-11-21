@@ -1,0 +1,23 @@
+
+<div class="container">
+  <div class="header">
+    <h1>Stock de producto</h1>
+    <button routerLink="/homeEmployee">Volver</button>
+  </div>
+
+  <!-- Label placed above input -->
+  <div class="filter-section">
+    <label for="filtro">Filtrar por stock menor a</label>
+    <input
+      id="filtro"
+      type="text"
+      placeholder="Stock menor a"
+      [(ngModel)]="searchTerm"
+      class="filter-input"
+    />
+  </div>
+
+  <app-product-list [stock]="searchTerm"></app-product-list>
+</div>
+
+

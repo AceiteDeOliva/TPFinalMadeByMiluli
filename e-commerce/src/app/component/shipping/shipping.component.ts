@@ -48,8 +48,9 @@ export class ShippingComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.fetchCartSubtotal();
+
+    // Subscribe to cart items
     this.cartService.getCarrito().subscribe((cartItems) => {
       const productRequests = cartItems.map((cartItem) =>
         this.productService.fetchProductWithoutImageByUrl(cartItem.productUrl).pipe(
@@ -60,20 +61,18 @@ export class ShippingComponent implements OnInit {
         )
       );
 
-
       forkJoin(productRequests).subscribe((updatedCartItems) => {
         this.products = updatedCartItems;
       });
     });
 
+    // User authentication check
     const currentUserId = localStorage.getItem('currentUserId');
-
     if (currentUserId) {
       this.userService.getUserById(currentUserId).subscribe((currentUser) => {
         if (currentUser) {
           this.isLoggedIn = true;
           this.userEmail = currentUser.email;
-
           this.shippingForm.controls['email'].setValue(this.userEmail);
           this.shippingForm.controls['email'].disable();
         } else {
@@ -90,11 +89,16 @@ export class ShippingComponent implements OnInit {
       this.shippingForm.controls['email'].enable();
     }
 
+    // Subscribe to changes in shippingMethod to update shipping cost
+    this.shippingForm.get('shippingMethod')?.valueChanges.subscribe((method) => {
+      this.updateShippingCost(method);
+    });
+
   }
-  
+
   saveShippingData(): void {
     if (this.shippingForm.valid) {
-      
+
       const orderId = `${Date.now()}-${Math.floor(Math.random() * 1000)}`;
       const orderData: Order = {
         orderId: orderId,
@@ -128,8 +132,16 @@ export class ShippingComponent implements OnInit {
     this.cartService.getTotalCompra().subscribe({
       next: (subtotal) => {
         this.cartSubtotal = subtotal;
-        this.updateShippingCost();
 
+        // Get the current shipping method from the form (or wherever it's stored)
+        const shippingMethod = this.shippingForm.get('shippingMethod')?.value;
+
+        // Pass the shippingMethod to the updateShippingCost method
+        if (shippingMethod) {
+          this.updateShippingCost(shippingMethod);
+        } else {
+          console.warn('Shipping method is not selected yet.');
+        }
       },
       error: () => {
         console.error('Error fetching cart subtotal');
@@ -137,9 +149,9 @@ export class ShippingComponent implements OnInit {
     });
   }
 
-  private updateShippingCost(): void {
-    const shippingMethod = this.shippingForm.value.shippingMethod;
+  private updateShippingCost(shippingMethod: string): void {
+    // Calculate shipping cost based on shipping method
     this.shippingCost = shippingMethod === 'domicilio' ? 8000 : 6000;
-    console.log("precio de envio"+this.shippingCost);
+    console.log("Precio de envio: " + this.shippingCost);
   }
 }
