@@ -30,7 +30,6 @@ import { OrderListComponent } from './component/order-list/order-list.component'
 import { authGuardFn } from './guard/auth.guard-fn';
 import { authGuardFnCheckOut} from './guard/auth.guard-fn-checkout';
 import { authGuardFnShipping } from './guard/auth.guard-fn-shipping';
-import { StockComponent } from './pages/stock/stock.component';
 import { UnauthorizedPageComponent } from './pages/unauthorized-page/unauthorized-page.component';
 
 
@@ -47,7 +46,7 @@ export const routes: Routes = [
   { path: 'listCategory', component: CategoriesComponent },
   { path: "activeProducts", component: ActiveProductPagesComponent },
   { path: 'registerEmployee', component: RegisterEmployeeComponent, canActivate: [() => authGuardFn(['admin', 'manager'])] },
-  { path: 'productAdmin', component: ManageProductPageComponent, canActivate: [() => authGuardFn(['admin', 'manager'])] },
+  { path: 'productAdmin', component: ManageProductPageComponent, canActivate: [() => authGuardFn(['admin', 'manager','employee'])] },
   { path: 'profile', component: ProfilePageComponent },
   { path: 'manageUsers', component: ManageUsersPageComponent, canActivate: [() => authGuardFn(['admin', 'manager'])] },
   { path: 'nuevoProducto', component: NewProductPageComponent, canActivate: [() => authGuardFn(['admin', 'manager'])] },
@@ -57,7 +56,6 @@ export const routes: Routes = [
   { path: 'loginPurchase', component: PurchaseLoginPageComponent },
   { path: 'shippingInfo', component: ShippingInfoPageComponent,canActivate: [authGuardFnShipping]},
   { path: 'lowStock', component: LowStockListComponent , canActivate: [() => authGuardFn(['admin', 'manager','employee'])]  },
-  { path: 'stock', component: StockComponent , canActivate: [() => authGuardFn(['admin', 'manager','employee'])]  },
   { path: 'payment-status', component: PaymentStatusComponent },
   { path: 'loginForOrder', component: LoginForOrderPagesComponent },
   { path: 'purchaseHistory', component: PurchaseHistoryComponent },
