@@ -19,6 +19,9 @@ export class RegisterFormComponent {
   registerForm: FormGroup;
   availableCredentials: string[] = [];
   credential:string = '';
+  message: string = '';
+messageType: 'success' | 'error' = 'error';
+isLoading = false;
 
 
   constructor(
@@ -58,41 +61,50 @@ export class RegisterFormComponent {
   }
 
 
+
+
   register() {
-
     if (this.registerForm.invalid) {
-      alert('Please fill in all required fields.');
+      this.message = 'Por favor completa todos los campos.';
+      this.messageType = 'error';
       return;
     }
 
-    const { name, surname, email, password, password2 , credential} = this.registerForm.value;
+    const { name, surname, email, password, password2, credential } = this.registerForm.value;
 
-    if (password !== password2) { 
-      alert('Passwords do not match.');
+    if (password !== password2) {
+      this.message = 'Las contraseñas no coinciden.';
+      this.messageType = 'error';
       return;
     }
 
+    this.isLoading = true;
 
-    this.userService.register(name, surname, email, password, credential).pipe(
-      tap((isRegistered) => {
-        if (isRegistered) {
-          alert('Registration successful!');
-          if(this.credential === "user" || this.credential === ''){
-            this.router.navigate(['/login']);
-          }else{
-            this.router.navigate(['/manageUsers']);
+    this.userService
+      .register(name, surname, email, password, credential)
+      .pipe(
+        tap((isRegistered) => {
+          this.isLoading = false;
+          if (isRegistered) {
+            this.message = 'Registro exitoso!';
+            this.messageType = 'success';
+            const route = credential === 'user' || !credential ? '/login' : '/manageUsers';
+            this.router.navigate([route]);
+          } else {
+            this.message = 'El usuario ya existe.';
+            this.messageType = 'error';
           }
-        } else {
-          alert('User already exists.');
-        }
-      }),
-      catchError((error) => {
-        console.error('Registration error', error);
-        alert('An error occurred during registration.');
-        return of(false);
-      })
-    ).subscribe();
-
+        }),
+        catchError((error) => {
+          this.isLoading = false;
+          console.error('Registration error', error);
+          this.message = 'ocurrio un erro,intentelo nuevamente.';
+          this.messageType = 'error';
+          return of(false);
+        })
+      )
+      .subscribe();
   }
+
 
 }

@@ -19,7 +19,7 @@ import { AuthService } from '../../services/auth-service/auth.service';
   imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css'],
-  providers: [DecimalPipe]  
+  providers: [DecimalPipe]
 })
 export class CartComponent implements OnInit {
   cartItems: Array<{ productUrl: string; quantity: number; details?: Product | null }> = [];
@@ -43,7 +43,7 @@ export class CartComponent implements OnInit {
     this.authService.enableShipping();
   }
 
-
+//Obtener productos del carrito del usuario actual guardados
   loadCart() {
     this.cartService.getCarrito().pipe(
       tap((cart: { productUrl: string; quantity: number }[]) => {
@@ -58,7 +58,7 @@ export class CartComponent implements OnInit {
     ).subscribe();
   }
 
-
+//cargar losdatos delproducto con la imagen
   loadProductDetails() {
     const productRequests = this.cartItems.map(item =>
       this.productService.fetchProductWithImageByUrl(item.productUrl).pipe(
@@ -99,13 +99,13 @@ export class CartComponent implements OnInit {
 
 
 
-
+//Aviso de cambio en elcarrito
   emitCartUpdated() {
     const lenght= this.cartItems.length ;
 
   }
 
-
+//calculo precio total de elementos en el carrito
   calculateTotal() {
     this.totalAmount = this.cartItems.reduce((total, item) => {
       const price = item.details?.price || 0;
@@ -121,7 +121,7 @@ export class CartComponent implements OnInit {
     return this.decimalPipe.transform(this.totalAmount, '1.0-0')?.replace(',', '.') || '0';
   }
 
-
+// Borrar elemento del carrito
   removeFromCart(productId: string) {
     this.cartService.removeProductFromCart(productId).pipe(
       tap(() => {
@@ -135,7 +135,7 @@ export class CartComponent implements OnInit {
     ).subscribe();
   }
 
-
+// updatea el carrito  cuando sucede un cambio
   onQuantityChange(productId: string | undefined, quantity: number) {
     if (!productId) {
       console.warn('Product ID is undefined, cannot update quantity.');
@@ -143,7 +143,7 @@ export class CartComponent implements OnInit {
     }
 
     if (quantity < 1) {
-      alert('La cantidad debe ser al menos 1');
+    console.log('La cantidad debe ser al menos 1');
       return;
     }
 
@@ -160,7 +160,7 @@ export class CartComponent implements OnInit {
     ).subscribe();
   }
 
-
+// lleva a la siguiente pagina
   onStartPurchase() {
     const currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
     if (!currentUser) {
