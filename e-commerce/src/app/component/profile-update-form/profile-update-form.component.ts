@@ -15,11 +15,16 @@ export class ProfileUpdateFormComponent implements OnInit, OnChanges {
   @Input() userData!: User;
   @Input() isAdmin = false;
   @Output() saveChanges = new EventEmitter<Partial<User>>();
+  @Output() deleteProfile = new EventEmitter<string>();
+
 
   profileForm: FormGroup;
   isEditing = false;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private userService : UserService
+  ) {
     this.profileForm = this.formBuilder.group({
       name: ['', Validators.required],
       surname: ['', Validators.required],
@@ -71,4 +76,33 @@ export class ProfileUpdateFormComponent implements OnInit, OnChanges {
     this.isEditing = false;
     this.initializeForm(); 
   }
+
+  onDelete() {
+    if (this.userData) {
+      const confirmed = window.confirm(
+        `Are you sure you want to delete the profile of ${this.userData.name}?`
+      );
+  
+      if (confirmed) {
+        if (this.deleteProfile.observed) {
+          this.deleteProfile.emit(this.userData.id);
+        } else {
+          this.userService.deleteUser(this.userData.id).subscribe({
+            next: () => {
+              console.log('Profile deleted successfully.');
+              window.location.href = '/home'; 
+            },
+            error: error => {
+              console.error('Error deleting user:', error);
+              alert('Error deleting the profile.');
+            },
+          });
+        }
+      }
+    }
+  }
+  
+  
+
+
 }
