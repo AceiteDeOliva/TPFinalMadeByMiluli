@@ -1,25 +1,30 @@
 <form [formGroup]="loginForm" (ngSubmit)="login()" autocomplete="new-password">
-    <h1>Iniciar sesión</h1>
+  <h1>Iniciar sesión</h1>
 
-    <div class="form-control">
-      <label for="email">Email</label>
-      <input
-        formControlName="email"
-        id="email"
-        autocomplete="email"
-        type="email"
-      />
-    </div>
+   <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
 
-    <div class="form-control">
-      <label for="password">Contraseña </label>
-      <input
-        formControlName="password"
-        id="password"
-        autocomplete="current-password"
-        type="password"
-      />
-    </div>
+  <div class="form-control">
+    <label for="email">Email</label>
+    <input
+      formControlName="email"
+      id="email"
+      autocomplete="email"
+      type="email"
+    />
+  </div>
 
-    <button type="submit">Ingresar</button>
-  </form>
+  <div class="form-control">
+    <label for="password">Contraseña</label>
+    <input
+      formControlName="password"
+      id="password"
+      autocomplete="current-password"
+      type="password"
+    />
+  </div>
+
+  <button type="submit">Ingresar</button>
+
+</form>

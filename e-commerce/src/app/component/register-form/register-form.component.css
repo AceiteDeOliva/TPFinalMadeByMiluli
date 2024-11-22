@@ -57,6 +57,25 @@ button:hover {
   color: white;
 }
 
+.success-message {
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.error-message {
+  color: rgb(230, 133, 133);
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.error {
+  color: rgb(230, 133, 133);
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+
 @media (max-width: 480px) {
   form {
     padding: 10px;

@@ -1,63 +1,43 @@
 <form [formGroup]="registerForm" (ngSubmit)="register()" autocomplete="off">
-  <div class="form-control-nombre-container">
-    <div class="form-control-nombre">
-      <label for="name">Nombre</label>
-      <input
-        formControlName="name"
-        id="name"
-        autocomplete="on"
-        type="text"
-      />
-    </div>
-    <div class="form-control-nombre">
-      <label for="surname">Apellido</label>
-      <input
-        formControlName="surname"
-        id="surname"
-        autocomplete="on"
-        type="text"
-      />
-    </div>
+  <div *ngIf="message" [ngClass]="{'success-message': messageType === 'success', 'error-message': messageType === 'error'}">
+    {{ message }}
   </div>
 
+  <div class="form-control">
+    <label for="name">Nombre</label>
+    <input formControlName="name" id="name" type="text" />
+  </div>
 
+  <div class="form-control">
+    <label for="surname">Apellido</label>
+    <input formControlName="surname" id="surname" type="text" />
+  </div>
 
-    <div class="form-control">
-      <label for="email">Email</label>
-      <input
-        formControlName="email"
-        id="email"
-        autocomplete="email"
-        type="email"
-      />
-    </div>
+  <div class="form-control">
+    <label for="email">Email</label>
+    <input formControlName="email" id="email" type="email" />
+  </div>
 
-    <div class="form-control">
-      <label for="password">Contraseña</label>
-      <input
-        formControlName="password"
-        id="password"
-        autocomplete="new-password"
-        type="password"
-      />
-    </div>
+  <div class="form-control">
+    <label for="password">Contraseña</label>
+    <input formControlName="password" id="password" type="password" />
+  </div>
 
-    <div class="form-control">
-      <label for="password2"> Confirmar Contraseña</label>
-      <input
-        formControlName="password2"
-        id="password2"
-        autocomplete="new-password"
-        type="password"
-      />
-    </div>
+  <div class="form-control">
+    <label for="password2">Confirmar Contraseña</label>
+    <input formControlName="password2" id="password2" type="password" />
+  </div>
 
-    <div class="form-control" *ngIf="availableCredentials.length > 0">
-      <label for="credential">Credencial</label>
-      <select formControlName="credential">
-        <option *ngFor="let credential of availableCredentials" [value]="credential">{{ credential }}</option>
-      </select>
-    </div>
+  <div class="form-control" *ngIf="availableCredentials.length > 0">
+    <label for="credential">Credencial</label>
+    <select formControlName="credential">
+      <option *ngFor="let credential of availableCredentials" [value]="credential">
+        {{ credential }}
+      </option>
+    </select>
+  </div>
 
-    <button type="submit">Registrar</button>
-  </form>
+  <button type="submit" [disabled]="registerForm.invalid ">
+    Registrarse
+  </button>
+</form>
