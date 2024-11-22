@@ -1,19 +1,35 @@
 <div class="container">
   <div class="header">
     <h1>Productos</h1>
-    <button routerLink="/nuevoProducto">Nuevo Producto</button>
+    <button routerLink="/nuevoProducto" class="add-product-button">Nuevo Producto</button>
   </div>
 
-  <input
-    type="text"
-    placeholder="Buscar Producto..."
-    [(ngModel)]="searchTerm"
-    class="filter-input"
-  />
+  <!-- Unified Filter Section -->
+  <div class="filter-section">
+    <!-- Name Filter -->
+    <input
+      type="text"
+      placeholder="Buscar Producto..."
+      [(ngModel)]="searchTerm"
+      class="filter-input"
+    />
 
+    <!-- Stock Filter -->
+    <div class="stock-filter-container">
+      <input
+        id="stockFilter"
+        type="number"
+        placeholder="Stock menor a..."
+        [(ngModel)]="stockFilter"
+        class="filter-input"
+      />
+      <label for="stockFilter" class="stock-label"> Maximo stock</label>
+    </div>
+  </div>
+
+  <!-- Product List Component -->
   <app-product-list
-    [filterTerm]="searchTerm" >
+    [filterTerm]="searchTerm"
+    [stock]="stockFilter">
   </app-product-list>
-
-
 </div>

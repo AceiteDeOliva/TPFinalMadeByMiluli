@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { ProductService } from '../../services/product-service/product.service';
 import { Product } from '../../models/product';
 import { CommonModule } from '@angular/common';
@@ -6,21 +7,19 @@ import { catchError, forkJoin, map, of, switchMap } from 'rxjs';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user-service/user.service';
 
-
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css'],
   standalone: true,
-  imports: [CommonModule]
+  imports: [CommonModule, FormsModule]
 })
-
-export class ProductListComponent implements OnInit {
+export class ProductListComponent implements OnInit, OnChanges {
   @Input() filterTerm: string = ''; // Input to receive the filter term
-  @Input() stock: number =0;
+  @Input() stock: number = 0; // Input to receive stock filter
   products: Product[] = [];
   filteredProducts: Product[] = []; // Stores filtered products
-  userCredential: string =  '';
+  userCredential: string = '';
 
   constructor(
     private productService: ProductService,
@@ -33,6 +32,12 @@ export class ProductListComponent implements OnInit {
     this.getUserCredential();
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['filterTerm'] || changes['stock']) {
+      this.applyFilter();
+    }
+  }
+
   getUserCredential(): void {
     const currentUserId = localStorage.getItem('currentUserId');
     if (currentUserId) {
@@ -41,13 +46,13 @@ export class ProductListComponent implements OnInit {
           this.userCredential = credential;
         },
         error: (error) => {
-          console.error('Erros buscando credencial:', error);
+          console.error('Error fetching user credential:', error);
         }
       });
     }
   }
 
-  loadProducts() {
+  loadProducts(): void {
     this.productService.getProducts().pipe(
       switchMap((data) => {
         this.products = data;
@@ -83,31 +88,24 @@ export class ProductListComponent implements OnInit {
     });
   }
 
-  // Method to apply filter
-  ngOnChanges(): void {
-    this.applyFilter();
-  }
-
   applyFilter(): void {
-    if(this.stock!==0)
-    {
-    this.filteredProducts= this.products.filter(product =>
-      product.stock < this.stock);
-    } else{
-      const lowerFilter = this.filterTerm.toLowerCase();
-      this.filteredProducts = this.products.filter(product =>
-        product.name.toLowerCase().includes(lowerFilter) ||
-        product.category.toLowerCase().includes(lowerFilter)
-      );
-    }
+    if (!this.products || this.products.length === 0) return;
 
+    const lowerFilter = this.filterTerm ? this.filterTerm.toLowerCase() : '';
+
+    this.filteredProducts = this.products.filter(product => {
+      const matchesStock = this.stock ? product.stock < this.stock : true;
+      const matchesSearch = lowerFilter
+        ? product.name.toLowerCase().includes(lowerFilter) ||
+          product.category.toLowerCase().includes(lowerFilter)
+        : true;
+
+      return matchesStock && matchesSearch;
+    });
   }
 
   editProduct(selectedProduct: Product): void {
     console.log('Navigating to product ID:', selectedProduct.id);
     this.router.navigate(['updateProduct', selectedProduct.id]);
   }
-
-
-
 }

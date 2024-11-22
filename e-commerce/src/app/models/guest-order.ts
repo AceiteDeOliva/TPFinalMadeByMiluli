@@ -13,5 +13,6 @@ export interface GuestOrder {
     shippingMethod: string;
     shippingCost: number;
     totalCost: number;
+    state: 'Pendiente' | 'Procesando' | 'Enviado' | 'Entregado' | 'Cancelado' | 'Devuelto' | 'Fallido' | 'Reembolsado';
 
 }
