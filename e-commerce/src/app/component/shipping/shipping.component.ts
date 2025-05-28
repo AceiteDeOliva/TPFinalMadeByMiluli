@@ -27,6 +27,9 @@ export class ShippingComponent implements OnInit {
   cartSubtotal:number=0;
   @Output() formSubmitted: EventEmitter<boolean> = new EventEmitter<boolean>();
 
+  isCalculatingShipping: boolean = false;
+  shippingCalculationError: string | null = null;
+
 
   constructor(
     private fb: FormBuilder,
@@ -150,8 +153,52 @@ export class ShippingComponent implements OnInit {
   }
 
   private updateShippingCost(shippingMethod: string): void {
+    this.shippingCalculationError = null; // Limpiar errores anteriores
 
-    this.shippingCost = shippingMethod === 'domicilio' ? 8000 : 6000;
-    console.log("Precio de envio: " + this.shippingCost);
+    if (shippingMethod === 'domicilio') {
+      const cpDestino = this.shippingForm.get('cpDestino')?.value;
+      const provinciaDestino = this.shippingForm.get('provinciaDestino')?.value;
+
+      // Validar que los campos necesarios estén llenos antes de llamar a la API
+      if (cpDestino && provinciaDestino) {
+        this.isCalculatingShipping = true; // Mostrar spinner de cálculo de envío
+        this.shippingCost = 0; // Resetear costo de envío mientras se calcula
+
+        this.shippingService.calculateCorreoArgentinoPrice({
+          cpDestino: cpDestino,
+          provinciaDestino: provinciaDestino
+        }).subscribe({
+          next: (response) => {
+            if (response && response.paqarClasico && response.paqarClasico.aDomicilio !== undefined) {
+              this.shippingCost = response.paqarClasico.aDomicilio;
+              console.log("Costo de envío (Correo Argentino): " + this.shippingCost);
+            } else {
+              this.shippingCost = 0;
+              this.shippingCalculationError = 'No se pudo obtener el costo de envío a domicilio. Verifique los datos.';
+              console.error('Respuesta inesperada de Correo Argentino:', response);
+            }
+            this.isCalculatingShipping = false; // Ocultar spinner
+          },
+          error: (error) => {
+            this.shippingCost = 0;
+            this.isCalculatingShipping = false; // Ocultar spinner
+            this.shippingCalculationError = 'Error al calcular el envío. Intente de nuevo.';
+            console.error('Error al llamar a la API de Correo Argentino:', error);
+          }
+        });
+      } else {
+        this.shippingCost = 0; // Si faltan datos, el costo es 0
+        this.shippingCalculationError = 'Ingrese Código Postal y Provincia de Destino para calcular el envío a domicilio.';
+      }
+    } else if (shippingMethod === 'sucursal') {
+      // Si la opción "a sucursal" es un valor fijo (6000), se mantiene así.
+      // Si también quieres obtener este valor de la API, harías una lógica similar.
+      this.shippingCost = 6000;
+      console.log("Costo de envío (Retiro en Sucursal): " + this.shippingCost);
+    } else {
+      this.shippingCost = 0; // Si no hay método seleccionado o es inválido
+    }
   }
+
+
 }

@@ -48,12 +48,12 @@
       "password": "12345",
       "cart": [
         {
-          "productUrl": "http://localhost:3000/products/15",
-          "quantity": 1
+          "productUrl": "http://localhost:3000/products/3",
+          "quantity": 2
         }
       ],
       "purchaseHistory": [],
-      "credential": "employee"
+      "credential": "user"
     },
     {
       "id": "f97f",
