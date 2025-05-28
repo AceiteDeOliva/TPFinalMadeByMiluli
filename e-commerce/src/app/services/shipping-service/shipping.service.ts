@@ -1,16 +1,19 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Order } from '../../models/orders';
+import { CorreoArgentinoResponse } from '../../models/correo-argentino-response';
+import { HttpClient } from '@angular/common/http';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShippingService {
 
+  private backendUrl = 'http://localhost:8080'; // La URL de tu servidor Express
   private shippingDataSubject = new BehaviorSubject<Order | null>(this.getStoredShippingData());
 
-
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
 
   getShippingData() {
@@ -36,5 +39,8 @@ export class ShippingService {
   }
 
 
+  calculateCorreoArgentinoPrice(data: { cpDestino: string; provinciaDestino: string }): Observable<CorreoArgentinoResponse> {
+    return this.http.post<CorreoArgentinoResponse>(`${this.backendUrl}/calculate_shipping_price`, data);
+  }
 
 }
