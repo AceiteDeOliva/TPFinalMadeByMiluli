@@ -2,9 +2,9 @@ import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, Afte
 import { ProductService } from '../../services/product-service/product.service';
 import { Product } from '../../models/product';
 import { CommonModule } from '@angular/common';
-import { catchError, forkJoin, map, of, switchMap } from 'rxjs';
+import { catchError, forkJoin, map, Observable, of, switchMap } from 'rxjs';
 import { Router } from '@angular/router';
-
+import { FavoritesService } from '../../services/favorites.service';
 @Component({
   selector: 'app-product-list-active',
   standalone: true,
@@ -16,10 +16,10 @@ export class ProductListActiveComponent implements OnInit, AfterViewInit {
 
   @Input() filterTerm: string = '';
   @Output() addToCart = new EventEmitter<string>();
-
+favorites: string[] = [];
   products: Product[] = [];
   filteredProducts: Product[] = [];
-  colors: string[] = ['#F8E1E4', '#FCD5CE', '#95CBEE', '#C4DCBB', '#FEE9B2'];
+  colors: string[] = ['#FCD5CE', '#95CBEE', '#C4DCBB', '#FEE9B2'];
   productColors: { [id: string]: string } = {};
   lastColor: string | null = null;
 
@@ -27,10 +27,16 @@ export class ProductListActiveComponent implements OnInit, AfterViewInit {
     private productService: ProductService,
     private router: Router,
     private cdr: ChangeDetectorRef,
+   private favoriteService: FavoritesService,
   ) {}
 
   ngOnInit(): void {
     this.loadProducts();
+    this.favoriteService.getFavorites().subscribe(favorites => {
+      this.favorites = favorites;
+      console.log('Favorites loaded:', this.favorites);
+    });
+    
   }
 
   loadProducts() {
@@ -102,4 +108,15 @@ export class ProductListActiveComponent implements OnInit, AfterViewInit {
     this.lastColor = color;
     return color;
   }
+
+  toggleFavorite(productId: string) {
+  this.favoriteService.toggleFavorite(productId).subscribe(updatedFavs => {
+    this.favorites = updatedFavs;
+  });
+}
+  isFavorite(productId: string): boolean {
+    return this.favorites.includes(productId);
+  }
+
+
 }

@@ -25,7 +25,6 @@ export class ProductPageComponent implements OnInit {
 
   constructor(
     private location: Location,
-    private router: Router,
     private cartService: CartService,
     private productService: ProductService,
     private route: ActivatedRoute
@@ -59,7 +58,7 @@ export class ProductPageComponent implements OnInit {
           this.showAddedToCartMessage = true;
           this.cartMessage = response.message;
           setTimeout(() => {
-            this.showAddedToCartMessage = false; 
+            this.showAddedToCartMessage = false;
           }, 2000);
         },
         error: () => {

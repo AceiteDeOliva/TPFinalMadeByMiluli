@@ -1,15 +1,23 @@
 <div class="product-container">
-  <ng-container *ngFor="let product of filteredProducts" >
+  <ng-container *ngFor="let product of filteredProducts">
+
     <div *ngIf="product.state === 'active'" class="product-card"
-         [ngStyle]="{'background-color': productColors[product.id]}"
-         (click)="selectProduct(product)"
-         >
-      <div class="product-info">
+      [ngStyle]="{'background-color': productColors[product.id]}">
+
+      <div class="product-info" (click)="selectProduct(product)">
         <h2>{{ product.name }}</h2>
-        <img [src]="product.imageUrl || '/favicon.ico'" alt="{{ product.name }}"/>
+        <img [src]="product.imageUrl || '/favicon.ico'" alt="{{ product.name }}" />
+
       </div>
       <p> ${{ product.price | number:'1.2-2' }}</p>
+      <button class="favorites-button" (click)="toggleFavorite(product.id)">
+        <img [src]="isFavorite(product.id) ? '/Assets/Logo made by miluli/heart.png':'/Assets/Logo made by miluli/whiteheart.png'"
+          alt="favoritos" class="icon-favorites" />
+      </button>
+
+
     </div>
+
+
   </ng-container>
 </div>
-

@@ -1,6 +1,10 @@
 .icon {
   height: 55px;
-  width: auto;  
+  width: auto;
+}
+.icon-favorites {
+  height: 40px;
+  width: auto;
 }
 
 .full-container {

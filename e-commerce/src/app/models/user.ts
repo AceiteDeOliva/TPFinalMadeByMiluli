@@ -9,5 +9,6 @@ export interface User {
     password: string;
     cart: CartItem[];
     purchaseHistory: Order[];
+    favoriteList: string[];
     credential: 'user' | 'employee'|'manager'|'admin';
 }
