@@ -1,6 +1,10 @@
 .icon {
   height: 55px;
-  width: auto;  
+  width: auto;
+}
+.icon-favorites {
+  height: 40px;
+  width: auto;
 }
 
 .full-container {
@@ -68,7 +72,7 @@ nav button {
   cursor: pointer;
   color: #000000;
   border-radius: 8px;
-  font-size: 18px;
+  font-size: 16px;
 
 }
 

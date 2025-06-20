@@ -15,6 +15,12 @@
   align-items: center;
   text-align: left;
 }
+.product-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+}
 
 .volver {
   position: absolute;
@@ -160,6 +166,19 @@ input[type="number"] {
   margin: 5px 0;
 }
 
+button{
+ all: unset;
+
+}
+.favorites-button:not(.is-favorite):hover .icon-favorites {
+  content: url('/Assets/Logo made by miluli/heart.png');
+}
+.icon-favorites {
+  height: 30px;
+  width:30px;
+  cursor: pointer;
+  align-self: auto;
+}
 
 @media (max-width: 768px) {
   .product-details {

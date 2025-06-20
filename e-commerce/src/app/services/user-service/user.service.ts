@@ -21,7 +21,7 @@ export class UserService {
         if (exists) {
           return of(false);
         } else {
-          const newUser: Omit<User, 'id'> = { name , surname, email, password, cart: [], purchaseHistory: [], credential};
+          const newUser: Omit<User, 'id'> = { name , surname, email, password, cart: [], purchaseHistory: [],favoriteList:[], credential};
           return this.http.post<User>(this.apiUrl, newUser).pipe(
             map(() => true),
             catchError(() => of(false))
@@ -130,7 +130,7 @@ export class UserService {
 
   getPurchaseHistory(userId: string): Observable<any[]> {
     return this.http.get<any>(`${this.apiUrl}/${userId}`).pipe(
-      map((user) => user.purchaseHistory || []), 
+      map((user) => user.purchaseHistory || []),
       catchError((error) => {
         console.error('Error fetching purchase history:', error);
         return throwError(() => error);

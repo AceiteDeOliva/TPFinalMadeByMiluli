@@ -2,9 +2,10 @@ import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, Afte
 import { ProductService } from '../../services/product-service/product.service';
 import { Product } from '../../models/product';
 import { CommonModule } from '@angular/common';
-import { catchError, forkJoin, map, of, switchMap } from 'rxjs';
+import { catchError, forkJoin, map, Observable, of, switchMap } from 'rxjs';
 import { Router } from '@angular/router';
-
+import { FavoritesService } from '../../services/favorites-service/favorites.service';
+import { SimpleChanges } from '@angular/core';
 @Component({
   selector: 'app-product-list-active',
   standalone: true,
@@ -13,13 +14,14 @@ import { Router } from '@angular/router';
   styleUrl: './product-list-active.component.css'
 })
 export class ProductListActiveComponent implements OnInit, AfterViewInit {
-
+  @Input() showOnlyFavorites: boolean = false;
   @Input() filterTerm: string = '';
   @Output() addToCart = new EventEmitter<string>();
-
+  @Output() hasfavorites = new EventEmitter<boolean>();
+  favorites: string[] = [];
   products: Product[] = [];
   filteredProducts: Product[] = [];
-  colors: string[] = ['#F8E1E4', '#FCD5CE', '#95CBEE', '#C4DCBB', '#FEE9B2'];
+  colors: string[] = ['#FCD5CE', '#95CBEE', '#C4DCBB', '#FEE9B2'];
   productColors: { [id: string]: string } = {};
   lastColor: string | null = null;
 
@@ -27,10 +29,19 @@ export class ProductListActiveComponent implements OnInit, AfterViewInit {
     private productService: ProductService,
     private router: Router,
     private cdr: ChangeDetectorRef,
-  ) {}
+    private favoriteService: FavoritesService,
+  ) { }
 
   ngOnInit(): void {
-    this.loadProducts();
+
+    this.favoriteService.getFavorites().subscribe(favorites => {
+      this.favorites = favorites;
+      console.log('Favorites loaded:', this.favorites);
+      if (this.favorites.length > 0) {
+        this.hasfavorites.emit(true);
+      }
+    });
+  this.loadProducts();
   }
 
   loadProducts() {
@@ -73,13 +84,23 @@ export class ProductListActiveComponent implements OnInit, AfterViewInit {
     });
   }
 
-  ngOnChanges(): void {
-    this.applyFilter();
+  ngOnChanges(changes: SimpleChanges): void {
+
+    if (changes['filterTerm'] || changes['showOnlyFavorites']) {
+      this.applyFilter();
+
+    }
   }
 
   applyFilter(): void {
     const lowerFilter = this.filterTerm.toLowerCase();
-    this.filteredProducts = this.products.filter(product =>
+    let productsToFilter = this.products;
+
+    if (this.showOnlyFavorites) {
+      productsToFilter = productsToFilter.filter(product => this.favorites.includes(product.id));
+    }
+
+    this.filteredProducts = productsToFilter.filter(product =>
       product.name.toLowerCase().includes(lowerFilter) ||
       product.category.toLowerCase().includes(lowerFilter)
     );
@@ -102,4 +123,15 @@ export class ProductListActiveComponent implements OnInit, AfterViewInit {
     this.lastColor = color;
     return color;
   }
+
+  toggleFavorite(productId: string) {
+    this.favoriteService.toggleFavorite(productId).subscribe(updatedFavs => {
+      this.favorites = updatedFavs;
+    });
+  }
+  isFavorite(productId: string): boolean {
+    return this.favorites.includes(productId);
+  }
+
+
 }

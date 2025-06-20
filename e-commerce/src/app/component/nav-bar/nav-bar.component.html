@@ -16,9 +16,14 @@
     </ul>
     <button routerLink="login" class="log-button">Inicio de sesión</button>
     <button routerLink="register" class="register-button">Registrarme</button>
+    <a routerLink="favorites">
+      <img src="/Assets/Logo made by miluli/heart.png" alt="favoritos" class="icon-favorites" style="cursor: pointer;">
+    </a>
+
     <button (click)="cartButton()" class="cart-button">
       <img src="/Assets/Logo made by miluli/basket.png" alt="carrito" class="cart-image">
     </button>
+
 
   </div>
 </nav>
@@ -52,15 +57,18 @@
           </li>
         </ul>
       </li>
+
     </ul>
-
-
-    <button class="log-button" (click)="logout()">Cerrar sesión</button>
-
+    <a routerLink="favorites">
+      <img src="/Assets/Logo made by miluli/heart.png" alt="favoritos" class="icon-favorites" style="cursor: pointer;">
+    </a>
 
     <button (click)="cartButton()" class="cart-button">
       <img src="/Assets/Logo made by miluli/basket.png" alt="carrito" class="cart-image">
     </button>
+
+    <button class="log-button" (click)="logout()">Cerrar sesión</button>
+
 
   </div>
 </nav>
@@ -74,7 +82,8 @@
     <ul style="cursor: pointer;">
 
       <li>
-        <a routerLink="productAdmin">Productos</a></li>
+        <a routerLink="productAdmin">Productos</a>
+      </li>
       <li><a routerLink="orders">Órdenes</a></li>
 
       <li *ngIf="(credential$ | async) !== 'employee'">

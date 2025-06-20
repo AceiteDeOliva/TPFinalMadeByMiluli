@@ -49,6 +49,7 @@ export class CartComponent implements OnInit {
       tap((cart: { productUrl: string; quantity: number }[]) => {
         this.cartItems = cart;
         console.log('Loading cart', this.cartItems);
+        console.log('Loading cart', localStorage.getItem('currentUserId'));
         this.loadProductDetails();
       }),
       catchError((error) => {
