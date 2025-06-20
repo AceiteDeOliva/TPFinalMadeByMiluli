@@ -31,7 +31,7 @@ import { authGuardFn } from './guard/auth.guard-fn';
 import { authGuardFnCheckOut } from './guard/auth.guard-fn-checkout';
 import { authGuardFnShipping } from './guard/auth.guard-fn-shipping';
 import { UnauthorizedPageComponent } from './pages/unauthorized-page/unauthorized-page.component';
-import { FavoritesListComponent } from './component/favorites-list/favorites-list.component';
+import { FavoritesListComponent } from './pages/favorites-list-page/favorites-list.component';
 
 
 
@@ -46,7 +46,7 @@ export const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'listCategory', component: CategoriesComponent },
 
-  { path: 'favorites', component: FavoritesListComponent },
+  { path: 'favorites', component: FavoritesListComponent},
   { path: "activeProducts", component: ActiveProductPagesComponent },
   { path: 'registerEmployee', component: RegisterEmployeeComponent, canActivate: [() => authGuardFn(['admin', 'manager'])] },
   { path: 'productAdmin', component: ManageProductPageComponent, canActivate: [() => authGuardFn(['admin', 'manager', 'employee'])] },

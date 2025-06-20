@@ -49,7 +49,7 @@ login() {
     if (user) {
       localStorage.setItem('currentUserId', user.id);
       this.authService.changeCredential(user.credential);
-
+      
       this.cartService.syncGuestCart(user.id).subscribe(
         () => {
           console.log('Guest cart synced successfully!');

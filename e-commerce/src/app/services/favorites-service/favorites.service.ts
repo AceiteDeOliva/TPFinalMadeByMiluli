@@ -1,7 +1,7 @@
+import { User } from './../../models/user';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { User } from '../models/user';
-import { Observable, of, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
 
 @Injectable({
@@ -10,6 +10,9 @@ import { catchError, map, switchMap } from 'rxjs/operators';
 export class FavoritesService {
   private currentUserId = localStorage.getItem('currentUserId');
   private userUrl = `http://localhost:3000/users/${this.currentUserId}`;
+ 
+
+
 
   constructor(private http: HttpClient) {}
 
@@ -62,6 +65,7 @@ export class FavoritesService {
       map(favs => favs.includes(string))
     );
   }
+
 
   clearFavorites(): Observable<void> {
     if (this.currentUserId) {

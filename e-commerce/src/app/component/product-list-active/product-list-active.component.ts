@@ -4,7 +4,8 @@ import { Product } from '../../models/product';
 import { CommonModule } from '@angular/common';
 import { catchError, forkJoin, map, Observable, of, switchMap } from 'rxjs';
 import { Router } from '@angular/router';
-import { FavoritesService } from '../../services/favorites.service';
+import { FavoritesService } from '../../services/favorites-service/favorites.service';
+import { SimpleChanges } from '@angular/core';
 @Component({
   selector: 'app-product-list-active',
   standalone: true,
@@ -13,10 +14,11 @@ import { FavoritesService } from '../../services/favorites.service';
   styleUrl: './product-list-active.component.css'
 })
 export class ProductListActiveComponent implements OnInit, AfterViewInit {
-
+  @Input() showOnlyFavorites: boolean = false;
   @Input() filterTerm: string = '';
   @Output() addToCart = new EventEmitter<string>();
-favorites: string[] = [];
+  @Output() hasfavorites = new EventEmitter<boolean>();
+  favorites: string[] = [];
   products: Product[] = [];
   filteredProducts: Product[] = [];
   colors: string[] = ['#FCD5CE', '#95CBEE', '#C4DCBB', '#FEE9B2'];
@@ -27,16 +29,19 @@ favorites: string[] = [];
     private productService: ProductService,
     private router: Router,
     private cdr: ChangeDetectorRef,
-   private favoriteService: FavoritesService,
-  ) {}
+    private favoriteService: FavoritesService,
+  ) { }
 
   ngOnInit(): void {
-    this.loadProducts();
+
     this.favoriteService.getFavorites().subscribe(favorites => {
       this.favorites = favorites;
       console.log('Favorites loaded:', this.favorites);
+      if (this.favorites.length > 0) {
+        this.hasfavorites.emit(true);
+      }
     });
-    
+  this.loadProducts();
   }
 
   loadProducts() {
@@ -79,13 +84,23 @@ favorites: string[] = [];
     });
   }
 
-  ngOnChanges(): void {
-    this.applyFilter();
+  ngOnChanges(changes: SimpleChanges): void {
+
+    if (changes['filterTerm'] || changes['showOnlyFavorites']) {
+      this.applyFilter();
+
+    }
   }
 
   applyFilter(): void {
     const lowerFilter = this.filterTerm.toLowerCase();
-    this.filteredProducts = this.products.filter(product =>
+    let productsToFilter = this.products;
+
+    if (this.showOnlyFavorites) {
+      productsToFilter = productsToFilter.filter(product => this.favorites.includes(product.id));
+    }
+
+    this.filteredProducts = productsToFilter.filter(product =>
       product.name.toLowerCase().includes(lowerFilter) ||
       product.category.toLowerCase().includes(lowerFilter)
     );
@@ -110,10 +125,10 @@ favorites: string[] = [];
   }
 
   toggleFavorite(productId: string) {
-  this.favoriteService.toggleFavorite(productId).subscribe(updatedFavs => {
-    this.favorites = updatedFavs;
-  });
-}
+    this.favoriteService.toggleFavorite(productId).subscribe(updatedFavs => {
+      this.favorites = updatedFavs;
+    });
+  }
   isFavorite(productId: string): boolean {
     return this.favorites.includes(productId);
   }

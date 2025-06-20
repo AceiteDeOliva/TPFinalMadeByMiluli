@@ -1,0 +1,13 @@
+<div class="favorites-list-page">
+  <div class="header">
+    <h1>Lista de favoritos</h1>
+  </div>
+ <app-product-list-active
+  [showOnlyFavorites]="true"
+  (hasfavorites)="hasFavorites = $event">
+</app-product-list-active>
+</div>
+
+<div class="empty-favorites-message" *ngIf="!hasFavorites">
+  <p>No tienes productos en tu lista de favoritos.</p>
+</div>

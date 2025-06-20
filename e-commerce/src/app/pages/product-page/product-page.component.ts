@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { ProductService } from '../../services/product-service/product.service';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Location } from '@angular/common';
+import { FavoritesService } from '../../services/favorites-service/favorites.service';
 
 @Component({
   selector: 'app-product-page',
@@ -21,13 +22,16 @@ export class ProductPageComponent implements OnInit {
   showShippingPrices: boolean = false;
   showAddedToCartMessage: boolean = false;
   cartMessage:string='';
+  favorites: string[] = [];
 
 
   constructor(
     private location: Location,
     private cartService: CartService,
     private productService: ProductService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private favoriteService: FavoritesService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -47,6 +51,10 @@ export class ProductPageComponent implements OnInit {
         }
       });
     }
+     this.favoriteService.getFavorites().subscribe(favorites => {
+      this.favorites = favorites;
+      console.log('Favorites loaded:', this.favorites);
+    });
   }
 
   addToCart(quantity: number = 1): void {
@@ -76,5 +84,14 @@ export class ProductPageComponent implements OnInit {
   }
   goBack(): void {
     this.location.back();
+  }
+
+    toggleFavorite(productId: string) {
+    this.favoriteService.toggleFavorite(productId).subscribe(updatedFavs => {
+      this.favorites = updatedFavs;
+    });
+  }
+  isFavorite(productId: string): boolean {
+    return this.favorites.includes(productId);
   }
 }
