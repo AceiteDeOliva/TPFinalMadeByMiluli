@@ -82,6 +82,57 @@ app.post("/webhook", async (req, res) => {
   }
 });
 
+// calculo de envio
+const FIXED_PC_ORIGIN = '7600'; 
+const FIXED_PROVINCE_ORIGIN = 'AR-B'; 
+const FIXED_PESO = '2';    
+
+app.post("/calculate_shipping_price", async (req, res) => {
+const url = 'https://correo-argentino1.p.rapidapi.com/calcularPrecio';
+ 
+  const { cpDestino, provinciaDestino} = req.body;
+
+  // Validación básica de los parámetros (ahora no necesitamos cpOrigen ni provinciaOrigen)
+  if (!cpDestino || !provinciaDestino) {
+    return res.status(400).json({ error: "Faltan parámetros requeridos para el cálculo de envío (cpDestino, provinciaDestino)." });
+  }
+
+  try {
+    const options = {
+      method: 'POST',
+      headers: {
+        'x-rapidapi-key': 'e541547180mshff1a31f17fb9787p1ec2a4jsne9709e623fea',
+        'x-rapidapi-host': 'correo-argentino1.p.rapidapi.com',
+        'Content-Type': 'application/json',
+      },
+      // Usamos el objeto directamente como `body`.
+      body: JSON.stringify({
+        cpOrigen: FIXED_PC_ORIGIN, // Usamos el valor fijo
+        cpDestino,
+        provinciaOrigen: FIXED_PROVINCE_ORIGIN, // Usamos el valor fijo
+        provinciaDestino,
+        peso: FIXED_PESO 
+      })
+    };
+
+    const response = await fetch(url, options);
+
+    // Manejo de errores HTTP: si la respuesta no es 2xx
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error(`Error de la API de Correo Argentino: ${response.status} - ${errorText}`);
+      return res.status(response.status).json({ error: "Error al llamar a la API de Correo Argentino", details: errorText });
+    }
+
+    const result = await response.json();
+    res.json(result); // Envía la respuesta de la API externa de vuelta al frontend
+
+  } catch (error) {
+    console.error("Error en el endpoint /calculate_shipping_price:", error);
+    res.status(500).json({ error: "Error interno del servidor al calcular el envío." });
+  }
+});
+
 
 // Start the server
 app.listen(port, () => {

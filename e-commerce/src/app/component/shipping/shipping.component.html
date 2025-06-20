@@ -2,80 +2,145 @@
   <form [formGroup]="shippingForm" (ngSubmit)="saveShippingData()">
     <h2>Datos Destinatario</h2>
 
-
     <label for="recipientName">Nombre:</label>
-    <div *ngIf="shippingForm.get('recipientName')?.invalid && (shippingForm.get('recipientName')?.touched || shippingForm.get('recipientName')?.dirty)">
+    <div
+      *ngIf="shippingForm.get('recipientName')?.invalid && (shippingForm.get('recipientName')?.touched || shippingForm.get('recipientName')?.dirty)">
       <small *ngIf="shippingForm.get('recipientName')?.hasError('required')">Este campo es obligatorio.</small>
     </div>
     <input type="text" id="recipientName" formControlName="recipientName" required />
 
-
     <label for="recipientSurname">Apellido:</label>
-    <div *ngIf="shippingForm.get('recipientSurname')?.invalid && (shippingForm.get('recipientSurname')?.touched || shippingForm.get('recipientSurname')?.dirty)">
+    <div
+      *ngIf="shippingForm.get('recipientSurname')?.invalid && (shippingForm.get('recipientSurname')?.touched || shippingForm.get('recipientSurname')?.dirty)">
       <small *ngIf="shippingForm.get('recipientSurname')?.hasError('required')">Este campo es obligatorio.</small>
     </div>
     <input type="text" id="recipientSurname" formControlName="recipientSurname" required />
 
-
     <div *ngIf="!isLoggedIn">
       <label for="email">Correo Electrónico:</label>
-      <div *ngIf="shippingForm.get('email')?.invalid && (shippingForm.get('email')?.touched || shippingForm.get('email')?.dirty)">
+      <div
+        *ngIf="shippingForm.get('email')?.invalid && (shippingForm.get('email')?.touched || shippingForm.get('email')?.dirty)">
         <small *ngIf="shippingForm.get('email')?.hasError('required')">Este campo es obligatorio.</small>
-        <small *ngIf="shippingForm.get('email')?.hasError('email')">El formato del correo electrónico no es válido.</small>
+        <small *ngIf="shippingForm.get('email')?.hasError('email')">El formato del correo electrónico no es
+          válido.</small>
       </div>
       <input type="email" id="email" formControlName="email" required />
     </div>
 
     <div *ngIf="isLoggedIn">
       <label for="email">Correo Electrónico:</label>
-      <div *ngIf="shippingForm.get('email')?.invalid && (shippingForm.get('email')?.touched || shippingForm.get('email')?.dirty)">
+      <div
+        *ngIf="shippingForm.get('email')?.invalid && (shippingForm.get('email')?.touched || shippingForm.get('email')?.dirty)">
         <small *ngIf="shippingForm.get('email')?.hasError('required')">Este campo es obligatorio.</small>
-        <small *ngIf="shippingForm.get('email')?.hasError('email')">El formato del correo electrónico no es válido.</small>
+        <small *ngIf="shippingForm.get('email')?.hasError('email')">El formato del correo electrónico no es
+          válido.</small>
       </div>
       <input type="email" id="email" formControlName="email" [readonly]="isLoggedIn" />
     </div>
 
-
-
-    <h2>Selecciona el Tipo de Envío</h2>
-    <label>
-      <input type="radio" formControlName="shippingMethod" value="domicilio" /> Envío a Domicilio: $8000
-    </label>
-    <label>
-      <input type="radio" formControlName="shippingMethod" value="sucursal" /> Envío a Sucursal: $6000
-    </label>
-    <div *ngIf="shippingForm.get('shippingMethod')?.value === 'domicilio'">
-      <p>Envío a Domicilio seleccionado. Costo adicional de $8000.</p>
-    </div>
-    <div *ngIf="shippingForm.get('shippingMethod')?.value === 'sucursal'">
-      <p>Envío a Sucursal seleccionado. Costo adicional de $6000.</p>
-    </div>
-
-
     <h2>Dirección de Entrega</h2>
     <label for="street">Calle:</label>
-    <div *ngIf="shippingForm.get('street')?.invalid && (shippingForm.get('street')?.touched || shippingForm.get('street')?.dirty)">
+    <div
+      *ngIf="shippingForm.get('street')?.invalid && (shippingForm.get('street')?.touched || shippingForm.get('street')?.dirty)">
       <small *ngIf="shippingForm.get('street')?.hasError('required')">Este campo es obligatorio.</small>
     </div>
     <input type="text" id="street" formControlName="street" required />
 
-    <label for="provinciaDestino">Provincia:</label>
-    <div *ngIf="shippingForm.get('provinciaDestino')?.invalid && (shippingForm.get('provinciaDestino')?.touched || shippingForm.get('provinciaDestino')?.dirty)">
-      <small *ngIf="shippingForm.get('provinciaDestino')?.hasError('required')">Este campo es obligatorio.</small>
-    </div>
-    <input type="text" id="provinciaDestino" formControlName="provinciaDestino" required />
+    <label for="provinciaDestino">Provincia de Destino:</label>
+    <select id="provinciaDestino" formControlName="provinciaDestino" class="form-control">
+      <option value="" disabled selected>Selecciona una provincia</option>
+      <option value="AR-A">Salta</option>
+      <option value="AR-B">Buenos Aires</option>
+      <option value="AR-C">Ciudad Autónoma de Buenos Aires</option>
+      <option value="AR-K">Catamarca</option>
+      <option value="AR-H">Chaco</option>
+      <option value="AR-U">Chubut</option>
+      <option value="AR-X">Córdoba</option>
+      <option value="AR-W">Corrientes</option>
+      <option value="AR-E">Entre Ríos</option>
+      <option value="AR-P">Formosa</option>
+      <option value="AR-Y">Jujuy</option>
+      <option value="AR-L">La Pampa</option>
+      <option value="AR-F">La Rioja</option>
+      <option value="AR-M">Mendoza</option>
+      <option value="AR-N">Misiones</option>
+      <option value="AR-Q">Neuquén</option>
+      <option value="AR-R">Río Negro</option>
+      <option value="AR-D">Santiago del Estero</option>
+      <option value="AR-Z">Santa Cruz</option>
+      <option value="AR-S">Santa Fe</option>
+      <option value="AR-G">Tucumán</option>
+      <option value="AR-V">Tierra del Fuego</option>
+      <option value="AR-T">San Juan</option>
+    </select>
 
     <label for="cpDestino">Código Postal:</label>
-    <div *ngIf="shippingForm.get('cpDestino')?.invalid && (shippingForm.get('cpDestino')?.touched || shippingForm.get('cpDestino')?.dirty)">
+    <div
+      *ngIf="shippingForm.get('cpDestino')?.invalid && (shippingForm.get('cpDestino')?.touched || shippingForm.get('cpDestino')?.dirty)">
       <small *ngIf="shippingForm.get('cpDestino')?.hasError('required')">Este campo es obligatorio.</small>
     </div>
     <input type="text" id="cpDestino" formControlName="cpDestino" required />
 
+    ---
 
-    <button type="submit" [disabled]="shippingForm.invalid">
-      {{ shippingForm.invalid ? 'Formulario Incompleto' : 'Guardar'}}
+    <h2>Selecciona el Tipo de Envío</h2>
+    <div>
+      <label>
+        <input type="radio" formControlName="shippingMethod" value="domicilio" />
+        Envío a Domicilio
+        <span *ngIf="isCalculatingShipping" class="shipping-spinner"> Calculando...</span>
+        <span *ngIf="!isCalculatingShipping && shippingForm.get('shippingMethod')?.value === 'domicilio'">
+          <span *ngIf="shippingCost > 0"> : {{ shippingCost | currency:'ARS':'symbol':'1.2-2' }}</span>
+          <span
+            *ngIf="shippingCost === 0 && !shippingCalculationError && shippingForm.get('cpDestino')?.valid && shippingForm.get('provinciaDestino')?.valid">
+            (Calculando...)
+          </span>
+        </span>
+      </label>
+    </div>
+    <div>
+      <label>
+        <input type="radio" formControlName="shippingMethod" value="sucursal" />
+        Envío a Sucursal: {{ 6000 | currency:'ARS':'symbol':'1.2-2' }}
+      </label>
+    </div>
+
+    <div class="shipping-info">
+      <div *ngIf="shippingForm.get('shippingMethod')?.value === 'domicilio'">
+        <p>Método seleccionado: Envío a Domicilio.</p>
+        <div *ngIf="isCalculatingShipping" class="shipping-spinner">
+          <p>Calculando costo de envío a domicilio...</p>
+        </div>
+        <div *ngIf="shippingCalculationError" class="shipping-error">
+          <p>{{ shippingCalculationError }}</p>
+        </div>
+        <div *ngIf="!isCalculatingShipping && shippingCost > 0 && !shippingCalculationError">
+          <p>Costo de envío a domicilio: <strong>{{ shippingCost | currency:'ARS':'symbol':'1.2-2' }}</strong></p>
+        </div>
+        <div
+          *ngIf="!isCalculatingShipping && shippingCost === 0 && !shippingCalculationError && shippingForm.get('cpDestino')?.valid && shippingForm.get('provinciaDestino')?.valid">
+          <p>Ajuste el CP y Provincia para recalcular si es necesario.</p>
+        </div>
+      </div>
+
+      <div *ngIf="shippingForm.get('shippingMethod')?.value === 'sucursal'">
+        <p>Método seleccionado: Envío a Sucursal.</p>
+        <p>Costo de envío a sucursal: <strong>{{ 6000 | currency:'ARS':'symbol':'1.2-2' }}</strong></p>
+      </div>
+    </div>
+
+    ---
+
+    <h3>Resumen de Costos</h3>
+    <p>Subtotal de productos: <strong>{{ cartSubtotal | currency:'ARS':'symbol':'1.2-2' }}</strong></p>
+    <p>Costo de Envío: <strong>{{ shippingCost | currency:'ARS':'symbol':'1.2-2' }}</strong></p>
+    <p>Costo Total del Pedido: <strong>{{ (cartSubtotal + shippingCost) | currency:'ARS':'symbol':'1.2-2' }}</strong>
+    </p>
+
+
+    <button type="submit" [disabled]="shippingForm.invalid || isCalculatingShipping || shippingCalculationError">
+      {{ shippingForm.invalid ? 'Formulario Incompleto' : (isCalculatingShipping ? 'Calculando Envío...' :
+      (shippingCalculationError ? 'Error en Envío' : 'Guardar y Continuar')) }}
     </button>
   </form>
 </div>
-
-
