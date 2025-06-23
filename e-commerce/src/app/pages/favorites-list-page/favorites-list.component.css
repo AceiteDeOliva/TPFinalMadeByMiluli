@@ -1,5 +1,8 @@
-.FavoritesListPage {
+.favorites-list-page {
   padding: 15px;
+  max-width: 900px;
+  margin: 0 auto;
+  box-sizing: border-box;
 }
 
 .header {
@@ -14,9 +17,8 @@
   font-size: 70px;
   font-weight: bold;
   margin-bottom: 20px;
-  color:#84B6E5 ;
+  color: #84B6E5;
 }
-
 
 .empty-favorites-message {
   font-size: 24px;
@@ -28,39 +30,45 @@
   border-radius: 10px;
   background-color: #FEE9B2;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  width: 50%;
-  margin: 20px auto;
+  max-width: 600px;
+  margin: 20px auto 0;
+  box-sizing: border-box;
 }
 
 @media (max-width: 768px) {
-  .header {
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-  }
-
-  .container {
+  .favorites-list-page {
     padding: 20px;
   }
 
-  .header img {
-    width: 90%;
-    max-width: 500px;
+  .header {
+    gap: 15px;
+  }
+
+  .header h1 {
+    font-size: 50px;
+  }
+
+  .empty-favorites-message {
+    font-size: 20px;
+    max-width: 100%;
   }
 }
 
-
 @media (max-width: 480px) {
-  .header img {
-    width: 100%;
-    max-width: 400px;
-  }
-
-  .container {
+  .favorites-list-page {
     padding: 10px;
   }
 
   .header {
     gap: 10px;
+  }
+
+  .header h1 {
+    font-size: 36px;
+  }
+
+  .empty-favorites-message {
+    font-size: 18px;
+    padding: 15px;
   }
 }

@@ -15,13 +15,13 @@
   max-width: 100%;
   height: auto;
 }
+
 .header h1 {
   font-size: 70px;
   font-weight: bold;
   margin-bottom: 20px;
-  color:#84B6E5 ;
+  color: #84B6E5;
 }
-
 
 @media (max-width: 768px) {
   .header {
@@ -38,8 +38,11 @@
     width: 90%;
     max-width: 500px;
   }
-}
 
+  .header h1 {
+    font-size: 50px; /* Reduce tamaño en tablets */
+  }
+}
 
 @media (max-width: 480px) {
   .header img {
@@ -53,5 +56,10 @@
 
   .header {
     gap: 10px;
+  }
+
+  .header h1 {
+    font-size: 35px; /* Tamaño más pequeño para móviles */
+    text-align: center;
   }
 }

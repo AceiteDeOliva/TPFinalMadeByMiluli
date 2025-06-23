@@ -1,10 +1,53 @@
-div {
-  align-items: center;
+.purchase-history-page {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
   text-align: center;
 
 }
 
-h1 {
-font-size: 40px;
+.purchase-history-page .header {
   color: #84B6E5;
+  margin-bottom: 20px;
+
+}
+h1 {
+  font-size: 90px;
+}
+.purchase-history-page .header h1 {
+  margin-bottom: 10px;
+}
+
+.purchase-history-page .header p {
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+
+.purchase-history-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+
+
+@media (max-width: 768px) {
+  .purchase-history-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  h1{
+    font-size: 50px;
+  }
+}
+
+
+@media (max-width: 468px) {
+  .purchase-history-grid {
+    grid-template-columns: 1fr;
+  }
+  h1{
+    font-size: 36px;
+  }
 }

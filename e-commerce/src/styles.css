@@ -1,20 +1,33 @@
-
-p {
-  font-family: 'Roboto', sans-serif;
-}
-
-
-body {
-  font-family: 'MyCustomFont', 'Inter', sans-serif;
-}
-
-
+/* Load Custom Font */
 @font-face {
   font-family: 'MyCustomFont';
   src: url('/Assets/font/Recoleta-Font/Recoleta-Form/Recoleta-Medium.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
+
+/* Reset & Box Sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Base Body Styles */
 body {
   overflow-x: hidden;
+  font-family: 'MyCustomFont', 'Inter', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
 }
+
+/* Paragraphs use Roboto for readability */
+p {
+  font-family: 'Roboto', sans-serif;
+}
+
+
+
+

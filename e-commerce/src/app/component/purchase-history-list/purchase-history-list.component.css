@@ -1,63 +1,75 @@
 
-div {
-  font-family: Arial, sans-serif;
-background-color: #D1E3EB;
-  padding: 20px;
-  border-radius: 15px;
-  margin-bottom: 20px;
-  display: grid;
-  gap: 20px;
-}
+
 .container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
   justify-items: center;
-  justify-content: center;
   background-color: #95CBEE;
+  padding: 20px;
+  border-radius: 15px;
+  max-width: 100%;
+  overflow-x: hidden;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
 }
+
+.empty-history-message {
+  font-size: 24px;
+  color: black;
+  text-align: center;
+  font-weight: bold;
+  padding: 20px;
+  border: 2px solid #95CBEE;
+  border-radius: 10px;
+  background-color: #FEE9B2;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 50%;
+  margin: 20px auto;
+}
+
+.order {
+  width: 100%;
+  max-width: none;
+  background-color: #D1E3EB;
+  border-radius: 15px;
+  padding: 15px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  display: grid;
+  gap: 15px;
+  text-align: left;
+}
+
 
 h2 {
   text-align: center;
-  font-size: 24px;
+  font-size: 20px;
   color: black;
   margin-bottom: 20px;
   grid-column: span 2;
 }
 
-
-div > div {
-  background-color: #D1E3EB;
-
-  border-radius: 15px;
-  padding: 15px;
-  margin-bottom: 15px;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 15px;
-}
-
-
 h3 {
-  font-size: 20px;
+  font-size: 18px;
   color: black;
   margin-bottom: 10px;
 }
 
+h4 {
+  font-size: 16px;
+  font-weight: bold;
+  color: #444;
+  margin-bottom: 10px;
+}
 
+/* Paragraphs */
 p {
   font-size: 16px;
   color: #424242;
   margin-bottom: 8px;
 }
 
-
-h4 {
-  font-size: 18px;
-  font-weight: bold;
-  color: #444;
-  margin-bottom: 10px;
-}
-
+/* Product list */
 ul {
   list-style-type: none;
   padding: 0;
@@ -73,17 +85,16 @@ li {
   font-size: 16px;
   color: #444;
   margin-bottom: 6px;
-
 }
 
-
+/* Horizontal rule styling */
 hr {
   border: 0;
   border-top: 1px solid #ddd;
   margin-top: 20px;
 }
 
-
+/* Message when no purchase history */
 .noHistory {
   font-family: Arial, sans-serif;
   background-color: #95CBEE;
@@ -98,11 +109,13 @@ hr {
   grid-column: span 2;
 }
 
+/* Responsive styles */
 
+/* For tablets and medium screens */
 @media (max-width: 768px) {
-  div {
+  .container {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     padding: 15px;
-    grid-template-columns: 1fr;
   }
 
   h2 {
@@ -110,7 +123,7 @@ hr {
     margin-bottom: 15px;
   }
 
-  div > div {
+  .order {
     padding: 10px;
   }
 
@@ -134,9 +147,10 @@ hr {
   }
 }
 
-
+/* For mobile phones */
 @media (max-width: 480px) {
-  div {
+  .container {
+    grid-template-columns: 1fr;
     padding: 10px;
   }
 
@@ -145,7 +159,7 @@ hr {
     margin-bottom: 12px;
   }
 
-  div > div {
+  .order {
     padding: 8px;
   }
 

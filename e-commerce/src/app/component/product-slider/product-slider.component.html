@@ -1,14 +1,21 @@
 <div class="box">
-<h1>Productos Recomendados</h1>
-<div class="product-container">
-  <ng-container *ngFor="let product of topStockProducts">
-    <div class="product-card" [ngStyle]="{'background-color': productColors[product.productUrl]}">
-      <div class="product-info" (click)="navigateToProductPage(product.productUrl)">
-        <h2>{{ product.details?.name || 'Unnamed Product' }}</h2>
-        <img [src]="product.details?.imageUrl || '/Assets/default-image.png'" alt="{{ product.details?.name || 'No Name' }}" />
+  <h1>Productos Recomendados</h1>
+
+
+  <div class="product-container" >
+    <button class="nav-arrow " (click)="scrollLeft()"><img src="/Assets/Logo made by miluli/izquierda.png" alt="left arrow" class="left-arrow"></button>
+    <div class="product-list" #slider>
+    <ng-container *ngFor="let product of topStockProducts">
+      <div class="product-card" [ngStyle]="{'background-color': productColors[product.productUrl]}"(click)="navigateToProductPage(product.productUrl)">
+        <div class="product-info" >
+          <h2>{{ product.details?.name || 'Unnamed Product' }}</h2>
+          <img [src]="product.details?.imageUrl || '/Assets/default-image.png'" alt="{{ product.details?.name || 'No Name' }}" />
+        </div>
+        <p> ${{ product.details?.price | number:'1.2-2' }}</p>
       </div>
-      <p> ${{ product.details?.price | number:'1.2-2' }}</p>
-    </div>
-  </ng-container>
-</div>
+    </ng-container>
+  </div>
+   <button class="nav-arrow" (click)="scrollRight()"><img src="/Assets/Logo made by miluli/derecha.png" alt="rightArrow" class="right-arrow"></button>
+  </div>
+
 </div>

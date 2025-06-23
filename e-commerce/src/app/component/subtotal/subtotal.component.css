@@ -1,4 +1,3 @@
-
 .order-summary {
   background-color: #C4DCBB;
   border: 2px solid #C4DCBB;
@@ -12,7 +11,6 @@
   width: 100%;
   max-width: 500px;
   margin: 20px auto;
-  border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -36,8 +34,19 @@ strong {
 h2 {
   font-size: 24px;
   margin-bottom: 20px;
+  font-family: sans-serif;
 }
+
+/* Botón de pagar estilizado y centrado */
 .pagar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  font-family: inherit;
+
   width: 80%;
   padding: 12px;
   background-color: #95CBEE;
@@ -50,15 +59,16 @@ h2 {
   margin-top: 15px;
 }
 
-
 .pagar:hover {
   background-color: #FCD5CE;
   color: black;
 }
+
+/* Tablets (hasta 768px) */
 @media (max-width: 768px) {
   .order-summary {
     padding: 20px;
-    max-width: 80%;
+    max-width: 90%;
   }
 
   h2 {
@@ -71,11 +81,13 @@ h2 {
   }
 
   .pagar {
-    width: 50%;
+    width: 100%;
     font-size: 15px;
     padding: 12px;
   }
 }
+
+/* Móviles pequeños (hasta 480px) */
 @media (max-width: 480px) {
   .order-summary {
     padding: 15px;
@@ -92,7 +104,7 @@ h2 {
   }
 
   .pagar {
-    width: 50%;
+    width: 100%;
     font-size: 14px;
     padding: 10px;
   }

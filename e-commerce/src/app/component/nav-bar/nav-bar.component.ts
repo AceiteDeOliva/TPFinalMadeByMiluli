@@ -1,5 +1,5 @@
 import { UserService } from '../../services/user-service/user.service';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, Output } from '@angular/core';
 import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth-service/auth.service';
@@ -19,6 +19,8 @@ export class NavBarComponent {
   credential$: Observable<string | null>;
   accountMenuVisible: boolean = false;
   categoryMenuVisible: boolean = false;
+  menuOpen: boolean = false;
+
   @Output() categorySelected = new EventEmitter<string>();
 
   constructor(
@@ -39,11 +41,13 @@ export class NavBarComponent {
 
   ngOnInit(): void {
 
+
     const savedCategory = localStorage.getItem('selectedCategory');
     if (savedCategory) {
       this.categoryService.changeCategory(savedCategory);
     }
   }
+
 logout() {
   localStorage.removeItem('currentUserId');
   localStorage.removeItem('selectedCategory');
@@ -93,4 +97,19 @@ logout() {
   cartButton() {
     this.router.navigate(['/myCart']);
   }
+
+ toggleMenu() {
+  this.menuOpen = !this.menuOpen;
+
+  // Close categories when closing main menu
+  if (!this.menuOpen) {
+    this.categoryMenuVisible = false;
+  }
+}
+closeMenu() {
+  this.menuOpen = false;
+  this.categoryMenuVisible = false;
+}
+
+
 }
