@@ -6,22 +6,26 @@
   padding: 30px;
   box-sizing: border-box;
 }
+
 .favorite-icon-wrapper {
   display: flex;
   justify-content: flex-end;
   width: 100%;
 }
+
 .product-card > .icon-favorites {
   height: 20px;
   width: 20px;
   cursor: pointer;
   margin-top: 8px;
 }
+
 .icon-favorites {
   height: 20px;
   width: 20px;
   cursor: pointer;
 }
+
 p {
   background-color: #D1E3EB;
   border-radius: 8px;
@@ -53,12 +57,13 @@ p {
   position: relative;
   cursor: pointer;
   transition: transform 0.1s ease-in-out, background-color 0.3s ease;
-  color:#000000b6
+  color: #000000b6;
 }
 
 .product-info img {
-  width: 150px;
-  height: 150px;
+  width: 100%;
+  max-width: 150px;
+  height: auto;
   object-fit: cover;
   border-radius: 8px;
 }
@@ -92,23 +97,33 @@ p {
   text-align: center;
 }
 
-
-
-button{
- all: unset;
-
+.favorites-button {
+  all: unset;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  cursor: pointer;
 }
+
 .favorites-button:not(.is-favorite):hover .icon-favorites {
   content: url('/Assets/Logo made by miluli/heart.png');
 }
 
+/* Responsive styles */
+@media (max-width: 1115px) {
+  .product-container {
+    grid-template-columns: repeat(3, 1fr); /* 3 cards en pantallas medianas */
+  }
+}
 
 @media (max-width: 768px) {
   .product-container {
     grid-template-columns: repeat(2, 1fr);
     padding: 20px;
   }
-   .icon-favorites {
+
+  .icon-favorites {
     height: 20px;
     width: 20px;
   }
@@ -123,7 +138,6 @@ button{
   .product-card img {
     margin-top: 10px;
     max-width: 100%;
-    max-height: none;
     height: auto;
   }
 
@@ -148,8 +162,21 @@ button{
   }
 
   .product-card {
-    padding: 10px;
+    padding: 8px;
     width: 100%;
+  }
+
+  .product-info img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .product-card h2 {
+    font-size: 1.1rem;
+  }
+
+  .product-card p {
+    font-size: 0.85rem;
   }
 
   button {

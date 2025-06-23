@@ -4,13 +4,8 @@
     <h2>Gestión de Credenciales</h2>
   </div>
   <div class="employee-list">
-    <input
-      type="text"
-      placeholder="Buscar empleado..."
-      [(ngModel)]="filterText"
-      (input)="filterEmployees()"
-      class="filter-input"
-    />
+    <input type="text" placeholder="Buscar empleado..." [(ngModel)]="filterText" (input)="filterEmployees()"
+      class="filter-input" />
     <img src="/Assets/Logo made by miluli/pngegg.png" alt="logo" class="icon" style="cursor: pointer;">
 
     <div class="full-container">
@@ -27,11 +22,8 @@
 
       <div *ngIf="selectedEmployee" class="form-container">
         <button (click)="onCancel()">X</button>
-        <app-profile-update-form
-          [userData]="selectedEmployee"
-          [isAdmin]="isAllowed"
-          (saveChanges)="onSaveChanges($event)"
-          (deleteProfile)="onDelete($event)">
+        <app-profile-update-form [userData]="selectedEmployee" [isAdmin]="isAllowed"
+          (saveChanges)="onSaveChanges($event)" (deleteProfile)="onDelete($event)">
         </app-profile-update-form>
       </div>
     </div>

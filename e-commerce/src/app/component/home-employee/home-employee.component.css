@@ -9,6 +9,7 @@
 
 .icon {
   width: 700px;
+  max-width: 100%;
   margin-bottom: 40px;
 }
 
@@ -36,6 +37,8 @@
   object-fit: cover;
   filter: blur(2px);
   transition: transform 0.3s ease, border-radius 0.3s ease;
+  display: block; /* asegurar que la imagen respete dimensiones */
+  border-radius: 15px;
 }
 
 .back:hover {
@@ -48,7 +51,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #C4DCBB;
+  background-color: rgba(196, 220, 187, 0.9); /* Más suave */
   color: #84B6E5;
   padding: 20px 50px;
   border-radius: 15px;
@@ -56,12 +59,15 @@
   text-align: center;
   font-size: 2rem;
   transition: transform 0.3s ease, border-radius 0.3s ease;
+  pointer-events: none; /* para que no interfiera con el click */
 }
 
 .image-container:hover .image-text {
   transform: translate(-50%, -50%) scale(1.05);
   border-radius: 15px;
 }
+
+/* --- Media Queries --- */
 
 @media (max-width: 768px) {
   .icon {
@@ -104,5 +110,26 @@
   .image-text {
     font-size: 1.2rem;
     padding: 15px;
+  }
+}
+
+@media (max-width: 360px) {
+  .icon {
+    width: 320px;
+    margin-bottom: 15px;
+  }
+
+  .selections {
+    gap: 20px;
+  }
+
+  .back {
+    width: 160px;
+    height: 160px;
+  }
+
+  .image-text {
+    font-size: 1rem;
+    padding: 10px 20px;
   }
 }

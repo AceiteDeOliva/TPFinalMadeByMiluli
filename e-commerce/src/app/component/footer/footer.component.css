@@ -41,7 +41,7 @@
   }
 
   .social-media {
-    flex-direction: row;  
+    flex-direction: row;
   }
 
   .social-media a {
@@ -68,5 +68,30 @@
 
   .footer p {
     font-size: 10px;
+  }
+}
+
+/* Very small screens (under 360px) */
+@media (max-width: 360px) {
+  .logo {
+    height: 80px;
+  }
+
+  .footer {
+    padding: 10px 5px;
+  }
+
+  .social-media a {
+    font-size: 12px;
+    margin: 0 5px;
+  }
+
+  .instagram, .mail {
+    height: 24px;
+    margin-right: 3px;
+  }
+
+  .footer p {
+    font-size: 9px;
   }
 }

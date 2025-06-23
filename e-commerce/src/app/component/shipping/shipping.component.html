@@ -129,18 +129,18 @@
       </div>
     </div>
 
-    ---
 
-    <h3>Resumen de Costos</h3>
+    <!--    <h3>Resumen de Costos</h3>
     <p>Subtotal de productos: <strong>{{ cartSubtotal | currency:'ARS':'symbol':'1.2-2' }}</strong></p>
     <p>Costo de Envío: <strong>{{ shippingCost | currency:'ARS':'symbol':'1.2-2' }}</strong></p>
     <p>Costo Total del Pedido: <strong>{{ (cartSubtotal + shippingCost) | currency:'ARS':'symbol':'1.2-2' }}</strong>
     </p>
-
+   -->
 
     <button type="submit" [disabled]="shippingForm.invalid || isCalculatingShipping || shippingCalculationError">
       {{ shippingForm.invalid ? 'Formulario Incompleto' : (isCalculatingShipping ? 'Calculando Envío...' :
       (shippingCalculationError ? 'Error en Envío' : 'Guardar y Continuar')) }}
     </button>
   </form>
+
 </div>

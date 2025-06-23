@@ -32,6 +32,7 @@ import { authGuardFnCheckOut } from './guard/auth.guard-fn-checkout';
 import { authGuardFnShipping } from './guard/auth.guard-fn-shipping';
 import { UnauthorizedPageComponent } from './pages/unauthorized-page/unauthorized-page.component';
 import { FavoritesListComponent } from './pages/favorites-list-page/favorites-list.component';
+import { PurchaseHistoryPageComponent } from './pages/purchase-history-page/purchase-history-page.component';
 
 
 
@@ -61,7 +62,7 @@ export const routes: Routes = [
   { path: 'lowStock', component: LowStockListComponent, canActivate: [() => authGuardFn(['admin', 'manager', 'employee'])] },
   { path: 'payment-status', component: PaymentStatusComponent },
   { path: 'loginForOrder', component: LoginForOrderPagesComponent },
-  { path: 'purchaseHistory', component: PurchaseHistoryComponent },
+  { path: 'purchaseHistory', component: PurchaseHistoryPageComponent },
   { path: 'unauthorized', component: UnauthorizedPageComponent },
   { path: 'orders', component: OrderListComponent, canActivate: [() => authGuardFn(['admin', 'manager', 'employee'])] },
   { path: "**", redirectTo: "home" },

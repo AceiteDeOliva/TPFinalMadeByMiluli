@@ -1,9 +1,24 @@
+
+
+
+.container {
+  background-color: #FEE9B2;
+  border-radius: 8px;
+  padding: 20px;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+
 .header {
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 20px;
   position: relative;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .header button {
@@ -11,15 +26,11 @@
   left: 0;
 }
 
-.container {
-  background-color: #FEE9B2;
-  border-radius: 8px;
-  padding: 20px;
-}
 
 h1 {
   text-align: center;
 }
+
 
 button {
   background-color: #C4DCBB;
@@ -30,14 +41,7 @@ button {
   display: block;
   color: #000000;
   border-radius: 8px;
-}
-
-.filter-input {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  margin-top: 5px;
-  margin-bottom: 5px;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 button:hover {
@@ -45,75 +49,158 @@ button:hover {
   color: white;
 }
 
+
+.filter-input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin: 5px;
+  font-size: 16px;
+  width: 100%;
+  max-width: 300px;
+}
+
+
+.filter-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+
+.stock-filter-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.stock-label {
+  font-size: 14px;
+}
+
+
 .icon {
   height: 20px;
-  margin-left: 5px;
-  margin-right: 5px;
+  margin: 0 5px;
 }
 
 
 @media (max-width: 768px) {
-.header {
+  .header {
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-}
+  }
 
-.header button {
+  .header button {
     position: relative;
     margin-bottom: 10px;
-}
+  }
 
-.container {
+  .container {
     padding: 15px;
-}
+  }
 
-button {
+  button {
     width: 100%;
     padding: 12px;
-}
+  }
 
-.filter-input {
-    width: 50%;
+  .filter-input {
+    width: 100%;
     padding: 12px;
     font-size: 14px;
-}
+  }
+
+  .stock-label {
+    font-size: 13px;
+  }
 }
 
 
 @media (max-width: 480px) {
-.header {
+  .header {
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-}
+  }
 
-.header button {
-    position: relative;
-    margin-bottom: 10px;
-}
-
-.container {
+  .container {
     padding: 10px;
-}
+  }
 
-button {
+  button {
     width: 100%;
     padding: 14px;
     font-size: 16px;
-}
+  }
 
-.filter-input {
-    width: 50%;
+  .filter-input {
+    width: 100%;
     padding: 14px;
     font-size: 14px;
-}
+  }
 
-h1 {
+  h1 {
     font-size: 1.5rem;
+  }
+
+  .icon {
+    height: 18px;
+  }
 }
 
-.icon {
-    height: 18px;
+@media (max-width: 360px) {
+  .container {
+    padding: 8px;
+  }
+
+  button {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .filter-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 13px;
+  }
+
+  h1 {
+    font-size: 1.2rem;
+  }
+
+  .icon {
+    height: 16px;
+  }
 }
+@media (max-width: 1024px) and (min-width: 769px) {
+  .container {
+    padding: 15px;
+    /* Ajusta si quieres más espacio arriba/abajo */
+  }
+
+  .filter-section {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .filter-input {
+    max-width: 100%;
+    width: 90%;
+  }
+
+  .header {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .header button {
+    position: relative;
+    left: auto;
+    margin-top: 10px;
+  }
 }

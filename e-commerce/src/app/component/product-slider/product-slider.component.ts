@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ProductService } from '../../services/product-service/product.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -23,7 +23,7 @@ export class ProductSliderComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.productService.getTopStockProducts(4).pipe(
+    this.productService.getTopStockProducts(8).pipe(
       switchMap((urls) => {
         const productDetails$ = urls.map(url =>
           this.productService.fetchProductWithImageByUrl(url).pipe(
@@ -44,7 +44,17 @@ export class ProductSliderComponent implements OnInit {
       this.loading = false;
     });
   }
+ @ViewChild('slider', { static: true }) slider!: ElementRef<HTMLDivElement>;
 
+  // tu código actual (topStockProducts, loading, productColors...)
+
+  scrollLeft() {
+    this.slider.nativeElement.scrollBy({ left: -300, behavior: 'smooth' });
+  }
+
+  scrollRight() {
+    this.slider.nativeElement.scrollBy({ left: 300, behavior: 'smooth' });
+  }
 
   navigateToProductPage(url: string) {
     if (url) {
