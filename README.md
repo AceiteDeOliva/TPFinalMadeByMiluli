@@ -22,3 +22,6 @@ copiar url y pegarla en server.js linea 14 despues de "const baseUrl ="
 despues en otra terminal desde root >
 cd backend >
 node server.js
+
+
+PARA QUE EL PAGO DE PRUEBA SEA APROBADO HAY QUE INICIAR SESION CON LAS CREDENCIALES DE PRUEBA DE MERCADOPAGO Y USAR UNA TARJETA DE PRUEBA DE MERCADOPAGO
