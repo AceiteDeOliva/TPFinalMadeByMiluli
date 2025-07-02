@@ -192,8 +192,7 @@ export class ShippingComponent implements OnInit {
       }
     } else if (shippingMethod === 'sucursal') {
       // Si la opción "a sucursal" es un valor fijo (6000), se mantiene así.
-      // Si también quieres obtener este valor de la API, harías una lógica similar.
-      this.shippingCost = 6000;
+      this.shippingCost = 0;
       console.log("Costo de envío (Retiro en Sucursal): " + this.shippingCost);
     } else {
       this.shippingCost = 0; // Si no hay método seleccionado o es inválido

@@ -9,6 +9,7 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Location } from '@angular/common';
 import { FavoritesService } from '../../services/favorites-service/favorites.service';
 
+
 @Component({
   selector: 'app-product-page',
   standalone: true,

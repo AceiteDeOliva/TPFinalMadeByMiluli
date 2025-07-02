@@ -11,6 +11,7 @@ const client = new MercadoPagoConfig({
 const app = express();
 const port = 8080;
 const processedPayments = new Set();
+const baseUrl = "https://e478-190-190-36-138.ngrok-free.app" //se tiene que actualizar cada vez
 
 app.use(cors());
 app.use(express.json());
@@ -28,12 +29,12 @@ app.post("/create_preference", async (req, res) => {
         },
       ],
       back_urls: {
-        success: 'http://localhost:4200/payment-status?status=success',
-        failure: 'http://localhost:4200/payment-status?status=failure',
-        pending: 'http://localhost:4200/payment-status?status=pending',
+        success: `${baseUrl}/payment-status?status=success`,
+        failure: `${baseUrl}/payment-status?status=failure`,
+        pending: `${baseUrl}/payment-status?status=pending`,
       },
-      auto_return: 'approved',
-      notification_url: "https://8f60-190-190-36-138.ngrok-free.app/webhook"
+      auto_return: "approved",
+      //notification_url: `${baseUrl}/webhook`
     };
 
     const preference = new Preference(client);
@@ -75,7 +76,7 @@ app.post("/webhook", async (req, res) => {
       console.log(data);
     }
 
-   res.sendStatus(200);
+    res.sendStatus(200);
   } catch (error) {
     console.error("Error in webhook handler:", error);
     return res.sendStatus(500);
@@ -83,14 +84,14 @@ app.post("/webhook", async (req, res) => {
 });
 
 // calculo de envio
-const FIXED_PC_ORIGIN = '7600'; 
-const FIXED_PROVINCE_ORIGIN = 'AR-B'; 
-const FIXED_PESO = '2';    
+const FIXED_PC_ORIGIN = '7600';
+const FIXED_PROVINCE_ORIGIN = 'AR-B';
+const FIXED_PESO = '2';
 
 app.post("/calculate_shipping_price", async (req, res) => {
-const url = 'https://correo-argentino1.p.rapidapi.com/calcularPrecio';
- 
-  const { cpDestino, provinciaDestino} = req.body;
+  const url = 'https://correo-argentino1.p.rapidapi.com/calcularPrecio';
+
+  const { cpDestino, provinciaDestino } = req.body;
 
   // Validación básica de los parámetros (ahora no necesitamos cpOrigen ni provinciaOrigen)
   if (!cpDestino || !provinciaDestino) {
@@ -111,7 +112,7 @@ const url = 'https://correo-argentino1.p.rapidapi.com/calcularPrecio';
         cpDestino,
         provinciaOrigen: FIXED_PROVINCE_ORIGIN, // Usamos el valor fijo
         provinciaDestino,
-        peso: FIXED_PESO 
+        peso: FIXED_PESO
       })
     };
 

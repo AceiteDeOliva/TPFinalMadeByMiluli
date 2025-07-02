@@ -8,191 +8,15 @@
       "password": "admin",
       "cart": [
         {
-          "productUrl": "http://localhost:3000/products/4",
+          "productUrl": "http://localhost:3000/products/1",
           "quantity": 1
-        },
-        {
-          "productUrl": "http://localhost:3000/products/9",
-          "quantity": 1
-        }
-      ],
-      "purchaseHistory": [
-        {
-          "orderId": "1732149175411-229",
-          "products": [
-            {
-              "productUrl": "http://localhost:3000/products/4",
-              "quantity": 1,
-              "price": 25000
-            }
-          ],
-          "date": "2024-11-21T00:32:55.411Z",
-          "recipientName": "J.",
-          "recipientSurname": "M.",
-          "street": "Olavarría 3583",
-          "provinciaDestino": "Buenos Aires",
-          "cpDestino": "7600",
-          "shippingMethod": "domicilio",
-          "shippingCost": 6000,
-          "totalCost": 31000,
-          "state": "Fallido"
-        },
-          {
-          "orderId": "1732149175411-229",
-          "products": [
-            {
-              "productUrl": "http://localhost:3000/products/4",
-              "quantity": 1,
-              "price": 25000
-            }
-          ],
-          "date": "2024-11-21T00:32:55.411Z",
-          "recipientName": "J.",
-          "recipientSurname": "M.",
-          "street": "Olavarría 3583",
-          "provinciaDestino": "Buenos Aires",
-          "cpDestino": "7600",
-          "shippingMethod": "domicilio",
-          "shippingCost": 6000,
-          "totalCost": 31000,
-          "state": "Fallido"
-        },
-          {
-          "orderId": "1732149175411-229",
-          "products": [
-            {
-              "productUrl": "http://localhost:3000/products/4",
-              "quantity": 1,
-              "price": 25000
-            }
-          ],
-          "date": "2024-11-21T00:32:55.411Z",
-          "recipientName": "J.",
-          "recipientSurname": "M.",
-          "street": "Olavarría 3583",
-          "provinciaDestino": "Buenos Aires",
-          "cpDestino": "7600",
-          "shippingMethod": "domicilio",
-          "shippingCost": 6000,
-          "totalCost": 31000,
-          "state": "Fallido"
-        },{
-          "orderId": "1732149175411-229",
-          "products": [
-            {
-              "productUrl": "http://localhost:3000/products/4",
-              "quantity": 1,
-              "price": 25000
-            }
-          ],
-          "date": "2024-11-21T00:32:55.411Z",
-          "recipientName": "J.",
-          "recipientSurname": "M.",
-          "street": "Olavarría 3583",
-          "provinciaDestino": "Buenos Aires",
-          "cpDestino": "7600",
-          "shippingMethod": "domicilio",
-          "shippingCost": 6000,
-          "totalCost": 31000,
-          "state": "Fallido"
-        },{
-          "orderId": "1732149175411-229",
-          "products": [
-            {
-              "productUrl": "http://localhost:3000/products/4",
-              "quantity": 1,
-              "price": 25000
-            }
-          ],
-          "date": "2024-11-21T00:32:55.411Z",
-          "recipientName": "J.",
-          "recipientSurname": "M.",
-          "street": "Olavarría 3583",
-          "provinciaDestino": "Buenos Aires",
-          "cpDestino": "7600",
-          "shippingMethod": "domicilio",
-          "shippingCost": 6000,
-          "totalCost": 31000,
-          "state": "Fallido"
-        },{
-          "orderId": "1732149175411-229",
-          "products": [
-            {
-              "productUrl": "http://localhost:3000/products/4",
-              "quantity": 1,
-              "price": 25000
-            }
-          ],
-          "date": "2024-11-21T00:32:55.411Z",
-          "recipientName": "J.",
-          "recipientSurname": "M.",
-          "street": "Olavarría 3583",
-          "provinciaDestino": "Buenos Aires",
-          "cpDestino": "7600",
-          "shippingMethod": "domicilio",
-          "shippingCost": 6000,
-          "totalCost": 31000,
-          "state": "Fallido"
-        },
-        {
-          "orderId": "1732149175411-229",
-          "products": [
-            {
-              "productUrl": "http://localhost:3000/products/4",
-              "quantity": 1,
-              "price": 25000
-            }
-          ],
-          "date": "2024-11-21T00:32:55.411Z",
-          "recipientName": "J.",
-          "recipientSurname": "M.",
-          "street": "Olavarría 3583",
-          "provinciaDestino": "Buenos Aires",
-          "cpDestino": "7600",
-          "shippingMethod": "domicilio",
-          "shippingCost": 6000,
-          "totalCost": 31000,
-          "state": "Fallido"
-        },
-        {
-          "orderId": "1732149175411-229",
-          "products": [
-            {
-              "productUrl": "http://localhost:3000/products/4",
-              "quantity": 1,
-              "price": 25000
-            }
-          ],
-          "date": "2024-11-21T00:32:55.411Z",
-          "recipientName": "J.",
-          "recipientSurname": "M.",
-          "street": "Olavarría 3583",
-          "provinciaDestino": "Buenos Aires",
-          "cpDestino": "7600",
-          "shippingMethod": "domicilio",
-          "shippingCost": 6000,
-          "totalCost": 31000,
-          "state": "Fallido"
-        }
-      ],
-      "favoriteList": [],
-      "credential": "admin"
-    },
-    {
-      "id": "b138",
-      "name": "Valen",
-      "surname": "Leta",
-      "email": "josevl@live.com",
-      "password": "12345",
-      "cart": [
-        {
-          "productUrl": "http://localhost:3000/products/3",
-          "quantity": 2
         }
       ],
       "purchaseHistory": [],
-      "favoriteList": [],
-      "credential": "employee"
+      "favoriteList": [
+        "3"
+      ],
+      "credential": "admin"
     },
     {
       "id": "f97f",
@@ -221,6 +45,38 @@
         "5"
       ],
       "credential": "user"
+    },
+    {
+      "id": "b84f",
+      "name": "Jose",
+      "surname": "Letamendia",
+      "email": "josevl@live.com",
+      "password": "12345",
+      "cart": [],
+      "purchaseHistory": [
+        {
+          "orderId": "1751432856410-525",
+          "products": [
+            {
+              "productUrl": "http://localhost:3000/products/1",
+              "quantity": 1,
+              "price": 10000
+            }
+          ],
+          "date": "2025-07-02T05:07:36.410Z",
+          "recipientName": "Valen",
+          "recipientSurname": "Leta",
+          "street": "Olavarría 3583",
+          "provinciaDestino": "AR-B",
+          "cpDestino": "7602",
+          "shippingMethod": "domicilio",
+          "shippingCost": 9236,
+          "totalCost": 19236,
+          "state": "Enviado"
+        }
+      ],
+      "favoriteList": [],
+      "credential": "user"
     }
   ],
   "products": [
@@ -230,7 +86,7 @@
       "description": "Amigurumi de Pikachu hecho a mano en cashmilon de verano, suave y de alta calidad. Con un tamaño de 12 cm, este Pikachu es el compañero perfecto para los fans de Pokémon. Ideal como decoración o regalo especial.",
       "price": 10000,
       "category": "amigurumi",
-      "stock": 10,
+      "stock": 9,
       "state": "active",
       "imageUrl": "http://localhost:3001/images/1442"
     },
