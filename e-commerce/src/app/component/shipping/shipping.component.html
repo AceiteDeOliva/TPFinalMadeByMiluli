@@ -81,7 +81,6 @@
     </div>
     <input type="text" id="cpDestino" formControlName="cpDestino" required />
 
-    ---
 
     <h2>Selecciona el Tipo de Envío</h2>
     <div>
@@ -101,7 +100,7 @@
     <div>
       <label>
         <input type="radio" formControlName="shippingMethod" value="sucursal" />
-        Envío a Sucursal: {{ 6000 | currency:'ARS':'symbol':'1.2-2' }}
+        Retiro en Local: {{ 0 | currency:'ARS':'symbol':'1.2-2' }}
       </label>
     </div>
 
@@ -125,7 +124,7 @@
 
       <div *ngIf="shippingForm.get('shippingMethod')?.value === 'sucursal'">
         <p>Método seleccionado: Envío a Sucursal.</p>
-        <p>Costo de envío a sucursal: <strong>{{ 6000 | currency:'ARS':'symbol':'1.2-2' }}</strong></p>
+        <p>Retiro en local: <strong>{{ 0 | currency:'ARS':'symbol':'1.2-2' }}</strong></p>
       </div>
     </div>
 
