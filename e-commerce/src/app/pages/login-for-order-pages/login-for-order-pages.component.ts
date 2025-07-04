@@ -10,7 +10,6 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./login-for-order-pages.component.css']
 })
 export class LoginForOrderPagesComponent {
-  continueAsGuest: boolean = false;
 
   constructor(private router: Router) {}
 
@@ -24,8 +23,5 @@ export class LoginForOrderPagesComponent {
     this.router.navigate(['/register']);
   }
 
- 
-  continueAsGuestPage(): void {
-    this.router.navigate(['/shippingInfo']);
-  }
+
 }

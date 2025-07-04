@@ -65,7 +65,9 @@ export class CartService {
               if (this.currentUserId) {
                 return this.updateCart(cartItems).pipe(
                   map(() => ({ message: 'Producto agregado al carrito exitosamente.' }))
+                  
                 );
+                
               } else {
 
                 this.saveGuestCart(cartItems);

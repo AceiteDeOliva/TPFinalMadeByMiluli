@@ -126,3 +126,16 @@
     font-size: 1.1em;
   }
 }
+
+.success-message {
+  color: green;
+}
+
+.pending-message {
+  color: orange;
+}
+
+.error-message {
+  color: red;
+}
+

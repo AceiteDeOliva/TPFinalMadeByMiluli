@@ -15,9 +15,10 @@ json-server images.json --port 3001
 
 
 Una vez hecho ng serve >
-ngrok http 4200 > //expone la url para que funcione la API de MercadoPago, ya que hubo cambios y no funciona con localhost
+ngrok http 4200 > 
 Va a saltar un terminal por fuera de la IDE en la que figura una URL>
-copiar url y pegarla en server.js linea 14 despues de "const baseUrl ="
+copiar url y pegarla en server.js linea 14 despues de "const baseUrl =" 
+# Esto es necesario por cambios en como funciona la API de Mercado Pago, ya no funciona con localhost
 
 despues en otra terminal desde root >
 cd backend >

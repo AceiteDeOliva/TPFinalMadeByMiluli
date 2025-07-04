@@ -8,7 +8,7 @@
       "password": "admin",
       "cart": [
         {
-          "productUrl": "http://localhost:3000/products/1",
+          "productUrl": "http://localhost:3000/products/6",
           "quantity": 1
         }
       ],
@@ -23,7 +23,7 @@
       "name": "Milagros",
       "surname": "Rodriguez",
       "email": "milagroabril.r@gmail.com",
-      "password": "admin",
+      "password": "12345",
       "cart": [
         {
           "productUrl": "http://localhost:3000/products/13",
@@ -44,7 +44,7 @@
         "4",
         "5"
       ],
-      "credential": "user"
+      "credential": "manager"
     },
     {
       "id": "b84f",
@@ -55,26 +55,524 @@
       "cart": [],
       "purchaseHistory": [
         {
-          "orderId": "1751432856410-525",
+          "orderId": "1751585063585-323",
           "products": [
             {
-              "productUrl": "http://localhost:3000/products/1",
-              "quantity": 1,
-              "price": 10000
+              "productUrl": "http://localhost:3000/products/6",
+              "quantity": 2,
+              "price": 16000
             }
           ],
-          "date": "2025-07-02T05:07:36.410Z",
-          "recipientName": "Valen",
-          "recipientSurname": "Leta",
+          "date": "2025-07-03T23:24:23.585Z",
+          "recipientName": "Jose",
+          "recipientSurname": "Muzio",
           "street": "Olavarría 3583",
           "provinciaDestino": "AR-B",
           "cpDestino": "7602",
-          "shippingMethod": "domicilio",
-          "shippingCost": 9236,
-          "totalCost": 19236,
-          "state": "Enviado"
+          "shippingMethod": "sucursal",
+          "shippingCost": 0,
+          "totalCost": 32000,
+          "state": "Fallido"
+        },
+        {
+          "orderId": "1751585063585-323",
+          "products": [
+            {
+              "productUrl": "http://localhost:3000/products/6",
+              "quantity": 2,
+              "price": 16000
+            }
+          ],
+          "date": "2025-07-03T23:24:23.585Z",
+          "recipientName": "Jose",
+          "recipientSurname": "Muzio",
+          "street": "Olavarría 3583",
+          "provinciaDestino": "AR-B",
+          "cpDestino": "7602",
+          "shippingMethod": "sucursal",
+          "shippingCost": 0,
+          "totalCost": 32000,
+          "state": "Fallido"
+        },
+        {
+          "orderId": "1751585091842-541",
+          "products": [
+            {
+              "productUrl": "http://localhost:3000/products/5",
+              "quantity": 1,
+              "price": 6000
+            }
+          ],
+          "date": "2025-07-03T23:24:51.842Z",
+          "recipientName": "Jose",
+          "recipientSurname": "Muzio",
+          "street": "Olavarría 3583",
+          "provinciaDestino": "AR-B",
+          "cpDestino": "7602",
+          "shippingMethod": "sucursal",
+          "shippingCost": 0,
+          "totalCost": 6000,
+          "state": "Fallido"
+        },
+        {
+          "orderId": "1751585091842-541",
+          "products": [
+            {
+              "productUrl": "http://localhost:3000/products/5",
+              "quantity": 1,
+              "price": 6000
+            }
+          ],
+          "date": "2025-07-03T23:24:51.842Z",
+          "recipientName": "Jose",
+          "recipientSurname": "Muzio",
+          "street": "Olavarría 3583",
+          "provinciaDestino": "AR-B",
+          "cpDestino": "7602",
+          "shippingMethod": "sucursal",
+          "shippingCost": 0,
+          "totalCost": 6000,
+          "state": "Fallido"
+        },
+        {
+          "orderId": "1751585091842-541",
+          "products": [
+            {
+              "productUrl": "http://localhost:3000/products/5",
+              "quantity": 1,
+              "price": 6000
+            }
+          ],
+          "date": "2025-07-03T23:24:51.842Z",
+          "recipientName": "Jose",
+          "recipientSurname": "Muzio",
+          "street": "Olavarría 3583",
+          "provinciaDestino": "AR-B",
+          "cpDestino": "7602",
+          "shippingMethod": "sucursal",
+          "shippingCost": 0,
+          "totalCost": 6000,
+          "state": "Fallido"
+        },
+        {
+          "orderId": "1751585091842-541",
+          "products": [
+            {
+              "productUrl": "http://localhost:3000/products/5",
+              "quantity": 1,
+              "price": 6000
+            }
+          ],
+          "date": "2025-07-03T23:24:51.842Z",
+          "recipientName": "Jose",
+          "recipientSurname": "Muzio",
+          "street": "Olavarría 3583",
+          "provinciaDestino": "AR-B",
+          "cpDestino": "7602",
+          "shippingMethod": "sucursal",
+          "shippingCost": 0,
+          "totalCost": 6000,
+          "state": "Fallido"
+        },
+        {
+          "orderId": "1751585418442-114",
+          "products": [
+            {
+              "productUrl": "http://localhost:3000/products/5",
+              "quantity": 1,
+              "price": 6000
+            }
+          ],
+          "date": "2025-07-03T23:30:18.442Z",
+          "recipientName": "Jose",
+          "recipientSurname": "Muzio",
+          "street": "Olavarría 3583",
+          "provinciaDestino": "AR-B",
+          "cpDestino": "7602",
+          "shippingMethod": "sucursal",
+          "shippingCost": 0,
+          "totalCost": 6000,
+          "state": "Fallido"
+        },
+        {
+          "orderId": "1751585418442-114",
+          "products": [
+            {
+              "productUrl": "http://localhost:3000/products/5",
+              "quantity": 1,
+              "price": 6000
+            }
+          ],
+          "date": "2025-07-03T23:30:18.442Z",
+          "recipientName": "Jose",
+          "recipientSurname": "Muzio",
+          "street": "Olavarría 3583",
+          "provinciaDestino": "AR-B",
+          "cpDestino": "7602",
+          "shippingMethod": "sucursal",
+          "shippingCost": 0,
+          "totalCost": 6000,
+          "state": "Fallido"
+        },
+        {
+          "orderId": "1751585599546-674",
+          "products": [
+            {
+              "productUrl": "http://localhost:3000/products/5",
+              "quantity": 1,
+              "price": 6000
+            }
+          ],
+          "date": "2025-07-03T23:33:19.546Z",
+          "recipientName": "Jose",
+          "recipientSurname": "Muzio",
+          "street": "Olavarría 3583",
+          "provinciaDestino": "AR-B",
+          "cpDestino": "7602",
+          "shippingMethod": "sucursal",
+          "shippingCost": 0,
+          "totalCost": 6000,
+          "state": "Fallido"
+        },
+        {
+          "orderId": "1751585599546-674",
+          "products": [
+            {
+              "productUrl": "http://localhost:3000/products/5",
+              "quantity": 1,
+              "price": 6000
+            }
+          ],
+          "date": "2025-07-03T23:33:19.546Z",
+          "recipientName": "Jose",
+          "recipientSurname": "Muzio",
+          "street": "Olavarría 3583",
+          "provinciaDestino": "AR-B",
+          "cpDestino": "7602",
+          "shippingMethod": "sucursal",
+          "shippingCost": 0,
+          "totalCost": 6000,
+          "state": "Fallido"
+        },
+        {
+          "orderId": "1751585862580-993",
+          "products": [
+            {
+              "productUrl": "http://localhost:3000/products/5",
+              "quantity": 1,
+              "price": 6000
+            }
+          ],
+          "date": "2025-07-03T23:37:42.580Z",
+          "recipientName": "Jose",
+          "recipientSurname": "Muzio",
+          "street": "Olavarría 3583",
+          "provinciaDestino": "AR-B",
+          "cpDestino": "7602",
+          "shippingMethod": "sucursal",
+          "shippingCost": 0,
+          "totalCost": 6000,
+          "state": "Fallido"
+        },
+        {
+          "orderId": "1751585862580-993",
+          "products": [
+            {
+              "productUrl": "http://localhost:3000/products/5",
+              "quantity": 1,
+              "price": 6000
+            }
+          ],
+          "date": "2025-07-03T23:37:42.580Z",
+          "recipientName": "Jose",
+          "recipientSurname": "Muzio",
+          "street": "Olavarría 3583",
+          "provinciaDestino": "AR-B",
+          "cpDestino": "7602",
+          "shippingMethod": "sucursal",
+          "shippingCost": 0,
+          "totalCost": 6000,
+          "state": "Fallido"
+        },
+        {
+          "orderId": "1751586129498-287",
+          "products": [
+            {
+              "productUrl": "http://localhost:3000/products/5",
+              "quantity": 1,
+              "price": 6000
+            }
+          ],
+          "date": "2025-07-03T23:42:09.499Z",
+          "recipientName": "Jose",
+          "recipientSurname": "Muzio",
+          "street": "Olavarría 3583",
+          "provinciaDestino": "AR-B",
+          "cpDestino": "7602",
+          "shippingMethod": "sucursal",
+          "shippingCost": 0,
+          "totalCost": 6000,
+          "state": "Fallido"
+        },
+        {
+          "orderId": "1751586129498-287",
+          "products": [
+            {
+              "productUrl": "http://localhost:3000/products/5",
+              "quantity": 1,
+              "price": 6000
+            }
+          ],
+          "date": "2025-07-03T23:42:09.499Z",
+          "recipientName": "Jose",
+          "recipientSurname": "Muzio",
+          "street": "Olavarría 3583",
+          "provinciaDestino": "AR-B",
+          "cpDestino": "7602",
+          "shippingMethod": "sucursal",
+          "shippingCost": 0,
+          "totalCost": 6000,
+          "state": "Fallido"
+        },
+        {
+          "orderId": "1751586285642-435",
+          "products": [
+            {
+              "productUrl": "http://localhost:3000/products/5",
+              "quantity": 1,
+              "price": 6000
+            },
+            {
+              "productUrl": "http://localhost:3000/products/6",
+              "quantity": 1,
+              "price": 16000
+            }
+          ],
+          "date": "2025-07-03T23:44:45.642Z",
+          "recipientName": "Jose",
+          "recipientSurname": "Muzio",
+          "street": "Olavarría 3583",
+          "provinciaDestino": "AR-B",
+          "cpDestino": "7602",
+          "shippingMethod": "sucursal",
+          "shippingCost": 0,
+          "totalCost": 22000,
+          "state": "Fallido"
+        },
+        {
+          "orderId": "1751586285642-435",
+          "products": [
+            {
+              "productUrl": "http://localhost:3000/products/5",
+              "quantity": 1,
+              "price": 6000
+            },
+            {
+              "productUrl": "http://localhost:3000/products/6",
+              "quantity": 1,
+              "price": 16000
+            }
+          ],
+          "date": "2025-07-03T23:44:45.642Z",
+          "recipientName": "Jose",
+          "recipientSurname": "Muzio",
+          "street": "Olavarría 3583",
+          "provinciaDestino": "AR-B",
+          "cpDestino": "7602",
+          "shippingMethod": "sucursal",
+          "shippingCost": 0,
+          "totalCost": 22000,
+          "state": "Fallido"
+        },
+        {
+          "orderId": "1751586512879-107",
+          "products": [
+            {
+              "productUrl": "http://localhost:3000/products/5",
+              "quantity": 1,
+              "price": 6000
+            },
+            {
+              "productUrl": "http://localhost:3000/products/6",
+              "quantity": 1,
+              "price": 16000
+            }
+          ],
+          "date": "2025-07-03T23:48:32.879Z",
+          "recipientName": "Jose",
+          "recipientSurname": "Muzio",
+          "street": "Olavarría 3583",
+          "provinciaDestino": "AR-B",
+          "cpDestino": "7602",
+          "shippingMethod": "sucursal",
+          "shippingCost": 0,
+          "totalCost": 22000,
+          "state": "Fallido"
+        },
+        {
+          "orderId": "1751586512879-107",
+          "products": [
+            {
+              "productUrl": "http://localhost:3000/products/5",
+              "quantity": 1,
+              "price": 6000
+            },
+            {
+              "productUrl": "http://localhost:3000/products/6",
+              "quantity": 1,
+              "price": 16000
+            }
+          ],
+          "date": "2025-07-03T23:48:32.879Z",
+          "recipientName": "Jose",
+          "recipientSurname": "Muzio",
+          "street": "Olavarría 3583",
+          "provinciaDestino": "AR-B",
+          "cpDestino": "7602",
+          "shippingMethod": "sucursal",
+          "shippingCost": 0,
+          "totalCost": 22000,
+          "state": "Fallido"
+        },
+        {
+          "orderId": "1751586512879-107",
+          "products": [
+            {
+              "productUrl": "http://localhost:3000/products/5",
+              "quantity": 1,
+              "price": 6000
+            },
+            {
+              "productUrl": "http://localhost:3000/products/6",
+              "quantity": 1,
+              "price": 16000
+            }
+          ],
+          "date": "2025-07-03T23:48:32.879Z",
+          "recipientName": "Jose",
+          "recipientSurname": "Muzio",
+          "street": "Olavarría 3583",
+          "provinciaDestino": "AR-B",
+          "cpDestino": "7602",
+          "shippingMethod": "sucursal",
+          "shippingCost": 0,
+          "totalCost": 22000,
+          "state": "Fallido"
+        },
+        {
+          "orderId": "1751586512879-107",
+          "products": [
+            {
+              "productUrl": "http://localhost:3000/products/5",
+              "quantity": 1,
+              "price": 6000
+            },
+            {
+              "productUrl": "http://localhost:3000/products/6",
+              "quantity": 1,
+              "price": 16000
+            }
+          ],
+          "date": "2025-07-03T23:48:32.879Z",
+          "recipientName": "Jose",
+          "recipientSurname": "Muzio",
+          "street": "Olavarría 3583",
+          "provinciaDestino": "AR-B",
+          "cpDestino": "7602",
+          "shippingMethod": "sucursal",
+          "shippingCost": 0,
+          "totalCost": 22000,
+          "state": "Fallido"
+        },
+        {
+          "orderId": "1751586512879-107",
+          "products": [
+            {
+              "productUrl": "http://localhost:3000/products/5",
+              "quantity": 1,
+              "price": 6000
+            },
+            {
+              "productUrl": "http://localhost:3000/products/6",
+              "quantity": 1,
+              "price": 16000
+            }
+          ],
+          "date": "2025-07-03T23:48:32.879Z",
+          "recipientName": "Jose",
+          "recipientSurname": "Muzio",
+          "street": "Olavarría 3583",
+          "provinciaDestino": "AR-B",
+          "cpDestino": "7602",
+          "shippingMethod": "sucursal",
+          "shippingCost": 0,
+          "totalCost": 22000,
+          "state": "Fallido"
+        },
+        {
+          "orderId": "1751587075604-311",
+          "products": [
+            {
+              "productUrl": "http://localhost:3000/products/5",
+              "quantity": 1,
+              "price": 6000
+            },
+            {
+              "productUrl": "http://localhost:3000/products/6",
+              "quantity": 1,
+              "price": 16000
+            }
+          ],
+          "date": "2025-07-03T23:57:55.604Z",
+          "recipientName": "Jose",
+          "recipientSurname": "Muzio",
+          "street": "Olavarría 3583",
+          "provinciaDestino": "AR-B",
+          "cpDestino": "7602",
+          "shippingMethod": "sucursal",
+          "shippingCost": 0,
+          "totalCost": 22000,
+          "state": "Fallido"
+        },
+        {
+          "orderId": "1751587075604-311",
+          "products": [
+            {
+              "productUrl": "http://localhost:3000/products/5",
+              "quantity": 1,
+              "price": 6000
+            },
+            {
+              "productUrl": "http://localhost:3000/products/6",
+              "quantity": 1,
+              "price": 16000
+            }
+          ],
+          "date": "2025-07-03T23:57:55.604Z",
+          "recipientName": "Jose",
+          "recipientSurname": "Muzio",
+          "street": "Olavarría 3583",
+          "provinciaDestino": "AR-B",
+          "cpDestino": "7602",
+          "shippingMethod": "sucursal",
+          "shippingCost": 0,
+          "totalCost": 22000,
+          "state": "Pendiente"
         }
       ],
+      "favoriteList": [
+        "3"
+      ],
+      "credential": "user"
+    },
+    {
+      "id": "6f6f",
+      "name": "hola",
+      "surname": "1234",
+      "email": "falopez@test.com",
+      "password": "123",
+      "cart": [],
+      "purchaseHistory": [],
       "favoriteList": [],
       "credential": "user"
     }
@@ -86,7 +584,7 @@
       "description": "Amigurumi de Pikachu hecho a mano en cashmilon de verano, suave y de alta calidad. Con un tamaño de 12 cm, este Pikachu es el compañero perfecto para los fans de Pokémon. Ideal como decoración o regalo especial.",
       "price": 10000,
       "category": "amigurumi",
-      "stock": 9,
+      "stock": 8,
       "state": "active",
       "imageUrl": "http://localhost:3001/images/1442"
     },
@@ -126,7 +624,7 @@
       "description": "Este adorable gatito amigurumi de 8 cm es perfecto para llaves, mochilas o bolsos. Hecho a mano con hilo de alta calidad y estilo siamés (o el que prefieras). Un solo gatito, ideal para los amantes de los gatos. ¡Un regalo tierno y lleno de personalidad!",
       "price": 6000,
       "category": "amigurumi",
-      "stock": 15,
+      "stock": 11,
       "state": "active",
       "imageUrl": "http://localhost:3001/images/a781"
     },
@@ -136,7 +634,7 @@
       "description": "Muñecos a crochet de Luffy y Chopper de 8 cm, perfectos para decorar o agregar a tu colección. Hechos a mano con detalles únicos, ideales para los fans de One Piece. ¡Un toque adorable para tu espacio!",
       "price": 16000,
       "category": "amigurumi",
-      "stock": 7,
+      "stock": 4,
       "state": "active",
       "imageUrl": "http://localhost:3001/images/6f04"
     },

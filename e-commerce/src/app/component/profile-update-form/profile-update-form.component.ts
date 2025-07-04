@@ -91,6 +91,7 @@ export class ProfileUpdateFormComponent implements OnInit, OnChanges {
             next: () => {
               console.log('Profile deleted successfully.');
               window.location.href = '/home'; 
+              localStorage.removeItem('currentUserId');
             },
             error: error => {
               console.error('Error deleting user:', error);

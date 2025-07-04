@@ -38,15 +38,15 @@ export class AuthService {
 
   login(userCredential: string) {
     const user = { isLogin: true, credential: userCredential };
-    localStorage.setItem('currentUser', JSON.stringify(user));
+    localStorage.setItem('currentUserId', JSON.stringify(user));
   }
 
   logout() {
-    localStorage.removeItem('currentUser');
+    localStorage.removeItem('currentUserId');
   }
 
   get currentUser() {
-    const user = localStorage.getItem('currentUser');
+    const user = localStorage.getItem('currentUserId');
     return user ? JSON.parse(user) : null;
   }
 
