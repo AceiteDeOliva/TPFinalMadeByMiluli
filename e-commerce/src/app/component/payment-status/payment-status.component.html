@@ -1,12 +1,19 @@
-<p class="success-message" *ngIf="paymentStatus === 'approved'">
-  ¡Tu pedido se ha procesado con éxito!
-</p>
+<div class="payment-status-container">
+  <h1>Estado de tu pedido</h1>
 
-<p class="pending-message" *ngIf="paymentStatus === 'pending'">
-  Tu pedido está pendiente de confirmación.
-</p>
+  <p class="status-message success-message" *ngIf="paymentStatus === 'approved'">
+    ¡Tu pedido se ha procesado con éxito!
+  </p>
 
-<p class="error-message" *ngIf="paymentStatus !== 'approved' && paymentStatus !== 'pending'">
-  Lo sentimos, tu pedido no se pudo procesar.
-</p>
+  <p class="status-message pending-message" *ngIf="paymentStatus === 'pending'">
+    Tu pedido está pendiente de confirmación.
+  </p>
 
+  <p class="status-message error-message" *ngIf="paymentStatus !== 'approved' && paymentStatus !== 'pending'">
+    Lo sentimos, tu pedido no se pudo procesar.
+  </p>
+
+  <div class="action-buttons">
+    <a class="button" routerLink="/">Volver al inicio</a>
+  </div>
+</div>
