@@ -94,7 +94,7 @@ export class ProductListComponent implements OnInit, OnChanges {
     const lowerFilter = this.filterTerm ? this.filterTerm.toLowerCase() : '';
 
     this.filteredProducts = this.products.filter(product => {
-      const matchesStock = this.stock ? product.stock < this.stock : true;
+      const matchesStock = this.stock ? product.stock <= this.stock : true;
       const matchesSearch = lowerFilter
         ? product.name.toLowerCase().includes(lowerFilter) ||
           product.category.toLowerCase().includes(lowerFilter)

@@ -24,17 +24,28 @@ export class PaymentStatusComponent implements OnInit {
     private userService: UserService,
     private shippingService: ShippingService,
     private cartService: CartService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
-    this.paymentStatus = this.route.snapshot.queryParamMap.get('collection_status');
-    this.paymentId = this.route.snapshot.queryParamMap.get('payment_id');
+    const queryParams = this.route.snapshot.queryParamMap;
 
-    console.log('Payment Status:', this.paymentStatus);
+    const allStatuses = queryParams.getAll('collection_status');
+    console.log('All collection_status values:', allStatuses);
+
+    this.paymentStatus = (allStatuses.find(s => s && s !== 'null')
+      || queryParams.get('status')
+      || 'unknown').toLowerCase();
+
+    this.paymentId = queryParams.get('payment_id');
+
+    console.log('Final paymentStatus:', this.paymentStatus);
     console.log('Payment ID:', this.paymentId);
 
     this.handlePaymentStatus();
   }
+
+
+
 
   private handlePaymentStatus(): void {
     if (this.paymentStatus === 'approved') {
@@ -50,7 +61,7 @@ export class PaymentStatusComponent implements OnInit {
     this.shippingService.getShippingData().subscribe({
       next: (order) => {
         if (order) {
-          order.state = state; 
+          order.state = state;
 
           const userId = this.userId;
           if (userId) {
@@ -122,5 +133,5 @@ export class PaymentStatusComponent implements OnInit {
       }
     });
   }
-  
+
 }

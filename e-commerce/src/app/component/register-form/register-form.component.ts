@@ -98,7 +98,7 @@ isLoading = false;
         catchError((error) => {
           this.isLoading = false;
           console.error('Registration error', error);
-          this.message = 'ocurrio un erro,intentelo nuevamente.';
+          this.message = 'ocurrio un error, intentelo nuevamente.';
           this.messageType = 'error';
           return of(false);
         })
