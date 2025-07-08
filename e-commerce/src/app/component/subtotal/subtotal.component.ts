@@ -1,8 +1,9 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnDestroy, Output, EventEmitter, Input } from '@angular/core';
 import { CartService } from '../../services/cart-service/cart.service';
 import { ShippingService } from '../../services/shipping-service/shipping.service';
 import { CheckoutDataService } from '../../services/checkout-data/checkout-data.service';
 import { CommonModule } from '@angular/common';
+import { Observable, combineLatest, map } from 'rxjs';
 
 @Component({
   selector: 'app-subtotal',
@@ -12,53 +13,40 @@ import { CommonModule } from '@angular/common';
   standalone: true
 })
 export class SubtotalComponent implements OnInit {
-  @Input() cartSubtotal: number = 0;
   @Output() proceedToPayment = new EventEmitter<void>();
   @Input() path: string = '';
   @Input() inCheckout: boolean = false;
 
-  shippingCost: number = 0;
-  totalOrderAmount: number = 0;
+  totalOrderAmount$!: Observable<number>;
+  shippingCost$!: Observable<number>;
+  cartSubtotal$!: Observable<number>;
 
   constructor(
     private checkoutDataService: CheckoutDataService,
     private cartService: CartService,
-    private shippingService: ShippingService,
+    private shippingService: ShippingService
   ) {}
 
   ngOnInit(): void {
+    this.cartSubtotal$ = this.cartService.getSubtotal();
+    this.shippingCost$ = this.shippingService.getShippingData().pipe(
+      map(data => data?.shippingCost || 0)
+    );
 
-    if (this.path === 'shippingInfo') {
-      this.shippingCost = 0;
-      this.calculateTotal();
-      return;
-    }
-
-
-    if (!this.cartSubtotal) {
-      this.cartService.getTotalCompra().subscribe((subtotal) => {
-        this.cartSubtotal = subtotal;
-        this.calculateTotal();
-      });
-    } else {
-      this.calculateTotal();
-    }
-
-    
-    if (this.path !== 'shippingInfo') {
-      this.shippingService.getShippingData().subscribe((order) => {
-        this.shippingCost = order?.shippingCost || 0;
-        this.calculateTotal();
-      });
-    }
+    this.totalOrderAmount$ = combineLatest([
+      this.cartSubtotal$,
+      this.shippingCost$
+    ]).pipe(
+      map(([subtotal, shipping]) => {
+        const total = subtotal + shipping;
+        this.checkoutDataService.setShippingCost(shipping);
+        this.checkoutDataService.setTotalAmount(total);
+        return total;
+      })
+    );
   }
 
-  calculateTotal(): void {
-    this.totalOrderAmount = this.cartSubtotal + this.shippingCost;
-    this.checkoutDataService.setTotalAmount(this.totalOrderAmount);
-  }
-
-  onProceedToPayment() {
+  onProceedToPayment(): void {
     this.proceedToPayment.emit();
   }
 }

@@ -1,26 +1,30 @@
-import { User } from './../../models/user';
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
-import { catchError, map, switchMap } from 'rxjs/operators';
+import { Injectable } from '@angular/core';
+import { catchError, map, Observable, of, switchMap, throwError } from 'rxjs';
+import { User } from '../../models/user';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class FavoritesService {
-  private currentUserId = localStorage.getItem('currentUserId');
-  private userUrl = `http://localhost:3000/users/${this.currentUserId}`;
- 
-
-
-
   constructor(private http: HttpClient) {}
+
+  private get currentUserId(): string | null {
+    return localStorage.getItem('currentUserId');
+  }
+
+  private get userUrl(): string {
+    if (!this.currentUserId) {
+      throw new Error('No current user ID set.');
+    }
+    return `http://localhost:3000/users/${this.currentUserId}`;
+  }
 
   getFavorites(): Observable<string[]> {
     if (this.currentUserId) {
       return this.http.get<User>(this.userUrl).pipe(
-        map(user => user.favoriteList),
-        catchError(error => {
+        map((user) => user.favoriteList || []),
+        catchError((error) => {
           console.error('Error obteniendo favoritos:', error);
           return throwError(() => new Error('No se pudieron obtener los favoritos.'));
         })
@@ -31,21 +35,17 @@ export class FavoritesService {
     }
   }
 
-  toggleFavorite(string: string): Observable<string[]> {
+  toggleFavorite(itemId: string): Observable<string[]> {
     return this.getFavorites().pipe(
-      switchMap(favs => {
-        const isFav = favs.includes(string);
-        const updatedFavs = isFav
-          ? favs.filter(id => id !== string)
-          : [...favs, string];
+      switchMap((favs) => {
+        const isFav = favs.includes(itemId);
+        const updatedFavs = isFav ? favs.filter((id) => id !== itemId) : [...favs, itemId];
 
         if (this.currentUserId) {
           return this.http.get<User>(this.userUrl).pipe(
-            switchMap(user => {
+            switchMap((user) => {
               const updatedUser = { ...user, favoriteList: updatedFavs };
-              return this.http.put<User>(this.userUrl, updatedUser).pipe(
-                map(() => updatedFavs)
-              );
+              return this.http.put<User>(this.userUrl, updatedUser).pipe(map(() => updatedFavs));
             })
           );
         } else {
@@ -53,33 +53,58 @@ export class FavoritesService {
           return of(updatedFavs);
         }
       }),
-      catchError(error => {
+      catchError((error) => {
         console.error('Error actualizando favoritos:', error);
         return throwError(() => new Error('No se pudo actualizar la lista de favoritos.'));
       })
     );
   }
 
-  isFavorite(string: string): Observable<boolean> {
-    return this.getFavorites().pipe(
-      map(favs => favs.includes(string))
-    );
+  isFavorite(itemId: string): Observable<boolean> {
+    return this.getFavorites().pipe(map((favs) => favs.includes(itemId)));
   }
-
 
   clearFavorites(): Observable<void> {
     if (this.currentUserId) {
       return this.http.get<User>(this.userUrl).pipe(
-        switchMap(user => {
+        switchMap((user) => {
           const updatedUser = { ...user, favoriteList: [] };
-          return this.http.put(this.userUrl, updatedUser).pipe(
-            map(() => void 0)
-          );
+          return this.http.put(this.userUrl, updatedUser).pipe(map(() => void 0));
+        }),
+        catchError((error) => {
+          alert('Error: no se pudo limpiar la lista de favoritos');
+          return throwError(() => error);
         })
       );
     } else {
       localStorage.removeItem('guestFavorites');
       return of(void 0);
     }
+  }
+
+
+  syncGuestFavorites(userId: string): Observable<void> {
+    const guestFavs: string[] = JSON.parse(localStorage.getItem('guestFavorites') || '[]');
+    if (guestFavs.length === 0) return of(void 0);
+
+    const userUrl = `http://localhost:3000/users/${userId}`;
+
+    return this.http.get<User>(userUrl).pipe(
+      switchMap((user) => {
+        const existingFavs = user.favoriteList || [];
+        // Merge without duplicates
+        const mergedFavs = Array.from(new Set([...existingFavs, ...guestFavs]));
+        const updatedUser = { ...user, favoriteList: mergedFavs };
+        return this.http.put(userUrl, updatedUser);
+      }),
+      switchMap(() => {
+        localStorage.removeItem('guestFavorites');
+        return of(void 0);
+      }),
+      catchError((error) => {
+        console.error('Error syncing guest favorites:', error);
+        return throwError(() => error);
+      })
+    );
   }
 }

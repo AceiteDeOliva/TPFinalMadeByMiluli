@@ -11,7 +11,7 @@ const client = new MercadoPagoConfig({
 const app = express();
 const port = 8080;
 const processedPayments = new Set();
-const baseUrl = "https://1e22-2800-2285-9000-262-d86f-fbe5-99a-f013.ngrok-free.app" //se tiene que actualizar cada vez
+const baseUrl = "https://feed8a8f262e.ngrok-free.app" //se tiene que actualizar cada vez
 
 app.use(cors());
 app.use(express.json());
@@ -29,9 +29,9 @@ app.post("/create_preference", async (req, res) => {
         },
       ],
       back_urls: {
-        success: `${baseUrl}/payment-approved`,
-        pending: `${baseUrl}/payment-pending`,
-        failure: `${baseUrl}/payment-failed`
+        success: `${baseUrl}/payment-status`,
+        pending: `${baseUrl}/payment-status`,
+        failure: `${baseUrl}/payment-status`
       },
       auto_return: "approved",
       //notification_url: `${baseUrl}/webhook`
