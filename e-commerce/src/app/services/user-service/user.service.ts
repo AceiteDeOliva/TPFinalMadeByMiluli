@@ -12,24 +12,38 @@ import { Order } from '../../models/orders';
 export class UserService {
   private apiUrl = 'http://localhost:3000/users';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
+  register(
+  name: string,
+  surname: string,
+  email: string,
+  password: string,
+  credential: 'user' | 'employee' | 'manager' | 'admin'
+): Observable<User | null> {
+  return this.checkUserExists(email).pipe(
+    switchMap((exists) => {
+      if (exists) {
+        return of(null);
+      } else {
+        const newUser: Omit<User, 'id'> = {
+          name,
+          surname,
+          email,
+          password,
+          cart: [],
+          purchaseHistory: [],
+          favoriteList: [],
+          credential
+        };
+        return this.http.post<User>(this.apiUrl, newUser).pipe(
+          catchError(() => of(null))  // returns null on error
+        );
+      }
+    })
+  );
+}
 
-  register(name: string, surname:string, email: string, password: string, credential: 'user' | 'employee' | 'manager' | 'admin'): Observable<boolean> {//Creates new user json
-    return this.checkUserExists(email).pipe(
-      switchMap((exists) => {
-        if (exists) {
-          return of(false);
-        } else {
-          const newUser: Omit<User, 'id'> = { name , surname, email, password, cart: [], purchaseHistory: [],favoriteList:[], credential};
-          return this.http.post<User>(this.apiUrl, newUser).pipe(
-            map(() => true),
-            catchError(() => of(false))
-          );
-        }
-      })
-    );
-  }
 
 
   authenticateUser(email: string, password: string): Observable<User | null> {
@@ -73,7 +87,7 @@ export class UserService {
         return of('');
       })
     );
-}
+  }
 
 
   updateUser(userId: string, updatedFields: Partial<User>): Observable<User> {

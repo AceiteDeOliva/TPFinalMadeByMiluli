@@ -2,7 +2,7 @@ import { UserService } from '../../services/user-service/user.service';
 import { Component } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { AuthService } from '../../services/auth-service/auth.service';
@@ -14,13 +14,14 @@ import { FavoritesService } from '../../services/favorites-service/favorites.ser
 @Component({
   selector: 'app-login-form',
   standalone: true,
-  imports: [ReactiveFormsModule,CommonModule],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './login-form.component.html',
   styleUrl: './login-form.component.css'
 })
 export class LoginFormComponent {
   loginForm: FormGroup;
   errorMessage: string = '';
+  redirectTo: string | null = null;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -28,7 +29,9 @@ export class LoginFormComponent {
     private userService: UserService,
     private authService: AuthService,
     private cartService: CartService,
-    private favoritesService: FavoritesService
+    private favoritesService: FavoritesService,
+    private route: ActivatedRoute,
+
   ) {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -38,9 +41,13 @@ export class LoginFormComponent {
 
 
 
-//Autentica al usuario, sincroniza el carrito de invitado y redirige según su rol.
+  //Autentica al usuario, sincroniza el carrito de invitado y redirige según su rol.
 
-login() {
+  ngOnInit() {
+    this.redirectTo = this.route.snapshot.queryParamMap.get('redirectTo');
+  }
+
+  login() {
     if (this.loginForm.invalid) {
       this.errorMessage = 'Porfavor complete todo los campos.';
       return;
@@ -54,12 +61,14 @@ login() {
         this.authService.changeCredential(user.credential);
 
         this.cartService.syncGuestCart(user.id).pipe(
-          switchMap(() => this.favoritesService.syncGuestFavorites(user.id))  
+          switchMap(() => this.favoritesService.syncGuestFavorites(user.id))
         ).subscribe({
           next: () => {
             console.log('Guest cart and favorites synced successfully!');
 
-            if (user.credential === 'user') {
+            if (this.redirectTo) {
+              this.router.navigate([this.redirectTo]);
+            } else if (user.credential === 'user') {
               this.router.navigate(['/home']);
             } else {
               this.router.navigate(['/homeEmployee']);
