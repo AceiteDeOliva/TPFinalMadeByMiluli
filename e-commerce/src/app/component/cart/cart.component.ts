@@ -124,42 +124,36 @@ export class CartComponent implements OnInit {
 
 // Borrar elemento del carrito
   removeFromCart(productId: string) {
-    this.cartService.removeProductFromCart(productId).pipe(
-      tap(() => {
-        this.loadCart();
-        this.calculateTotal();
-      }),
-      catchError(error => {
-        console.error('Error removing product from cart:', error);
-        return of(null);
-      })
-    ).subscribe();
-  }
+  this.cartService.removeProductFromCart(productId).pipe(
+    tap(() => {
+      this.cartItems = this.cartItems.filter(item => item.details?.id !== productId);
+      this.calculateTotal();
+    }),
+    catchError(error => {
+      console.error('Error removing product from cart:', error);
+      return of(null);
+    })
+  ).subscribe();
+}
+
 
 // updatea el carrito  cuando sucede un cambio
   onQuantityChange(productId: string | undefined, quantity: number) {
-    if (!productId) {
-      console.warn('Product ID is undefined, cannot update quantity.');
-      return;
-    }
+  if (!productId || quantity < 1) return;
 
-    if (quantity < 1) {
-    console.log('La cantidad debe ser al menos 1');
-      return;
-    }
+  this.cartService.updateProductQuantity(productId, quantity).pipe(
+    tap(() => {
+      const item = this.cartItems.find(i => i.details?.id === productId);
+      if (item) item.quantity = quantity;
+      this.calculateTotal(); 
+    }),
+    catchError((error) => {
+      console.error('Error updating product quantity:', error);
+      return of(null);
+    })
+  ).subscribe();
+}
 
-
-    this.cartService.updateProductQuantity(productId, quantity).pipe(
-      tap(() => {
-        this.loadCart();
-        this.calculateTotal();
-      }),
-      catchError((error) => {
-        console.error('Error updating product quantity:', error);
-        return of(null);
-      })
-    ).subscribe();
-  }
 
 // lleva a la siguiente pagina
   onStartPurchase() {

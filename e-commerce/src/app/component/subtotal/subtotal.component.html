@@ -1,24 +1,20 @@
 <div class="order-summary">
   <h2>Resumen de Compra</h2>
 
-  <!-- Display Subtotal -->
   <div class="summary-item">
     <span>Subtotal:</span>
-    <span>{{ cartSubtotal  }}</span>
+    <span>{{ cartSubtotal$ | async | currency:'USD' }}</span>
   </div>
 
-  <!-- Display Shipping Cost -->
   <div class="summary-item">
-    <span>Costo de envio:</span>
-    <span>{{ shippingCost  }}</span>
+    <span>Costo de envío:</span>
+    <span>{{ shippingCost$ | async | currency:'USD' }}</span>
   </div>
 
-  <!-- Display Total Order Amount -->
   <div class="summary-item">
     <span><strong>Total:</strong></span>
-    <span><strong>{{ totalOrderAmount  }}</strong></span>
+    <span><strong>{{ totalOrderAmount$ | async | currency:'USD' }}</strong></span>
   </div>
 
-  <button *ngIf="!inCheckout" class="pagar"(click)="onProceedToPayment()">continuar</button>
-
+  <button *ngIf="!inCheckout" class="pagar" (click)="onProceedToPayment()">Continuar</button>
 </div>

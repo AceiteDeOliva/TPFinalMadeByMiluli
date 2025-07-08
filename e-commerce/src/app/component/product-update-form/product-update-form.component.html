@@ -29,7 +29,7 @@
       type="number"
       formControlName="stock"
       id="stock"
-      [readonly]="userRole !== 'employee'"
+      [readonly]="userRole !== 'admin' && userRole !== 'manager' && userRole !== 'employee'"
     />
     <span *ngIf="!isEditing">{{ productForm.get('stock')?.value }}</span>
   </div>

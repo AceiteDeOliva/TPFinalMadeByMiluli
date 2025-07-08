@@ -8,6 +8,8 @@ import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { AuthService } from '../../services/auth-service/auth.service';
 import { CartService } from '../../services/cart-service/cart.service';
 import { CommonModule } from '@angular/common';
+import { FavoritesService } from '../../services/favorites-service/favorites.service';
+
 
 @Component({
   selector: 'app-login-form',
@@ -25,7 +27,8 @@ export class LoginFormComponent {
     private router: Router,
     private userService: UserService,
     private authService: AuthService,
-    private cartService: CartService
+    private cartService: CartService,
+    private favoritesService: FavoritesService
   ) {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -38,37 +41,39 @@ export class LoginFormComponent {
 //Autentica al usuario, sincroniza el carrito de invitado y redirige según su rol.
 
 login() {
-  if (this.loginForm.invalid) {
-    this.errorMessage = 'Porfavor complete todo los campos.';
-    return;
-  }
-
-  const { email, password } = this.loginForm.value;
-
-  this.userService.authenticateUser(email, password).subscribe(user => {
-    if (user) {
-      localStorage.setItem('currentUserId', user.id);
-      this.authService.changeCredential(user.credential);
-      
-      this.cartService.syncGuestCart(user.id).subscribe(
-        () => {
-          console.log('Guest cart synced successfully!');
-
-          if (user.credential === 'user') {
-            this.router.navigate(['/home']);
-          } else {
-            this.router.navigate(['/homeEmployee']);
-          }
-        },
-        error => {
-          console.error('Error syncing guest cart:', error);
-        }
-      );
-    } else {
-      this.errorMessage = 'Mail o Contraseña incorrecto.Intentelo nuevamente';
+    if (this.loginForm.invalid) {
+      this.errorMessage = 'Porfavor complete todo los campos.';
+      return;
     }
-  });
-}
+
+    const { email, password } = this.loginForm.value;
+
+    this.userService.authenticateUser(email, password).subscribe(user => {
+      if (user) {
+        localStorage.setItem('currentUserId', user.id);
+        this.authService.changeCredential(user.credential);
+
+        this.cartService.syncGuestCart(user.id).pipe(
+          switchMap(() => this.favoritesService.syncGuestFavorites(user.id))  
+        ).subscribe({
+          next: () => {
+            console.log('Guest cart and favorites synced successfully!');
+
+            if (user.credential === 'user') {
+              this.router.navigate(['/home']);
+            } else {
+              this.router.navigate(['/homeEmployee']);
+            }
+          },
+          error: (error) => {
+            console.error('Error syncing guest data:', error);
+          }
+        });
+      } else {
+        this.errorMessage = 'Mail o Contraseña incorrecto. Intentelo nuevamente';
+      }
+    });
+  }
 
 
 }

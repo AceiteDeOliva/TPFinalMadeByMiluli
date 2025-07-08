@@ -34,8 +34,8 @@ export class CheckoutComponent implements OnInit {
     private checkoutDataService: CheckoutDataService,
     private shippingService: ShippingService,
     private userService: UserService,
-    private productService:ProductService
-  ) {}
+    private productService: ProductService
+  ) { }
 
   ngOnInit(): void {
 
@@ -43,7 +43,7 @@ export class CheckoutComponent implements OnInit {
       this.total = amount;
     });
 
-
+    this.getShippingData();
     const mp = new MercadoPago('APP_USR-45356463-6ac7-49ed-a858-abeea75d9906', { locale: 'es-AR' });
     const orderData = {
       title: 'Compra en Made by Miluli',
@@ -51,9 +51,7 @@ export class CheckoutComponent implements OnInit {
       price: this.total,
     };
     this.createPreferenceAndButton(mp, orderData);
-
-
-      this.getShippingData();
+    
 
 
   }
@@ -64,7 +62,7 @@ export class CheckoutComponent implements OnInit {
     this.shippingService.getShippingData().subscribe((data) => {
       this.shippingData = data;
 
-console.log("productos en el carriot"+this.shippingData.Products)
+      console.log("productos en el carriot" + this.shippingData.Products)
       if (this.shippingData.products && this.shippingData.products.length > 0) {
         this.getProductsFromCart(this.shippingData.products);
       }
@@ -125,7 +123,7 @@ console.log("productos en el carriot"+this.shippingData.Products)
         const userId = localStorage.getItem('currentUserId');
 
         if (userId) {
-        
+
           this.userService.addOrderToPurchaseHistory(userId, order).subscribe(() => {
             console.log('Order saved to purchase history');
           });

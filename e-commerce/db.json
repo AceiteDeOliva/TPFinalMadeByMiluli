@@ -8,14 +8,102 @@
       "password": "admin",
       "cart": [
         {
-          "productUrl": "http://localhost:3000/products/3",
+          "productUrl": "http://localhost:3000/products/15",
           "quantity": 1
         }
       ],
-
-      "purchaseHistory": [],
+      "purchaseHistory": [
+        {
+          "orderId": "1751926897585-257",
+          "products": [
+            {
+              "productUrl": "http://localhost:3000/products/21",
+              "quantity": 1,
+              "price": 25000
+            },
+            {
+              "productUrl": "http://localhost:3000/products/8",
+              "quantity": 1,
+              "price": 10000
+            }
+          ],
+          "date": "2025-07-07T22:21:37.585Z",
+          "recipientName": "Jose",
+          "recipientSurname": "Muzio",
+          "street": "Olavarría 3583",
+          "provinciaDestino": "AR-B",
+          "cpDestino": "7602",
+          "shippingMethod": "sucursal",
+          "shippingCost": 0,
+          "totalCost": 35000,
+          "state": "Devuelto"
+        },
+        {
+          "orderId": "1751926961705-498",
+          "products": [
+            {
+              "productUrl": "http://localhost:3000/products/14",
+              "quantity": 1,
+              "price": 6000
+            }
+          ],
+          "date": "2025-07-07T22:22:41.705Z",
+          "recipientName": "Jose",
+          "recipientSurname": "Muzio",
+          "street": "Olavarría 3583",
+          "provinciaDestino": "AR-B",
+          "cpDestino": "7602",
+          "shippingMethod": "sucursal",
+          "shippingCost": 0,
+          "totalCost": 6000,
+          "state": "Cancelado"
+        },
+        {
+          "orderId": "1751926989815-492",
+          "products": [
+            {
+              "productUrl": "http://localhost:3000/products/6",
+              "quantity": 1,
+              "price": 16000
+            }
+          ],
+          "date": "2025-07-07T22:23:09.815Z",
+          "recipientName": "Jose",
+          "recipientSurname": "Muzio",
+          "street": "Olavarría 3583",
+          "provinciaDestino": "AR-B",
+          "cpDestino": "7602",
+          "shippingMethod": "sucursal",
+          "shippingCost": 0,
+          "totalCost": 16000,
+          "state": "Entregado"
+        },
+        {
+          "orderId": "1751927147579-123",
+          "products": [
+            {
+              "productUrl": "http://localhost:3000/products/21",
+              "quantity": 1,
+              "price": 25000
+            }
+          ],
+          "date": "2025-07-07T22:25:47.579Z",
+          "recipientName": "Jose",
+          "recipientSurname": "Muzio",
+          "street": "Olavarría 3583",
+          "provinciaDestino": "AR-B",
+          "cpDestino": "7602",
+          "shippingMethod": "sucursal",
+          "shippingCost": 0,
+          "totalCost": 25000,
+          "state": "Enviado"
+        }
+      ],
       "favoriteList": [
-        "3"
+        "4",
+        "3",
+        "7",
+        "5"
       ],
       "credential": "admin"
     },
@@ -45,7 +133,7 @@
         "4",
         "5"
       ],
-      "credential": "manager"
+      "credential": "employee"
     },
     {
       "id": "b84f",
@@ -54,10 +142,34 @@
       "email": "josevl@live.com",
       "password": "12345",
       "cart": [],
-      "purchaseHistory": [],
-      "favoriteList": [
-        "3"
+      "purchaseHistory": [
+        {
+          "orderId": "1751932671027-945",
+          "products": [
+            {
+              "productUrl": "http://localhost:3000/products/6",
+              "quantity": 1,
+              "price": 16000
+            },
+            {
+              "productUrl": "http://localhost:3000/products/5",
+              "quantity": 1,
+              "price": 6000
+            }
+          ],
+          "date": "2025-07-07T23:57:51.027Z",
+          "recipientName": "Jose",
+          "recipientSurname": "Muzio",
+          "street": "Olavarría 3583",
+          "provinciaDestino": "AR-B",
+          "cpDestino": "7602",
+          "shippingMethod": "domicilio",
+          "shippingCost": 9236,
+          "totalCost": 31236,
+          "state": "Pendiente"
+        }
       ],
+      "favoriteList": [],
       "credential": "user"
     },
     {
@@ -89,7 +201,7 @@
       "description": "Amigurumi de My Melody hecho a mano ,suave y esponjoso. Con un tamaño compacto de 12 cm, este muñeco es ideal para decorar o llevar a cualquier lugar. Un regalo perfecto para los amantes de My Melody y el universo de Sanrio. ¡Añade un toque adorable a tu colección!",
       "price": 10000,
       "category": "amigurumi",
-      "stock": 5,
+      "stock": 0,
       "state": "inactive",
       "imageUrl": "http://localhost:3001/images/5ca8"
     },
@@ -119,7 +231,7 @@
       "description": "Este adorable gatito amigurumi de 8 cm es perfecto para llaves, mochilas o bolsos. Hecho a mano con hilo de alta calidad y estilo siamés (o el que prefieras). Un solo gatito, ideal para los amantes de los gatos. ¡Un regalo tierno y lleno de personalidad!",
       "price": 6000,
       "category": "amigurumi",
-      "stock": 10,
+      "stock": 9,
       "state": "active",
       "imageUrl": "http://localhost:3001/images/a781"
     },
@@ -129,7 +241,7 @@
       "description": "Muñecos a crochet de Luffy y Chopper de 8 cm, perfectos para decorar o agregar a tu colección. Hechos a mano con detalles únicos, ideales para los fans de One Piece. ¡Un toque adorable para tu espacio!",
       "price": 16000,
       "category": "amigurumi",
-      "stock": 4,
+      "stock": 2,
       "state": "active",
       "imageUrl": "http://localhost:3001/images/6f04"
     },
@@ -209,7 +321,7 @@
       "description": "Este adorable llavero de Miffy de 8 cm está hecho a mano con mucho cariño. Perfecto para darle un toque tierno a tus llaves, mochilas o bolsos. ¡Un accesorio encantador y compacto para los fans de Miffy!",
       "price": 6000,
       "category": "amigurumi",
-      "stock": 20,
+      "stock": 18,
       "imageUrl": "http://localhost:3001/images/37bb",
       "state": "active"
     },
@@ -279,7 +391,7 @@
       "description": "Este Prince de Katamari Damacy de 15 cm viene con su bola magnética, perfecta para recrear la magia del juego. Hecho a mano con detalles fieles al diseño original, es un accesorio ideal para los fanáticos. ¡Un toque único para tu colección o decoración!",
       "price": 25000,
       "category": "amigurimi",
-      "stock": 23,
+      "stock": 22,
       "state": "active",
       "imageUrl": "http://localhost:3001/images/4972"
     },

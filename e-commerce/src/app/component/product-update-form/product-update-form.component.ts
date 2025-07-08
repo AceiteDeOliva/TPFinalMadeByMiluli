@@ -67,7 +67,7 @@ export class ProductUpdateFormComponent implements OnInit {
             this.productForm.patchValue(product);
 
             if (product.imageUrl.startsWith('data:image')) {
-              this.imagePreviewUrl = product.imageUrl; 
+              this.imagePreviewUrl = product.imageUrl;
             } else {
               const imageId = product.imageUrl.split('/').pop();
               this.oldImageId = imageId || null;
@@ -170,9 +170,8 @@ export class ProductUpdateFormComponent implements OnInit {
   private updateProduct() {
     const updatedProduct: Product = {
       id: this.productId!,
-      ...this.productForm.value
+      ...this.productForm.getRawValue()
     };
-
     this.productService.updateProduct(updatedProduct).subscribe({
       next: (result) => {
         if (result) {
