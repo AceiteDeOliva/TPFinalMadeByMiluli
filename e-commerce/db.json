@@ -10,6 +10,10 @@
         {
           "productUrl": "http://localhost:3000/products/15",
           "quantity": 1
+        },
+        {
+          "productUrl": "http://localhost:3000/products/12",
+          "quantity": 1
         }
       ],
       "purchaseHistory": [
@@ -108,34 +112,6 @@
       "credential": "admin"
     },
     {
-      "id": "f97f",
-      "name": "Milagros",
-      "surname": "Rodriguez",
-      "email": "milagroabril.r@gmail.com",
-      "password": "12345",
-      "cart": [
-        {
-          "productUrl": "http://localhost:3000/products/13",
-          "quantity": 1
-        },
-        {
-          "productUrl": "http://localhost:3000/products/3",
-          "quantity": 1
-        },
-        {
-          "productUrl": "http://localhost:3000/products/7",
-          "quantity": 1
-        }
-      ],
-      "purchaseHistory": [],
-      "favoriteList": [
-        "13",
-        "4",
-        "5"
-      ],
-      "credential": "employee"
-    },
-    {
       "id": "b84f",
       "name": "Jose",
       "surname": "Letamendia",
@@ -169,19 +145,11 @@
           "state": "Pendiente"
         }
       ],
-      "favoriteList": [],
-      "credential": "user"
-    },
-    {
-      "id": "6f6f",
-      "name": "hola",
-      "surname": "1234",
-      "email": "falopez@test.com",
-      "password": "123",
-      "cart": [],
-      "purchaseHistory": [],
-      "favoriteList": [],
-      "credential": "user"
+      "favoriteList": [
+        "21",
+        "15"
+      ],
+      "credential": "employee"
     }
   ],
   "products": [
@@ -261,9 +229,9 @@
       "description": "Este adorable dinosaurio amigurumi de 10 cm, hecho a mano con hilo de alta calidad, es perfecto para los amantes de los animales y el crochet. Su tamaño compacto lo convierte en un accesorio único para decorar o regalar. ¡Un toque tierno y divertido para cualquier colección!",
       "price": 10000,
       "category": "amigurumi",
-      "stock": 16,
-      "imageUrl": "http://localhost:3001/images/943b",
-      "state": "active"
+      "stock": 5,
+      "state": "active",
+      "imageUrl": "http://localhost:3001/images/943b"
     },
     {
       "id": "9",

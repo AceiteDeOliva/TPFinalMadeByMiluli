@@ -191,13 +191,13 @@ export class ManageUsersComponent implements OnInit {
   
           this.selectedEmployee = null; // Clear the selection
 
-          this.successMessage = 'Empleado Eliminado Exitosamente';
+          this.successMessage = 'Perfil Eliminado Exitosamente';
         })
       )
       .subscribe({
         error: error => {
           console.error('Delete error:', error);
-          this.errorMessage = 'Error al eliminar empleado.';
+          this.errorMessage = 'Error al eliminar perfil.';
         },
       });
   }
