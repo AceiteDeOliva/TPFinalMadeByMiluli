@@ -6,16 +6,7 @@
       "surname": "admin",
       "email": "admin@admin.com",
       "password": "admin",
-      "cart": [
-        {
-          "productUrl": "http://localhost:3000/products/15",
-          "quantity": 1
-        },
-        {
-          "productUrl": "http://localhost:3000/products/12",
-          "quantity": 1
-        }
-      ],
+      "cart": [],
       "purchaseHistory": [
         {
           "orderId": "1751926897585-257",
@@ -40,7 +31,7 @@
           "shippingMethod": "sucursal",
           "shippingCost": 0,
           "totalCost": 35000,
-          "state": "Devuelto"
+          "state": "Enviado"
         },
         {
           "orderId": "1751926961705-498",
@@ -117,7 +108,12 @@
       "surname": "Letamendia",
       "email": "josevl@live.com",
       "password": "12345",
-      "cart": [],
+      "cart": [
+        {
+          "productUrl": "http://localhost:3000/products/21",
+          "quantity": 1
+        }
+      ],
       "purchaseHistory": [
         {
           "orderId": "1751932671027-945",
@@ -149,7 +145,52 @@
         "21",
         "15"
       ],
-      "credential": "employee"
+      "credential": "manager"
+    },
+    {
+      "id": "b491",
+      "name": "Milagros",
+      "surname": "Abril",
+      "email": "mili@mili.com",
+      "password": "12345",
+      "cart": [
+        {
+          "productUrl": "http://localhost:3000/products/3",
+          "quantity": 1
+        },
+        {
+          "productUrl": "http://localhost:3000/products/4",
+          "quantity": 1
+        }
+      ],
+      "purchaseHistory": [
+        {
+          "orderId": "1751993845594-842",
+          "products": [
+            {
+              "productUrl": "http://localhost:3000/products/3",
+              "quantity": 1,
+              "price": 15000
+            }
+          ],
+          "date": "2025-07-08T16:57:25.594Z",
+          "recipientName": "Milagros",
+          "recipientSurname": "Rodriguez",
+          "street": "Olavarría 3583",
+          "provinciaDestino": "AR-B",
+          "cpDestino": "7602",
+          "shippingMethod": "domicilio",
+          "shippingCost": 9236,
+          "totalCost": 24236,
+          "state": "Fallido"
+        }
+      ],
+      "favoriteList": [
+        "3",
+        "4",
+        "8"
+      ],
+      "credential": "user"
     }
   ],
   "products": [
@@ -382,6 +423,16 @@
       "stock": 25,
       "imageUrl": "http://localhost:3001/images/d620",
       "state": "active"
+    },
+    {
+      "id": "24",
+      "name": "Lowdi",
+      "description": "Amigurumi de osito verde hecho a mano, suave y esponjoso. Con un diseño tierno que incluye una bufanda tejida y una delicada flor en la oreja, este muñeco transmite dulzura y calidez. Mide aproximadamente 20 cm, ideal para decorar cualquier rincón o acompañarte a donde vayas. Perfecto como regalo artesanal y único para fans del crochet y de los peluches adorables. ¡Un detalle que roba sonrisas!",
+      "price": 12500,
+      "category": "Amigurumi",
+      "stock": 6,
+      "state": "active",
+      "imageUrl": "http://localhost:3001/images/a9fc"
     }
   ]
 }

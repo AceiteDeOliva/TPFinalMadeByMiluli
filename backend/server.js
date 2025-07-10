@@ -11,7 +11,7 @@ const client = new MercadoPagoConfig({
 const app = express();
 const port = 8080;
 const processedPayments = new Set();
-const baseUrl = "https://feed8a8f262e.ngrok-free.app" //se tiene que actualizar cada vez
+const baseUrl = "https://d361dd2354b5.ngrok-free.app" //se tiene que actualizar cada vez
 
 app.use(cors());
 app.use(express.json());

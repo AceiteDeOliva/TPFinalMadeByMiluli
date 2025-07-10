@@ -16,6 +16,7 @@ export class SubtotalComponent implements OnInit {
   @Output() proceedToPayment = new EventEmitter<void>();
   @Input() path: string = '';
   @Input() inCheckout: boolean = false;
+  
 
   totalOrderAmount$!: Observable<number>;
   shippingCost$!: Observable<number>;
