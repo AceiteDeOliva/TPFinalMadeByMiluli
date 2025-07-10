@@ -5,7 +5,7 @@
     <app-cart (subtotal)="onSubtotalChanged($event)"></app-cart>
     <app-subtotal
       *ngIf="cartSubtotal > 0"
-      [cartSubtotal]="cartSubtotal"
+      
       [path]="'shippingInfo'"
       (proceedToPayment)="onProceedToPayment()"
     ></app-subtotal>

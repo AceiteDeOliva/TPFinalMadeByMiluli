@@ -15,6 +15,7 @@ export class CartPageComponent {
 
   cartSubtotal: number = 0;
   isLoggedIn: boolean = false;
+  
 
   constructor(private router: Router) {}
 
